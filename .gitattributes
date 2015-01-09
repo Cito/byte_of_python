@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+*.asciidoc text eol=lf
+*.bat text eol=crlf
+*.css text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.sh text eol=lf
+*.txt text eol=lf
+*.svg binary
+*.xml text
+
+*.gif binary
+*.jpg binary
+*.png binary
+*.tif binary
