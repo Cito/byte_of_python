@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die Funktion dir()</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="modules.html" title="Kapitel 8. Module" /><link rel="prev" href="making-modules.html" title="Eigene Module erstellen" /><link rel="next" href="modules-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die Funktion dir()</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="making-modules.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 8. Module</th><td width="20%" align="right"> <a accesskey="n" href="modules-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="dir"></a>Die Funktion dir()</h2></div></div></div><p>
+
+		Sie können die eingebaute Funktion <code class="function">dir()</code> benutzen, um
+		die Bezeichner aufzulisten, die von einem Modul definiert werden. Die Bezeichner sind
+		die Funktionen, Klassen und Variablen, die in dem jeweiligen Modul definiert werden.
+
+		
+
+		</p><p>
+
+		Wenn Sie der <code class="function">dir</code>-Funktion einen Modulnamen übergeben,
+		dann gibt sie die Liste der Namen zurück, die in diesem Modul definiert werden. Wenn
+		kein Parameter übergegeben wird, gibt sie die Liste der Namen des aktuellen Moduls zurück.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-dir"></a>Die dir-Funktion verwenden</h3></div></div></div><div class="example"><a id="using-dir-example"></a><p class="title"><strong>Beispiel 8.4. Die dir-Funktion verwenden</strong></p><div class="example-contents"><pre class="screen">
+				
+$ python
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; dir(sys) # Liste aller Attribute des sys-Moduls anzeigen
+['__displayhook__', '__doc__', '__excepthook__', '__name__', '__stderr__',
+'__stdin__', '__stdout__', '_getframe', 'api_version', 'argv',
+'builtin_module_names', 'byteorder', 'call_tracing', 'callstats',
+'copyright', 'displayhook', 'exc_clear', 'exc_info', 'exc_type',
+'excepthook', 'exec_prefix', 'executable', 'exit', 'getcheckinterval',
+'getdefaultencoding', 'getdlopenflags', 'getfilesystemencoding',
+'getrecursionlimit', 'getrefcount', 'hexversion', 'maxint', 'maxunicode',
+'meta_path','modules', 'path', 'path_hooks', 'path_importer_cache',
+'platform', 'prefix', 'ps1', 'ps2', 'setcheckinterval', 'setdlopenflags',
+'setprofile', 'setrecursionlimit', 'settrace', 'stderr', 'stdin', 'stdout',
+'version', 'version_info', 'warnoptions']
+&gt;&gt;&gt; dir() # Liste aller Attribute des aktuellen Moduls anzeigen
+['__builtins__', '__doc__', '__name__', 'sys']
+&gt;&gt;&gt;
+&gt;&gt;&gt; a = 5 # erzeuge eine neue Variable 'a'
+&gt;&gt;&gt; dir()
+['__builtins__', '__doc__', '__name__', 'a', 'sys']
+&gt;&gt;&gt;
+&gt;&gt;&gt; del a # loesche/entferne einen Namen
+&gt;&gt;&gt;
+&gt;&gt;&gt; dir()
+['__builtins__', '__doc__', '__name__', 'sys']
+&gt;&gt;&gt;
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-dir-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Zuerst sehen wir die Anwendung von <code class="function">dir</code> auf das
+				importierte <code class="literal">sys</code>-Modul. Wir können die riesige Liste
+				von Attributen sehen, die darin enthalten sind.
+
+				
+
+				</p><p>
+
+				Als Nächstes verwenden wir die <code class="function">dir</code>-Funktion,
+				ohne ihr einen Parameter zu übergeben: Die Voreinstellung ist, dass sie die
+				Attribute des aktuellen Moduls zurückliefert. Beachten Sie, dass die
+				importierten Module ebenfalls Teil der Liste sind.
+
+				
+
+				</p><p>
+
+				Um zu sehen, wie die <code class="function">dir</code>-Funktion arbeitet, definieren wir
+				eine neue Variable <code class="varname">a</code>, und weisen ihr einen Wert zu. Danach
+				überprüfen wir, was sich an der Ausgabe von <code class="function">dir</code> geändert hat.
+				Wir stellen fest, dass es in der Liste ein zusätzliches Element des gleichen Namens
+				<code class="varname">a</code> gibt. Wir entfernen die Variable bzw. das Attribut des
+				Moduls mittels der Anweisung <code class="literal">del</code>. Als Resultat der Änderung
+				sehen wir wieder eine entsprechende Ausgabe der <code class="function">dir</code>-Funktion.
+
+				
+
+				</p><p>
+
+				Eine Anmerkung zu <code class="literal">del</code>: Diese Anweisung wird benutzt,
+				um eine Variable bzw. einen Namen zu <span class="emphasis"><em>entfernen</em></span>
+				(<code class="literal">del</code> steht kurz für <span class="foreignphrase"><em class="foreignphrase">delete</em></span>).
+				Nachdem die Anweisung ausgeführt wurde (in diesem Fall <code class="literal">del a</code>),
+				können Sie nicht mehr auf die Variable <code class="varname">a</code> zugreifen -
+				es ist, als hätte es sie nie gegeben.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="making-modules.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="modules.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="modules-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Eigene Module erstellen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

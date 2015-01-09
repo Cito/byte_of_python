@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>try..except</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="exceptions.html" title="Kapitel 13. Ausnahmen" /><link rel="prev" href="exceptions.html" title="Kapitel 13. Ausnahmen" /><link rel="next" href="raising-exceptions.html" title="Auslösen von Ausnahmen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">try..except</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="exceptions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 13. Ausnahmen</th><td width="20%" align="right"> <a accesskey="n" href="raising-exceptions.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="try-except"></a>try..except</h2></div></div></div><p>
+
+		Wir wollen <span class="emphasis"><em>versuchen</em></span>, eine Eingabe vom Benutzer entgegenzunehmen.
+		Drücken Sie <span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>d</strong></span>
+		(oder <span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>z</strong></span> unter Windows),
+		und achten Sie darauf, was passiert.
+
+		
+
+		</p><pre class="screen">
+		
+&gt;&gt;&gt; s = raw_input('Geben Sie etwas ein --&gt; ')
+Enter something --&gt; Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+EOFError
+		
+		</pre><p>
+
+		Python löst als Fehler eine Ausnahme namens <code class="classname">EOFError</code> aus,
+		was grundsätzlich bedeutet, dass das <span class="emphasis"><em>Ende einer Datei</em></span> (EOF)
+		erreicht wurde (bewirkt durch die Eingabe <span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>d</strong></span>
+		oder <span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>z</strong></span>),
+		wo dies nicht erwartet wurde.
+
+		
+
+		</p><p>
+
+		Wir sehen nun, wie man solche Fehler behandelt.
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="handling-exceptions"></a>Ausnahmebehandlung</h3></div></div></div><p>
+
+			Wir können Ausnahmen mit Hilfe der Anweisung <code class="literal">try..except</code>
+			behandeln. Wir schreiben dazu unsere normalen Anweisungen in den Block,
+			der auf <code class="literal">try</code> folgt, und schreiben unsere Anweisungen zur
+			Fehlerbehandlung in den Block, der auf <code class="literal">except</code> folgt.
+
+			
+
+			</p><div class="example"><a id="handling-exceptions-example"></a><p class="title"><strong>Beispiel 13.1. Ausnahmebehandlung
+					(<a class="ulink" href="code/try_except.py" target="_top">try_except.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">sys</span>
+
+<span class="py-statement">try</span>:
+	s = <span class="py-builtin">raw_input</span>(<span class="py-string">'Geben Sie etwas ein --&gt; '</span>)
+<span class="py-statement">except</span> EOFError:
+	<span class="py-statement">print</span> <span class="py-string">'\nWarum haben Sie die Eingabe abgebrochen?'</span>
+	<span class="py-builtin">sys</span>.exit() <span class="py-comment"># beendet das Programm</span>
+<span class="py-statement">except</span>:
+	<span class="py-statement">print</span> <span class="py-string">'\nIrgendein Fehler hat eine Ausnahme ausgeloest.'</span>
+	<span class="py-comment"># an dieser Stelle beenden wir das Programm nicht</span>
+
+<span class="py-statement">print</span> <span class="py-string">'Fertig'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="handling-exceptions-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python try_except.py
+Geben Sie etwas ein --&gt;
+Warum haben Sie die Eingabe abgebrochen?
+
+$ python try_except.py
+Geben Sie etwas ein --&gt; Python ist eine Ausnahmeerscheinung!
+Fertig
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="handling-exceptions-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wir stecken alle Anweisungen, die einen Fehler auslösen könnten,
+				in den <code class="literal">try</code>-Block und behandeln dann alle Fehler
+				und Ausnahmen in dem Block der <code class="literal">except</code>-Klausel.
+				Die <code class="literal">except</code>-Klausel kann einzeln angegebene
+				Fehler oder Ausnahmen behandeln, oder auch eine in Klammern
+				angegebene Liste von Fehlern/Ausnahmen. Wenn keine Namen von
+				Fehlern oder Ausnahmen angegeben werden, dann behandelt sie
+				<span class="emphasis"><em>alle</em></span> Fehler und Ausnahmen.
+				Zu jeder <code class="literal">try</code>-Klausel muss mindestens eine
+				<code class="literal">except</code>-Klausel gehören (oder stattdessen eine
+				<code class="literal">finally</code>-Klausel, aber darüber sprechen wir später).
+
+				
+
+				</p><p>
+
+				Wenn irgendein Fehler oder eine Ausnahme nicht behandelt wird, dann
+				wird die Standard-Ausnahmebehandlung von Python aufgerufen, die einfach
+				die Ausführung des Programms beendet und eine Fehlermeldung ausgibt.
+				Wir haben dies bereits mehrfach gesehen.
+
+				
+
+				</p><p>
+
+				Sie können auch eine <code class="literal">else</code>-Klausel mit einem
+				<code class="literal">try..except</code>-Block kombinieren. Die <code class="literal">else</code>-Klausel
+				wird dann ausgeführt, wenn keine Ausnahme auftritt.
+
+				
+
+				</p><p>
+
+				Wir können auch auf das Ausnahmeobjekt zugreifen, um dadurch weitere Informationen
+				über die Ausnahme zu erhalten, die aufgetreten ist. Dies wird im nächsten Beispiel gezeigt.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="exceptions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="exceptions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="raising-exceptions.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 13. Ausnahmen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Auslösen von Ausnahmen</td></tr></table></div></body></html>

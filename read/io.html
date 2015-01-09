@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Kapitel 12. Ein/Ausgabe</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="index.html" title="A Byte of Python" /><link rel="prev" href="oops-summary.html" title="Zusammenfassung" /><link rel="next" href="pickle.html" title="Eingemachtes" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Kapitel 12. Ein/Ausgabe</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="oops-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="pickle.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="io"></a>Kapitel 12. Ein/Ausgabe</h1></div></div></div><div class="toc"><p><strong>Inhaltsverzeichnis</strong></p><dl class="toc"><dt><span class="section"><a href="io.html#files">Dateien</a></span></dt><dd><dl><dt><span class="section"><a href="io.html#using-files">Der Gebrauch von <code class="classname">file</code></a></span></dt></dl></dd><dt><span class="section"><a href="pickle.html">Eingemachtes</a></span></dt><dd><dl><dt><span class="section"><a href="pickle.html#pickling-and-unpickling">Einfrieren und wieder Auftauen</a></span></dt></dl></dd><dt><span class="section"><a href="io-summary.html">Zusammenfassung</a></span></dt></dl></div><p>
+
+	Sie werden häufig die Anforderung haben, dass Ihr Programm mit dem Benutzer (der Sie auch selber
+	sein können) interagieren soll. Das Programm soll etwa eine Eingabe vom Benutzer entgegennehmen
+	und dann irgendwelche Ergebnisse ausgeben. Wir können dies mit <code class="function">raw_input</code>
+	bzw. <code class="literal">print</code>-Anweisungen erreichen. Zur Ausgabe können wir auch die verschiedenen
+	Methoden der Klasse <code class="classname">str</code> (String) verwenden. Zum Beispiel können Sie
+	die <code class="methodname">rjust</code>-Methode einsetzen, um einen String zu erhalten, der
+	bezüglich einer angegeben Breite rechts ausgerichtet ist.
+	Für weitere Einzelheiten, siehe <code class="literal">help(str)</code>.
+
+	
+
+	</p><p>
+
+	Ein andere übliche Art von Ein/Ausgabe besteht aus dem Umgang mit Dateien. Die Möglichkeit,
+	Dateien zu erzeugen, zu lesen und zu schreiben ist für viele Programme wesentlich, und wir
+	werden diesen Aspekt in diesem Kapitel untersuchen.
+
+	
+
+	</p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="files"></a>Dateien</h2></div></div></div><p>
+
+		Sie können Dateien zum Lesen und Schreiben öffnen, indem Sie ein Objekt der Klasse
+		<code class="classname">file</code> erzeugen und dessen Methoden
+		<code class="methodname">read</code>, <code class="methodname">readline</code>
+		oder <code class="methodname">write</code> verwenden. Die Möglichkeit,
+		aus der Datei zu lesen oder in die Datei zu schreiben hängt von dem Modus ab,
+		den Sie beim Öffnen der Datei angegeben haben. Wenn Sie schließlich die Dateioperationen
+		abschließen wollen, rufen Sie die Methode <code class="methodname">close</code> auf,
+		um Python mitzuteilen, dass Sie mit dieser Datei fertig sind.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-files"></a>Der Gebrauch von <code class="classname">file</code></h3></div></div></div><div class="example"><a id="using-files-example"></a><p class="title"><strong>Beispiel 12.1. Verwendung von Dateien
+					(<a class="ulink" href="code/beispiel_file.py" target="_top">beispiel_file.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+gedicht = <span class="py-string">'''\
+Programmieren mit Elan
+und die Arbeit wird getan,
+willst du Spass haben daran:
+	Nimm Python!
+'''</span>
+
+f = <span class="py-builtin">file</span>(<span class="py-string">'gedicht.txt'</span>, <span class="py-string">'w'</span>) <span class="py-comment"># "w" = Schreiben</span>
+f.write(gedicht) <span class="py-comment"># schreibe den Text in die Datei</span>
+f.close() <span class="py-comment"># schliesse die Datei</span>
+
+f = <span class="py-builtin">file</span>(<span class="py-string">'gedicht.txt'</span>) <span class="py-comment"># kein Modus bedeutet "r" = Lesen</span>
+<span class="py-statement">while</span> <span class="py-builtin">True</span>:
+	line = f.readline()
+	<span class="py-statement">if</span> <span class="py-builtin">len</span>(line) == <span class="py-number">0</span>: <span class="py-comment"># eine leere Zeile bedeutet Dateiende (EOF)</span>
+		<span class="py-statement">break</span>
+	<span class="py-statement">print</span> line, <span class="py-comment"># das Komma dient zur Unterdrueckung des Zeilenvorschubs</span>
+f.close() <span class="py-comment"># schliesse die Datei</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-files-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python beispiel_file.py
+Programmieren mit Elan
+und die Arbeit wird getan,
+willst du Spass haben daran:
+        Nimm Python!
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-files-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Zuerst erzeugen wir eine Instanz der Klasse <code class="classname">file</code>,
+				indem wir den Namen der Datei und den Modus angeben, in dem die Datei
+				geöffnet werden soll. Der Modus kann Lesemodus sein (<code class="literal">'r'</code>
+				für <span class="foreignphrase"><em class="foreignphrase">read</em></span>), Schreibmodus (<code class="literal">'w'</code>
+				für <span class="foreignphrase"><em class="foreignphrase">write</em></span>) oder Anfügemodus (<code class="literal">'a'</code>
+				für <span class="foreignphrase"><em class="foreignphrase">append</em></span>). Es gibt tatsächlich noch viele
+				weitere Modi, und mit <code class="literal">help(file)</code> erhalten Sie nähere Einzelheiten dazu.
+
+				
+
+				</p><p>
+
+				Zuerst öffnen wir die Datei im Schreibmodus und benutzen die Methode
+				<code class="methodname">write</code> der Klasse <code class="classname">file</code>,
+				um in die Datei zu schreiben, danach schließen wir die Datei wieder mit
+				der Methode <code class="methodname">close</code>.
+
+				
+
+				</p><p>
+
+				Als Nächstes öffnen wir die gleiche Datei zum Lesen. Wenn wir keinen Modus angeben,
+				dann wird standardmäßig der Lesemodus benutzt. Wir lesen jede Zeile der Datei in einer
+				Schleife ein, wobei wir die Methode <code class="methodname">readline</code> benutzen.
+				Diese Methode gibt jeweils eine vollständige Zeile zurück, einschließlich der Zeilenvorschubkennung
+				am Zeilenende. Wenn daher ein <span class="emphasis"><em>leerer</em></span> String zurückgeliefert wird,
+				dann zeigt uns dies an, dass das Ende der Datei erreicht wurde, und wir beenden die Schleife.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass wir an die <code class="literal">print</code>-Anweisung ein Komma angehängt
+				haben, um den automatischen Zeilenvorschub zu unterdrücken, der normalerweise bei jeder
+				<code class="literal">print</code>-Anweisung hinzugefügt wird. Die aus der Datei eingelesene
+				Zeile endet bereits mit einer Zeilenvorschubkennung, ein weiterer ist unnötig. Am Ende schließen wir die Datei wieder
+				mit der Methode <code class="methodname">close</code>.
+
+				
+
+				</p><p>
+
+				Nun betrachten wir den Inhalt der Datei <code class="filename">gedicht.txt</code>, um
+				sicherzustellen, dass das Programm wirklich einwandfrei funktioniert hat.
+
+				
+
+				</p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="oops-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="pickle.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Zusammenfassung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Eingemachtes</td></tr></table></div></body></html>

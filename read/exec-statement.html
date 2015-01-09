@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die exec- und eval-Anweisungen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="more-python.html" title="Kapitel 15. Noch mehr Python" /><link rel="prev" href="lambda-forms.html" title="Der lambda-Operator" /><link rel="next" href="assert-statement.html" title="Die assert-Anweisung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die exec- und eval-Anweisungen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="lambda-forms.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 15. Noch mehr Python</th><td width="20%" align="right"> <a accesskey="n" href="assert-statement.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="exec-statement"></a>Die exec- und eval-Anweisungen</h2></div></div></div><p>
+
+		Die <code class="literal">exec</code>-Anweisung wird benutzt, um Python-Anweisungen
+		auszuführen, die in einem String oder in einer Datei gespeichert sind. Zum Beispiel können
+		wir zur Laufzeit einen String erzeugen, der Python-Code enthält, und diese Befehle
+		dann mittels der <code class="literal">exec</code>-Anweisung ausführen.
+		Unten sehen Sie ein einfaches Beispiel hierfür.
+
+		
+
+		</p><pre class="screen">
+		
+&gt;&gt;&gt; exec 'print "Hallo Welt"'
+Hallo Welt
+		
+		</pre><p>
+
+		Die <code class="literal">eval</code>-Anweisung wird verwendet, um gültige Python-Ausdrücke
+		auszuwerten, die in einem String gespeichert sind. Unten sehen Sie wieder ein einfaches Beispiel.
+
+		
+
+		</p><pre class="screen">
+		
+&gt;&gt;&gt; eval('2*3')
+6
+		
+		</pre></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="lambda-forms.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="more-python.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="assert-statement.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Der lambda-Operator </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die assert-Anweisung</td></tr></table></div></body></html>

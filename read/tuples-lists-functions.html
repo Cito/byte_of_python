@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Übergabe von Tupeln und Dictionaries in Funktionen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="more-python.html" title="Kapitel 15. Noch mehr Python" /><link rel="prev" href="list-comprehension.html" title="Listenkomprehension" /><link rel="next" href="lambda-forms.html" title="Der lambda-Operator" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Übergabe von Tupeln und Dictionaries in Funktionen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="list-comprehension.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 15. Noch mehr Python</th><td width="20%" align="right"> <a accesskey="n" href="lambda-forms.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="tuples-lists-functions"></a>Übergabe von Tupeln und Dictionaries in Funktionen</h2></div></div></div><p>
+
+		Es gibt eine besondere Methode, um einer Funktion Parameter als Tupel oder
+		Dictionary zu übergeben, nämlich indem man den Parametern
+		<code class="literal">*</code> bzw. <code class="literal">**</code> voranstellt.
+		Dies ist nützlich, wenn eine Funktion eine beliebige Zahl von Parametern
+		entgegennehmen soll.
+
+		
+
+		</p><p>Beispiel: <a class="ulink" href="code/potenzsumme.py" target="_top">potenzsumme.py</a></p><pre class="programlisting">
+		
+&gt;&gt;&gt; <span class="py-statement">def</span> <span class="py-identifier">potenzsumme</span>(potenz, *parameter):
+...     <span class="py-string">'''Gibt die Summe der angegebenen Potenz aller Parameter zurueck.'''</span>
+...     summe = <span class="py-number">0</span>
+...     <span class="py-statement">for</span> i <span class="py-statement">in</span> parameter:
+...             summe += pow(i, potenz)
+...     <span class="py-statement">return</span> summe
+...
+&gt;&gt;&gt; potenzsumme(<span class="py-number">2</span>, <span class="py-number">3</span>, <span class="py-number">4</span>) <span class="py-comment"># 3^2 + 4^2</span>
+<span class="py-number">25</span>
+
+&gt;&gt;&gt; potenzsumme(<span class="py-number">2</span>, <span class="py-number">10</span>) <span class="py-comment"># 10^2</span>
+<span class="py-number">100</span>
+		
+		</pre><p>
+
+		Aufgrund des vorangestellten <code class="literal">*</code> bei der Variable <code class="varname">parameter</code>,
+		werden alle zusätzlichen Parameter, die der Funktion übergeben werden, als ein Tupel
+		in <code class="varname">parameter</code> gespeichert. Wenn stattdessen ein <code class="literal">**</code>
+		vorangestellt worden wäre, dann wären die zusätzlichen Parameter als Schlüssel/Wert-Paare eines
+		Dictionaries betrachtet worden.
+
+		
+
+		</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="list-comprehension.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="more-python.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="lambda-forms.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Listenkomprehension </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Der lambda-Operator</td></tr></table></div></body></html>

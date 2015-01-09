@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Sequenzen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="data-structures.html" title="Kapitel 9. Datenstrukturen" /><link rel="prev" href="dictionary.html" title="Dictionaries" /><link rel="next" href="references.html" title="Referenzen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Sequenzen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="dictionary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 9. Datenstrukturen </th><td width="20%" align="right"> <a accesskey="n" href="references.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sequences"></a>Sequenzen</h2></div></div></div><p>
+
+		Listen, Tupel und Strings sind Beispiele für Sequenzen, aber was sind Sequenzen
+		und was ist an ihnen so besonders? Zwei Haupteigenschaften einer Sequenz sind
+		der <span class="bold"><strong>Indizierungsoperator</strong></span>, der es uns ermöglicht,
+		direkt auf ein bestimmtes Objekt in einer Sequenz zuzugreifen, und der
+		<span class="bold"><strong>Teilbereichsoperator</strong></span>, der es uns erlaubt,
+		eine Teilsequenz der gesamten Sequenz zu erhalten.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-sequences"></a>Benutzung von Sequenzen</h3></div></div></div><div class="example"><a id="using-sequences-example"></a><p class="title"><strong>Beispiel 9.5. Benutzung von Sequenzen 
+					(<a class="ulink" href="code/seq.py" target="_top">seq.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+einkaufsliste = [<span class="py-string">'Aepfel'</span>, <span class="py-string">'Mangos'</span>, <span class="py-string">'Karotten'</span>, <span class="py-string">'Bananen'</span>]
+
+<span class="py-comment"># Indizierungs-Operation</span>
+<span class="py-statement">print</span> <span class="py-string">'Position 0 ist'</span>, einkaufsliste[<span class="py-number">0</span>]
+<span class="py-statement">print</span> <span class="py-string">'Position 1 ist'</span>, einkaufsliste[<span class="py-number">1</span>]
+<span class="py-statement">print</span> <span class="py-string">'Position 2 ist'</span>, einkaufsliste[<span class="py-number">2</span>]
+<span class="py-statement">print</span> <span class="py-string">'Position 3 ist'</span>, einkaufsliste[<span class="py-number">3</span>]
+<span class="py-statement">print</span> <span class="py-string">'Position -1 ist'</span>, einkaufsliste[-<span class="py-number">1</span>]
+<span class="py-statement">print</span> <span class="py-string">'Position -2 ist'</span>, einkaufsliste[-<span class="py-number">2</span>]
+
+<span class="py-comment"># Teilbereichs-Operation auf einer Liste</span>
+<span class="py-statement">print</span> <span class="py-string">'Position 1 bis 3 ist'</span>, einkaufsliste[<span class="py-number">1</span>:<span class="py-number">3</span>]
+<span class="py-statement">print</span> <span class="py-string">'Position 2 bis Ende ist'</span>, einkaufsliste[<span class="py-number">2</span>:]
+<span class="py-statement">print</span> <span class="py-string">'Position 1 bis -1 ist'</span>, einkaufsliste[<span class="py-number">1</span>:-<span class="py-number">1</span>]
+<span class="py-statement">print</span> <span class="py-string">'Position Anfang bis ist'</span>, einkaufsliste[:]
+
+<span class="py-comment"># Teilbereichs-Operation auf einem String</span>
+name = <span class="py-string">'swaroop'</span>
+<span class="py-statement">print</span> <span class="py-string">'Zeichen 1 bis 3 ist'</span>, name[<span class="py-number">1</span>:<span class="py-number">3</span>]
+<span class="py-statement">print</span> <span class="py-string">'Zeichen 2 bis Ende ist'</span>, name[<span class="py-number">2</span>:]
+<span class="py-statement">print</span> <span class="py-string">'Zeichen 1 bis -1 ist'</span>, name[<span class="py-number">1</span>:-<span class="py-number">1</span>]
+<span class="py-statement">print</span> <span class="py-string">'Zeichen Anfang bis Ende'</span>, name[:]
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-sequences-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python seq.py
+Position 0 ist Aepfel
+Position 1 ist Mangos
+Position 2 ist Karotten
+Position 3 ist Bananen
+Position -1 ist Bananen
+Position -2 ist Karotten
+Position 1 bis 3 ist ['Mangos', 'Karotten']
+Position 2 bis Ende ist ['Karotten', 'Bananen']
+Position 1 bis -1 ist ['Mangos', 'Karotten']
+Position Anfang bis ist ['Aepfel', 'Mangos', 'Karotten', 'Bananen']
+Zeichen 1 bis 3 ist wa
+Zeichen 2 bis Ende ist aroop
+Zeichen 1 bis -1 ist waroo
+Zeichen Anfang bis Ende swaroop
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-sequences-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Zuerst sehen wir, wie der Indizierungsoperator verwendet wird, um einzelne
+				Elemente einer Sequenz zu ermitteln. Immer wenn man wie oben bei einer
+				Sequenz eine Zahl in eckigen Klammern angibt, holt Python Ihnen das Element,
+				das dieser Position in der Liste entspricht. Denken Sie daran, dass Python
+				von 0 anfängt zu zählen. Daher holt <code class="literal">einkaufsliste[0]</code> das
+				erste Element und <code class="literal">einkaufsliste[3]</code> das vierte Element
+				der Sequenz <code class="varname">einkaufsliste</code>.
+
+				
+
+				</p><p>
+
+				Der Index kann auch eine negative Zahl sein. In diesem Fall wird die
+				Position vom Ende der Sequenz her gezählt. Daher bezieht sich
+				<code class="literal">einkaufsliste[-1]</code> auf das letzte Element der Sequenz
+				und <code class="literal">einkaufsliste[-2]</code> auf das vorletzte Element der Sequenz.
+
+				
+
+				</p><p>
+
+				Der Teilbereichsoperator wird verwendet, indem man den Namen der Sequenz
+				gefolgt von einem optionalen Zahlenpaar angibt, das durch einen Doppelpunkt
+				innerhalb von eckigen Klammern getrennt wird. Beachten Sie, dass dies sehr
+				ähnlich dem Indizierungsoperator ist, den Sie bisher verwendet haben.
+				Denken Sie daran, dass die Zahlen optional sind, der Doppelpunkt aber nicht.
+
+				
+
+				</p><p>
+
+				Die erste Zahl (vor dem Doppelpunkt) in der Teilbereichs-Operation bezieht
+				sich auf die Position, wo der Teilbereich anfängt, und die zweite Zahl
+				(nach dem Doppelpunkt) gibt an, wo der Teilbereich aufhört. Wenn die erste Zahl
+				nicht angegeben wird, dann fängt Python am Anfang der Sequenz an. Wenn die zweite
+				Zahl weggelassen wird, dann hört Python am Ende der Sequenz auf. Beachten Sie,
+				dass die zurückgegebene Teilsequenz <span class="emphasis"><em>an</em></span> der Startposition
+				<span class="emphasis"><em>anfängt</em></span> und direkt <span class="emphasis"><em>vor</em></span> der Endposition
+				<span class="emphasis"><em>aufhört</em></span>, d.h. die Startposition ist in der Teilsequenz
+				enthalten, aber die Endposition gehört nicht mehr dazu.
+
+				
+
+				</p><p>
+
+				Daher gibt <code class="literal">einkaufsliste[1:3]</code> einen Teilbereich der
+				Sequenz zurück, der bei der Position 1 beginnt, die Position 2 enthält,
+				aber vor der Position 3 endet, weswegen ein <span class="emphasis"><em>Teilbereich</em></span>
+				mit nur zwei Elementen zurückgegeben wird. Entsprechend liefert
+				<code class="literal">einkaufsliste[:]</code> eine Kopie der gesamten Liste zurück.
+
+				
+
+				</p><p>
+
+				Man kann auch beim Teilbereichsoperator negative Positionen verwenden.
+				Negative Zahlen werden für Positionen vom Ende der Sequenz aus verwendet.
+				Zum Beispiel gibt <code class="literal">einkaufsliste[:-1]</code> eine Teilsequenz
+				zurück, die das letzte Element der Sequenz ausschließt, aber alle anderen
+				Elemente der Sequenz enthält.
+
+
+				
+
+				</p><p>
+
+				Experimentieren Sie mit verschiedenen Kombinationen solcher Teilbereichsangaben,
+				indem Sie den Python-Interpreter interaktiv benutzen, d.h. die Interpreter-Eingabeaufforderung,
+				damit Sie die Ergebnisse direkt sehen können. Das großartige an Sequenzen ist,
+				dass man auf Tupel, Listen und Strings alle auf die gleiche Weise zugreifen kann.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="dictionary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="data-structures.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="references.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Dictionaries </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Referenzen</td></tr></table></div></body></html>

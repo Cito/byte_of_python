@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Wenn Sie Hilfe brauchen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="first-steps.html" title="Kapitel 3. Erste Schritte" /><link rel="prev" href="executable-python-programs.html" title="Ausführbare Python-Programme" /><link rel="next" href="first-steps-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Wenn Sie Hilfe brauchen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="executable-python-programs.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 3. Erste Schritte</th><td width="20%" align="right"> <a accesskey="n" href="first-steps-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="getting-help"></a>Wenn Sie Hilfe brauchen</h2></div></div></div><p>
+
+		Mit der eingebauten Hilfe (<code class="literal">help</code>) bekommen Sie zu jeder
+		Funktion oder jeder Anweisung in Python eine kurze Information angezeigt. Das ist vor allem sehr
+		nützlich, wenn Sie die Kommandozeile des Interpreters verwenden. Wenn Sie z. B.
+		<code class="literal">help(str)</code> eingeben, wird Ihnen die Hilfe zu der Klasse <code class="literal">str</code>
+		 angezeigt. Diese Klasse wird dazu verwendet um Text (Strings, Zeichenketten)
+		in Ihrem Programm zu speichern. Was man unter einer Klasse zu verstehen hat, wird
+		im Kapitel über <a class="link" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung">objektorientierte Programmierung</a>
+		ausführlich behandelt.
+
+		 
+
+		</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung</h3><p>
+
+			Durch Drücken der Taste <span class="keycap"><strong>q</strong></span> verlassen Sie die Hilfe.
+
+			
+
+			</p></div><p>
+		Analog dazu können Sie sich für fast alles, was es in Python gibt, Informationen ausgeben lassen.
+		Durch den Aufruf von <code class="literal">help()</code> können Sie zum Beispiel mehr über den Hilfe-Befehl
+		<code class="literal">help</code> selbst erfahren.
+
+		
+
+		</p><p>
+
+		Wenn Sie Hilfe zu Operatoren wie <code class="literal">print</code> benötigen, müssen Sie die
+		Umgebungsvariable <code class="envar">PYTHONDOCS</code> entsprechend setzen. Unter Linux/Unix können
+		Sie dies einfach mit dem <span class="command"><strong>env</strong></span>-Befehl erledigen.
+
+		
+
+		</p><pre class="screen">
+		
+$ env PYTHONDOCS=/usr/share/doc/python-docs-2.3.4/html/ python
+Python 2.3.4 (#1, Oct 26 2004, 16:42:40)
+[GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; help('print')
+		
+		</pre><p>
+
+		Wie Sie sehen, habe ich <code class="literal">'print'</code> in Anführungszeichen gesetzt, damit
+		Python versteht, dass ich Hilfe zu 'print' haben möchte und nicht etwa mit print etwas
+		ausgeben will.
+
+		
+
+		</p><p>
+
+		Beachten Sie, dass der Pfad, den ich angegeben habe, der Pfad für Fedora Core 3 Linux ist - bei
+		anderen Linux-Distributionen oder -Versionen kann der Pfad variieren.
+
+		
+
+		</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="executable-python-programs.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="first-steps.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="first-steps-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Ausführbare Python-Programme </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

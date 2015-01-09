@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Objektmethoden</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung" /><link rel="prev" href="classes.html" title="Klassen" /><link rel="next" href="class-init.html" title="Die __init__-Methode" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Objektmethoden</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="classes.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 11. Objektorientierte Programmierung</th><td width="20%" align="right"> <a accesskey="n" href="class-init.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="object-methods"></a>Objektmethoden</h2></div></div></div><p>
+
+		Wir haben bereits besprochen, dass Klassen/Objekte Methoden haben können, die bis auf
+		den zusätzlichen Übergabeparameter <code class="literal">self</code> gewöhnliche Funktionen sind.
+		Wir werden hierfür nur ein Beispiel sehen.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-object-methods"></a>Benutzung von Objektmethoden</h3></div></div></div><div class="example"><a id="using-object-methods-example"></a><p class="title"><strong>Beispiel 11.2. Benutzung von Objektmethoden
+					(<a class="ulink" href="code/methode.py" target="_top">methode.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">class</span> <span class="py-identifier">Person</span>:
+	<span class="py-statement">def</span> <span class="py-identifier">sagHallo</span>(<span class="py-builtin">self</span>):
+		<span class="py-statement">print</span> <span class="py-string">'Hallo, wie geht es Ihnen?'</span>
+
+p = Person()
+p.sagHallo()
+
+<span class="py-comment"># Dieses kurze Beispiel kann auch als</span>
+<span class="py-comment"># Person().sagHallo() geschrieben werden.</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-object-methods-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python methode.py
+Hallo, wie geht es Ihnen?
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-object-methods-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Hier sehen wir, wie die Sache mit dem <code class="literal">self</code> funktioniert.
+				Beachten Sie, dass die Methode <code class="function">sagHallo</code> keinen Parameter
+				entgegennimmt, aber dennoch das <code class="literal">self</code> in der Funktionsdefinition hat.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="classes.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="oops.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="class-init.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Klassen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die __init__-Methode</td></tr></table></div></body></html>

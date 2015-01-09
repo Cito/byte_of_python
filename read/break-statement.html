@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die break-Anweisung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="control-flow.html" title="Kapitel 6. Kontrollfluss" /><link rel="prev" href="for-loop.html" title="Die for-Schleife" /><link rel="next" href="continue-statement.html" title="Die continue-Anweisung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die break-Anweisung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="for-loop.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 6. Kontrollfluss</th><td width="20%" align="right"> <a accesskey="n" href="continue-statement.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="break-statement"></a>Die break-Anweisung</h2></div></div></div><p>
+
+		Die <code class="literal">break</code>-Anweisung wird benutzt, um aus einer Programmschleife
+		vorzeitig <span class="emphasis"><em>auszubrechen</em></span>, d.h. die Ausführung der Schleifenanweisung
+		zu beenden, auch wenn die Schleifenbedingung noch nicht <code class="literal">False</code> geworden ist,
+		oder die Sequenz in einer <code class="literal">for</code>-Schleife noch nicht vollständig abgearbeitet wurde.
+
+		
+
+		</p><p>
+
+		Eine wichtige Anmerkung ist, dass wenn man aus einer <code class="literal">for</code>- oder
+		<code class="literal">while</code>-Schleife <span class="emphasis"><em>ausbricht</em></span>, ein eventuell
+		zur Schleife gehörender <code class="literal">else</code>-Block <span class="bold"><strong>nicht</strong></span>
+		ausgeführt wird.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-break-statement"></a>Gebrauch der break-Anweisung</h3></div></div></div><div class="example"><a id="using-break-statement-example"></a><p class="title"><strong>Beispiel 6.4. Gebrauch der break-Anweisung
+					(<a class="ulink" href="code/break.py" target="_top">break.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">while</span> <span class="py-builtin">True</span>:
+	s = <span class="py-builtin">raw_input</span>(<span class="py-string">'Geben Sie etwas ein: '</span>)
+	<span class="py-statement">if</span> s == <span class="py-string">'ende'</span>:
+		<span class="py-statement">break</span>
+	<span class="py-statement">print</span> <span class="py-string">'Die Laenge des Strings ist'</span>, <span class="py-builtin">len</span>(s)
+<span class="py-statement">print</span> <span class="py-string">'Fertig.'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-break-statement-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python break.py
+Geben Sie etwas ein: Programmieren mit Elan
+Die Laenge des Strings ist 22
+Geben Sie etwas ein: und die Arbeit wird getan,
+Die Laenge des Strings ist 26
+Geben Sie etwas ein: willst du Spass haben daran:
+Die Laenge des Strings ist 28
+Geben Sie etwas ein:   Nimm Python!
+Die Laenge des Strings ist 13
+Geben Sie etwas ein: ende
+Fertig.
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-break-statement-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				In diesem Programm nehmen wir in einer Schleife Benutzereingaben
+				entgegen und geben die Länge jeder Eingabe jedes Mal aus. Wir haben eine
+				besondere Bedingung vorgesehen, unter der das Programm beendet werden
+				soll, indem wir überprüfen, ob die Benutzereingabe <code class="literal">'ende'</code>
+				ist.	Wir beenden das Programm, in dem wir aus der Schleife
+				<span class="emphasis"><em>ausbrechen</em></span> und damit das Programmende erreichen.
+
+				
+
+				</p><p>
+
+				Die Länge des Eingabestrings kann ermittelt werden, indem man die
+				eingebaute Funktion <code class="function">len</code> benutzt.
+
+				
+
+				</p><p>
+
+				Denken Sie daran, dass die <code class="literal">break</code>-Anweisung auch
+				bei <code class="literal">for</code>-Schleifen möglich ist.
+
+				
+
+				</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="g2s-poetical-python"></a>G2s poetisches Python</h4></div></div></div><p>
+
+				Die Eingabe, die ich hier benutzt habe, ist ein kleines Gedicht,
+				das ich <span class="bold"><strong>G2s poetisches Python</strong></span>
+				genannt habe und das sogar in einer deutschen Fassung existiert:
+
+				
+
+				</p><pre class="screen">
+Programmieren mit Elan
+und die Arbeit wird getan,
+willst du Spass haben daran:
+        Nimm Python!
+				</pre></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="for-loop.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="control-flow.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="continue-statement.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die for-Schleife </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die continue-Anweisung</td></tr></table></div></body></html>

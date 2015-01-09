@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die __init__-Methode</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung" /><link rel="prev" href="object-methods.html" title="Objektmethoden" /><link rel="next" href="class-and-object-vars.html" title="Klassen- und Objektvariablen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die __init__-Methode</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="object-methods.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 11. Objektorientierte Programmierung</th><td width="20%" align="right"> <a accesskey="n" href="class-and-object-vars.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="class-init"></a>Die __init__-Methode</h2></div></div></div><p>
+
+		Es gibt viele Methodennamen, die in Pythonklassen eine besondere Bedeutung haben.
+		Wir werden nun die Bedeutung der Methode <code class="methodname">__init__</code> sehen.
+
+		
+
+		</p><p>
+
+		Die Methode <code class="methodname">__init__</code> wird aufgerufen, sobald ein Objekt einer Klasse
+		instanziiert wird. Die Methode kann dafür benutzt werden, ihr Objekt auf irgendeine Weise zu
+		<span class="emphasis"><em>initialisieren</em></span>. Beachten Sie die doppelten Unterstriche sowohl am Anfang als
+		auch am Ende des Namens.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-class-init"></a>Benutzung der __init__-Method</h3></div></div></div><div class="example"><a id="using-class-init-example"></a><p class="title"><strong>Beispiel 11.3. Benutzung der __init__-Method
+					(<a class="ulink" href="code/klasse_init.py" target="_top">klasse_init.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">class</span> <span class="py-identifier">Person</span>:
+	<span class="py-statement">def</span> <span class="py-identifier">__init__</span>(<span class="py-builtin">self</span>, name):
+		<span class="py-builtin">self</span>.name = name
+	<span class="py-statement">def</span> <span class="py-identifier">sagHallo</span>(<span class="py-builtin">self</span>):
+		<span class="py-statement">print</span> <span class="py-string">'Hallo, mein Name ist'</span>, <span class="py-builtin">self</span>.name
+
+p = Person(<span class="py-string">'Swaroop'</span>)
+p.sagHallo()
+
+<span class="py-comment"># Dieses kurze Beispiel kann auch als</span>
+<span class="py-comment"># Person('Swaroop').sagHallo() geschrieben werden.</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-class-init-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python klasse_init.py
+Hallo, mein Name ist Swaroop
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-class-init-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Hier definieren wir die Methode <code class="methodname">__init__</code> so,
+				dass sie einen Parameter <code class="varname">name</code> entgegennimmt
+				(zusammen mit dem üblichen <code class="varname">self</code>).
+				Wir erzeugen hier einfach ein neues Feld, das ebenfalls <code class="literal">name</code> heißt.
+				Beachten Sie, dass dies zwei unterschiedliche Variablen sind, obwohl sie den gleichen Namen haben.
+				Die Schreibweise mit dem Punkt ermöglicht es uns, zwischen den beiden zu unterscheiden.
+
+				
+
+				</p><p>
+
+				Beachten Sie vor allem, dass wir die Methode <code class="methodname">__init__</code>
+				nicht explizit aufrufen, sondern die Argumente in Klammern nach dem Klassennamen übergeben,
+				wenn wir eine neue Instanz der Klasse erzeugen. Das ist die besondere Bedeutung dieser Methode.
+
+				
+
+				</p><p>
+
+				Nun können wir das Feld <code class="varname">self.name</code> in unseren Methoden benutzen,
+				wie es anhand der Methode <code class="methodname">sagHallo</code> demonstriert wird.
+
+				
+
+				</p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C++/Java/C#-Programmierer</h3><p>
+
+				Die Methode <code class="methodname">__init__</code> entspricht einem
+				<span class="emphasis"><em>Konstruktor</em></span> in C++, C# oder Java.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="object-methods.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="oops.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="class-and-object-vars.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Objektmethoden </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Klassen- und Objektvariablen</td></tr></table></div></body></html>

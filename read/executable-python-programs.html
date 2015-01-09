@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Ausführbare Python-Programme</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="first-steps.html" title="Kapitel 3. Erste Schritte" /><link rel="prev" href="source-file.html" title="Die Verwendung von Quelldateien" /><link rel="next" href="getting-help.html" title="Wenn Sie Hilfe brauchen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Ausführbare Python-Programme</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="source-file.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 3. Erste Schritte</th><td width="20%" align="right"> <a accesskey="n" href="getting-help.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="executable-python-programs"></a>Ausführbare Python-Programme</h2></div></div></div><p>
+
+		Dieser Abschnitt trifft nur für Linux/Unix-Benutzer zu. Aber auch Windows-Benutzer
+		könnte es interessieren, was es mit der ersten Zeile des Programms auf sich hat.
+		Mit dem Befehl <span class="command"><strong>chmod</strong></span> ändern wir zuerst die Berechtigung des
+		Programms so, dass es ausgeführt werden kann. Danach <span class="emphasis"><em>starten</em></span>
+		wir das Programm.
+
+		
+
+		</p><pre class="screen">
+		
+$ chmod a+x hallowelt.py
+$ ./hallowelt.py
+Hallo Welt
+		
+		</pre><p>
+
+		Der Befehl <span class="command"><strong>chmod</strong></span> wird hier verwendet,
+		um die Zugriffsrechte der Datei so zu ändern,
+		dass alle Benutzer des Systems (<span class="emphasis"><em>a</em></span>)
+		die Berechtigung zum Ausführen (<span class="emphasis"><em>x</em></span>) des Programms bekommen.
+		Danach wird das Programm sofort gestartet, indem wir den Pfad der Quelldatei
+		eingeben. Die Zeichenfolge <code class="literal">./</code> gibt an, dass sich die Datei im
+		aktuellen Verzeichnis befindet.
+
+		
+
+		</p><p>
+
+		Das Ganze macht noch mehr Spaß, wenn Sie die Datei in <code class="filename">hallowelt</code>
+		umbenennen und mit <span class="command"><strong>./hallowelt</strong></span> starten. Es funktioniert immer noch,
+		da das System weiß, dass es das Programm mit dem Interpreter ausführen muss, der in
+		der ersten Zeile der Quelldatei angegeben ist.
+
+		
+
+		</p><p>
+
+		Sie können das Programm jetzt laufen lassen, solange Sie den genauen Pfad des Programms kennen
+		- aber vielleicht wollen Sie das Programm aus jedem beliebigen Verzeichnis heraus starten können?
+		Um dies zu erreichen, können Sie das Programm in einem der Verzeichnisse speichern, die in der
+		Umgebungsvariable <code class="envar">PATH</code> aufgeführt sind. Immer wenn Sie irgendein
+		Programm starten, sucht das System in jedem Verzeichnis, das in der <code class="envar">PATH</code>-Variable
+		vorkommt, und führt es dann dort aus. Wir können unser Programm auch von überall
+		erreichbar machen, indem wir die Quelldatei einfach in eines der in <code class="envar">PATH</code>
+		aufgeführten Verzeichnisse kopieren.
+
+		
+
+		</p><pre class="screen">
+		
+$ echo $PATH
+/opt/mono/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/swaroop/bin
+$ cp hallowelt.py /home/swaroop/bin/hallowelt
+$ hallowelt
+Hallo Welt
+		
+		</pre><p>
+
+		Um die <code class="envar">PATH</code>-Variable anzuzeigen, verwenden wir den Befehl
+		<span class="command"><strong>echo</strong></span>. Durch Voranstellen von <code class="literal">$</code>
+		weiß der Kommandozeilen-Interpreter, dass wir uns für den Wert der Variable interessieren.
+		Wie wir sehen, ist <code class="filename">/home/swaroop/bin</code> ein Verzeichnis, das in der
+		Variablen PATH vorkommt. <span class="bold"><strong>swaroop</strong></span> ist dabei
+		der Benutzer, den ich auf meinem System verwende. Üblicherweise haben Sie auf
+		Ihrem System ein entsprechendes Verzeichnis für Ihren Benutzernamen.
+		Sie können auch wahlweise ein anderes Verzeichnis zu der <code class="envar">PATH</code>-Variablen
+		hinzufügen. Dazu geben Sie den Befehl <span class="command"><strong>PATH=$PATH:/home/swaroop/meinverzeichnis</strong></span>
+		als Kommandozeile ein, wobei <code class="literal">'/home/swaroop/meinverzeichnis'</code> für das Verzeichnis
+		stehen soll, das Sie hinzufügen wollen.
+
+		
+
+		</p><p>
+		Dieses Verfahren ist sehr hilfreich, wenn Sie nützliche Skripte schreiben wollen,
+		die Sie als Programm von überall und jederzeit ausführen können wollen.
+		Sie können auf diese Weise Ihren eigenen <span class="command"><strong>cd</strong></span>-Befehl oder irgendeinen
+		anderen Linux- oder DOS-Befehl selbst schreiben.
+
+		
+
+		</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Achtung</h3><p>
+
+			Im Zusammenhang mit Python bedeuten die Begriffe Programm, Skript oder Software alle das Gleiche.
+			
+			
+
+			</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="source-file.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="first-steps.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="getting-help.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die Verwendung von Quelldateien </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Wenn Sie Hilfe brauchen</td></tr></table></div></body></html>

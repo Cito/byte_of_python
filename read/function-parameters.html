@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Funktionsparameter</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="functions.html" title="Kapitel 7. Funktionen" /><link rel="prev" href="functions.html" title="Kapitel 7. Funktionen" /><link rel="next" href="local-variables.html" title="Lokale Variablen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Funktionsparameter</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="functions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 7. Funktionen</th><td width="20%" align="right"> <a accesskey="n" href="local-variables.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="function-parameters"></a>Funktionsparameter</h2></div></div></div><p>
+		Eine Funktion kann als Parameter Werte verarbeiten, die Sie der Funktion übergeben, damit die
+		Funktion unter Benutzung dieser Werte irgendetwas <span class="emphasis"><em>tun</em></span> kann.
+		Diese Parameter verhalten sich genauso wie gewöhnliche Variablen, nur dass deren Werte nicht
+		innerhalb der Funktion zugewiesen werden, sondern beim Aufruf der Funktion definiert werden.
+
+		
+
+		</p><p>
+
+		Parameter werden innerhalb des Klammernpaars der Funktionsdefinition festgelegt und durch Kommas
+		voneinander getrennt. Wenn wir die Funktion später aufrufen, legen wir die Werte auf die gleiche Weise
+		fest. Beachten Sie aber die Terminologie - während die in der Funktionsdefinition angegebenen Namen
+		<span class="emphasis"><em>Parameter</em></span> heißen, werden die Werte, die Sie beim Funktionsaufruf
+		übergeben, <span class="emphasis"><em>Argumente</em></span> genannt.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-function-parameters"></a>Funktionsparameter benutzen</h3></div></div></div><div class="example"><a id="using-function-parameters-example"></a><p class="title"><strong>Beispiel 7.2. Funktionsparameter benutzen
+					(<a class="ulink" href="code/funk_param.py" target="_top">funk_param.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">def</span> <span class="py-identifier">printMax</span>(a, b):
+	<span class="py-statement">if</span> a &gt; b:
+		<span class="py-statement">print</span> a, <span class="py-string">'ist Maximalwert'</span>
+	<span class="py-statement">else</span>:
+		<span class="py-statement">print</span> b, <span class="py-string">'ist Maximalwert'</span>
+
+printMax(<span class="py-number">3</span>, <span class="py-number">4</span>) <span class="py-comment"># uebergebe Zahlen direkt als Literale</span>
+
+x = <span class="py-number">5</span>
+y = <span class="py-number">7</span>
+
+printMax(x, y) <span class="py-comment"># uebergebe Variablen als Argumente</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-function-parameters-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python funk_param.py
+4 ist Maximalwert
+7 ist Maximalwert
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-function-parameters-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wir definieren hier eine Funktion <code class="function">printMax</code> mit zwei Variablen
+				<code class="varname">a</code> und <code class="varname">b</code>. Wir berechnen die größere Zahl
+				indem wir eine einfache <code class="literal">if..else</code>-Anweisung verwenden, und geben dann
+				die größere Zahl mit <code class="literal">print</code> aus.
+
+				
+
+				</p><p>
+
+				Beim ersten Aufruf der Funktion <code class="function">printMax</code> übergeben wir die
+				Zahlen direkt als Argumente. Beim zweiten Aufruf benutzen wir hierfür Variablen.
+				<code class="literal">printMax(x, y)</code> bewirkt, dass der Wert des Argumentes
+				<code class="varname">x</code> dem Parameter <code class="varname">a</code> zugewiesen
+				wird, und der Wert des Argumentes <code class="varname">y</code> dem Parameter
+				<code class="varname">b</code>. Für die Funktion <code class="function">printMax</code>
+				ist es egal, auf welche Weise man ihr die Argumente übergibt, sie arbeitet immer gleich.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="functions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="functions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="local-variables.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 7. Funktionen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Lokale Variablen</td></tr></table></div></body></html>

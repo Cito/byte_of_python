@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Kapitel 13. Ausnahmen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="index.html" title="A Byte of Python" /><link rel="prev" href="io-summary.html" title="Zusammenfassung" /><link rel="next" href="try-except.html" title="try..except" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Kapitel 13. Ausnahmen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="io-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="try-except.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="exceptions"></a>Kapitel 13. Ausnahmen</h1></div></div></div><div class="toc"><p><strong>Inhaltsverzeichnis</strong></p><dl class="toc"><dt><span class="section"><a href="exceptions.html#errors">Fehler</a></span></dt><dt><span class="section"><a href="try-except.html">try..except</a></span></dt><dd><dl><dt><span class="section"><a href="try-except.html#handling-exceptions">Ausnahmebehandlung</a></span></dt></dl></dd><dt><span class="section"><a href="raising-exceptions.html">Auslösen von Ausnahmen</a></span></dt><dd><dl><dt><span class="section"><a href="raising-exceptions.html#how-to-raise-exceptions">So löst man Ausnahmen aus</a></span></dt></dl></dd><dt><span class="section"><a href="try-finally.html">try..finally</a></span></dt><dd><dl><dt><span class="section"><a href="try-finally.html#using-try-finally">Gebrauch von finally</a></span></dt></dl></dd><dt><span class="section"><a href="exceptions-summary.html">Zusammenfassung</a></span></dt></dl></div><p>
+
+	Ausnahmen (<span class="foreignphrase"><em class="foreignphrase">exceptions</em></span>) treten auf, wenn bestimmte
+	<span class="emphasis"><em>Ausnahmesituationen</em></span> in Ihrem Programm eintreten.
+	Was zum Beispiel passiert, wenn Sie eine Datei einlesen wollen, und die Datei gar nicht existiert?
+	Oder wenn Sie die Datei aus Versehen gelöscht haben, während das Programm lief?
+	Solche Situationen werden mittels <span class="bold"><strong>Ausnahmen</strong></span>
+	behandelt.
+
+	
+
+	</p><p>
+
+	Was passiert, wenn es in Ihrem Programm ungültige Anweisungen gibt? In einem solchen Fall
+	reagiert Python, indem es eine Ausnahme <span class="bold"><strong>auslöst</strong></span>, und
+	Ihnen mitteilt, dass es auf einen <span class="bold"><strong>Fehler</strong></span> gestoßen ist.
+
+	
+
+	</p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="errors"></a>Fehler</h2></div></div></div><p>
+
+		Nehmen Sie eine einfache <code class="literal">print</code>-Anweisung als Beispiel.
+		Was passiert, wenn wir uns vertippt haben, und <code class="literal">Print</code> statt
+		<code class="literal">print</code> geschrieben haben? Beachten Sie die fehlerhafte Großschreibung.
+		In diesem Fall wird von Python ein Syntaxfehler <span class="emphasis"><em>ausgelöst</em></span>.
+
+		
+
+		</p><pre class="screen">
+		
+&gt;&gt;&gt; Print 'Hallo Welt'
+    File "&lt;stdin&gt;", line 1
+      Print 'Hallo Welt'
+                        ^
+SyntaxError: invalid syntax
+
+&gt;&gt;&gt; print 'Hallo Welt'
+Hallo Welt
+		
+		</pre><p>
+
+		Beachten Sie, dass eine Ausnahme namens <code class="classname">SyntaxError</code>
+		ausgelöst wird, und dass außerdem die Stelle, an der dieser Fehler auftrat, ausgegeben wird.
+		Dies geschieht durch eine eingebaute <span class="emphasis"><em>Fehlerbehandlung</em></span>
+		für solche Ausnahmen, die durch Syntaxfehler ausgelöst wurden.
+
+		
+
+		</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="io-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="try-except.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Zusammenfassung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> try..except</td></tr></table></div></body></html>

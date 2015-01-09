@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die repr-Function</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="more-python.html" title="Kapitel 15. Noch mehr Python" /><link rel="prev" href="assert-statement.html" title="Die assert-Anweisung" /><link rel="next" href="more-python-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die repr-Function</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="assert-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 15. Noch mehr Python</th><td width="20%" align="right"> <a accesskey="n" href="more-python-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="repr-function"></a>Die repr-Function</h2></div></div></div><p>
+
+		Die <code class="function">repr</code>-Funktion wird benutzt um eine 'kanonische'
+		Darstellung eines Objekts als String zu erhalten. Das Gleiche kann man mit
+		umgekehrten einfachen Anführungszeichen erreichen (also nicht dem normalen
+		einfachen Anführungszeichen, das mit dem Apostroph identisch ist, und das
+		man für normale Strings in Python verwendet, sondern das schräg rückwärts
+		gerichtete Anführungszeichen, das dem französischen Accent grave entspricht).
+		Beachten Sie, dass meistens <code class="literal">eval(repr(objekt)) == objekt</code> gilt.
+
+		
+
+		</p><pre class="screen">
+		
+&gt;&gt;&gt; liste = []
+&gt;&gt;&gt; liste.append('element')
+&gt;&gt;&gt; `liste`
+"['element']"
+&gt;&gt;&gt; repr(liste)
+"['element']"
+		
+		</pre><p>
+
+		Die Funktion <code class="function">repr</code> bzw. die umgekehrten Anführungsstriche
+		werden grundsätzlich dafür benutzt, eine Darstellung eines Objekts in druckbarer reiner
+		Textform zu erhalten. Sie können bestimmen, was Ihre Objekte mit <code class="function">repr</code>
+		zurückgeben, indem Sie die für die zugehörige Klasse die Methode
+		<code class="methodname">__repr__</code> definieren.
+
+		
+
+		</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="assert-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="more-python.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="more-python-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die assert-Anweisung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

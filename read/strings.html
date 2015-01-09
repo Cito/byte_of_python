@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Strings</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="basics.html" title="Kapitel 4. Die Grundlagen" /><link rel="prev" href="numbers.html" title="Zahlen" /><link rel="next" href="variables.html" title="Variablen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Strings</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="numbers.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 4. Die Grundlagen</th><td width="20%" align="right"> <a accesskey="n" href="variables.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="strings"></a>Strings</h2></div></div></div><p>
+
+		Ein String, d.h. eine Zeichenkette, denkt man sich in Python als eine <span class="emphasis"><em>Sequenz</em></span>
+		(Abfolge) von einzelnen <span class="emphasis"><em>Zeichen</em></span>.
+
+		
+
+		</p><p>
+
+		Ich kann Ihnen fast garantieren, dass Sie in nahezu jedem von Ihnen geschriebenen Python-Programm
+		auch Strings benutzen werden. Bitte beachten Sie daher die folgenden Hinweise zum Gebrauch von Strings in Python:
+
+		
+
+		</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><h6><a id="idp6095920"></a>Benutzung einzelner Anführungszeichen (<code class="literal">'</code>)</h6><p>
+
+				Sie können Strings durch Benutzung einzelner Anführungszeichen angeben, so wie
+				<code class="literal">'Berufen Sie sich nur auf mich'</code>. Sämtlicher Leerraum, d. h.
+				Leerzeichen und Tabulatoren, wird genauso beibehalten.
+
+				
+
+				</p></li><li class="listitem"><h6><a id="idp6099760"></a>Benutzung doppelter Anführungszeichen (<code class="literal">"</code>)</h6><p>
+
+				Strings in doppelten Anführungszeichen verhalten sich genauso wie Strings
+				in einfachen Anführungszeichen.
+				Ein Beispiel hierfür: <code class="literal">"Wie heißen's doch gleich?"</code>.
+
+				
+
+				</p></li><li class="listitem"><h6><a id="idp6103648"></a>Benutzung dreifacher Anführungszeichen (<code class="literal">'''</code> oder <code class="literal">"""</code>)</h6><p>
+
+				Sie können mehrzeilige Strings angeben, indem Sie dreifache Anführungszeichen verwenden.
+				Innerhalb der dreifachen Anführungszeichen können Sie einfache und doppelte Anführungszeichen
+				nach Belieben benutzen. Ein Beispiel:
+
+				
+
+				</p><pre class="programlisting">
+				
+<span class="py-string">'''Dies ist ein mehrzeiliger String. Dies ist die erste Zeile.
+Dies ist die zweite Zeile.
+"Wie heißen's doch gleich?", fragte ich ihn.
+Er sagte: "Mein Name ist Bond, James Bond."
+'''</span>
+				
+				</pre></li><li class="listitem"><h6><a id="idp6109024"></a>Maskierungscodes</h6><p>
+
+				Angenommen, Sie wollen einen String eingeben, der ein einzelnes Anführungszeichen
+				(<code class="literal">'</code>) enthält. Wie würden Sie diesen angeben? Nehmen Sie zum Beispiel
+				den String <code class="literal">Wie heißen's doch gleich?</code>. Sie können Ihn nicht als
+				<code class="literal">'Wie heißen's doch gleich?'</code> eingeben, weil Python dann durcheinander
+				käme und nicht mehr wüsste, wo der String anfängt und wo er aufhört. Daher müssen Sie
+				irgendwie angeben, dass dieses einzelne Anführungszeichen nicht das Ende des
+				Strings bedeutet. Dies kann mit Hilfe eines so genannten <span class="emphasis"><em>Maskierungscodes</em></span>
+				geschehen. Sie geben ein einzelnes Anführungszeichen dabei als <code class="literal">\'</code> an
+				- beachten Sie dabei den umgekehrten Schrägstrich ("backslash").
+				Nun können Sie den String als <code class="literal">'Wie heißen\'s doch gleich?'</code> eingeben.
+
+				
+
+				</p><p>
+
+				Eine andere Möglichkeit, diesen speziellen String anzugeben, wäre
+				<code class="literal">"Wie heißen's doch gleich?"</code>, d. h. unter Benutzung doppelter Anführungszeichen.
+				Gleichermaßen müssen Sie einen Maskierungscode benutzen, um ein doppeltes Anführungszeichen
+				als solches innerhalb eines Strings zu benutzen, der von doppelten Anführungszeichen umschlossen ist.
+				Außerdem müssen Sie den umgekehrten Schrägstrich selber innerhalb eines Strings mittels des
+				Maskierungscodes <code class="literal">\\</code> eingeben.
+
+				
+
+				</p><p>
+
+				Was machen Sie, wenn Sie einen zweizeiligen String eingeben wollen? Eine Möglichkeit
+				besteht darin, wie oben dreifache Anführungszeichen zu benutzen. Eine andere Möglichkeit
+				ist, hierfür den Maskierungscode für einen Zeilenvorschub zu benutzen - <code class="literal">\n</code>,
+				um anzugeben, dass an dieser Stelle eine neue Zeile anfängt. Ein Beispiel hierfür ist
+				<code class="literal">Dies ist die erste Zeile\nDies ist die zweite Zeile</code>. Ein weiterer nützlicher
+				Maskierungscode, den man kennen sollte, ist der für den Tabulator - <code class="literal">\t</code>.
+				Es gibt viele weitere Maskierungscodes, von denen ich hier nur die nützlichsten aufgeführt habe.
+
+				
+
+				</p><p>
+
+				Eine Sache, die man sich merken sollte, ist, dass ein einzelner umgekehrter Schrägstrich
+				am Ende der Zeile anzeigt, dass der String auf der nächsten Zeile weitergeht, jedoch
+				ohne dass ein Zeilenvorschub hinzugefügt wird. Zum Beispiel ist
+
+				
+
+				</p><pre class="programlisting">
+				
+<span class="py-string">"Dieses war der erste Streich. \
+Doch der zweite folgt sogleich."</span>
+				
+				</pre><p>
+
+				gleichbedeutend mit <code class="literal">"Dieses war der erste Streich. Doch der zweite folgt sogleich."</code>
+
+				
+
+				</p></li><li class="listitem"><h6><a id="idp6128272"></a>"Rohe" Zeichenketten</h6><p>
+
+				Wenn Sie einen String angeben müssen, bei dem keine Zeichen besonders ausmaskiert
+				werden sollen, dann müssen Sie ihn als eine <span class="emphasis"><em>rohe</em></span> Zeichenkette
+				(<span class="foreignphrase"><em class="foreignphrase">raw string</em></span>) eingeben, indem Sie dem String
+				ein <code class="literal">r</code> oder ein <code class="literal">R</code> voranstellen. Ein Beispiel ist
+				<code class="literal">r"Zeilenvorschübe kennzeichnet man mit \n"</code>.
+
+				
+
+				</p></li><li class="listitem"><h6><a id="idp6133408"></a>Unicode-Strings</h6><p>
+
+				Unicode ist ein Standard, der es einem erlaubt, beliebige internationale Zeichen
+				in seinen Texten zu verwenden. Wenn Sie einen Text in Ihrer Heimatsprache wie Deutsch,
+				Hindi oder Arabisch schreiben wollen, benötigen Sie einen Text-Editor, der entweder
+				mit Ihren länderspezifischen Zeichensätzen umgehen kann, die z.B. die deutschen Umlaute
+				enthalten, oder mit Unicode, das alle diese länderspezifischen Zeichen enthält.
+				Analog ist es auch in Python möglich, Unicode-Text zu verarbeiten - das Einzige,
+				was Sie hierfür tun müssen ist, dem String ein <code class="literal">u</code> oder ein
+				<code class="literal">U</code> voranzustellen, um ihn zu einem Unicode-String zu machen.
+				Beispiel: <code class="literal">u"Dies ist ein Unicode-String."</code>
+
+				
+
+				</p><p>
+
+				Denken Sie daran, Unicode-Strings zu benutzen, wenn Sie Text-Dateien bearbeiten,
+				besonders, wenn Sie wissen, dass die Datei Text enthält, der in anderen Sprachen als
+				Englisch geschrieben wurde.
+
+				
+
+				</p></li><li class="listitem"><h6><a id="idp6140192"></a>Strings sind unveränderlich</h6><p>
+
+				Das bedeutet, dass man einen String, wenn man ihn einmal erzeugt hat, nicht mehr ändern kann.
+				Das sieht zwar zuerst ziemlich problematisch aus, ist es aber in Wirklichkeit nicht.
+				Wir werden in den verschiedenen Programmbeispielen, die wir später durchgehen werden,
+				sehen, warum dies keine Beschränkung darstellt.
+
+				
+
+				</p></li><li class="listitem"><h6><a id="idp6143024"></a>Verkettung von String-Literalen</h6><p>
+
+				Wenn man zwei Strings direkt hintereinander schreibt, werden sie automatisch von Python verkettet.
+				Zum Beispiel wird <code class="literal">'Wie heißen\'s' 'doch gleich?'</code> automatisch in
+				<code class="literal">"Wie heißen's doch gleich?"</code> umgewandelt.
+
+				
+
+				</p></li></ul></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C/C++-Programmierer</h3><p>
+
+			In Python gibt es keinen eigenen Datentyp <code class="classname">char</code> für einzelne Zeichen.
+			Es gibt hierfür keine echte Notwendigkeit und ich bin sicher, dass Sie ihn nicht vermissen werden.
+
+			
+
+			</p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für Perl/PHP-Programmierer</h3><p>
+
+			Denken Sie daran, dass Strings in einfachen und doppelten Anführungszeichen gleich sind -
+			sie unterscheiden sich in keinster Weise.
+
+			
+
+			</p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung, wenn Sie reguläre Ausdrücke verwenden</h3><p>
+
+			Verwenden Sie immer rohe Zeichenketten, wenn Sie mit regulären Ausdrücken hantieren,
+			weil sie sonst ständig Zeichen mit umgekehrten Schrägstrichen ausmaskieren müssen
+			und dabei schnell den Überblick verlieren. Zum Beispiel können Rückwärtsverweise
+			als <code class="literal">'\\1'</code> oder als <code class="literal">r'\1'</code> eingegeben werden.
+
+			
+
+			</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="numbers.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="basics.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="variables.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Zahlen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Variablen</td></tr></table></div></body></html>

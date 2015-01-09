@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lokale Variablen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="functions.html" title="Kapitel 7. Funktionen" /><link rel="prev" href="function-parameters.html" title="Funktionsparameter" /><link rel="next" href="default-argument-values.html" title="Voreingestellte Argumentwerte" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Lokale Variablen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="function-parameters.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 7. Funktionen</th><td width="20%" align="right"> <a accesskey="n" href="default-argument-values.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="local-variables"></a>Lokale Variablen</h2></div></div></div><p>
+
+		Wenn wir Variablen innerhalb einer Funktion definieren, sind sie in keinster Weise mit anderen
+		Variablen des gleichen Namens verbunden, die außerhalb der Funktion benutzt werden, d.h.
+		die Variablennamen sind für die Funktion <span class="emphasis"><em>lokal</em></span> gültig.
+		Dies nennt man den <span class="emphasis"><em>Geltungsbereich</em></span> einer Variablen.
+		Alle Variablen haben als Geltungsbereich den Block, in dem sie erklärt werden, beginnend
+		an der Stelle, wo der Name definiert wird.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-local-variables"></a>Benutzung lokaler Variablen</h3></div></div></div><div class="example"><a id="using-local-variables-example"></a><p class="title"><strong>Beispiel 7.3. Benutzung lokaler Variablen
+					(<a class="ulink" href="code/funk_lokal.py" target="_top">funk_lokal.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">def</span> <span class="py-identifier">funk</span>(x):
+	<span class="py-statement">print</span> <span class="py-string">'x ist'</span>, x
+	x = <span class="py-number">2</span>
+	<span class="py-statement">print</span> <span class="py-string">'Lokales x ist jetzt'</span>, x
+
+x = <span class="py-number">50</span>
+funk(x)
+<span class="py-statement">print</span> <span class="py-string">'x ist immer noch'</span>, x
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-local-variables-out"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python funk_lokal.py
+x ist 50
+Lokales x ist jetzt 2
+x ist immer noch 50
+				
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-local-variables-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wenn wir das erste mal in der Funktion den <span class="emphasis"><em>Wert</em></span>
+				mit dem Namen <code class="varname">x</code> verwenden, benutzt Python
+				hierfür den Wert des in der Funktion angegeben gleichnamigen Parameters.
+
+				
+
+				</p><p>
+
+				Als nächstes weisen wir <code class="varname">x</code> den Wert <code class="literal">2</code> zu.
+ 				Der Name <code class="varname">x</code> ist innerhalb unserer Funktion lokal gültig.
+				Wenn wir also den Wert von <code class="varname">x</code> in der Funktion verändern,
+				wird hierdurch das im Hauptblock definierte <code class="varname">x</code> nicht beeinflusst.
+
+				
+
+				</p><p>
+
+				Mit der <code class="literal">print</code>-Anweisung am Ende bestätigen wir, dass der Wert
+				von <code class="varname">x</code> im Hauptblock tatsächlich unverändert geblieben ist.
+
+				
+
+				</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-global-statement"></a>Benutzung der global-Anweisung</h3></div></div></div><p>
+
+			Wenn Sie einem außerhalb der Funktion definierten Namen einen Wert zuweisen wollen,
+			dann müssen Sie Python mitteilen, dass der Name nicht lokal ist, sondern <span class="emphasis"><em>global</em></span>.
+			Wir können dies mit der <code class="literal">global</code>-Anweisung erreichen. Es ist unmöglich,
+			ohne die <code class="literal">global</code>-Anweisung einer außerhalb der Funktion definierten Variablen
+			einen Wert zuzuweisen.
+
+			
+
+			</p><p>
+
+			Sie können die Werte außerhalb der Funktion definierter Variablen benutzen (vorausgesetzt, dass es
+			innerhalb der Funktion keine gleichnamige Variable gibt). Dies wird jedoch nicht empfohlen und sollte
+			vermieden werden, da es einem Leser des Programms nicht sofort klar ist, wo diese Variable definiert
+			wurde. Wenn man die <code class="literal">global</code>-Anweisung benutzt, ist damit sofort klar, dass
+			die Variable in einem äußeren Block definiert wurde.
+
+			
+
+			</p><div class="example"><a id="using-global-statement-example"></a><p class="title"><strong>Beispiel 7.4. Benutzung der global-Anweisung
+					(<a class="ulink" href="code/funk_global.py" target="_top">funk_global.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">def</span> <span class="py-identifier">funk</span>():
+	<span class="py-statement">global</span> x
+
+	<span class="py-statement">print</span> <span class="py-string">'x ist'</span>, x
+	x = <span class="py-number">2</span>
+	<span class="py-statement">print</span> <span class="py-string">'Globales x ist jetzt'</span>, x
+
+x = <span class="py-number">50</span>
+funk()
+<span class="py-statement">print</span> <span class="py-string">'Der Wert von x ist'</span>, x
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-global-statement-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python funk_global.py
+x ist 50
+Globales x ist jetzt 2
+Der Wert von x ist 2
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-global-statement-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Die Anweisung <code class="literal">global</code> wird benutzt, um <code class="varname">x</code> als
+				globale Variable zu erklären. Wenn wir also <code class="varname">x</code> innerhalb der Funktion
+				einen Wert zuweisen, wird sich diese Veränderung widerspiegeln, wenn wir den Wert von
+				<code class="varname">x</code> im Hauptblock benutzen.
+
+				
+
+				</p><p>
+
+				Sie können in derselben <code class="literal">global</code>-Anweisung mehr als eine globale Variable
+				angeben. Zum Beispiel: <code class="literal">global x, y, z</code>.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="function-parameters.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="functions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="default-argument-values.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Funktionsparameter </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Voreingestellte Argumentwerte</td></tr></table></div></body></html>

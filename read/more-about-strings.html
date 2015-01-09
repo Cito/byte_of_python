@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Mehr über Strings</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="data-structures.html" title="Kapitel 9. Datenstrukturen" /><link rel="prev" href="references.html" title="Referenzen" /><link rel="next" href="data-structures-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Mehr über Strings</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="references.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 9. Datenstrukturen </th><td width="20%" align="right"> <a accesskey="n" href="data-structures-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="more-about-strings"></a>Mehr über Strings</h2></div></div></div><p>
+
+		Wir haben Strings bereits früher ausführlich besprochen. Was kann es
+		noch mehr geben, das man darüber wissen muss? Nun, wussten Sie, dass
+		Strings auch Objekte sind und Methoden haben, die alle möglichen Dinge
+		tun können, von der Überprüfung auf einen Teilstring bis hin zum
+		Entfernen von Leerzeichen am Anfang oder Ende!
+
+		
+
+		</p><p>
+
+		Die Strings, die Sie in Ihren Programmen benutzen, sind allesamt Objekte
+		der Klasse <code class="classname">str</code>. Einige nützliche Methoden dieser
+		Klasse werden im nächsten Beispiel demonstriert. Eine vollständige Liste
+		dieser Methoden erhalten Sie mit <code class="literal">help(str)</code>.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="string-methods"></a>String-Methoden</h3></div></div></div><div class="example"><a id="string-methods-example"></a><p class="title"><strong>Beispiel 9.7. String-Methoden 
+					(<a class="ulink" href="code/str_methoden.py" target="_top">str_methoden.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+name = <span class="py-string">'Swaroop'</span> <span class="py-comment"># Dies ist ein String-Objekt</span>
+
+<span class="py-statement">if</span> name.startswith(<span class="py-string">'Swa'</span>):
+	<span class="py-statement">print</span> <span class="py-string">'Ja, der String beginnt mit "Swa".'</span>
+
+<span class="py-statement">if</span> <span class="py-string">'a'</span> <span class="py-statement">in</span> name:
+	<span class="py-statement">print</span> <span class="py-string">'Ja, er enthält den String "a".'</span>
+
+<span class="py-statement">if</span> name.find(<span class="py-string">'war'</span>) != -<span class="py-number">1</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Ja, er enthält den String "war".'</span>
+
+trennzeichen = <span class="py-string">'_*_'</span>
+meineliste = [<span class="py-string">'Brasilien'</span>, <span class="py-string">'Russland'</span>, <span class="py-string">'Indien'</span>, <span class="py-string">'China'</span>]
+<span class="py-statement">print</span> trennzeichen.join(meineliste)
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="string-methods-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python str_methoden.py
+Ja, der String beginnt mit "Swa".
+Ja, er enthält den String "a".
+Ja, er enthält den String "war".
+Brasilien_*_Russland_*_Indien_*_China
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="string-methods-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wir sehen hier eine Anzahl von String-Methoden in Aktion.
+				Die Methode <code class="methodname">startswith</code> wird benutzt,
+				um herauszufinden, ob der String mit einem vorgegebenen String
+				beginnt. Der <code class="literal">in</code>-Operator wird benutzt, um
+				zu überprüfen, ob ein vorgegebener String ein Teil des Strings ist.
+
+				
+
+				</p><p>
+
+				Die Methode <code class="methodname">find</code> wird benutzt, um
+				die Position eines vorgegebenen Strings im String zu finden.
+				Sie liefert eine -1 zurück, wenn sie den Teilstring nicht
+				erfolgreich finden konnte. Die Klasse <code class="classname">str</code>
+				hat auch eine praktische Methode namens <code class="methodname">join</code>,
+				mit der man die Elemente einer Sequenz zusammenfügen kann,
+				wobei der String als eine Kette von Trennzeichen fungiert,
+				die zwischen jedes Element der Sequenz eingefügt wird, um so
+				einen größeren daraus zusammengebauten String zu erzeugen.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="references.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="data-structures.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="data-structures-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Referenzen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

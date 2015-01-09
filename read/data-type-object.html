@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Objekte</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="basics.html" title="Kapitel 4. Die Grundlagen" /><link rel="prev" href="data-types.html" title="Datentypen" /><link rel="next" href="logical-and-physical-lines.html" title="Logische und physikalische Zeilen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Objekte</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="data-types.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 4. Die Grundlagen</th><td width="20%" align="right"> <a accesskey="n" href="logical-and-physical-lines.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="data-type-object"></a>Objekte</h2></div></div></div><p>
+
+		Denken Sie daran, dass in einem Python-Programm alles als ein <span class="emphasis"><em>Objekt</em></span>
+		angesehen wird. Das ist in einem allgemeinen Sinn gemeint. Anstatt zu sagen 'das <span class="emphasis"><em>Dings</em></span>',
+		sagen wir 'das <span class="emphasis"><em>Objekt</em></span>'.
+
+		
+
+		</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für objekt-orientierte Programmierer</h3><p>
+
+			Python ist stark objekt-orientiert in dem Sinne, dass alles ein Objekt ist,
+			einschließlich Zahlen, Strings und sogar Funktionen.
+
+			
+
+			</p></div><p>
+
+		Wir werden nun sehen, wie wir Variablen zusammen mit Literalen benutzen können. Um dies
+		auszuprobieren, können Sie das folgende Beispiel als Programm abpeichern und laufen lassen.
+
+		
+
+		</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Wie man Python-Programme schreibt</h3><p>
+
+			Um ein Python-Programm abzuspeichern und laufen zu lassen,
+			gehen wir im Folgenden immer wie folgt vor:
+
+			
+
+			</p><div class="procedure"><ol class="procedure" type="1"><li class="step"><p>
+
+					Starten Sie Ihren Lieblings-Editor.
+					
+
+					</p></li><li class="step"><p>
+
+					Geben Sie den Programm-Code aus dem Beispiel ein.
+					
+
+					</p></li><li class="step"><p>
+
+					Speichern Sie das Programm als Datei mit dem Dateinamen,
+					der im Kommentar angegeben ist.
+					Ich halte mich an die Vereinbarung, nach der alle Python-Programme mit
+					der Datei-Endung <code class="literal">.py</code> gespeichert werden.
+
+					
+
+					</p></li><li class="step"><p>
+
+					Starten Sie den Python-Interpreter mit dem Befehl
+					<span class="command"><strong>python <em class="replaceable"><code>programm.py</code></em></strong></span> oder
+					benutzen Sie IDLE, um Ihre Programme laufen zu lassen. Unter Linux/Unix können Sie
+					auch die bereits erläuterte <a class="link" href="executable-python-programs.html" title="Ausführbare Python-Programme">Methode für
+					ausführbare Dateien</a> verwenden.
+
+					
+
+					</p></li></ol></div></div><div class="example"><a id="data-type-object-example"></a><p class="title"><strong>Beispiel 4.1. Benutzung von Variablen und Literalen
+					(<a class="ulink" href="code/var.py" target="_top">var.py</a>)
+			</strong></p><div class="example-contents"><pre class="programlisting">
+			
+<span class="py-comment">#!/usr/bin/python</span>
+
+i = <span class="py-number">5</span>
+<span class="py-statement">print</span> i
+i = i + <span class="py-number">1</span>
+<span class="py-statement">print</span> i
+
+s = <span class="py-string">'''Dies ist ein mehrzeiliger String.
+Dies ist die zweite Zeile.'''</span>
+<span class="py-statement">print</span> s
+			
+			</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="data-type-object-output"></a>Ausgabe</h3></div></div></div><pre class="screen">
+			
+$ python var.py
+5
+6
+Dies ist ein mehrzeiliger String.
+Dies ist die zweite Zeile.
+			
+			</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="data-type-object-how"></a>So funktioniert es</h3></div></div></div><p>
+
+			Und so funktioniert dieses Programm: Zuerst weisen wir der Variable <code class="varname">i</code>
+			die als Literal angegebene Zahl <code class="literal">5</code> zu, indem wir den Zuweisungsoperator
+			(<code class="literal">=</code>) verwenden. Diese Zeile wird eine Anweisung genannt, weil sie angibt,
+			dass etwas getan werden soll. In diesem Fall wird der Variablenname <code class="literal">i</code>
+			mit dem Wert <code class="literal">5</code> verbunden. Als Nächstes geben wir den Wert von <code class="varname">i</code>
+			unter Benutzung der <code class="literal">print</code>-Anweisung aus, die uns, kaum überraschend,
+			einfach den Wert der Variable auf den Bildschirm ausgibt.
+
+			
+
+			</p><p>
+
+			Danach addieren wir <code class="literal">1</code> zu dem in der Variable <code class="varname">i</code>
+			gespeicherten Wert und speichern das Ergebnis zurück in die Variable. Wir geben es dann wieder
+			aus und erhalten wie erwartet den Wert <code class="literal">6</code>.
+
+			
+
+			</p><p>
+
+			Entsprechend weisen wir der Variable <code class="varname">s</code> den String-Literal
+			in dreifachen Anführungszeichen zu und geben ihn dann aus.
+
+			
+
+			</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C/C++-Programmierer</h3><p>
+
+				Variablen werden benutzt, indem man ihnen einfach einen Wert zuweist.
+				Es wird keine Deklaration oder Datentyp-Definition benötigt/verwendet.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="data-types.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="basics.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="logical-and-physical-lines.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Datentypen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Logische und physikalische Zeilen</td></tr></table></div></body></html>

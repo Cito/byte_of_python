@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Das os-Modul</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="stdlib.html" title="Kapitel 14. Die Standardbibliothek von Python" /><link rel="prev" href="sys-module.html" title="Das sys-Modul" /><link rel="next" href="stdlib-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Das os-Modul</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sys-module.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 14. Die Standardbibliothek von Python</th><td width="20%" align="right"> <a accesskey="n" href="stdlib-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="os-module"></a>Das os-Modul</h2></div></div></div><p>
+
+		Das Modul <code class="literal">os</code> stellt allgemeine Betriebssystemfunktionalität zur Verfügung
+		(<code class="literal">os</code> steht hierbei für <span class="bold"><strong>O</strong></span>perating
+		<span class="bold"><strong>S</strong></span>ystem). Dieses Modul ist besonders wichtig, wenn Sie
+		Ihr Programm plattformunabhängig gestalten wollen, d.h. es ermöglicht es, das Programm so zu schreiben,
+		dass es sowohl unter Linux als auch unter Windows oder MacOS problemlos und ohne erforderliche
+		Änderungen abläuft.
+
+		
+
+		</p><p>
+
+		Im Folgenden sind einige der nützlicheren Teile des <code class="literal">os</code>-Moduls aufgelistet.
+		Die meisten davon sind selbsterklärend.
+
+		
+
+		</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+
+				Der String <code class="varname">os.name</code> gibt an, auf welcher Plattform das Programm läuft,
+				etwa <code class="literal">'nt'</code> für Windows oder <code class="literal">'posix'</code> für Linux/Unix.
+
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Funktion <code class="function">os.getcwd()</code> liefert das aktuelle Arbeitsverzeichnis,
+				d.h. den Pfad des Verzeichnisses, unter dem das aktuelle Python-Skript läuft.
+
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Funktionen <code class="function">os.getenv()</code> und <code class="function">os.putenv()</code>
+				werden benutzt, um Umgebungsvariablen auszulesen bzw. zu setzen.
+
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Funktion <code class="function">os.listdir()</code> gibt die Namen aller Dateien und
+				Verzeichnisse in dem angegeben Verzeichnis zurück.
+
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Funktion <code class="function">os.remove()</code> wird benutzt, um eine Datei zu löschen.
+
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Funktion <code class="function">os.system()</code> wird benutzt, um einen Befehl
+				auf der Kommandozeilenebene des Betriebssystems ablaufen zu lassen.
+
+				
+
+				</p></li><li class="listitem"><p>
+
+				Der String <code class="varname">os.linesep</code> ist die Zeilenendekennung, die auf der
+				jeweiligen Plattform benutzt wird. Zum Beispiel verwendet Windows <code class="literal">'\r\n'</code>,
+				Linux verwendet <code class="literal">'\n'</code> und Mac verwendet <code class="literal">'\r'</code>.
+
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Funktion <code class="function">os.path.split()</code> gibt den Verzeichnisnamen und
+				den Dateinamen zurück, die zu einem bestimmten Pfad gehören.
+
+				
+
+				</p><pre class="screen">
+				
+&gt;&gt;&gt; os.path.split('/home/swaroop/byte/code/gedicht.txt')
+('/home/swaroop/byte/code', 'gedicht.txt')
+				
+				</pre></li><li class="listitem"><p>
+
+				Die Funktionen <code class="function">os.path.isfile()</code> und
+				<code class="function">os.path.isdir()</code> überprüfen, ob der angegebene Pfad
+				auf eine Datei bzw. ein Verzeichnis verweist. Entsprechend wird die Funktion
+				<code class="function">os.path.exists()</code> benutzt, um zu überprüfen, ob der
+				angegebene Pfad wirklich existiert.
+
+				
+
+				</p></li></ul></div><p>
+
+		Sie können die Python-Standard-Dokumentation zu Rate ziehen, wenn Sie weitere
+		Einzelheiten zu diesen Funktionen und Variablen erfahren möchten.
+		Sie können außerdem <code class="literal">help(sys)</code> usw. verwenden.
+
+		
+
+		</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sys-module.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="stdlib.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="stdlib-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Das sys-Modul </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

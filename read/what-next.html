@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Kapitel 16. Was kommt als Nächstes?</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="index.html" title="A Byte of Python" /><link rel="prev" href="more-python-summary.html" title="Zusammenfassung" /><link rel="next" href="explore-more.html" title="Entdecken Sie mehr" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Kapitel 16. Was kommt als Nächstes?</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="more-python-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="explore-more.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="what-next"></a>Kapitel 16. Was kommt als Nächstes?</h1></div></div></div><div class="toc"><p><strong>Inhaltsverzeichnis</strong></p><dl class="toc"><dt><span class="section"><a href="what-next.html#graphical-software">Software mit grafischer Oberfläche</a></span></dt><dd><dl><dt><span class="section"><a href="what-next.html#summary-gui-tools">Zusammenfassung GUI-Tools</a></span></dt></dl></dd><dt><span class="section"><a href="explore-more.html">Entdecken Sie mehr</a></span></dt><dt><span class="section"><a href="what-next-summary.html">Zusammenfassung</a></span></dt></dl></div><p>
+
+	Wenn Sie dieses Buch bis hierher gründlich gelesen haben, und sich darin geübt haben,
+	viele Programme zu schreiben, dann müssten Sie sich inzwischen mit Python angefreundet
+	haben und damit vertraut geworden sein. Sie haben vermutlich einige Python-Programme
+	geschrieben, um verschiedene Dinge auszuprobieren, und um Ihre Python-Kenntnisse in
+	der Praxis zu üben. Wenn Sie dies noch nicht getan haben, dann sollten Sie es noch tun.
+	Jetzt stellt sich die Frage: "Was kommt als Nächstes?"
+
+	
+
+	</p><p>
+
+	Ich möchte vorschlagen, dass Sie sich einmal an dieses Problem heran wagen: Schreiben Sie Ihr
+	eigenes kommandozeilenbasiertes <span class="emphasis"><em>Adressbuch</em></span>-Programm, mit dem
+	Sie Ihre Kontaktadressen wie Freunde, Familie, Kollegen, und die zugehörigen Informationen
+	wie E-Mail-Adresse und/oder Telefonnummer hinzufügen, verändern, löschen oder durchsuchen können.
+	Die Daten müssen für den späteren Zugriff gespeichert werden.
+
+	
+
+	</p><p>
+
+	Dies ist einigermaßen einfach, wenn Sie darüber vor dem Hintergrund der Dinge
+	nachdenken, die wir bisher schon besprochen haben. Wenn Sie dennoch Hinweise wünschen,
+	wie Sie dabei vorgehen können, dann ist hier ein Tipp für Sie.
+
+	
+
+	</p><p><strong>Tipp (Sie sollten ihn eigentlich nicht lesen). </strong>
+
+		Erzeugen Sie eine Klasse, um die Informationen der Person zu speichern. Benutzen
+		Sie ein Dictionary, um die Personen-Objekte mit ihrem jeweiligen Namen als Schlüssel zu speichern.
+		Benutzen Sie das <code class="literal">pickle</code>-Modul, um die Objekte persistent auf Ihrer Festplatte
+		zu speichern. Benutzen Sie die eingebauten Dictionary-Methoden, um Personen hinzuzufügen,
+		zu löschen und zu ändern.
+
+		
+
+		</p><p>
+
+	Wenn Sie dies einmal geschafft haben, können Sie behaupten, ein Python-Programmierer zu sein.
+	Danach sollten Sie mir sofort eine Mail schicken, um sich für dieses großartige Buch zu bedanken ;-)
+	Dieser Schritt ist optional, aber empfohlen.
+
+	
+
+	</p><p>
+
+	Hier sind einige weitere Möglichkeiten für Ihre weitere Python-Entdeckungsreise:
+
+	
+
+	</p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="graphical-software"></a>Software mit grafischer Oberfläche</h2></div></div></div><p>
+
+		<span class="bold"><strong>GUI</strong></span>-Bibliotheken für Python - Sie brauchen
+		diese, um Ihre eigenen grafischen Benutzeroberflächen (GUIs) zu programmieren.
+		Sie können sich Ihr eigenes IrfanView oder Kuickshow oder irgendetwas in der Art schreiben,
+		indem Sie GUI-Bibliotheken mit ihrer jeweiligen Python-Anbindung benutzen.
+		Eine solche Anbindung ermöglicht es Ihnen, Programme in Python zu schreiben, in
+		denen Sie auf diese Bibliotheken zurückgreifen, die ihrerseits in C oder C++ oder
+		anderen Sprachen geschrieben sind.
+
+		
+
+		</p><p>
+
+		Es gibt eine große Auswahl an GUI-Bibliotheken für Python:
+
+		
+
+		</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><strong>PyQt. </strong>
+
+					Dies ist die Python-Anbindung für das Qt-Toolkit, das die Grundlage ist,
+					auf der KDE aufgebaut wurde. Qt ist äußerst einfach zu benutzen und sehr
+					mächtig, besonders aufgrund des Qt-Designers und der hervorragenden
+					Qt-Dokumentation. Sie können es unter Linux kostenlos benutzen, aber Sie
+					müssen es bezahlen, wenn Sie es unter Windows benutzen wollen. PyQt
+					ist frei, wenn Sie freie Software (gemäß der GPL) unter Linux/Unix erstellen,
+					und muss bezahlt werden, wenn Sie proprietäre Software erstellen wollen.
+					Eine gute (englische) Informationsquelle zu PyQt ist <a class="ulink" href="http://www.opendocs.org/pyqt/" target="_top">"GUI Programming with
+					Python: Qt Edition"</a>. Weitere Einzelheiten finden Sie auf der offiziellen
+					<a class="ulink" href="http://www.riverbankcomputing.co.uk/pyqt/" target="_top">PyQt-Website</a>.
+
+					
+
+					</p></li><li class="listitem"><p><strong>PyGTK. </strong>
+
+					Dies ist die Python-Anbindung für das GTK+-Toolkit, das die Grundlage ist,
+					auf der GNOME aufgebaut wurde. GTK+ hat im Gebrauch viele Eigenheiten;
+					wenn Sie aber einmal damit vertraut sind, können Sie schnell GUI-Anwendungen
+					erstellen. Das Werkzeug Glade zum entwerfen  der grafischen Schnittstelle
+					ist hierbei unverzichtbar. Die Dokumentation müsste noch verbessert werden.
+					GTK+ läuft gut unter Linux, aber die Portierung auf Windows ist unvollständig.
+					Sie können mit GTK+ sowohl freie als auch proprietäre Software entwickeln.
+					Weitere Einzelheiten finden Sie auf der offiziellen
+					<a class="ulink" href="http://www.pygtk.org" target="_top">PyGTK-Website</a>.
+
+					
+
+					</p></li><li class="listitem"><p><strong>wxPython. </strong>
+
+					Dies ist die Python-Anbindung für das wxWidgets-Toolkit. Mit wxPython
+					ist eine gewisse Lernkurve verbunden. Es ist jedoch sehr portabel und läuft
+					unter Linux, Windows, Mac und sogar auf  Embedded-Systemen.
+					Für wxPython sind viele IDEs verfügbar, darunter
+					<a class="ulink" href="http://drpython.sourceforge.net" target="_top">DrPython</a>,
+					<a class="ulink" href="http://spe.pycs.net" target="_top">SPE (Stani's Python Editor)</a>,
+					das auch einen GUI-Designer beinhaltet, sowie der GUI-Builder
+					<a class="ulink" href="http://wxglade.sourceforge.net" target="_top">wxGlade</a>.
+					Sie können mit wxPython sowohl freie als auch proprietäre Software entwickeln.
+					Weitere Einzelheiten finden Sie auf der offiziellen
+					<a class="ulink" href="http://www.wxpython.org" target="_top">wxPython-Website</a>.
+
+					
+
+					</p></li><li class="listitem"><p><strong>TkInter. </strong>
+
+					Dies ist das älteste existierende GUI-Toolkit für Python. Wenn Sie
+					<span class="application">IDLE</span> benutzt haben, dann haben Sie
+					bereits gesehen, wie ein TkInter-Programm aussehen kann.
+					Die Dokumentation für TkInter in der <a class="ulink" href="http://www.pythonware.com/library/tkinter/introduction/" target="_top">PythonWare</a>-Bibliothek ist umfangreich. TkInter ist portierbar
+					und läuft sowohl unter Linux/Unix als auch unter Windows.
+					Ein wichtiger Vorteil von TkInter ist, dass es Bestandteil der
+					Standard-Distribution von Python ist.
+
+					
+
+					</p></li><li class="listitem"><p>
+
+				Eine weitere Auswahl von grafischen Oberflächen für Python
+				finden Sie auf der Wiki-Seite über <a class="ulink" href="http://www.python.org/cgi-bin/moinmoin/GuiProgramming" target="_top">GUI-Programmierung</a> auf Python.org.
+
+				
+
+				</p></li></ul></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="summary-gui-tools"></a>Zusammenfassung GUI-Tools</h3></div></div></div><p>
+
+			Leider gibt es kein Standard-GUI-Tool für Python. Ich schlage vor, dass Sie
+			eines der obigen Toolkits auswählen, je nach Ihrer Situation. Der erste Faktor,
+			den Sie dabei bedenken müssen, ist, ob Sie bereit sind, für das GUI-Tool
+			Geld auszugeben. Der zweite Faktor ist, ob Sie Ihr Programm für Linux oder
+			für Windows oder für beides entwickeln wollen. Der dritte Faktor ist, ob Sie
+			als Linux-Benutzer eher eine Präferenz für KDE oder für GNOME haben.
+
+			
+
+			</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Zukünftige Kapitel</h3><p>
+
+				Ich erwäge, für dieses Buch ein oder zwei Kapitel über GUI-Programmierung
+				zu schreiben. Ich werde wahrscheinlich hierbei wxPython als Toolkit auswählen.
+				Wenn Sie Ihre Ansicht über dieses Thema äußern möchten, dann können Sie dies
+				auf der <a class="ulink" href="http://lists.ibiblio.org/mailman/listinfo/byte-of-python" target="_top">Byte-of-Python-Mailingliste</a> tun, wo Leser mit mir diskutieren, welche
+				Verbesserungen an dem Buch vorgenommen werden können.
+
+				
+
+				</p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="more-python-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="explore-more.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Zusammenfassung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Entdecken Sie mehr</td></tr></table></div></body></html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Auswertungsreihenfolge der Operatoren</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="operators-expressions.html" title="Kapitel 5. Operatoren und Ausdrücke" /><link rel="prev" href="operators.html" title="Operatoren" /><link rel="next" href="expressions.html" title="Ausdrücke" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Auswertungsreihenfolge der Operatoren</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="operators.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 5. Operatoren und Ausdrücke</th><td width="20%" align="right"> <a accesskey="n" href="expressions.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="operator-precedence"></a>Auswertungsreihenfolge der Operatoren</h2></div></div></div><p>
+
+		Wird bei einem Ausdruck wie z.B. <code class="literal">2 + 3 * 4</code> zuerst die Addition oder
+		die Multiplikation durchgeführt? Wie wir aus der Schulmathematik wissen, kommt die
+		Multiplikation zuerst - d.h. der Operator für die Multiplikation hat gegenüber dem Operator
+		für die Addition eine höhere Priorität.
+
+		
+
+		</p><p>
+
+		Die nachfolgende Tabelle listet alle Operatoren in Python in aufsteigender Reihenfolge ihrer Priorität auf,
+		von der niedrigsten Priorität (am schwächsten bindend) zur höchsten (am stärksten bindend).
+		Mit anderen Worten wird der Python-Interpreter bei einem Ausdruck zuerst die Operatoren auswerten,
+		die in der Tabelle weiter unten stehen, bevor er die Operatoren auswertet, die weiter oben stehen.
+
+		
+
+		</p><p>
+
+		Die Tabelle soll hier nur zur Vervollständigung dienen (Sie finden diese auch im Python-Referenzhandbuch).
+		Ich rate Ihnen, Operatoren und Operanden mit Klammern zu gruppieren, um die Reihenfolge der Auswertung
+		zu verdeutlichen. Das Programm wird dadurch auch lesbarer. Der Ausdruck <code class="literal">2 + (3 * 4)</code>
+		ist z.B. viel klarer als <code class="literal">2 + 3 * 4</code>. Wie überall gilt es auch bei Klammern auf eine vernünftige
+		Verwendung zu achten und diese wegzulassen, wo sie nicht benötigt werden (wie bei <code class="literal">2 + (3 + 4)</code>).
+
+		
+
+		</p><div class="table"><a id="operator-precedence-table"></a><p class="title"><strong>Tabelle 5.2. Auswertungsreihenfolge der Operatoren</strong></p><div class="table-contents"><table summary="Auswertungsreihenfolge der Operatoren" border="1"><colgroup><col /><col /></colgroup><thead><tr><th>Operator</th><th>Bedeutung</th></tr></thead><tbody><tr><td>lambda</td><td>Lambda-Funktion</td></tr><tr><td>or</td><td>Logisches ODER</td></tr><tr><td>and</td><td>Logisches UND</td></tr><tr><td>not x</td><td>Logisches NICHT</td></tr><tr><td>in, not in</td><td>Mitgliedschaftstest (bei Sequenzen)</td></tr><tr><td>is, is not</td><td>Test auf Identität</td></tr><tr><td>&lt;, &lt;=, &gt;, &gt;=, !=, ==</td><td>Vergleiche</td></tr><tr><td>|</td><td>Bitweises ODER</td></tr><tr><td>^</td><td>Bitweises XOR</td></tr><tr><td>&amp;</td><td>Bitweises UND</td></tr><tr><td>&lt;&lt;, &gt;&gt;</td><td>Bitweise Verschiebungen</td></tr><tr><td>+, -</td><td>Addition und Subtraktion</td></tr><tr><td>*, /, %</td><td>Multiplikation, Division und Rest</td></tr><tr><td>+x, -x</td><td>Positives und negatives Vorzeichen</td></tr><tr><td>~x</td><td>Bitweises NICHT</td></tr><tr><td>**</td><td>Potenzierung</td></tr><tr><td>x.attribut</td><td>Attributreferenzierung</td></tr><tr><td>x[index]</td><td>Indexierung</td></tr><tr><td>x[index:index]</td><td>Teilbereich einer Sequenz</td></tr><tr><td>f(parameter ...)</td><td>Funktionsaufruf</td></tr><tr><td>(ausdruck, ...)</td><td>Klammerung oder Bildung von Tupeln</td></tr><tr><td>[ausdruck, ...]</td><td>Bildung von Listen</td></tr><tr><td>{schluessel:wert, ...}</td><td>Bildung von Dictionaries</td></tr><tr><td>`ausdruck, ...`</td><td>Umwandlung in Stringdarstellung</td></tr></tbody></table></div></div><br class="table-break" /><p>
+
+		In der Tabelle tauchen einige bisher noch nicht besprochene Operatoren auf,
+		die in späteren Kapiteln erläutert werden.
+
+		
+
+		</p><p>
+		Operatoren mit <span class="emphasis"><em>gleicher Priorität</em></span> sind in der obigen Tabelle
+		in der gleichen Zeile aufgeführt. Die Operatoren <code class="literal">+</code> und <code class="literal">-</code>
+		haben z.B. die gleiche Priorität.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="order-of-evaluation"></a>Auswertungsreihenfolge </h3></div></div></div><p>
+
+			Normalerweise werden die Operatoren in der Reihenfolge wie in der Tabelle angegeben
+			ausgewertet. Sie können diese Reihenfolge jedoch durch die Verwendung von Klammern
+			abändern. Wenn Sie etwa möchten, dass bei einem Ausdruck eine Addition vor einer Multiplikation
+			ausgewertet wird, schreiben Sie <code class="literal">(2 + 3) * 4</code>.
+
+			
+
+			</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="associativity"></a>Assoziativität</h3></div></div></div><p>
+
+			Operatoren mit gleicher Priorität werden innerhalb eines Ausdrucks von links
+			nach rechts ausgewertet. Zum Beispiel wird <code class="literal">2 + 3 + 4</code> wie
+			<code class="literal">(2 + 3) + 4</code> ausgewertet. Manche Operatoren, wie z.B. der
+			Zuweisungsoperator, sind rechtsassoziativ. D.h. der Ausdruck <code class="literal">a = b = c</code>
+			wird wie <code class="literal">a = (b = c)</code> behandelt.
+
+			
+
+			</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="operators.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="operators-expressions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="expressions.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Operatoren </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Ausdrücke</td></tr></table></div></body></html>

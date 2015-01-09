@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die return-Anweisung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="functions.html" title="Kapitel 7. Funktionen" /><link rel="prev" href="keyword-arguments.html" title="Schlüsselwort-Argumente" /><link rel="next" href="docstrings.html" title="DocStrings" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die return-Anweisung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="keyword-arguments.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 7. Funktionen</th><td width="20%" align="right"> <a accesskey="n" href="docstrings.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="return"></a>Die return-Anweisung</h2></div></div></div><p>
+
+		Die <code class="literal">return</code>-Anweisung wird benutzt, um aus einer Funktion
+		<span class="emphasis"><em>zurückzukehren</em></span>, d.h. die Funktion an dieser Stelle
+		wieder zu verlassen. Bei Bedarf können wir die Funktion an dieser Stelle auch
+		einen <span class="emphasis"><em>Wert zurückgeben</em></span> lassen.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-return-statement"></a>Verwendung der return-Anweisung</h3></div></div></div><div class="example"><a id="using-return-statement-example"></a><p class="title"><strong>Beispiel 7.7. Verwendung der return-Anweisung
+					(<a class="ulink" href="code/funk_return.py" target="_top">funk_return.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">def</span> <span class="py-identifier">maximum</span>(x, y):
+	<span class="py-statement">if</span> x &gt; y:
+		<span class="py-statement">return</span> x
+	<span class="py-statement">else</span>:
+		<span class="py-statement">return</span> y
+
+<span class="py-statement">print</span> maximum(<span class="py-number">2</span>, <span class="py-number">3</span>)
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-return-statement-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python funk_return.py
+3
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-return-statement-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Die Funktion <code class="function">maximum</code> gibt als Wert das Maximum ihrer Parameter
+				zurück. In diesem Fall sind dies Zahlen, die der Funktion als Argumente übergeben werden. In der
+				Funktion wird eine einfache <code class="literal">if..else</code>-Anweisung benutzt, um den größeren
+				Wert zu finden, und dieser Wert wird dann mit <code class="literal">return</code> zurückgegeben.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass eine <code class="literal">return</code>-Anweisung ohne Wert gleichbedeutend
+				ist mit <code class="literal">return None</code>. <code class="literal">None</code> ist ein besonderer
+				Datentyp in Python, der einfach für <span class="emphasis"><em>Nichts</em></span> steht.
+				Man benutzt ihn zum Beispiel, um anzuzeigen, dass eine Variable keinen speziellen Wert hat,
+				wenn sie den Wert <code class="literal">None</code> besitzt.
+
+				
+
+				</p><p>
+
+				Jede Funktion hat am Ende implizit die Anweisung <code class="literal">return None</code>,
+				wenn Sie nicht stattdessen Ihre eigene <code class="literal">return</code>-Anweisung geschrieben haben.
+				Sie können das ausprobieren, indem Sie <code class="literal">print eineFunktion()</code>
+				ausführen, wobei <code class="function">eineFunktion</code> eine Funktion ohne
+				<code class="literal">return</code>-Anweisung sein soll, etwa:
+
+				
+
+				</p><pre class="programlisting">
+				
+<span class="py-statement">def</span> <span class="py-identifier">eineFunktion</span>():
+	<span class="py-statement">pass</span>
+				
+				</pre><p>
+
+				Die <code class="literal">pass</code>-Anweisung wird in Python benutzt,
+				um einen leeren Anweisungsblock anzuzeigen.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="keyword-arguments.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="functions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="docstrings.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Schlüsselwort-Argumente </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> DocStrings</td></tr></table></div></body></html>

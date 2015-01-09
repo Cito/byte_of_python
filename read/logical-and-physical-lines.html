@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Logische und physikalische Zeilen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="basics.html" title="Kapitel 4. Die Grundlagen" /><link rel="prev" href="data-type-object.html" title="Objekte" /><link rel="next" href="indentation.html" title="Einrückung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Logische und physikalische Zeilen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="data-type-object.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 4. Die Grundlagen</th><td width="20%" align="right"> <a accesskey="n" href="indentation.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logical-and-physical-lines"></a>Logische und physikalische Zeilen</h2></div></div></div><p>
+
+		Eine physikalische Zeile ist das, was man beim Schreiben eines Programms als Zeile <span class="emphasis"><em>sieht</em></span>.
+		Eine logische Zeile ist das, was Python als eine einzelne Anweisung <span class="emphasis"><em>ansieht</em></span>.
+		Python nimmt zunächst einmal implizit an, dass jede <span class="emphasis"><em>physikalische Zeile</em></span>
+		einer <span class="emphasis"><em>logischen Zeile</em></span> entspricht.
+
+		
+
+		</p><p>
+
+		Ein Beispiel für eine logische Zeile ist eine Anweisung wie <code class="literal">print 'Hallo Welt'</code>
+		- wenn sie in einer Zeile für sich steht (wie man sie im Editor sieht), dann entspricht sie auch
+		einer physikalischen Zeile.
+
+		
+
+		</p><p>
+
+		Hierdurch legt es Python nahe, pro Zeile nur eine einzige Anweisung zu schreiben, wodurch der Code
+		auch lesbarer wird.
+
+		
+
+		</p><p>
+
+		Wenn Sie mehr als eine logische Zeile in einer einzigen physikalischen Zeile angeben wollen,
+		dann müssen Sie dies explizit durch ein Semikolon (<code class="literal">;</code>) kennzeichnen,
+		mit dem Sie das Ende einer logischen Zeile/Anweisung markieren. Zum Beispiel bewirkt
+
+		
+
+		</p><pre class="programlisting">
+		
+i = <span class="py-number">5</span>
+<span class="py-statement">print</span> i
+		
+		</pre><p>
+
+		genau das Gleiche wie
+		
+
+		</p><pre class="programlisting">
+		
+i = <span class="py-number">5</span>;
+<span class="py-statement">print</span> i;
+		
+		</pre><p>
+
+		oder das Gleiche wie
+		
+
+		</p><pre class="programlisting">
+		
+i = <span class="py-number">5</span>; <span class="py-statement">print</span> i;
+		
+		</pre><p>
+
+		oder auch
+		
+
+		</p><pre class="programlisting">
+		
+i = <span class="py-number">5</span>; <span class="py-statement">print</span> i
+		
+		</pre><p>
+
+		Ich möchte jedoch die <span class="bold"><strong>ausdrückliche Empfehlung</strong></span> aussprechen,
+		dass Sie dabei bleiben, <span class="bold"><strong>eine einzelne logische Zeile pro physikalischer
+		Zeile</strong></span> zu schreiben. Man sollte das Semikolon also möglichst vermeiden, um den Code
+		übersichtlich und lesbar zu halten. Tatsächlich habe ich <span class="emphasis"><em>noch nie</em></span>
+		ein Semikolon in einem Python-Programm benutzt oder auch nur gesehen. Umgekehrt sollten Sie
+		mehr als eine physikalische Zeile für eine einzelne logische Zeile nur dann benutzen, wenn die
+		logische Zeile wirklich sehr lang ist.
+
+		
+
+		</p><p>
+
+		Im Folgenden ein Beispiel dafür, wie man eine logische Zeile schreiben kann, die mehrere physikalische
+		Zeilen umspannt. Dies wird als <span class="bold"><strong>explizite Zeilenverkettung</strong></span> bezeichnet.
+
+		
+
+		</p><pre class="programlisting">
+		
+s = <span class="py-string">'Dies ist ein String. \
+Hier geht der String weiter.'</span>
+<span class="py-statement">print</span> s
+		
+		</pre><p>
+		
+
+		Dies führt zu folgender Ausgabe:
+		
+
+		</p><pre class="screen">
+		
+Dies ist ein String. Hier geht der String weiter.
+		
+		</pre><p>
+
+		Entsprechend ist
+		
+
+		</p><pre class="programlisting">
+		
+<span class="py-statement">print</span> \
+i
+		
+		</pre><p>
+
+		das gleiche wie
+		
+
+		</p><pre class="programlisting">
+		
+<span class="py-statement">print</span> i
+		
+		</pre><p>
+
+		Manchmal geht Python implizit von einer Zeilenverkettung aus, so dass
+		man keinen umgekehrten Schrägstrich verwenden muss. Dies ist der Fall,
+		wenn die logische Zeile runde, eckige oder geschweifte Klammern enthält,
+		und vor dem Zeilenende Klammern noch nicht geschlossen wurden. Dies
+		wird <span class="bold"><strong>implizite Zeilenverkettung</strong></span> genannt.
+		Sie können sehen, wie dies funktioniert, wenn wir in späteren Kapiteln
+		Programme schreiben werden, die <a class="link" href="list.html" title="Listen">Listen</a> verwenden.
+
+		
+
+		</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="data-type-object.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="basics.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="indentation.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Objekte </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Einrückung</td></tr></table></div></body></html>

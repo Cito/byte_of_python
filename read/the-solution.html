@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die Lösung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="problem-solving.html" title="Kapitel 10. Problemlösung - So schreibt man ein Python-Skript" /><link rel="prev" href="problem-solving.html" title="Kapitel 10. Problemlösung - So schreibt man ein Python-Skript" /><link rel="next" href="software-development-process.html" title="Der Softwareentwicklungsprozess" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die Lösung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="problem-solving.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 10. Problemlösung - So schreibt man ein Python-Skript</th><td width="20%" align="right"> <a accesskey="n" href="software-development-process.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="the-solution"></a>Die Lösung</h2></div></div></div><p>
+
+		Nachdem der Entwurf unseres Programms nun feststeht, können wir den Code
+		schreiben, der eine <span class="bold"><strong>Implementierung</strong></span>
+		unserer Lösung darstellt.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="first-version"></a>Die erste Version</h3></div></div></div><div class="example"><a id="first-version-example"></a><p class="title"><strong>Beispiel 10.1. Sicherungsskript - erste Version
+					(<a class="ulink" href="code/sicherung_ver1.py" target="_top">sicherung_ver1.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">os</span>
+<span class="py-statement">import</span> <span class="py-builtin">time</span>
+
+<span class="py-comment"># 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,</span>
+<span class="py-comment"># werden in der folgenden Liste angegeben:</span>
+quellen = [<span class="py-string">'/home/swaroop/byte'</span>, <span class="py-string">'/home/swaroop/bin'</span>]
+<span class="py-comment"># Unter Windows muessen Sie die Pfade auf diese Weise angeben:</span>
+<span class="py-comment"># quellen = ['C:\\Dokumente', 'D:\\Arbeit']</span>
+
+<span class="py-comment"># 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer</span>
+<span class="py-comment"># Sicherungen gespeichert werden:</span>
+ziel_verzeichnis = <span class="py-string">'/mnt/e/sicherung/'</span>
+<span class="py-comment"># Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.</span>
+
+<span class="py-comment"># 3. Die Dateien werden in einer ZIP-Datei gesichert.</span>
+
+<span class="py-comment"># 4. Der Name der ZIP-Datei setzt sich aus dem aktuellen Datum</span>
+<span class="py-comment"># und der Uhrzeit wie folgt zusammen:</span>
+ziel = ziel_verzeichnis + <span class="py-builtin">time</span>.strftime(<span class="py-string">'%Y%m%d%H%M%S'</span>) + <span class="py-string">'.zip'</span>
+
+<span class="py-comment"># 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien</span>
+<span class="py-comment"># zu einem ZIP-Archiv zu komprimieren:</span>
+zip_befehl = <span class="py-string">'zip -qr %s %s'</span> % (ziel, <span class="py-string">' '</span>.join(quellen))
+<span class="py-comment"># Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das</span>
+<span class="py-comment"># Windows-Systemverzeichnis kopieren, damit dies funktioniert.</span>
+
+<span class="py-comment"># Sicherung starten</span>
+<span class="py-statement">if</span> <span class="py-builtin">os</span>.system(zip_befehl) == <span class="py-number">0</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Erfolgreiche Sicherung nach'</span>, ziel
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Sicherung fehlgeschlagen!'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="first-version-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python sicherung_ver1.py
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208073244.zip
+				
+				</pre><p>
+
+				Wir sind nun in der <span class="bold"><strong>Test</strong></span>-Phase, in der
+				wir ausprobieren, ob unser Programm ordentlich funktioniert. Wenn es sich nicht so
+				verhält, wie erwartet, dann müssen wir unser Programm <span class="bold"><strong>debuggen</strong></span>,
+				d.h. die <span class="emphasis"><em>Bugs</em></span> (Fehler) aus dem Programm entfernen.
+
+				
+
+				</p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="first-version-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Sie werden bemerkt haben, wie wir unseren <span class="emphasis"><em>Entwurf</em></span>
+				Schritt für Schritt in Programm-<span class="emphasis"><em>Code</em></span> umgewandelt haben.
+
+				
+
+				</p><p>
+
+				Wir benutzen die Module <code class="literal">os</code> und <code class="literal">time</code>,
+				weswegen wir sie am Anfang importieren. Danach geben wir in einer Liste namens
+				<code class="varname">Quellen</code> die Quelldateien und -verzeichnisse an, die
+				gesichert werden sollen. Das Zielverzeichnis, in das wir die Sicherungsdateien speichern,
+				wird in der Variable <code class="varname">ziel_verzeichnis</code> angegeben.
+				Der Name des ZIP-Archivs, das wir erzeugen werden, setzt sich aus dem aktuellen Datum und
+				der Uhrzeit zusammen, die wir mit der Funktion <code class="function">time.strftime()</code>
+				ermitteln. Dem Namen wird noch die Dateiendung <code class="filename">.zip</code> angehängt
+				und das Zielverzeichnis vorangestellt. Dieser vollständige Dateiname mit Pfad wird in der
+				Variable <code class="varname">ziel</code> gespeichert.
+
+				
+
+				</p><p>
+
+				Der Funktion <code class="function">time.strftime()</code> muss eine Formatspezifikation
+				übergeben werden, wie wir sie im obigen Programm benutzt haben. Das <code class="literal">%Y</code>
+				wird hierbei durch das Jahr  ersetzt. Das <code class="literal">%m</code> wird
+				durch den Monat als Dezimalzahl zwischen <code class="literal">01</code> und <code class="literal">12</code>
+				ersetzt, und so weiter. Die vollständige Liste aller solcher Format-Spezifikationen kann im
+				[<span class="citation">Python-Referenz-Handbuch</span>] nachgelesen werden, das zusammen mit
+				Python ausgeliefert wird. Beachten Sie, dass dies der Spezifikation ähnelt (aber nicht das gleiche ist),
+				wie wir sie im <code class="literal">print</code>-Befehl benutzt haben (mit dem <code class="literal">%</code>-Zeichen,
+				gefolgt von einem Tupel).
+
+				
+
+				</p><p>
+
+				Wir erzeugen den Namen der Ziel-ZIP-Datei, indem wir den Summierungs-Operator (das Plus-Zeichen)
+				benutzen, der die einzelnen Strings miteinander <span class="emphasis"><em>verkettet</em></span>, d.h. er
+				verbindet zwei Strings und liefert dies als neuen String zurück. Danach erzeugen wir einen String
+				<code class="varname">zip_befehl</code>, der den Befehl enthält, den wir ausführen wollen.
+				Sie können ausprobieren, ob dieser Befehl funktioniert, indem Sie ihn auf der Kommandozeilen-Ebene
+				ausprobieren (Linux-Terminal oder DOS-Eingabeaufforderung).
+
+				
+
+				</p><p>
+
+				Dem von uns verwendeten Befehl <span class="command"><strong>zip</strong></span> geben wir noch
+				einige Optionen und Parameter mit. Die Option <code class="option">-q</code> wird benutzt,
+				um anzuzeigen, dass der zip-Befehl ohne Ausgaben arbeiten soll (d.h. ohne viel bei der
+				Arbeit zu <span class="bold"><strong>q</strong></span>uatschen). Die Option <code class="option">-r</code>
+				gibt an, dass der zip-Befehl <span class="bold"><strong>r</strong></span>ekursiv arbeiten
+				soll, d.h. er soll die Unterverzeichnisse und Dateien in den Unterverzeichnissen mit archivieren.
+				Die beiden Optionen werden kombiniert in der Kurzform <code class="option">-qr</code> angegeben.
+				Den Optionen folgt der Name des zu erzeugenden ZIP-Archivs und die Liste der Dateien und Verzeichnisse,
+				die in dem Archiv gesichert werden sollen. Wir konvertieren die Liste <code class="varname">quellen</code>
+				in einen String, indem wir die <code class="methodname">join</code>-Methode für Strings benutzen,
+				die wir bereits früher kennen gelernt haben.
+
+				
+
+				</p><p>
+
+				Danach <span class="emphasis"><em>starten</em></span> wir endlich den Befehl, indem
+				wir die Funktion <code class="function">os.system</code> benutzen, die einen Befehl
+				auf Betriebssystemebene des <span class="emphasis"><em>Systems</em></span> ausführt, d.h.
+				in einer Kommandozeilen-Umgebung - wobei eine <code class="literal">0</code> zurückgegeben
+				wird, wenn der Befehl erfolgreich ausgeführt wurde, oder einen Fehlercode ungleich <code class="literal">0</code>
+				im Fall, dass ein Fehler aufgetreten ist.
+
+				
+
+				</p><p>
+
+				Je nachdem, wie die Ausführung des Befehls ausgegangen ist, geben wir eine entsprechende
+				Meldung auf dem Bildschirm aus, dass die Sicherung fehlgeschlagen ist oder erfolgreich war,
+				und das war's, wir haben damit ein Skript erzeugt, das eine Sicherungskopie unserer wichtigen
+				Dateien erzeugt!
+
+				
+
+				</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für Windows-Benutzer</h3><p>
+
+					Sie können in der Liste <code class="varname">quellen</code> und der Variable
+					<code class="varname">ziel_verzeichnis</code> beliebige Datei- bzw. Verzeichnisnamen
+					angeben, aber Sie müssen unter Windows ein wenig Acht geben.
+					Das Problem ist, dass Windows den umgekehrten Schrägstrich
+					(<code class="literal">\</code>) als das Trennzeichen für Verzeichnisse benutzt,
+					Python jedoch den umgekehrten Schrägstrich für Maskierungscodes benutzt!
+
+					
+
+					</p><p>
+
+					Daher müssen Sie einen umgekehrten Schrägstrich selber durch einen Maskierungscode
+					oder durch die Benutzung von rohen Zeichenketten darstellen. Zum Beispiel können Sie
+					<code class="literal">'C:\\Dokumente'</code> oder <code class="literal">r'C:\Dokumente'</code> schreiben,
+					<span class="bold"><strong>nicht</strong></span> aber <code class="literal">'C:\Dokumente'</code>
+					- Sie verwenden hier einen unbekannten Maskierungscode <code class="literal">\D</code>!
+
+					
+
+					</p></div><p>
+
+				Nachdem wir nun ein funktionierendes Sicherungsskript haben, können wir es jederzeit
+				benutzen, um eine Sicherungskopie der Dateien zu erstellen. Für Linux/Unix-Benutzer
+				empfiehlt es sich, die früher besprochene <a class="link" href="executable-python-programs.html" title="Ausführbare Python-Programme">Methode
+				für ausführbare Dateien</a> zu verwenden, damit das Sicherungsskript jederzeit und
+				überall ausgeführt werden kann. Dies wird die <span class="bold"><strong>Produktions</strong></span>-
+				oder <span class="bold"><strong>Einsatz</strong></span>-Phase der Software genannt.
+
+				
+
+				</p><p>
+
+				Das obige Programm funktioniert zufrieden stellend, aber (meistens) funktionieren
+				erste Versionen von Programmen nicht genau so, wie man es erwartet. Zum Beispiel
+				könnten Probleme entstehen, wenn das Programm nicht sauber entworfen wurde,
+				oder wenn man einen Fehler beim Eintippen des Programmcodes gemacht hat, usw.
+				Dementsprechend muss man dann wieder in die Entwurfsphase zurückgehen oder
+				sein Programm debuggen.
+
+				
+
+				</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="second-version"></a>Die zweite Version</h3></div></div></div><p>
+
+			Die erste Version unseres Skripts funktioniert. Wir können aber noch einige Verfeinerungen
+			daran vornehmen, so dass es für den täglichen Einsatz besser tauglich wird. Man nennt dies
+			die <span class="bold"><strong>Wartungs</strong></span>-Phase der Software.
+
+			
+
+			</p><p>
+
+			Eine der Verfeinerungen, die ich nützlich fand, ist ein besserer Mechanismus zur Benennung
+			der Sicherungsdateien - indem die <span class="emphasis"><em>Uhrzeit</em></span> als der Name der Datei
+			verwendet wird, die in einem Verzeichnis gespeichert wird, dessen Name aus dem aktuellen
+			<span class="emphasis"><em>Datum</em></span> gebildet wird, und das sich im Hauptverzeichnis für die
+			Sicherungen befindet. Ein Vorteil davon ist, dass die Sicherungen in einer hierarchischen Weise
+			gespeichert werden und daher einfacher zu verwalten sind. Ein weiterer Vorteil ist, dass die Länge
+			der Dateinamen auf diese Weise viel kürzer wird. Noch ein weiterer Vorteil ist, dass verschiedene
+			Verzeichnisse dabei helfen, auf einfache Weise zu überprüfen, ob man an jedem Tag eine Sicherung
+			gemacht hat, denn das Verzeichnis wird nur angelegt, wenn am jeweiligen Tag eine Sicherung
+			vorgenommen wurde.
+
+			
+
+			</p><div class="example"><a id="second-version-example"></a><p class="title"><strong>Beispiel 10.2. Sicherungsskript - zweite Version
+					(<a class="ulink" href="code/sicherung_ver2.py" target="_top">sicherung_ver2.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">os</span>
+<span class="py-statement">import</span> <span class="py-builtin">time</span>
+
+<span class="py-comment"># 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,</span>
+<span class="py-comment"># werden in der folgenden Liste angegeben:</span>
+quellen = [<span class="py-string">'/home/swaroop/byte'</span>, <span class="py-string">'/home/swaroop/bin'</span>]
+<span class="py-comment"># Unter Windows muessen Sie die Pfade auf diese Weise angeben:</span>
+<span class="py-comment"># quellen = ['C:\\Dokumente', 'D:\\Arbeit']</span>
+
+<span class="py-comment"># 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer</span>
+<span class="py-comment"># Sicherungen gespeichert werden:</span>
+ziel_verzeichnis = <span class="py-string">'/mnt/e/sicherung/'</span>
+<span class="py-comment"># Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.</span>
+
+<span class="py-comment"># 3. Die Dateien werden in einer ZIP-Datei gesichert.</span>
+
+<span class="py-comment"># 4. Das Tagesdatum ist der Name des Unterverzeichnisses:</span>
+heute = ziel_verzeichnis + <span class="py-builtin">time</span>.strftime(<span class="py-string">'%Y%m%d'</span>)
+<span class="py-comment"># Die aktuelle Uhrzeit ist der Name des ZIP-Archivs:</span>
+jetzt = <span class="py-builtin">time</span>.strftime(<span class="py-string">'%H%M%S'</span>)
+
+<span class="py-comment"># Erzeuge das Unterverzeichnis, wenn noch nicht vorhanden:</span>
+<span class="py-statement">if</span> <span class="py-statement">not</span> <span class="py-builtin">os</span>.path.exists(heute):
+	<span class="py-builtin">os</span>.mkdir(heute) <span class="py-comment"># erzeuge das Verzeichnis</span>
+	<span class="py-statement">print</span> <span class="py-string">'Verzeichnis'</span>, heute, <span class="py-string">'erfolgreich angelegt'</span>
+
+<span class="py-comment"># Der Name der ZIP-Datei:</span>
+ziel = heute + <span class="py-builtin">os</span>.sep + jetzt + <span class="py-string">'.zip'</span>
+
+<span class="py-comment"># 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien</span>
+<span class="py-comment"># zu einem ZIP-Archiv zu komprimieren:</span>
+zip_befehl = <span class="py-string">'zip -qr %s %s'</span> % (ziel, <span class="py-string">' '</span>.join(quellen))
+<span class="py-comment"># Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das</span>
+<span class="py-comment"># Windows-Systemverzeichnis kopieren, damit dies funktioniert.</span>
+
+<span class="py-comment"># Sicherung starten</span>
+<span class="py-statement">if</span> <span class="py-builtin">os</span>.system(zip_befehl) == <span class="py-number">0</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Erfolgreiche Sicherung nach'</span>, ziel
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Sicherung fehlgeschlagen!'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="second-version-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python sicherung_ver2.py
+Verzeichnis /mnt/e/backup/20041208 erfolgreich angelegt
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/080020.zip
+
+$ python sicherung_ver2.py
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/080428.zip
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="second-version-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Das Programm bleibt im Wesentlichen das gleiche. Die Änderungen
+				bestehen darin, dass wir prüfen, of es bereits ein Verzeichnis mit dem
+				aktuellen Tagesdatum als Namen innerhalb des Hauptverzeichnisses für
+				Sicherungen gibt, wofür wir die Funktion <code class="function">os.exists</code>
+				einsetzen. Wenn es nicht existiert, legen wir das Verzeichnis mit der
+				Funktion <code class="function">os.mkdir</code> an.
+
+				
+
+				</p><p>
+
+				Beachten Sie die Benutzung der Variablen <code class="varname">os.sep</code> -
+				sie stellt das Trennzeichen für Verzeichnisse des jeweils benutzten Betriebssystems
+				dar, d.h. sie wird unter Unix oder Linux <code class="literal">'/'</code> sein, unter Windows
+				wird sie <code class="literal">'\\'</code> sein, und <code class="literal">':'</code> unter MacOS.
+				Indem man <code class="varname">os.sep</code> verwendet, anstatt diese Zeichen
+				direkt hinzuschreiben, wird das Programm portabel und funktioniert plattformunabhängig
+				unter all diesen Betriebssystemen.
+
+				
+
+				</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="third-version"></a>Die dritte Version</h3></div></div></div><p>
+
+			Die zweite Version funktioniert hervorragend, wenn man viele Sicherungskopien
+			macht, aber wenn man so viele Sicherheitskopien macht, dann wird es schwer zu
+			unterscheiden, wofür diese Sicherungskopien gemacht worden sind. Zum Beispiel
+			könnte ich einige größere Änderungen an einem Programm oder einer Präsentation
+			gemacht haben, und möchte dann, dass diese Änderungen mit dem Namen des
+			ZIP-Archivs verknüpft werden. Dies kann einfach dadurch erreicht werden, dass
+			man dem Namen des ZIP-Archivs einen benutzerdefinierten Kommentar anhängt.
+
+			
+
+			</p><div class="example"><a id="third-version-example"></a><p class="title"><strong>Beispiel 10.3. Sicherungsskript - dritte Version (funktioniert nicht!)
+					(<a class="ulink" href="code/sicherung_ver3.py" target="_top">sicherung_ver3.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">os</span>
+<span class="py-statement">import</span> <span class="py-builtin">time</span>
+
+<span class="py-comment"># 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,</span>
+<span class="py-comment"># werden in der folgenden Liste angegeben:</span>
+quellen = [<span class="py-string">'/home/swaroop/byte'</span>, <span class="py-string">'/home/swaroop/bin'</span>]
+<span class="py-comment"># Unter Windows muessen Sie die Pfade auf diese Weise angeben:</span>
+<span class="py-comment"># quellen = ['C:\\Dokumente', 'D:\\Arbeit']</span>
+
+<span class="py-comment"># 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer</span>
+<span class="py-comment"># Sicherungen gespeichert werden:</span>
+ziel_verzeichnis = <span class="py-string">'/mnt/e/sicherung/'</span>
+<span class="py-comment"># Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.</span>
+
+<span class="py-comment"># 3. Die Dateien werden in einer ZIP-Datei gesichert.</span>
+
+<span class="py-comment"># 4. Das Tagesdatum ist der Name des Unterverzeichnisses:</span>
+heute = ziel_verzeichnis + <span class="py-builtin">time</span>.strftime(<span class="py-string">'%Y%m%d'</span>)
+<span class="py-comment"># Die aktuelle Uhrzeit ist der Name des ZIP-Archivs:</span>
+jetzt = <span class="py-builtin">time</span>.strftime(<span class="py-string">'%H%M%S'</span>)
+
+<span class="py-comment"># Eine Anmerkung als Benutzereingabe entgegennehmen,</span>
+<span class="py-comment"># die fuer den Namen der ZIP-Datei verwendet wird:</span>
+anmerkung = <span class="py-builtin">raw_input</span>(<span class="py-string">'Geben Sie eine Anmerkung ein --&gt; '</span>)
+<span class="py-statement">if</span> <span class="py-builtin">len</span>(anmerkung) == <span class="py-number">0</span>: <span class="py-comment"># pruefe, ob eine Anmerkung eingegeben wurde</span>
+	ziel = heute + <span class="py-builtin">os</span>.sep + jetzt + <span class="py-string">'.zip'</span>
+<span class="py-statement">else</span>:
+	ziel = heute + <span class="py-builtin">os</span>.sep + jetzt + <span class="py-string">'_'</span> +
+		anmerkung.replace(<span class="py-string">' '</span>, <span class="py-string">'_'</span>) + <span class="py-string">'.zip'</span>
+
+<span class="py-comment"># Erzeuge das Unterverzeichnis, wenn noch nicht vorhanden:</span>
+<span class="py-statement">if</span> <span class="py-statement">not</span> <span class="py-builtin">os</span>.path.exists(heute):
+	<span class="py-builtin">os</span>.mkdir(heute) <span class="py-comment"># erzeuge das Verzeichnis</span>
+	<span class="py-statement">print</span> <span class="py-string">'Verzeichnis'</span>, heute, <span class="py-string">'erfolgreich angelegt'</span>
+
+<span class="py-comment"># 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien</span>
+<span class="py-comment"># zu einem ZIP-Archiv zu komprimieren:</span>
+zip_befehl = <span class="py-string">'zip -qr %s %s'</span> % (ziel, <span class="py-string">' '</span>.join(quellen))
+<span class="py-comment"># Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das</span>
+<span class="py-comment"># Windows-Systemverzeichnis kopieren, damit dies funktioniert.</span>
+
+<span class="py-comment"># Sicherung starten</span>
+<span class="py-statement">if</span> <span class="py-builtin">os</span>.system(zip_befehl) == <span class="py-number">0</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Erfolgreiche Sicherung nach'</span>, ziel
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Sicherung fehlgeschlagen!'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="third-version-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python sicherung_ver3.py
+  File "sicherung_ver3.py", line 30
+    ziel = heute + os.sep + jetzt + '_' +
+                                        ^
+SyntaxError: invalid syntax
+					
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="third-version-how"></a>Warum dies nicht funktioniert</h4></div></div></div><p>
+
+				<span class="bold"><strong>Dieses Programm funktioniert nicht!</strong></span>
+				Python sagt, dass es einen Syntax-Fehler hat, was bedeutet, dass das Skript
+				an einer Stelle nicht die Struktur aufweist, die Python hier erwartet.
+				Wenn wir auf die Fehlermeldung von Python Acht geben, gibt sie uns auch die
+				genaue Stelle an, wo der Fehler entdeckt wurde. Wir fangen also an, das Programm
+				ab dieser Zeile zu <span class="emphasis"><em>debuggen</em></span>.
+
+				
+
+				</p><p>
+
+				Bei genauerer Untersuchung erkennen wir, dass die eine logische Zeile
+				in zwei physikalische Zeilen aufgespalten worden ist, aber dass wir nicht
+				angegeben haben, dass diese zwei physikalischen Zeilen zusammengehören.
+				Für Python fehlt dem Summierungs-Operator (<code class="literal">+</code>) am Ende
+				der logischen Zeile daher ein Operand, weswegen es an dieser Stelle
+				abbricht. Erinnern Sie sich daran, dass wir angeben können, dass die logische
+				Zeile in der folgenden physikalischen Zeile fortgeführt wird, indem wir einen
+				umgekehrten Schrägstrich am Ende der physikalischen Zeile benutzen. Wir machen
+				daher diese Verbesserung an unserem Programm. Eine solche Fehlerkorrektur wird
+				auch als <span class="bold"><strong>Bug-Fixing</strong></span> bezeichnet.
+
+				
+
+				</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="fourth-version"></a>Die vierte Version</h3></div></div></div><div class="example"><a id="fourth-version-example"></a><p class="title"><strong>Beispiel 10.4. Sicherungsskript - vierte Version
+					(<a class="ulink" href="code/sicherung_ver4.py" target="_top">sicherung_ver4.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">os</span>
+<span class="py-statement">import</span> <span class="py-builtin">time</span>
+
+<span class="py-comment"># 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,</span>
+<span class="py-comment"># werden in der folgenden Liste angegeben:</span>
+quellen = [<span class="py-string">'/home/swaroop/byte'</span>, <span class="py-string">'/home/swaroop/bin'</span>]
+<span class="py-comment"># Unter Windows muessen Sie die Pfade auf diese Weise angeben:</span>
+<span class="py-comment"># quellen = ['C:\\Dokumente', 'D:\\Arbeit']</span>
+
+<span class="py-comment"># 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer</span>
+<span class="py-comment"># Sicherungen gespeichert werden:</span>
+ziel_verzeichnis = <span class="py-string">'/mnt/e/sicherung/'</span>
+<span class="py-comment"># Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.</span>
+
+<span class="py-comment"># 3. Die Dateien werden in einer ZIP-Datei gesichert.</span>
+
+<span class="py-comment"># 4. Das Tagesdatum ist der Name des Unterverzeichnisses:</span>
+heute = ziel_verzeichnis + <span class="py-builtin">time</span>.strftime(<span class="py-string">'%Y%m%d'</span>)
+<span class="py-comment"># Die aktuelle Uhrzeit ist der Name des ZIP-Archivs:</span>
+jetzt = <span class="py-builtin">time</span>.strftime(<span class="py-string">'%H%M%S'</span>)
+
+<span class="py-comment"># Eine Anmerkung als Benutzereingabe entgegennehmen,</span>
+<span class="py-comment"># die fuer den Namen der ZIP-Datei verwendet wird:</span>
+anmerkung = <span class="py-builtin">raw_input</span>(<span class="py-string">'Geben Sie eine Anmerkung ein --&gt; '</span>)
+<span class="py-statement">if</span> <span class="py-builtin">len</span>(anmerkung) == <span class="py-number">0</span>: <span class="py-comment"># pruefe, ob eine Anmerkung eingegeben wurde</span>
+	ziel = heute + <span class="py-builtin">os</span>.sep + jetzt + <span class="py-string">'.zip'</span>
+<span class="py-statement">else</span>:
+	ziel = heute + <span class="py-builtin">os</span>.sep + jetzt + <span class="py-string">'_'</span> + \
+		anmerkung.replace(<span class="py-string">' '</span>, <span class="py-string">'_'</span>) + <span class="py-string">'.zip'</span>
+	<span class="py-comment"># Beachten Sie den umgekehrten Schraegstrich!</span>
+
+<span class="py-comment"># Erzeuge das Unterverzeichnis, wenn noch nicht vorhanden:</span>
+<span class="py-statement">if</span> <span class="py-statement">not</span> <span class="py-builtin">os</span>.path.exists(heute):
+	<span class="py-builtin">os</span>.mkdir(heute) <span class="py-comment"># erzeuge das Verzeichnis</span>
+	<span class="py-statement">print</span> <span class="py-string">'Verzeichnis'</span>, heute, <span class="py-string">'erfolgreich angelegt'</span>
+
+<span class="py-comment"># 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien</span>
+<span class="py-comment"># zu einem ZIP-Archiv zu komprimieren:</span>
+zip_befehl = <span class="py-string">'zip -qr %s %s'</span> % (ziel, <span class="py-string">' '</span>.join(quellen))
+<span class="py-comment"># Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das</span>
+<span class="py-comment"># Windows-Systemverzeichnis kopieren, damit dies funktioniert.</span>
+
+<span class="py-comment"># Sicherung starten</span>
+<span class="py-statement">if</span> <span class="py-builtin">os</span>.system(zip_befehl) == <span class="py-number">0</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Erfolgreiche Sicherung nach'</span>, ziel
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Sicherung fehlgeschlagen!'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="fourth-version-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python sicherung_ver4.py
+Geben Sie eine Anmerkung ein --&gt; neue beispiele ergaenzt
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/082156_neue_beispiele_ergaenzt.zip
+
+$ python sicherung_ver4.py
+Geben Sie eine Anmerkung ein --&gt;
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/082316.zip
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="fourth-version-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				So funktioniert das Programm jetzt! Wir wollen die eigentlichen Änderungen
+				durchgehen, die wir in Version 3 gemacht haben. Wir nehmen eine Anmerkung
+				des Benutzers mit der Funktion <code class="function">raw_input</code> als Eingabe
+				entgegen und prüfen, ob der Benutzer wirklich irgendetwas eingegeben hat, indem
+				wir die Länge der Eingabe mit der Funktion <code class="function">len</code> ermitteln.
+				Wenn der Benutzer aus irgendeinem Grund (zum Beispiel, weil es nur eine Routine-Sicherung
+				ist, und keine besonderen Änderungen vorgenommen wurden) nur einfach die
+				<span class="keycap"><strong>Enter</strong></span>-Taste gedrückt hat, dann verfahren wir genauso wie vorher.
+
+				
+
+				</p><p>
+
+				Wenn jedoch eine Anmerkung eingegeben wurde, dann wird diese an den Namen
+				des ZIP-Archivs angehängt, direkt vor der Dateiendung <code class="filename">.zip</code>.
+				Beachten Sie, dass wir Leerzeichen in der Anmerkung durch Unterstriche ersetzen -
+				aus dem Grund, dass solche Dateinamen leichter handhabbar sind.
+
+				
+
+				</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="more-refinements"></a>Weitere Verfeinerungen</h3></div></div></div><p>
+
+			Die vierte Version ist  für die meisten Benutzer ein zufrieden stellend arbeitendes Skript,
+			aber es gibt stets Möglichkeiten zur weiteren Verbesserung. Zum Beispiel könnte man
+			einen Grad der <span class="emphasis"><em>Ausführlichkeit</em></span> der Programmausgaben
+			einbauen, den man mit einer Option <code class="option">-v</code> angeben könnte, und der
+			das Programm dazu bringt, geschwätziger in der Ausgabe zu sein.
+
+			
+
+			</p><p>
+
+			Eine weitere mögliche Verbesserung würde es erlauben, dem Skript zusätzliche
+			Dateien und Verzeichnisse auf der Kommandozeile zu übergeben. Wir könnten
+			diese Übergabeparameter der Liste <code class="varname">sys.argv</code> entnehmen,
+			und sie der Liste <code class="varname">quellen</code> hinzufügen, indem wir die
+			<code class="methodname">extend</code>-Methode benutzen, die von der Klasse
+			<code class="classname">list</code> bereitgestellt wird.
+
+			
+
+			</p><p>
+
+			Eine Verfeinerung, die ich bevorzuge, ist die Verwendung des <span class="command"><strong>tar</strong></span>-Befehls
+			anstelle des <span class="command"><strong>zip</strong></span>-Befehls. Ein Vorteil hierbei ist, dass die Sicherung viel
+			schneller durchgeführt wird, und die Sicherungsdatei außerdem viel kleiner wird, wenn man den
+			<span class="command"><strong>tar</strong></span>-Befehl zusammen mit <span class="command"><strong>gzip</strong></span> verwendet.
+			Wenn ich dieses Archiv unter Windows benötige, dann werden <code class="filename">.tar.gz</code>-Dateien
+			auch problemlos von <span class="application">WinZip</span> entpackt. Der <span class="command"><strong>tar</strong></span>-Befehl
+			ist standardmäßig auf den meisten Linux/Unix-Systemen vorhanden. Windows-Benutzer können ihn sich
+			ebenfalls <a class="ulink" href="http://gnuwin32.sourceforge.net/packages/tar.htm" target="_top">aus dem Internet</a>
+			holen und auf ihrem Windows-System installieren.
+
+			
+
+			</p><p>
+
+			Die entsprechende Befehlszeile sähe dann zum Beispiel so aus:
+			
+
+			</p><pre class="programlisting">
+			
+tar = <span class="py-string">'tar -cvzf %s %s -X ausnahmen.txt'</span> % (ziel, <span class="py-string">' '</span>.join(quellen))
+			
+			</pre><p>
+
+			Die Optionen werden im Folgenden erläutert.
+			
+
+			</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+
+					<code class="option">-c</code> (für <span class="bold"><strong>c</strong></span>reate)
+					zeigt an, dass eine Archivdatei erzeugt werden soll.
+
+					
+
+					</p></li><li class="listitem"><p>
+
+					<code class="option">-v</code> (für <span class="bold"><strong>v</strong></span>erbose)
+					bedeutet, dass die Ausgabe des Programms geschwätziger sein sollte.
+
+					
+
+					</p></li><li class="listitem"><p>
+
+					<code class="option">-z</code> bedeutet, dass g<span class="bold"><strong>z</strong></span>ip
+					als Filter benutzt werden soll.
+
+					
+
+					</p></li><li class="listitem"><p>
+
+					<code class="option">-f</code> (für <span class="bold"><strong>f</strong></span>orce)
+					bedeutet, dass beim Anlegen der Archivdatei eine eventuell bereits vorhandene
+					Datei gleichen Namens überschrieben werden soll.
+
+					
+
+					</p></li><li class="listitem"><p>
+
+					<code class="option">-X</code> (für e<span class="bold"><strong>x</strong></span>clude)
+					gibt eine Ausnahmedatei an, d.h. eine Textdatei, die eine Liste von Dateinamen enthält,
+					die von der Sicherung ausgeschlossen werden sollen. Zum Beispiel könnte man in diese
+					Datei den Eintrag <code class="literal">*~</code> schreiben, wenn man nicht möchte, dass Dateien,
+					deren Name mit dem Zeichen <code class="literal">~</code> endet (gewöhnlicherweise sind das
+					temporär angelegte Dateien), mit in die Sicherung aufgenommen werden sollen.
+
+					
+
+					</p></li></ul></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Wichtig</h3><p>
+
+				Die bevorzugte Weise, solche Archive anzulegen, ist unter Verwendung
+				des Moduls <code class="literal">zipfile</code> bzw. <code class="literal">tarfile</code>-
+				Sie gehören zur Python-Standard-Bibliothek und stehen Ihnen bereits zum
+				Gebrauch zur Verfügung. Durch den Einsatz dieser Bibliotheken kann man auch
+				die Benutzung von <code class="function">os.system</code> vermeiden, was grundsätzlich
+				ratsam ist, weil man bei Benutzung dieser Funktion sehr schnell kostspielige
+				Fehler machen kann.
+
+				
+
+				</p><p>
+
+				Ich habe dennoch aus didaktischen Gründen <code class="function">os.system</code>
+				im Sicherungskript verwendet, damit das Beispiel einfach genug ist, dass es jeder
+				verstehen kann, und real genug, um nützlich zu sein.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="problem-solving.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="problem-solving.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="software-development-process.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 10. Problemlösung - So schreibt man ein Python-Skript </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Der Softwareentwicklungsprozess</td></tr></table></div></body></html>

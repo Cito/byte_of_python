@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Der __name__ eines Moduls</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="modules.html" title="Kapitel 8. Module" /><link rel="prev" href="from-import.html" title="Die Anweisung from..import" /><link rel="next" href="making-modules.html" title="Eigene Module erstellen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Der __name__ eines Moduls</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="from-import.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 8. Module</th><td width="20%" align="right"> <a accesskey="n" href="making-modules.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="module-name"></a>Der __name__ eines Moduls</h2></div></div></div><p>
+
+		Jedes Modul hat einen Namen, und auf diesen Namen können Anweisungen in einem Modul
+		zugreifen. Das ist in einer bestimmten Situation besonders nützlich: Wie vorher schon erwähnt,
+		wird der Hauptblock eines Moduls ausgeführt, wenn es zum ersten Mal importiert wird. Was
+		machen wir aber, wenn wir wollen, dass der Block nur ausgeführt wird, wenn das Modul
+		als eigenständiges Programm selbst gestartet wurde, aber nicht, wenn es von einem anderen
+		Modul importiert wurde? Dies können wir erreichen, indem wir das Attribut
+		<code class="varname">__name__</code> des Moduls auswerten.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-name"></a>Verwendung von __name__</h3></div></div></div><div class="example"><a id="using-name-example"></a><p class="title"><strong>Beispiel 8.2. Verwendung von __name__
+					(<a class="ulink" href="code/beispiel_name.py" target="_top">beispiel_name.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">if</span> __name__ == <span class="py-string">'__main__'</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Dieses Programm laeuft selbst'</span>
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Ich werde von einem anderen Modul importiert'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-name-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python beispiel_name.py
+Dieses Programm laeuft selbst
+
+$ python
+&gt;&gt;&gt; import beispiel_name
+Ich werde von einem anderen Modul importiert
+&gt;&gt;&gt;
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-name-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Jedes Python Modul hat einen im Attribut <code class="varname">__name__</code> definierten
+				Namen, und wenn dieser Name <code class="literal">'__main__'</code> lautet, dann bedeutet dies,
+				dass das Modul als eigenständiges Programm vom Benutzer ausgeführt wurde, und wir können
+				dementsprechende Aktionen durchführen.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="from-import.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="modules.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="making-modules.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die Anweisung from..import </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Eigene Module erstellen</td></tr></table></div></body></html>

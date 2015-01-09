@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die while-Anweisung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="control-flow.html" title="Kapitel 6. Kontrollfluss" /><link rel="prev" href="if-statement.html" title="Die if-Anweisung" /><link rel="next" href="for-loop.html" title="Die for-Schleife" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die while-Anweisung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="if-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 6. Kontrollfluss</th><td width="20%" align="right"> <a accesskey="n" href="for-loop.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="while-statement"></a>Die while-Anweisung</h2></div></div></div><p>
+
+		Die <code class="literal">while</code>-Anweisung ermöglicht es Ihnen, einen
+		Anweisungsblock wiederholt auszuführen, solange eine zugehörige Bedingung
+		erfüllt ist. Eine <code class="literal">while</code>-Anweisung ist ein Beispiel für eine
+		so genannte <span class="emphasis"><em>Schleifen</em></span>-Anweisung.
+		Die <code class="literal">while</code>-Anweisung kann eine optionale
+		<code class="literal">else</code>-Klausel haben.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-while-statement"></a>Gebrauch der while-Anweisung</h3></div></div></div><div class="example"><a id="using-while-statement-example"></a><p class="title"><strong>Beispiel 6.2. Gebrauch der while-Anweisung
+					(<a class="ulink" href="code/while.py" target="_top">while.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+zahl = <span class="py-number">23</span>
+weiter = <span class="py-builtin">True</span>
+
+<span class="py-statement">while</span> weiter:
+	geraten = <span class="py-builtin">int</span>(<span class="py-builtin">raw_input</span>(<span class="py-string">'Geben Sie eine ganze Zahl ein: '</span>))
+
+	<span class="py-statement">if</span> zahl == geraten:
+		<span class="py-statement">print</span> <span class="py-string">'Glueckwunsch, Sie haben es erraten.'</span>
+		weiter = <span class="py-builtin">False</span> <span class="py-comment"># das fuehrt zum Ende der while-Schleife</span>
+	<span class="py-statement">elif</span> geraten &lt; zahl:
+		<span class="py-statement">print</span> <span class="py-string">'Nein, die Zahl ist etwas hoeher.'</span>
+	<span class="py-statement">else</span>:
+		<span class="py-statement">print</span> <span class="py-string">'Nein, die Zahl ist etwas niedriger.'</span>
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Die while-Schleife wurde beendet.'</span>
+	<span class="py-comment"># Hier koennte man noch weitere Dinge tun.</span>
+
+<span class="py-statement">print</span> <span class="py-string">'Fertig.'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-while-statement-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python while.py
+Geben Sie eine ganze Zahl ein: 50
+Nein, die Zahl ist etwas niedriger.
+Geben Sie eine ganze Zahl ein: 22
+Nein, die Zahl ist etwas hoeher.
+Geben Sie eine ganze Zahl ein: 23
+Glueckwunsch, Sie haben es erraten.
+Die while-Schleife wurde beendet.
+Fertig.
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-while-statement-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				In diesem Programm spielen wir immer noch das Ratespiel, aber
+				mit der Verbesserung, dass der Benutzer nun so lange weiter raten kann,
+				bis er richtig geraten hat - man muss das Programm nicht mehr für jeden
+				Rateversuch neu starten, wie wir es zuvor getan haben. Hier zeigt sich
+				sehr gut der Nutzen einer <code class="literal">while</code>-Anweisung.
+
+				
+
+				</p><p>
+
+				Wir verschieben die <code class="literal">raw_input</code>- und
+				<code class="literal">if</code>-Anweisung in die <code class="literal">while</code>-Schleife
+				und setzen die Variable <code class="varname">weiter</code> vor dem
+				Betreten der while-Schleife auf <code class="literal">True</code> (logisch wahr).
+				In der Schleife wird zuerst geprüft, ob die Variable <code class="varname">weiter</code>
+				immer noch als logischer Wert wahr ist, und wenn dies der Fall ist, dann
+				wird der zugehörige <span class="emphasis"><em>while-Block</em></span> ausgeführt.
+				Nachdem dieser Block ausgeführt wurde, wird die Bedingung erneut geprüft,
+				die in diesem Fall aus der Variablen <code class="varname">weiter</code> besteht.
+				Wenn Sie weiterhin logisch wahr ist, dann wird der while-Block wieder ausgeführt,
+				ansonsten wird der optionale else-Block ausgeführt und danach die nächste Anweisung.
+
+				
+
+				</p><p>
+
+				Der <code class="literal">else</code>-Block wird ausgeführt, wenn die
+				<code class="literal">while</code>-Bedingung als logischer Wert falsch
+				(<code class="literal">False</code>) wird - dies kann sogar bereits beim ersten
+				Mal passieren, wenn die Bedingung überprüft wird. Wenn eine
+				<code class="literal">while</code>-Schleife eine <code class="literal">else</code>-Klausel hat,
+				dann wird diese stets ausgeführt, es sei denn, dass die Schleife eine
+				<code class="literal">break</code>-Anweisung besitzt (darauf kommen wir in diesem
+				Kapitel noch zu sprechen) oder dass die <code class="literal">while</code>-Schleife
+				endlos läuft, ohne jemals abzubrechen.
+
+				
+
+				</p><p>
+
+				Die Werte <code class="literal">True</code> und <code class="literal">False</code> werden
+				<span class="emphasis"><em>Wahrheitswerte</em></span> genannt. Es handelt sich um den
+				so genannten logischen oder booleschen Datentyp, und Sie können sich diese Werte
+				als gleichbedeutend mit den Werten <code class="literal">1</code> bzw. <code class="literal">0</code>
+				denken, und in dem Programm auch <code class="literal">1</code> statt <code class="literal">True</code>
+				bzw. <code class="literal">0</code> statt <code class="literal">False</code> schreiben, aber dann würde
+				nicht ganz deutlich, dass die Variable <code class="varname">weiter</code> eigentlich einen
+				Wahrheitswert repräsentiert, und nicht eine Zahl.
+
+				 
+
+				</p><p>
+
+				Solange keine <code class="literal">break</code>-Anweisung im Spiel ist, ist der
+				<code class="literal">else</code>-Block eigentlich überflüssig, denn man
+				kann in dem Fall die darin befindlichen Anweisungen einfach im gleichen Block,
+				in dem sich die <code class="literal">while</code>-Anweisung befindet, hinter die
+				<code class="literal">while</code>-Schleife schreiben um das gleiche Ergebnis zu erzielen.
+
+				
+
+				</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C/C++-Programmierer</h3><p>
+
+					Denken Sie daran, dass man unter Python bei einer <code class="literal">while</code>-Schleife
+					auch eine <code class="literal">else</code>-Klausel zur Verfügung hat.
+
+					
+
+					</p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="if-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="control-flow.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="for-loop.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die if-Anweisung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die for-Schleife</td></tr></table></div></body></html>

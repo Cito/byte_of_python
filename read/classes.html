@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Klassen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung" /><link rel="prev" href="self.html" title="Der Selbstbezug" /><link rel="next" href="object-methods.html" title="Objektmethoden" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Klassen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="self.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 11. Objektorientierte Programmierung</th><td width="20%" align="right"> <a accesskey="n" href="object-methods.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="classes"></a>Klassen</h2></div></div></div><p>
+
+		Die einfachste mögliche Klasse zeigt das folgende Beispiel.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="creating-class"></a>Erzeugen einer Klasse</h3></div></div></div><div class="example"><a id="creating-class-example"></a><p class="title"><strong>Beispiel 11.1. Erzeugen einer Klasse
+					(<a class="ulink" href="code/einfachsteklasse.py" target="_top">einfachsteklasse.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">class</span> <span class="py-identifier">Person</span>:
+	<span class="py-statement">pass</span> <span class="py-comment"># Ein leerer Block</span>
+
+p = Person()
+<span class="py-statement">print</span> p
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="creating-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python einfachsteklasse.py
+&lt;__main__.Person instance at 0xf6fcb18c&gt;
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="creating-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wir erzeugen eine neue Klasse, indem wir die Anweisung <code class="literal">class</code> benutzen,
+				gefolgt von dem Namen der Klasse. Darauf folgt ein eingerückter Block von Anweisungen,
+				die den Rumpf der Klasse bilden. In diesem Fall haben wir einen leeren Block, was durch
+				die Anweisung <code class="literal">pass</code> angezeigt wird.
+
+				
+
+				</p><p>
+
+				Als Nächstes erzeugen wir ein Objekt (eine Instanz) dieser Klasse, indem wir den Namen
+				der Klasse benutzen, gefolgt von einem Klammerpaar. (Wir werden im nächsten Abschnitt
+				mehr über diese so genannte <a class="link" href="class-init.html" title="Die __init__-Methode">Instanziierung</a> lernen).
+				Zur Sicherheit überprüfen wir den Typ der Variable, indem wir sie einfach mit <code class="literal">print</code>
+				ausgeben. Dies zeigt uns, dass es sich um eine Instanz der Klasse <code class="classname">Person</code>
+				im Modul <code class="literal">__main__</code> handelt.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass die Adresse, an der Ihr Objekt im Hauptspeicher Ihres Computers gespeichert ist,
+				ebenfalls ausgegeben wird. Diese Adresse wird auf Ihrem Computer einen anderen Wert haben,
+				weil Python die Objekte überall speichern kann, wo es Platz dafür gibt.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="self.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="oops.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="object-methods.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Der Selbstbezug </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Objektmethoden</td></tr></table></div></body></html>

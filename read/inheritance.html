@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Vererbung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung" /><link rel="prev" href="class-and-object-vars.html" title="Klassen- und Objektvariablen" /><link rel="next" href="oops-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Vererbung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-and-object-vars.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 11. Objektorientierte Programmierung</th><td width="20%" align="right"> <a accesskey="n" href="oops-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="inheritance"></a>Vererbung</h2></div></div></div><p>
+
+		Eine der Hauptvorzüge objektorientierter Programmierung ist die Möglichkeit der
+		<span class="bold"><strong>Wiederverwendung</strong></span> von Programmcode,
+		und eine Weise, mit der dies erreicht wird, ist durch den Mechanismus der
+		<span class="emphasis"><em>Vererbung</em></span>. Vererbung kann man sich am besten
+		als eine mit Klassen realisierte Beziehung zwischen <span class="emphasis"><em>Datentypen und
+		Unterdatentypen</em></span> vorstellen.
+
+		
+
+		</p><p>
+
+		Angenommen, Sie wollen ein Programm schreiben, das die Dozenten und Studenten an einer Hochschule
+		verwaltet. Diese beiden Personengruppen haben einige gemeinsame Merkmale wie Name, Alter und Adresse.
+		Sie haben auch einige spezielle Merkmale wie Gehalt, Vorlesungen und Beurlaubungen für Dozenten und
+		Prüfungsnoten und Studiengebühren für Studenten.
+
+		
+
+		</p><p>
+
+		Sie können zwei unabhängige Klassen für die beiden Typen und Prozesse anlegen, aber dies
+		würde bedeuten, dass Sie, wenn Sie ein neues gemeinsames Merkmal hinzufügen wollen, es bei
+		jeder der beiden voneinander unabhängigen Klassen tun hinzufügen müssen. Das wird sehr
+		schnell unhandlich.
+
+		
+
+		</p><p>
+
+		Eine bessere Lösung besteht darin, eine gemeinsame Klasse namens <code class="classname">SchulMitglied</code>
+		anzulegen, und dann die Klasssen für Dozenten und Studenten von dieser Klasse <span class="emphasis"><em>erben</em></span>
+		zu lassen, d.h. sie werden zu Unterdatentypen dieses Datentyps (dieser Klasse) gemacht, und wir können diesen
+		Unterdatentypen dann weitere besondere Merkmale hinzufügen.
+
+		
+
+		</p><p>
+
+		Dieser Ansatz hat viele Vorteile. Wenn wir der Klasse <code class="classname">SchulMitglied</code>
+		Funktionalität hinzufügen oder diese ändern, dann spiegelt sich dies automatisch in den Unterdatentypen
+		wieder. Zum Beispiel können Sie ein neues Feld für die Nummer einer Identitätskarte sowohl für Dozenten
+		als auch für Studenten hinzufügen, indem Sie dies einfach in der Klasse <code class="classname">SchulMitglied</code>
+		ergänzen. Änderungen an den Unterdatentypen haben jedoch keine Auswirkung auf andere Unterdatentypen.
+		Ein weiterer Vorteil besteht darin, dass man auf ein Objekt der Klasse Dozent oder Student auch als ein
+		Objekt der Klasse <code class="classname">SchulMitglied</code> Bezug nehmen kann, was in einigen Situationen
+		nützlich sein könnte, z. B. wenn man die Anzahl der Mitglieder der Hochschule zählen möchte.
+		Diese Möglichkeit, einen Unterdatentyp in jeder Situation, wo ein Elterndatentyp erwartet wird,
+		ersetzen zu können, d.h. ein Objekt als eine Instanz der Elternklasse behandeln zu können,
+		wird <span class="bold"><strong>Polymorphismus</strong></span> genannt.
+
+		
+
+		</p><p>
+
+		Beachten Sie auch, dass wir den Programmcode der Elternklasse <span class="emphasis"><em>wiederverwenden</em></span>,
+		dass wir ihn also nicht in den verschiedenen Klassen wiederholen müssen, wie wir es hätten tun müssen, wenn wir
+		unabhängige Klassen benutzt hätten.
+
+		
+
+		</p><p>
+
+		Die Klasse <code class="classname">SchulMitglied</code> wird in dieser Konstellation auch
+		als die <span class="emphasis"><em>Basisklasse</em></span> oder die <span class="emphasis"><em>Superklasse</em></span>
+		bezeichnet. Die Klassen <code class="classname">Dozent</code> und <code class="classname">Student</code>
+		werden die <span class="emphasis"><em>abgeleiteten Klassen</em></span> oder <span class="emphasis"><em>Subklassen</em></span>
+		genannt.
+
+		
+
+		</p><p>
+
+		Hier ist nun das Beispiel als Programm.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-inheritance"></a>Verwendung von Vererbung</h3></div></div></div><div class="example"><a id="using-inheritance-example"></a><p class="title"><strong>Beispiel 11.5. Verwendung von Vererbung
+					(<a class="ulink" href="code/vererbung.py" target="_top">vererbung.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">class</span> <span class="py-identifier">SchulMitglied</span>:
+	<span class="py-string">'''Repraesentiert ein beliebiges Mitglied der Hochschule.'''</span>
+	<span class="py-statement">def</span> <span class="py-identifier">__init__</span>(<span class="py-builtin">self</span>, name, alter):
+		<span class="py-builtin">self</span>.name = name
+		<span class="py-builtin">self</span>.alter = alter
+		<span class="py-statement">print</span> <span class="py-string">'(SchulMitglied %s initialisiert)'</span> % <span class="py-builtin">self</span>.name
+
+	<span class="py-statement">def</span> <span class="py-identifier">auskunft</span>(<span class="py-builtin">self</span>):
+		<span class="py-string">'''Gib Auskunft ueber das Mitglied.'''</span>
+		<span class="py-statement">print</span> <span class="py-string">'Name: "%s" Alter: "%s"'</span> % (<span class="py-builtin">self</span>.name, <span class="py-builtin">self</span>.alter),
+
+<span class="py-statement">class</span> <span class="py-identifier">Dozent</span>(SchulMitglied):
+	<span class="py-string">'''Repraesentiert einen Dozenten der Hochschule.'''</span>
+	<span class="py-statement">def</span> <span class="py-identifier">__init__</span>(<span class="py-builtin">self</span>, name, alter, gehalt):
+		SchulMitglied.__init__(<span class="py-builtin">self</span>, name, alter)
+		<span class="py-builtin">self</span>.gehalt = gehalt
+		<span class="py-statement">print</span> <span class="py-string">'(Dozent %s initialisiert)'</span> % <span class="py-builtin">self</span>.name
+
+	<span class="py-statement">def</span> <span class="py-identifier">auskunft</span>(<span class="py-builtin">self</span>):
+		SchulMitglied.auskunft(<span class="py-builtin">self</span>)
+		<span class="py-statement">print</span> <span class="py-string">'Gehalt: "%d Euro"'</span> % <span class="py-builtin">self</span>.gehalt
+
+<span class="py-statement">class</span> <span class="py-identifier">Student</span>(SchulMitglied):
+	<span class="py-string">'''Repraesentiert einen Studenten der Hochschule.'''</span>
+	<span class="py-statement">def</span> <span class="py-identifier">__init__</span>(<span class="py-builtin">self</span>, name, alter, note):
+		SchulMitglied.__init__(<span class="py-builtin">self</span>, name, alter)
+		<span class="py-builtin">self</span>.note = note
+		<span class="py-statement">print</span> <span class="py-string">'(Student %s initialisiert)'</span> % <span class="py-builtin">self</span>.name
+
+	<span class="py-statement">def</span> <span class="py-identifier">auskunft</span>(<span class="py-builtin">self</span>):
+		SchulMitglied.auskunft(<span class="py-builtin">self</span>)
+		<span class="py-statement">print</span> <span class="py-string">'Letzte Pruefungsnote: "%1.1f"'</span> % <span class="py-builtin">self</span>.note
+
+d = Dozent(<span class="py-string">'Mrs. Shrividya'</span>, <span class="py-number">40</span>, <span class="py-number">30000</span>)
+s = Student(<span class="py-string">'Swaroop'</span>, <span class="py-number">22</span>, <span class="py-number">1</span>.<span class="py-number">7</span>)
+
+<span class="py-statement">print</span> <span class="py-comment"># gib eine Leerzeile aus</span>
+
+mitglieder = [d, s]
+<span class="py-statement">for</span> mitglied <span class="py-statement">in</span> mitglieder:
+	mitglied.auskunft() <span class="py-comment"># geht bei Dozenten und Studenten</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-inheritance-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python vererbung.py
+(SchulMitglied Mrs. Shrividya initialisiert)
+(Dozent Mrs. Shrividya initialisiert)
+(SchulMitglied Swaroop initialisiert)
+(Student Swaroop initialisiert)
+
+Name: "Mrs. Shrividya" Alter: "40" Gehalt: "30000 Euro"
+Name: "Swaroop" Alter: "22" Letzte Pruefungsnote: "1.7"
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-inheritance-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Um Vererbung zu benutzen, geben wir die Namen der Basisklassen
+				in einem Tupel an, das in der Klassendefinition dem Namen der Klasse folgt.
+				Danach ist zu beachten, dass die <code class="methodname">__init__</code>-Methode
+				der Basisklasse unter Benutzung der <code class="varname">self</code>-Variable
+				explizit aufgerufen wird, damit der Anteil des Objekts, der von der Basisklasse
+				bereitgestellt wird, initialisiert werden kann. Es ist sehr wichtig, sich dies zu merken -
+				Python ruft nicht automatisch den Konstruktor der Basisklasse auf; Sie müssen
+				ihn selber explizit aufrufen.
+
+				
+
+				</p><p>
+
+				Wir sehen hier auch, dass wir Methoden der Basisklasse aufrufen können,
+				indem wir den Namen der Basisklasse mit einem Punkt voranstellen, und
+				dann die Variable <code class="varname">self</code> zusammen mit den anderen
+				Parametern der Methode übergeben.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass wir Instanzen von <code class="classname">Dozent</code>
+				und <code class="classname">Student</code> einfach wie Instanzen von
+				<code class="classname">SchulMitglied</code> behandeln, wenn wir die
+				<code class="methodname">auskunft</code>-Methode der Klasse
+				<code class="classname">SchulMitglied</code> benutzen.
+
+				
+
+				</p><p>
+
+				Beachten Sie auch, dass die <code class="methodname">auskunft</code>-Methode
+				der Subklassen aufgerufen wird, und nicht die <code class="methodname">auskunft</code>-Methode
+				der Superklasse <code class="classname">SchulMitglied</code>. Man kann dies so verstehen,
+				dass Python <span class="emphasis"><em>immer</em></span> zuerst versucht, Methoden der jeweiligen
+				Klasse zu finden, die in diesem Fall vorhanden sind. Wenn die Methode nicht gefunden wird,
+				dann fängt Python an, die Methoden der zugehörigen Basisklassen eine nach der anderen
+				durchzugehen, in der Reihenfolge, wie sie in dem Tupel in der Klassendefinition angegeben ist.
+
+				
+
+				</p><p>
+
+				Eine Anmerkung noch zur Sprechweise - wenn mehr als eine Klasse in dem
+				Tupel der Basisklassen angegeben ist, von denen die Klasse erbt, dann spricht
+				man von <span class="emphasis"><em>Mehrfachvererbung</em></span>.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-and-object-vars.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="oops.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="oops-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Klassen- und Objektvariablen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

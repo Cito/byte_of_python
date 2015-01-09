@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Einzelanweisungsblöcke</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="more-python.html" title="Kapitel 15. Noch mehr Python" /><link rel="prev" href="more-python.html" title="Kapitel 15. Noch mehr Python" /><link rel="next" href="list-comprehension.html" title="Listenkomprehension" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Einzelanweisungsblöcke</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="more-python.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 15. Noch mehr Python</th><td width="20%" align="right"> <a accesskey="n" href="list-comprehension.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="single-statement-blocks"></a>Einzelanweisungsblöcke</h2></div></div></div><p>
+
+		Inzwischen sollten Sie gut verstanden haben, dass jeder Anweisungsblock vom Rest
+		des Programms durch seine eigene Einrückungstiefe abgesetzt wird. Dies trifft zwar
+		meistens zu, ist aber nicht 100% genau. Wenn Ihr Anweisungsblock nur aus einer einzigen
+		Anweisung besteht, dann können Sie ihn in der gleichen Zeile von z.B. einer Bedingungs-
+		oder Schleifenanweisung angeben. Das folgende Beispiel sollte dies deutlich machen:
+
+		
+
+		</p><pre class="screen">
+		
+&gt;&gt;&gt; schalter = True
+&gt;&gt;&gt; if schalter: print 'Ja'
+...
+Ja
+		
+		</pre><p>
+		Wie man sieht, wird die einzelne Anweisung nicht in einen separaten Block,
+		sondern direkt hinter die Bedingungsanweisung in die gleiche Zeile geschrieben.
+		Man kann dies zwar verwenden, um sein Programm <span class="emphasis"><em>kleiner</em></span>
+		zu machen, aber ich empfehle dennoch <span class="bold"><strong>stark</strong></span>,
+		dass Sie diese abkürzende Schreibweise nicht benutzen, außer zur Fehlerprüfung usw.
+		Ein Hauptgrund dafür ist, dass es sehr viel einfacher ist, eine weitere Anweisung zu
+		ergänzen, wenn man die Anweisungen sauber separat eingerückt hinschreibt.
+
+		
+
+		</p><p>
+
+		Beachten Sie auch, dass der Python-Interpreter Ihnen bei der Eingabe von Anweisungen
+		hilft, wenn er im interaktiven Modus verwendet wird, indem er die Eingabeaufforderung
+		je nach Situation ändert. Im obigen Fall wechselt die Eingabeaufforderung zu <code class="literal">...</code>,
+		nachdem Sie das Schlüsselwort <code class="literal">if</code> eingegeben haben, um anzuzeigen,
+		dass die Anweisung noch nicht vollständig ist. Nachdem wir die Anweisung auf diese Weise
+		vervollständigt haben, schließen wir die Eingabe mit <span class="keycap"><strong>Enter</strong></span> an, um
+		zu bestätigen, dass die Anweisung vollständig ist. Danach führt Python die gesamte Anweisung
+		aus und zeigt wieder die Eingabeaufforderung für die nächste Eingabe an.
+
+		
+
+		</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="more-python.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="more-python.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="list-comprehension.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 15. Noch mehr Python </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Listenkomprehension</td></tr></table></div></body></html>
