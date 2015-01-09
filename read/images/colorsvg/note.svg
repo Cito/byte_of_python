@@ -185,7 +185,7 @@
 		<path fill="#6666FF" d="M23.033,12.7c0,5.601-4.561,10.159-10.161,10.159c-5.68,0.08-10.24-4.479-10.24-10.159
 			c0-5.68,4.56-10.16,10.16-10.16c5.601,0,10.16,4.56,10.16,10.16H23.033z"/>
 	</g>
-	
+
 		<linearGradient id="XMLID_12_" gradientUnits="userSpaceOnUse" x1="198.625" y1="-253.916" x2="198.625" y2="-262.334" gradientTransform="matrix(1 0 0 -1 -186 -252.5)">
 		<stop  offset="0" style="stop-color:#FFFFFF"/>
 		<stop  offset="1" style="stop-color:#6666FF"/>

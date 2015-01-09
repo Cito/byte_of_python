@@ -189,7 +189,7 @@
 				<path fill="#CC0000" d="M30.883,16.899c2.36,1.996,7.02,0.709,6.581,0.369c0-1.021,0-5.865,0-5.865c0-1.02-0.682-1.7-1.7-1.7
 					h-4.08c-0.851,0-1.443,0.51-1.615,1.275C29.38,10.399,29.134,15.42,30.883,16.899z"/>
 			</g>
-			
+
 				<linearGradient id="Chimney_Highlight_1_" gradientUnits="userSpaceOnUse" x1="219.5195" y1="-239.7031" x2="219.5195" y2="-247.9902" gradientTransform="matrix(1 0 0 -1 -186 -230)">
 				<stop  offset="0" style="stop-color:#FFFFFF"/>
 				<stop  offset="1" style="stop-color:#CC0000"/>
@@ -307,7 +307,7 @@
 				<path fill="#FFFF00" d="M10.832,25.987c0,2.041,0,12.07,0,12.07c0,0.936,0.68,1.615,1.53,1.615h23.291
 					c0.936,0,1.615-0.766,1.615-1.699c0,0,0-10.029,0-12.07C38.117,25.903,9.897,25.987,10.832,25.987z"/>
 			</g>
-			
+
 				<linearGradient id="House_Highlight_1_" gradientUnits="userSpaceOnUse" x1="210.0469" y1="-255.9038" x2="210.0469" y2="-269.6733" gradientTransform="matrix(1 0 0 -1 -186 -230)">
 				<stop  offset="0" style="stop-color:#FFFFFF"/>
 				<stop  offset="1" style="stop-color:#FFFF00"/>
@@ -478,7 +478,7 @@
 					c0.255,0.509,0.765,0.849,1.36,0.849L38.959,23.4c0.682,0,1.191-0.425,1.445-1.02c0.086-0.169,0.086-0.34,0.086-0.51
 					c0-0.425-0.17-0.85-0.596-1.19L25.189,8.27l0.086,0.085C24.68,7.76,23.745,7.675,22.979,8.27L22.979,8.27z"/>
 			</g>
-			
+
 				<linearGradient id="Roof_Highlight_1_" gradientUnits="userSpaceOnUse" x1="210" y1="-237.8638" x2="210" y2="-253.4849" gradientTransform="matrix(1 0 0 -1 -186 -230)">
 				<stop  offset="0" style="stop-color:#FFFFFF"/>
 				<stop  offset="1" style="stop-color:#009900"/>
