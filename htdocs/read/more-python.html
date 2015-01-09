@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Kapitel 15. Noch mehr Python</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="index.html" title="A Byte of Python" /><link rel="prev" href="stdlib-summary.html" title="Zusammenfassung" /><link rel="next" href="single-statement-blocks.html" title="Einzelanweisungsblöcke" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Kapitel 15. Noch mehr Python</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="stdlib-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="single-statement-blocks.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="more-python"></a>Kapitel 15. Noch mehr Python</h1></div></div></div><div class="toc"><p><strong>Inhaltsverzeichnis</strong></p><dl class="toc"><dt><span class="section"><a href="more-python.html#special-methods">Besondere Methoden</a></span></dt><dt><span class="section"><a href="single-statement-blocks.html">Einzelanweisungsblöcke</a></span></dt><dt><span class="section"><a href="list-comprehension.html">Listenkomprehension</a></span></dt><dd><dl><dt><span class="section"><a href="list-comprehension.html#using-list-comprehension">Gebrauch von Listenkomprehension</a></span></dt></dl></dd><dt><span class="section"><a href="tuples-lists-functions.html">Übergabe von Tupeln und Dictionaries in Funktionen</a></span></dt><dt><span class="section"><a href="lambda-forms.html">Der lambda-Operator</a></span></dt><dd><dl><dt><span class="section"><a href="lambda-forms.html#using-lambda-forms">Gebrauch des lambda-Operators</a></span></dt></dl></dd><dt><span class="section"><a href="exec-statement.html">Die exec- und eval-Anweisungen</a></span></dt><dt><span class="section"><a href="assert-statement.html">Die assert-Anweisung</a></span></dt><dt><span class="section"><a href="repr-function.html">Die repr-Function</a></span></dt><dt><span class="section"><a href="more-python-summary.html">Zusammenfassung</a></span></dt></dl></div><p>
+
+	Wir haben hiermit den größten Teil der verschiedenen Aspekte von Python angesprochen,
+	die Sie benutzen werden. In diesem Kapitel werden wir einige weitere Aspekte besprechen, die
+	Ihre Python-Kenntnisse noch etwas <span class="emphasis"><em>vollständiger</em></span> machen werden.
+
+	
+
+	</p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="special-methods"></a>Besondere Methoden</h2></div></div></div><p>
+
+		Es gibt einige besondere Methoden, die in Klassen eine spezielle Bedeutung haben,
+		so wie die Methoden <code class="methodname">__init__</code> oder
+		<code class="methodname">__del__</code>, deren Bedeutung wir bereits kennen
+		gelernt haben.
+
+		
+
+		</p><p>
+
+		Allgemein werden spezielle Methoden verwendet, um eine bestimmte Funktionalität zu imitieren.
+		Wenn Sie zum Beispiel die Indizierungs-Operation <code class="literal">x[key]</code> für Ihre Klasse
+		benutzen wollen (als wenn Sie eine Liste oder ein Tupel wäre), dann implementieren Sie einfach
+		die Methode <code class="methodname">__getitem__()</code>, und haben dieses Problem damit
+		gelöst. Wenn Sie darüber nachdenken, ist es genau das, was Python selber bei der Klasse
+		<code class="classname">list</code> macht.  Man spricht bei dieser Vorgehensweise
+		auch vom <span class="emphasis"><em>Überladen von Operatoren</em></span>.  
+
+		
+
+		</p><p>
+
+		Einige nützliche speziellen Methoden sind in der folgenden Tabelle aufgelistet.
+		Wenn Sie alle speziellen Methoden wissen wollen, dann finden Sie diese große Liste
+		im Python-Referenz-Handbuch.
+
+		
+
+		</p><div class="table"><a id="special-methods-table"></a><p class="title"><strong>Tabelle 15.1. Einige spezielle Methoden</strong></p><div class="table-contents"><table summary="Einige spezielle Methoden" border="1"><colgroup><col /><col /></colgroup><thead><tr><th>Name</th><th>Erklärung</th></tr></thead><tbody><tr><td>__init__(self, ...)</td><td>
+
+						Diese Methode wird aufgerufen, gerade bevor das neu erzeugte Objekt
+						zum Gebrauch zurückgegeben wird.
+
+						
+
+						</td></tr><tr><td>__del__(self)</td><td>
+
+						Wird aufgerufen gerade bevor das Objekt zerstört wird.
+
+						,
+
+						</td></tr><tr><td>__str__(self)</td><td>
+
+						Wird aufgerufen, wenn man das Objekt mit der <code class="literal">print</code>-Anweisung
+						ausgibt oder wenn <code class="classname">str()</code> benutzt wird.
+
+						
+
+						</td></tr><tr><td>__lt__(self, other)</td><td>
+
+						Wird aufgerufen, wenn der Operator &lt; für 'kleiner als'
+						(<span class="foreignphrase"><em class="foreignphrase">less than</em></span>) benutzt wird.
+						Entsprechend gibt es spezielle Methoden für alle möglichen Operatoren
+						(+, &gt;, usw.).
+
+						
+
+						</td></tr><tr><td>__getitem__(self, key)</td><td>
+
+						Wird aufgerufen, wenn der Indizierungs-Operator <code class="literal">x[key]</code>
+						verwendet wird.
+
+						
+
+						</td></tr><tr><td>__len__(self)</td><td>
+
+						Wird aufgerufen, wenn die eingebaute <code class="function">len()</code>-Funktion
+						auf das Sequenz-Objekt angewendet wird.
+
+						
+
+						</td></tr></tbody></table></div></div><br class="table-break" /></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="stdlib-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="single-statement-blocks.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Zusammenfassung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Einzelanweisungsblöcke</td></tr></table></div></body></html>

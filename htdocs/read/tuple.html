@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tupel</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="data-structures.html" title="Kapitel 9. Datenstrukturen" /><link rel="prev" href="list.html" title="Listen" /><link rel="next" href="dictionary.html" title="Dictionaries" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tupel</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="list.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 9. Datenstrukturen </th><td width="20%" align="right"> <a accesskey="n" href="dictionary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="tuple"></a>Tupel</h2></div></div></div><p>
+
+		Tupel sind genau wie Listen, außer dass sie <span class="bold"><strong>unveränderlich</strong></span>
+		wie Strings sind, d.h. man kann Tupel nicht abändern. Tupel werden definiert, indem man
+		durch Komma getrennte Objekte innerhalb eines normalen Klammerpaars angibt. Tupel werden
+		normalerweise immer dann gebraucht, wenn eine Anweisung oder eine benutzerdefinierte Funktion
+		mit Sicherheit davon ausgehen kann, dass die verwendete Sammlung von Werten, d.h. das Wertetupel,
+		sich nicht verändern wird.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-tuples"></a>Benutzung von Tupeln</h3></div></div></div><div class="example"><a id="using-tuples-example"></a><p class="title"><strong>Beispiel 9.2. Benutzung von Tupeln 
+					(<a class="ulink" href="code/tupel.py" target="_top">tupel.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+zoo = (<span class="py-string">'Wolf'</span>, <span class="py-string">'Elefant'</span>, <span class="py-string">'Pinguin'</span>)
+<span class="py-statement">print</span> <span class="py-string">'Die Zahl der Tiere im Zoo ist'</span>, <span class="py-builtin">len</span>(zoo)
+
+neuer_zoo = (<span class="py-string">'Affe'</span>, <span class="py-string">'Delfin'</span>, zoo)
+<span class="py-statement">print</span> <span class="py-string">'Die Zahl der Tiere im neuen Zoo ist'</span>, <span class="py-builtin">len</span>(neuer_zoo)
+<span class="py-statement">print</span> <span class="py-string">'Alle Tiere im neuen Zoo sind'</span>, neuer_zoo
+<span class="py-statement">print</span> <span class="py-string">'Die aus dem alten Zoo uebernommenen Tiere sind'</span>, neuer_zoo[<span class="py-number">2</span>]
+<span class="py-statement">print</span> <span class="py-string">'Das letzte aus dem alten Zoo uebernommene Tier ist ein'</span>, neuer_zoo[<span class="py-number">2</span>][<span class="py-number">2</span>]
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-tuples-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python tupel.py
+Die Zahl der Tiere im Zoo ist 3
+Die Zahl der Tiere im neuen Zoo ist 3
+Alle Tiere im neuen Zoo sind ('Affe', 'Delfin', ('Wolf', 'Elefant', 'Pinguin'))
+Die aus dem alten Zoo uebernommenen Tiere sind ('Wolf', 'Elefant', 'Pinguin')
+Das letzte aus dem alten Zoo uebernommene Tier ist ein Pinguin
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-tuples-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Die Variable <code class="varname">zoo</code> bezeichnet ein Tupel von Objekten.
+				Wir erkennen, dass die Funktion <code class="function">len</code> eingesetzt
+				werden kann, um die Länge des Tupels zu ermitteln. Dies zeigt außerdem,
+				dass auch ein Tupel eine <a class="link" href="sequences.html" title="Sequenzen">Sequenz</a> ist.
+
+				
+
+				</p><p>
+
+				Wir transferieren diese Tiere nun in einen neuen Zoo, weil der alte Zoo
+				geschlossen wird. Daher erhält das Tupel <code class="varname">neuer_zoo</code>
+				einige Tiere, die bereits dort vorhanden sind, zusammen mit den Tieren,
+				die vom alten Zoo übernommen worden sind. Um zur Realität zurückzukehren,
+				beachten Sie, dass ein Tupel innerhalb eines Tupels nicht seine Identität
+				verliert.
+
+				
+
+				</p><p>
+
+				Wir können auf die Objekte in einem Tupel zugreifen, indem wir die Position
+				des Objekts innerhalb eines Paars eckiger Klammern angeben, genau wie wir
+				es bei den Listen getan haben. Dies wird der <span class="emphasis"><em>Indizierungsoperator</em></span>
+				genannt. Wir greifen auf das dritte Objekt in <code class="varname">neuer_zoo</code>
+				mittels <code class="literal">neuer_zoo[2]</code> zu. Dies ist ziemlich einfach,
+				wenn man einmal die Schreibweise verstanden hat.
+
+				
+
+				</p><p><strong>Tupel mit keinem oder nur einem Objekt. </strong>
+
+					Ein leeres Tupel wird durch ein leeres Klammerpaar gebildet,
+					etwa <code class="literal">meinleerestupel = ()</code>. Ein Tupel mit
+					nur einem einzigen Objekt ist jedoch nicht so einfach. Sie müssen
+					es durch ein auf das erste (und einzige) Objekt folgendes Komma
+					kennzeichnen, damit Python zwischen einem Tupel und einem Klammerpaar
+					unterscheiden kann, das einfach nur ein Objekt in einem Ausdruck umschließt,
+					d.h. Sie müssen <code class="literal">einzelnesetwas = (2 , )</code> schreiben,
+					wenn Sie ein Tupel meinen, das nur die Zahl <code class="literal">2</code> enthält.
+
+					
+
+					</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für Perl-Programmierer</h3><p>
+
+					Eine Liste innerhalb einer Liste verliert nicht ihre Identität,
+					d.h. Listen werden nicht automatisch "plattgebügelt" wie in Perl.
+					Das Gleiche gilt für ein Tupel innerhalb eines Tupels, oder ein
+					Tupel innerhalb einer Liste, oder eine Liste innerhalb eine Tupels usw.
+					Soweit es Python betrifft, sind dies nur Objekte, die mittels eines
+					anderen Objekts gespeichert werden, das ist alles.
+
+					
+
+					</p></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tuple-print"></a>Tupel und die print-Anweisung</h3></div></div></div><p>
+
+			Eine der häufigsten Anwendungen von Tupeln ist bei der print-Anweisung.
+			Hier ist ein Beispiel:
+
+			
+
+			</p><div class="example"><a id="tuple-print-example"></a><p class="title"><strong>Beispiel 9.3. Ausgabe mittels Tupeln 
+					(<a class="ulink" href="code/print_tupel.py" target="_top">print_tupel.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+alter = <span class="py-number">22</span>
+name = <span class="py-string">'Swaroop'</span>
+
+<span class="py-statement">print</span> <span class="py-string">'%s ist %d Jahre alt.'</span> % (name, alter)
+<span class="py-statement">print</span> <span class="py-string">'Warum spielt %s mit diesem Python?'</span> % name
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="tuple-print-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python print_tuple.py
+Swaroop ist 22 Jahre alt.
+Warum spielt Swaroop mit diesem Python?
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="tuple-print-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Der <code class="literal">print</code>-Anweisung kann man einen String mit speziellen
+				Angaben übergeben, der von einem <code class="literal">%</code>-Zeichen und einem Tupel
+				von Objekten gefolgt wird, die auf die Angaben in dem String passen.
+				Diese Angaben werden dazu benutzt, die Ausgabe in einer bestimmten Weise
+				zu formatieren. Sie können zum Beispiel aus einem <code class="literal">%s</code>
+				für Strings und <code class="literal">%d</code> für Ganzzahlen bestehen. Das Tupel
+				muss Objekte haben, die diesen Angaben in der gleichen Reihenfolge entsprechen.
+
+				
+
+				</p><p>
+
+				Beachten Sie die erste Anwendung, wo wir zuerst <code class="literal">%s</code>
+				benutzen, was der Variablen <code class="varname">name</code> entspricht, die das
+				erste Objekt in dem Tupel ist, und als zweite Angabe <code class="literal">%d</code>,
+				was <code class="varname">alter</code> entspricht, dem zweiten Objekt im Tupel.
+
+				
+
+				</p><p>
+
+				Python wandelt hier jedes Objekt des Tupels in einen String um
+				und setzt diese anstelle der Formatierungsangaben. Daher wird
+				<code class="literal">%s</code> durch den Wert der Variablen <code class="varname">name</code>
+				ersetzt und so weiter.
+
+				
+
+				</p><p>
+
+				Dieser Gebrauch der <code class="literal">print</code>-Anweisung macht es äußerst
+				einfach, Ausgaben auf den Bildschirm zu schreiben, und vermeidet eine
+				Menge von String-Manipulationen, mit denen man das Gleiche erreichen könnte.
+				Man kann so auch vermeiden, Kommas zu benutzen, wie wir es bisher
+				gemacht haben.
+
+				
+
+				</p><p>
+
+				Meistens kann man die Angabe <code class="literal">%s</code> verwenden, und sich
+				Python um den Rest kümmern lassen. Das funktioniert sogar für Zahlen.
+				Sie können aber auch die korrekten Angaben machen, um damit eine weitere
+				Überprüfung auf Korrektheit in Ihr Programm einzubauen.
+
+				
+
+				</p><p>
+
+				In der zweiten <code class="literal">print</code>-Anweisung benutzen wir eine
+				einzelne Formatierungsangabe, die von einem <code class="literal">%</code>-Zeichen
+				und einem einzelnen Objekt gefolgt wird - hier gibt es kein Klammerpaar.
+				Dies funktioniert aber nur in dem Fall, dass nur eine einzelne
+				Formatierungsangabe im String vorhanden ist.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="list.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="data-structures.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="dictionary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Listen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Dictionaries</td></tr></table></div></body></html>

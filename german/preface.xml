@@ -1,0 +1,314 @@
+﻿<preface id="preface">
+
+	<!-- German translation 2005-02-18 by Lutz Horn -->
+	<!-- Minor corrections and additions 2005-02-19 Christoph Zwerschke -->
+	<!-- Proofreading 2005-07-18 Christoph Zwerschke -->
+	<!-- Proofreading 2006-03-10 Horst Jens -->
+
+<title>Vorwort</title>
+
+<para>
+	Python ist eine der wenigen Programmiersprachen, die zugleich einfach
+	und mächtig sind. Das ist sowohl für Anfänger als auch Experten gut, und
+	- noch wichtiger - es macht Spaß damit zu programmieren.
+	Das Ziel dieses Buches ist es, Ihnen beim Lernen dieser
+	wunderbaren Programmiersprache zu helfen und Ihnen zu zeigen, wie
+	sich Dinge schnell und leicht erledigen lassen - in der Tat 'Das
+	perfekte Gegengift für Ihre Programmierprobleme'.
+
+	<!--
+	Python is probably one of the few programming languages which is both
+	simple and powerful. This is good for both and beginners as well as
+	experts, and more importantly, is fun to program with. This book aims
+	to help you learn this wonderful language and show how to get things
+	done quickly and painlessly - in effect 'The Perfect Anti-venom to your
+	programming problems'.-->
+</para>
+
+<section id="who-this-book-is-for">
+	<title>Für wen ist dieses Buch gedacht?</title>
+	<para>
+	Dieses Buch dient als Handbuch oder Unterrichtskurs für die
+	Programmiersprache Python. Es ist hauptsächlich für
+	Anfänger gedacht, ist aber auch für erfahrene Programmierer nützlich.
+
+	<!--This book serves as a guide or tutorial to the Python programming
+	language. It is mainly targeted at newbies. It is useful for experienced
+	programmers as well.-->
+	</para>
+	<para>
+	Die Zielsetzung ist es, dass Sie Python mit diesem Buch lernen können,
+	selbst wenn Ihr einziges Wissen über Computer darin besteht,
+	wie man eine Textdatei abspeichert. Falls Sie bereits über
+	Programmiererfahrung verfügen, können Sie aber ebenfalls
+	Python mit diesem Buch lernen.
+
+	<!--The aim is that if all you know about computers is how to save
+	text files,
+	then you can learn Python from this book. If you have previous
+	programming
+	experience, then you can also learn Python from this book.-->
+	</para>
+	<para>
+	Falls Sie bereits über Programmiererfahrung verfügen,
+	werden Sie sicher die Unterschiede zwischen Python und Ihrer
+	bevorzugten Programmiersprache interessieren - ich habe
+	viele solcher Unterschiede hervorgehoben. Eine Warnung jedoch:
+	Python wird bald Ihre Lieblingsprogrammiersprache sein!
+
+	<!--If you do have previous programming experience, you will be interested in
+	the differences between Python and your favorite programming language - I
+	have highlighted many such differences. A little warning though, Python is
+	soon going to become your favorite programming language!-->
+	</para>
+</section>
+
+<section id="history-lesson">
+	<title>Geschichtsstunde</title>
+
+	<para>
+	Ich habe zuerst mit Python angefangen, als ich ein Installationsprogramm
+	für meine Software <ulink
+	url="http://www.g2swaroop.net/software/">Diamond</ulink> schreiben
+	musste, um dessen Installation zu vereinfachen. Ich musste
+	mich zwischen Python- und Perl-Bindings für die Qt-Bibliothek
+	entscheiden. Ich forschte ein wenig im Web nach und stieß auf einen
+	Artikel, in dem Eric S. Raymond, der berühmte und
+	respektierte Hacker, darüber schrieb, wie Python seine
+	bevorzugte Programmiersprache geworden war. Ich fand auch heraus,
+	dass die PyQT-Bindings verglichen mit Perl-Qt sehr gut waren. Daher
+	entschied ich, dass Python die Sprache für mich sein würde.
+
+	<!--I first started with Python when I needed to write an installer
+	for my software <ulink
+	url="http://www.g2swaroop.net/software/">Diamond</ulink> so that I
+	could make the installation easy. I had to choose between Python
+	and Perl bindings for the Qt library. I did some research on the
+	web and I came across an article where Eric S. Raymond, the famous
+	and respected hacker, talked about how Python has become his
+	favorite programming language.  I also found out that the PyQt
+	bindings were very good compared to Perl-Qt.  So, I decided that
+	Python was the language for me.-->
+	</para>
+	<para>
+	Dann begann ich, nach einem guten Pythonbuch zu suchen. Ich konnte
+	keines finden! Ich fand zwar einige O'Reilly-Bücher, aber sie
+	waren entweder zu teuer oder eher Nachschlagewerke als
+	Einführungskurse. Also begnügte ich mich mit der
+	Dokumentation, die mit Python mitgeliefert wird. Sie war jedoch zu
+	kurz und zu wenig umfangreich. Sie gab einen guten Einblick in
+	Python, war aber nicht vollständig. Ich kam mit ihr zurecht,
+	weil ich bereits über Programmiererfahrung verfügte,
+	aber sie war ungeeignet für Anfänger.
+
+	<!--Then, I started searching for a good book on Python. I couldn't
+	find any!  I did find some O'Reilly books but they were either too
+	expensive or were more like a reference manual than a guide. So, I
+	settled for the documentation that came with Python. However, it
+	was too brief and small. It did give a good idea about Python but
+	was not complete. I managed with it since I had previous
+	programming experience, but it was unsuitable for newbies.-->
+	</para>
+	<para>
+	Ungefähr sechs Monate nach meiner ersten Berührung mit Python installierte
+	ich die damals aktuelle Version 9.0 von Red Hat Linux und spielte mit
+	KWord herum. Ich war beeindruckt und bekam plötzlich die Idee, etwas über
+	Python zu schreiben. Ich begann, einige Seiten zu schreiben, aber aus
+	diesen wurden schnell 30 Seiten. Dann machte ich mir ernsthaft Gedanken
+	darüber, wie ich das Material in eine Buchform bringen könnte. Nach
+	<emphasis>vielen</emphasis> Neufassungen erreichte es einen Zustand, in
+	dem es eine nützliche Anleitung für das Lernen von Python war. Ich
+	betrachte dieses Buch als meinen Beitrag und meinen Tribut an die
+	Open-Source-Gemeinde.
+
+	<!--About six months after my first brush with Python, I installed the
+	(then) latest Red Hat 9.0 Linux and I was playing around with
+	KWord. I got excited about it and suddenly got the idea of writing
+	some stuff on Python. I started writing a few pages but it quickly
+	became 30 pages long. Then, I became serious about making it more
+	useful in a book form. After a <emphasis>lot</emphasis> of
+	rewrites, it has reached a stage where it has become a useful
+	guide to learning the Python language.  I consider this book to be
+	my contribution and tribute to the open source community.-->
+	</para>
+	<para>
+	Dieses Buch begann als meine persönliche Notizsammlung zu Python, und ich betrachte
+	es immer noch als eine solche, obwohl ich mir Mühe gegeben habe,
+	das Buch auch für andere brauchbar und interessant zu gestalten :)
+
+	<!--This book started out as my personal notes on Python and I still
+	consider it in the same way, although I've taken a lot of effort
+	to make it more palatable to others :)-->
+	</para>
+	<para>
+	Entsprechend dem wahren Geist des Open-Source-Gedankens habe ich viele
+	konstruktive Hinweise, viel Kritik und <link linkend="feedback">Rückmeldungen</link>
+	von enthusiastischen Lesern erhalten, die mir sehr bei der Verbesserung des
+	Buchs geholfen haben.
+
+	<!--In the true spirit of open source, I have received lots of
+	constructive suggestions, criticisms and <link
+	linkend="feedback">feedback</link> from enthusiastic readers which
+	has helped me improve this book a lot.-->
+	</para>
+</section>
+
+  <section id="status">
+    <title>Status des Buches</title>
+
+	<para>
+	Dieses Buch ist eine <emphasis role="bold">ständige Baustelle</emphasis>.
+	Viele Kapitel werden dauernd verändert und verbessert. Trotzdem ist das
+	Buch um vieles reifer geworden. Sie sollten in der Lage sein, mit diesem
+	Buch Python zu lernen. Bitte teilen Sie mir mit, wenn Sie irgendeinen
+	Teil des Buchs fehlerhaft oder unverständlich finden.
+
+	<!--This book is a <emphasis role="bold">work-in-progress</emphasis>.
+	Many chapters are constantly being changed and improved. However,
+	the book has matured a lot.  You should be able to learn Python
+	easily from this book. Please do tell me if you find any part of
+	the book to be incorrect or incomprehensible.-->
+	</para>
+	<para>
+	Weitere Kapitel sind für die Zukunft geplant, etwa über wxPython, Twisted
+	und vielleicht auch Boa Constructor.
+
+	<!--More chapters are planned for the future, such as on wxPython,
+	Twisted and maybe even Boa Constructor.-->
+	</para>
+
+	<section id="status-translation">
+	<title>Status der deutschen Übersetzung</title>
+	<para>
+	Vorliegend finden Sie eine vollständige deutsche Übersetzung
+	der Version 1.20 des Buchs.
+	</para>
+	</section>
+	</section>
+
+	<section id="official-website">
+	<title>Offizielle Website</title>
+	<para>
+	Die offizielle Website des Buches ist <ulink
+	url="http://www.byteofpython.info">www.byteofpython.info</ulink>.
+	Auf der Website können Sie das gesamte Buch lesen, die letzte Version
+	herunterladen, und mir auch Rückmeldungen schicken.
+	</para>
+
+	<section id="translation-project">
+	<title>Website des Übersetzungs-Projekts</title>
+	<para>
+	Die deutsche Übersetzung des Buches wurde im <ulink
+	url="http://developer.berlios.de/">BerliOS</ulink>-Projekt
+	<ulink
+	url="https://developer.berlios.de/projects/abop-german/">abop-german</ulink>
+	erstellt. Auf der Projektseite haben Sie Zugriff auf die deutsche
+	Übersetzung in verschiedenen Formaten.
+	</para>
+	</section>
+	</section>
+
+<section id="license">
+	<title>Lizenz</title>
+
+	<para>
+	Dieses Buch ist unter der <ulink
+	url="http://creativecommons.org/licenses/by-nc-sa/2.0/">Creative
+	Commons Attribution-NonCommercial-ShareAlike License 2.0</ulink>
+	lizensiert.
+
+	<!--This book is licensed under the <ulink
+	url="http://creativecommons.org/licenses/by-nc-sa/2.0/">Creative
+	Commons Attribution-NonCommercial-ShareAlike License 2.0</ulink> .-->
+	</para>
+	<para>
+	Grundsätzlich steht es Ihnen frei, das Buch zu kopieren, zu verteilen und
+	zugänglich zu machen, solange Sie die Urheberschaft des Autors und der
+	Übersetzer nennen. Sie dürfen das Buch allerdings nicht ohne deren Genehmigung
+	für kommerzielle Zwecke verwenden. Sie dürfen das Buch verändern und
+	von ihm abgeleitete Werke erstellen, solange Sie alle vorgenommenen Änderungen
+	deutlich kennzeichnen und das Ergebnis Ihrer Arbeit unter den gleichen hier
+	dargestellten Lizenzbedingungen veröffentlichen.
+
+	<!--Basically, you are free to copy, distribute, and display the book,
+	as long as you give credit to me. The restrictions are that you
+	cannot use the book for commercial purposes without my permission.
+	You are free to modify and build upon this work, provided that you
+	clearly mark all changes and release the modified work under the
+	same license as this book.-->
+	</para>
+	<para>
+	Wenn Sie den vollständigen und exakten Text der Lizenz oder eine leicht
+	verständliche Fassung lesen wollen, besuchen Sie bitte die <ulink
+	url="http://creativecommons.org/licenses/by-nc-sa/2.0/"
+	>Website der Organisation &quot;Creative Commons&quot;</ulink>. Dort gibt es
+	sogar einen Comic, der die Bedingungen der Lizenz erklärt.
+
+	<!--Please visit the <ulink
+	url="http://creativecommons.org/licenses/by-nc-sa/2.0/"
+	>Creative Commons website</ulink> for the full and exact text of
+	the license, or
+	for an easy-to-understand version. There is even a comic strip
+	explaining the terms of the license.-->
+	</para>
+</section>
+
+<section id="feedback">
+	<title>Rückmeldung</title>
+
+	<para>
+	Ich habe mir große Mühe gegeben, das Buch so interessant und genau
+	wie möglich zu machen. Falls Sie trotzdem Material finden, das
+	inkonsistent oder ungenau ist, oder das einfach nur verbessert werden muss,
+	dann informieren Sie mich bitte, so dass ich entsprechende Verbesserungen
+	vornehmen kann. Sie können mich unter
+	<email>swaroop@byteofpython.info</email> erreichen.
+
+	<!--I have put in a lot of effort to make this book as interesting and
+	as accurate as possible. However, if you find some material to be
+	inconsistent or incorrect, or simply needs improvement, then
+	please do inform me, so that I can make suitable improvements. You
+	can reach me at <email>swaroop@byteofpython.info</email> .-->
+	</para>
+
+	<section id="feedback-translation">
+	<title>Rückmeldung zur deutschen Übersetzung</title>
+	<para>
+	Falls Sie Rückmeldungen zur deutschen Übersetzung dieses Buches
+	haben, falls Sie einen Tippfehler gefunden haben oder sonst
+	etwas beitragen möchten, nehmen Sie bitte über die Website des
+	Übersetzungsprojekts
+	<ulink
+	url="https://developer.berlios.de/projects/abop-german/">abop-german</ulink>
+	Kontakt mit den Übersetzern auf.
+	</para>
+	</section>
+	</section>
+
+	<section id="something-to-think-about">
+	<title>Etwas zum Nachdenken</title> <!-- Something To Think About -->
+
+	<blockquote>
+	<attribution>C. A. R. Hoare</attribution>
+	<para>
+		Es gibt zwei Arten, Software zu entwerfen:
+		Eine ist, es so einfach zu machen, dass es offensichtlich keine Mängel gibt;
+		die andere ist, es so kompliziert zu machen, dass es keine offensichtlichen Mängel gibt.
+		<!-- There are two ways of constructing a software design: one way is
+		to make it so simple that there are obviously no deficiencies;
+		the other is to make it so complicated that there are no obvious
+		deficiencies. -->
+	</para>
+	</blockquote>
+
+	<blockquote>
+	<attribution>C. W. Wendte</attribution>
+	<para>
+		Erfolg im Leben ist eine Sache, die weniger mit Talent und
+		Gelegenheit zu tun hat, als mit Konzentration und Beharrlichkeit.
+		<!-- Success in life is a matter not so much of talent and
+		opportunity as of concentration and perseverance. -->
+	</para>
+	</blockquote>
+</section>
+</preface>

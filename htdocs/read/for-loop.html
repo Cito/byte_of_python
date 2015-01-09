@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die for-Schleife</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="control-flow.html" title="Kapitel 6. Kontrollfluss" /><link rel="prev" href="while-statement.html" title="Die while-Anweisung" /><link rel="next" href="break-statement.html" title="Die break-Anweisung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die for-Schleife</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="while-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 6. Kontrollfluss</th><td width="20%" align="right"> <a accesskey="n" href="break-statement.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="for-loop"></a>Die for-Schleife</h2></div></div></div><p>
+
+		Die <code class="literal">for..in</code>-Anweisung ist eine weitere Schleifen-Anweisung,
+		die eine <span class="emphasis"><em>Iteration</em></span> über eine Sequenz von Objekten durchführt,
+		d.h. sie durchläuft jedes Objekt der Sequenz. Wir werden in späteren Kapiteln Genaueres über
+		<a class="link" href="sequences.html" title="Sequenzen">Sequenzen</a> erfahren. Was Sie momentan wissen
+		müssen, ist nur, dass eine Sequenz einfach eine geordnete Abfolge von einzelnen Objekten ist.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-for-statement"></a>Gebrauch der for-Anweisung</h3></div></div></div><div class="example"><a id="using-for-statement-example"></a><p class="title"><strong>Beispiel 6.3. Gebrauch der for-Anweisung
+					(<a class="ulink" href="code/for.py" target="_top">for.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">for</span> i <span class="py-statement">in</span> <span class="py-builtin">range</span>(<span class="py-number">1</span>, <span class="py-number">5</span>):
+	<span class="py-statement">print</span> i
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Die for-Schleife ist zu Ende.'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-for-statement-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python for.py
+1
+2
+3
+4
+Die for-Schleife ist zu Ende.
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-for-statement-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				In diesem Programm geben wir eine <span class="emphasis"><em>Sequenz</em></span>
+				von Zahlen aus. Wir generieren diese Sequenz von Zahlen mittels der eingebauten
+				Funktion <code class="function">range</code>.
+
+				
+
+				</p><p>
+
+				In diesem Beispiel übergeben wir ihr zwei Zahlen, und <code class="function">range</code>
+				gibt eine Sequenz von Zahlen zurück, die von der ersten bis zur zweiten angegebenen Zahl
+				läuft. Zum Beispiel ergibt <code class="literal">range(1,5)</code> die Sequenz
+				<code class="literal">[1, 2, 3, 4]</code>. Normalerweise benutzt <code class="function">range</code>
+				eine Schrittweite von 1. Wenn wir der Funktion <code class="function">range</code> eine dritte
+				Zahl übergeben, dann wird diese als Schrittweite benutzt. Zum Beispiel ergibt
+				<code class="literal">range(1,5,2)</code> die Sequenz <code class="literal">[1,3]</code>.
+				Denken Sie daran, dass sich der Bereich <span class="emphasis"><em>bis zur</em></span>
+				zweiten Zahl erstreckt, diese aber <span class="bold"><strong>nicht</strong></span>
+				mit einschließt.
+
+				
+
+				</p><p>
+
+				Die <code class="literal">for</code>-Schleife durchläuft dann diesen Zahlenbereich -
+				<code class="literal">for i in range(1,5)</code> ist gleichbedeutend mit
+				<code class="literal">for i in [1, 2, 3, 4]</code>, was bewirkt, dass der Variablen
+				<code class="varname">i</code> der Reihe nach jede Zahl (allgemein jedes Objekt)
+				in der Sequenz zugewiesen wird, und dann der Anweisungsblock für jeden
+				dieser Werte von <code class="varname">i</code> ausgeführt wird.
+				In diesem Fall geben wir im Anweisungsblock einfach diesen Wert aus.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass der <code class="literal">else</code>-Teil optional ist.
+				Wenn er hinzugefügt wird, wird er immer einmal nach dem Ende der
+				<code class="literal">for</code>-Schleife ausgeführt, außer wenn die Schleife
+				durch eine <a class="link" href="break-statement.html" title="Die break-Anweisung">break</a>-Anweisung
+				abgebrochen wird.
+
+				
+
+				</p><p>
+
+				Denken Sie daran, dass die <code class="literal">for..in</code>-Schleife mit jeder beliebigen
+				Sequenz funktioniert. In diesem Fall haben wir eine mit der eingebauten
+				<code class="function">range</code>-Funktion gebildete Liste von Zahlen,
+				aber wir können ganz allgemein jede Art von Sequenz mit beliebig gearteten Objekten
+				benutzen. Wir werden dieser Idee in späteren Kapiteln noch einmal genauer nachgehen.
+
+				
+
+				</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C/C++/Java/C#-Programmierer</h3><p>
+
+					Die <code class="literal">for</code>-Schleife in Python unterscheidet sich radikal
+					von der <code class="literal">for</code>-Schleife in C/C++. C#-Programmierer
+					werden bemerken, dass die <code class="literal">for</code>-Schleife in Python
+					der <code class="literal">foreach</code>-Schleife in C# ähnlich ist. Java-Programmierer
+					werden bemerken, dass sie <code class="literal">for (int i : IntArray)</code> in Java 1.5
+					entspricht.
+
+					
+
+					</p><p>
+
+					Wo man <code class="literal">for (int i = 0; i &lt; 5; i++)</code> in C/C++ schreibt,
+					schreibt man in Python einfach <code class="literal">for i in range(0,5)</code>.
+					Wie Sie sehen, ist die <code class="literal">for</code>-Schleife in Python einfacher,
+					ausdrucksstärker und weniger fehleranfällig.
+
+					
+
+					</p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="while-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="control-flow.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="break-statement.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die while-Anweisung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die break-Anweisung</td></tr></table></div></body></html>

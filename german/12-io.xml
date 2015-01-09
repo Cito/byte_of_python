@@ -1,0 +1,392 @@
+﻿<chapter id="io">
+
+	<!-- German translation 2005-02-23 by Christoph Zwerschke -->
+	<!-- Proofreading 2005-02-25 Lutz Horn -->
+
+	<title>Ein/Ausgabe</title> <!-- Input/Output -->
+
+	<para>
+
+	Sie werden häufig die Anforderung haben, dass Ihr Programm mit dem Benutzer (der Sie auch selber
+	sein können) interagieren soll. Das Programm soll etwa eine Eingabe vom Benutzer entgegennehmen
+	und dann irgendwelche Ergebnisse ausgeben. Wir können dies mit <function>raw_input</function>
+	bzw. <literal>print</literal>-Anweisungen erreichen. Zur Ausgabe können wir auch die verschiedenen
+	Methoden der Klasse <classname>str</classname> (String) verwenden. Zum Beispiel können Sie
+	die <methodname>rjust</methodname>-Methode einsetzen, um einen String zu erhalten, der
+	bezüglich einer angegeben Breite rechts ausgerichtet ist.
+	Für weitere Einzelheiten, siehe <literal>help(str)</literal>.
+
+	<!-- There will be lots of times when you want your program to interact with the user (which could be
+	yourself). You would want to take input from the user and then print some results back. We can
+	achieve this using the <function>raw_input</function> and <literal>print</literal> statements
+	respectively. For output, we can also use the various methods of the <classname>str</classname>
+	(string) class. For example, you can use the <methodname>rjust</methodname> method to get a
+	string which is right justified to a specified width. See <literal>help(str)</literal> for more
+	details. -->
+
+	</para>
+	<para>
+
+	Ein andere übliche Art von Ein/Ausgabe besteht aus dem Umgang mit Dateien. Die Möglichkeit,
+	Dateien zu erzeugen, zu lesen und zu schreiben ist für viele Programme wesentlich, und wir
+	werden diesen Aspekt in diesem Kapitel untersuchen.
+
+	<!-- Another common type of input/output is dealing with files. The ability to create, read and write
+	files is essential to many programs and we will explore this aspect in this chapter. -->
+
+	</para>
+
+	<section id="files">
+		<title>Dateien</title> <!-- Files -->
+
+		<para>
+
+		Sie können Dateien zum Lesen und Schreiben öffnen, indem Sie ein Objekt der Klasse
+		<classname>file</classname> erzeugen und dessen Methoden
+		<methodname>read</methodname>, <methodname>readline</methodname>
+		oder <methodname>write</methodname> verwenden. Die Möglichkeit,
+		aus der Datei zu lesen oder in die Datei zu schreiben hängt von dem Modus ab,
+		den Sie beim Öffnen der Datei angegeben haben. Wenn Sie schließlich die Dateioperationen
+		abschließen wollen, rufen Sie die Methode <methodname>close</methodname> auf,
+		um Python mitzuteilen, dass Sie mit dieser Datei fertig sind.
+
+		<!-- You can open and use files for reading or writing by creating an object of the
+		<classname>file</classname> class and using its <methodname>read</methodname>,
+		<methodname>readline</methodname> or <methodname>write</methodname> methods
+		appropriately to read from or write to the file. The ability to read or write to
+		the file depends on the mode you have specified for the file opening. Then finally,
+		when you are finished with the file, you call the <methodname>close</methodname>
+		method to tell Python that we are done using the file. -->
+
+		</para>
+
+		<section id="using-files">
+			<title>Der Gebrauch von <classname>file</classname></title> <!-- Using file -->
+
+			<example id="using-files-example">
+				<title>Verwendung von Dateien
+					(<ulink url="code/beispiel_file.py">beispiel_file.py</ulink>)
+				</title>
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+gedicht = '''\
+Programmieren mit Elan
+und die Arbeit wird getan,
+willst du Spass haben daran:
+	Nimm Python!
+'''
+
+f = file('gedicht.txt', 'w') # "w" = Schreiben
+f.write(gedicht) # schreibe den Text in die Datei
+f.close() # schliesse die Datei
+
+f = file('gedicht.txt') # kein Modus bedeutet "r" = Lesen
+while True:
+	line = f.readline()
+	if len(line) == 0: # eine leere Zeile bedeutet Dateiende (EOF)
+		break
+	print line, # das Komma dient zur Unterdrueckung des Zeilenvorschubs
+f.close() # schliesse die Datei
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: using_file.py
+
+poem = '''\
+Programming is fun
+When the work is done
+if you wanna make your work also fun:
+	use Python!
+'''
+
+f = file('poem.txt', 'w') # open for 'w'riting
+f.write(poem) # write text to file
+f.close() # close the file
+
+f = file('poem.txt') # if no mode is specified, 'r'ead mode is assumed by default
+while True:
+	line = f.readline()
+	if len(line) == 0: # Zero length indicates EOF
+		break
+	print line, # Notice comma to avoid automatic newline added by Python
+f.close() # close the file
+				]]> -->
+			</example>
+
+			<section id="using-files-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python beispiel_file.py
+Programmieren mit Elan
+und die Arbeit wird getan,
+willst du Spass haben daran:
+        Nimm Python!
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python using_file.py
+Programming is fun
+When the work is done
+if you wanna make your work also fun:
+        use Python!
+				]]> -->
+			</section>
+
+			<section id="using-files-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Zuerst erzeugen wir eine Instanz der Klasse <classname>file</classname>,
+				indem wir den Namen der Datei und den Modus angeben, in dem die Datei
+				geöffnet werden soll. Der Modus kann Lesemodus sein (<literal>'r'</literal>
+				für <foreignphrase>read</foreignphrase>), Schreibmodus (<literal>'w'</literal>
+				für <foreignphrase>write</foreignphrase>) oder Anfügemodus (<literal>'a'</literal>
+				für <foreignphrase>append</foreignphrase>). Es gibt tatsächlich noch viele
+				weitere Modi, und mit <literal>help(file)</literal> erhalten Sie nähere Einzelheiten dazu.
+
+				<!-- First, we create an instance of the <classname>file</classname> class
+				by specifying the name of the file and the mode in which we want to open
+				the file. The mode can be a read mode (<literal>'r'</literal>), write
+				mode (<literal>'w'</literal>) or append mode (<literal>'a'</literal>).
+				There are actually many more modes available and <literal>help(file)</literal>
+				will give you more details about them. -->
+
+				</para>
+				<para>
+
+				Zuerst öffnen wir die Datei im Schreibmodus und benutzen die Methode
+				<methodname>write</methodname> der Klasse <classname>file</classname>,
+				um in die Datei zu schreiben, danach schließen wir die Datei wieder mit
+				der Methode <methodname>close</methodname>.
+
+				<!-- We first open the file in write mode and use the <methodname>write</methodname>
+				method of the <classname>file</classname> class to write to the file and then
+				we finally <methodname>close</methodname> the file. -->
+
+				</para>
+				<para>
+
+				Als Nächstes öffnen wir die gleiche Datei zum Lesen. Wenn wir keinen Modus angeben,
+				dann wird standardmäßig der Lesemodus benutzt. Wir lesen jede Zeile der Datei in einer
+				Schleife ein, wobei wir die Methode <methodname>readline</methodname> benutzen.
+				Diese Methode gibt jeweils eine vollständige Zeile zurück, einschließlich der Zeilenvorschubkennung
+				am Zeilenende. Wenn daher ein <emphasis>leerer</emphasis> String zurückgeliefert wird,
+				dann zeigt uns dies an, dass das Ende der Datei erreicht wurde, und wir beenden die Schleife.
+
+				<!-- Next, we open the same file again for reading. If we don't specify a mode,
+				then the read mode is the default one. We read in each line of the file
+				using the <methodname>readline</methodname> method, in a loop. This method
+				returns a complete line including the newline character at the end of the
+				line. So, when an <emphasis>empty</emphasis> string is returned, it
+				indicates that the end of the file has been reached and we stop the loop. -->
+
+				</para>
+				<para>
+
+				Beachten Sie, dass wir an die <literal>print</literal>-Anweisung ein Komma angehängt
+				haben, um den automatischen Zeilenvorschub zu unterdrücken, der normalerweise bei jeder
+				<literal>print</literal>-Anweisung hinzugefügt wird. Die aus der Datei eingelesene
+				Zeile endet bereits mit einer Zeilenvorschubkennung, ein weiterer ist unnötig. Am Ende schließen wir die Datei wieder
+				mit der Methode <methodname>close</methodname>.
+
+				<!-- Notice that we use a comma with the <literal>print</literal> statement to
+				suppress the automatic newline that the <literal>print</literal> statement
+				adds because the line that is read from the file already ends with a
+				newline character. Then, we finally <methodname>close</methodname> the file. -->
+
+				</para>
+				<para>
+
+				Nun betrachten wir den Inhalt der Datei <filename>gedicht.txt</filename>, um
+				sicherzustellen, dass das Programm wirklich einwandfrei funktioniert hat.
+
+				<!-- Now, see the contents of the <filename>poem.txt</filename> file to confirm
+				that the program has indeed worked properly. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="pickle">
+		<title>Eingemachtes</title> <!-- Pickle -->
+
+		<para>
+
+		Jetzt geht's ans 'Eingemachte'. Python stellt ein Standard-Modul namens <literal>pickle</literal>
+		('einmachen') zu Verfügung, mit dessen Hilfe man <emphasis role="bold">jedes</emphasis>
+		Python-Objekt in eine Datei speichern kann und es dann später wieder intakt zurück erhält.
+		Man nennt dies die <emphasis>persistente</emphasis> Speicherung eines Objekts.
+		Sie können Sich dies auch als das 'Einfrieren' und wieder 'Auftauen' eines Objekts vorstellen.
+
+		<!-- Python provides a standard module called <literal>pickle</literal> using which you can
+		store <emphasis role="bold">any</emphasis> Python object in a file and then get it back
+		later intact. This is called storing the object <emphasis>persistently</emphasis>. -->
+
+		</para>
+		<para>
+
+		Es gibt ein anderes Modul namens <literal>cPickle</literal>, das ganz genauso wie das
+		<literal>pickle</literal>-Modul funktioniert, außer dass es in der Sprache C geschrieben
+		und daher (bis zu 1000 mal) schneller ist. Sie können sich aussuchen, welches der beiden Module
+		Sie verwenden wollen, auch wenn wir hier als Beispiel das Modul <literal>cPickle</literal>
+		verwenden. Denken Sie aber daran, dass wir der Einfachheit halber immer nur vom
+		<literal>pickle</literal>-Modul sprechen.
+
+		<!-- There is another module called <literal>cPickle</literal> which functions exactly same as
+		the <literal>pickle</literal> module except that it is written in the C language and is
+		(upto 1000 times) faster. You can use either of these modules, although we will be using
+		the <literal>cPickle</literal> module here. Remember though, that we refer to both these
+		modules as simply the <literal>pickle</literal> module. -->
+
+		</para>
+
+		<section id="pickling-and-unpickling">
+			<title>Einfrieren und wieder Auftauen</title> <!-- Pickling and Unpickling -->
+
+			<example id="pickling-and-unpickling-example">
+				<title>Einfrieren und wieder Auftauen
+					(<ulink url="code/einmachen.py">einmachen.py</ulink>)
+				</title> <!-- Pickling and Unpickling -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import cPickle as p
+#import pickle as p
+
+einkaufsdatei = 'einkaufsliste.data' # Datei, in der wir das Objekt speichern
+
+einkaufsliste = ['Aepfel', 'Mangos', 'Karotten']
+
+# Schreibe in die Datei
+f = file(einkaufsdatei, 'w')
+p.dump(einkaufsliste, f) # speichere das Objekt in der Datei
+f.close()
+
+del einkaufsliste # loesche die einkaufsliste
+
+# Lies die Einkaufsliste aus der Datei wieder ein
+f = file(einkaufsdatei)
+gespeicherteliste = p.load(f)
+print gespeicherteliste
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: pickling.py
+
+import cPickle as p
+#import pickle as p
+
+shoplistfile = 'shoplist.data' # the name of the file where we will store the object
+
+shoplist = ['apple', 'mango', 'carrot']
+
+# Write to the file
+f = file(shoplistfile, 'w')
+p.dump(shoplist, f) # dump the object to a file
+f.close()
+
+del shoplist # remove the shoplist
+
+# Read back from the storage
+f = file(shoplistfile)
+storedlist = p.load(f)
+print storedlist
+				]]> -->
+			</example>
+
+			<section id="pickling-and-unpickling-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python einmachen.py
+['Aepfel', 'Mangos', 'Karotten']
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python pickling.py
+['apple', 'mango', 'carrot']
+				]]> -->
+			</section>
+
+			<section id="pickling-and-unpickling-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Beachten Sie als erstes, dass wir die <literal>import..as</literal>-Syntax
+				verwendet haben. Dies ist praktisch, denn wir können einen kürzeren Namen
+				für das Modul verwenden. Es ermöglicht uns in diesem Fall sogar, ein anderes
+				Modul (<literal>cPickle</literal> oder <literal>pickle</literal>) zu
+				verwenden, indem wir einfach nur eine Zeile ändern! Im Rest des Programms
+				beziehen wir uns auf dieses Modul als <varname>p</varname>.
+
+				<!-- First, notice that we use the <literal>import..as</literal> syntax. This
+				is handy since we can use a shorter name for a module. In this case, it even
+				allows us to switch to a different module (<literal>cPickle</literal>
+				or <literal>pickle</literal>) by simply changing one line! In the rest of the
+				program, we simply refer to this module as <varname>p</varname>. -->
+
+				</para>
+				<para>
+
+				Um ein Objekt in einer Datei zu speichern, öffnen wir zunächst ein
+				<classname>file</classname>-Objekt im Schreibmodus und speichern
+				das Objekt in der offenen Datei, indem wir die Funktion <function>dump</function>
+				des <literal>pickle</literal>-Moduls benutzen. Dieser Vorgang wird als
+				das <emphasis>Einmachen</emphasis> (<foreignphrase>pickling</foreignphrase>)
+				oder <emphasis>Einfrieren</emphasis> bezeichnet.
+
+				<!-- To store an object in a file, first we open a <classname>file</classname>
+				object in write mode and store the object into the open file by calling
+				the <function>dump</function> function of the pickle module. This process
+				is called <emphasis>pickling</emphasis>. -->
+
+				</para>
+				<para>
+
+				Als Nächstes holen wir das Objekt mit der Funktion <function>load</function> des
+				<literal>pickle</literal>-Moduls wieder zurück. Dieser Vorgang wird als
+				<emphasis>Wiederauftauen</emphasis> (oder
+				<foreignphrase>unpickling</foreignphrase>) bezeichnet.
+
+				<!-- Next, we retrieve the object using the <function>load</function> function
+				of the <literal>pickle</literal> module which returns the object.
+				This process is called <emphasis>unpickling</emphasis>. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="io-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir haben verschiedene Arten von Ein/Ausgabe besprochen, sowie den Umgang
+		mit Dateien und den Gebrauch des <literal>pickle</literal>-Moduls.
+
+		<!-- We have discussed various types of input/output and also file handling and using the
+		pickle module. -->
+
+		</para>
+		<para>
+
+		Als Nächstes werden wir das Konzept der so genannten Ausnahmen erforschen.
+		<!-- Next, we will explore the concept of exceptions. -->
+
+		</para>
+	</section>
+</chapter>

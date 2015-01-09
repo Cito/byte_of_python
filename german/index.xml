@@ -1,0 +1,54 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+	<!ENTITY bookinfo		SYSTEM "bookinfo.xml">
+	<!ENTITY dedication		SYSTEM "dedication.xml">
+	<!ENTITY preface		SYSTEM "preface.xml">
+	<!ENTITY c_01_intro		SYSTEM "01-intro.xml">
+	<!ENTITY c_02_install		SYSTEM "02-install.xml">
+	<!ENTITY c_03_first_steps	SYSTEM "03-first-steps.xml">
+	<!ENTITY c_04_basics		SYSTEM "04-basics.xml">
+	<!ENTITY c_05_op_exp		SYSTEM "05-op-exp.xml">
+	<!ENTITY c_06_control		SYSTEM "06-control.xml">
+	<!ENTITY c_07_function		SYSTEM "07-function.xml">
+	<!ENTITY c_08_module		SYSTEM "08-module.xml">
+	<!ENTITY c_09_data_struct	SYSTEM "09-data-struct.xml">
+	<!ENTITY c_10_prob_solv		SYSTEM "10-prob-solv.xml">
+	<!ENTITY c_11_oop		SYSTEM "11-oop.xml">
+	<!ENTITY c_12_io		SYSTEM "12-io.xml">
+	<!ENTITY c_13_exception		SYSTEM "13-exception.xml">
+	<!ENTITY c_14_stdlib		SYSTEM "14-stdlib.xml">
+	<!ENTITY c_15_more		SYSTEM "15-more.xml">
+	<!ENTITY c_16_next		SYSTEM "16-next.xml">
+	<!ENTITY a_floss		SYSTEM "appendix-floss.xml">
+	<!ENTITY a_about		SYSTEM "appendix-about.xml">
+	<!ENTITY a_revhistory		SYSTEM "appendix-revhistory.xml">
+]>
+
+<book id="byte-of-python" vendor="www.byteofpython.info" lang="de">
+	&bookinfo;
+<!--
+	&dedication;
+-->
+	&preface;
+	&c_01_intro;
+	&c_02_install;
+	&c_03_first_steps;
+	&c_04_basics;
+	&c_05_op_exp;
+	&c_06_control;
+	&c_07_function;
+	&c_08_module;
+	&c_09_data_struct;
+	&c_10_prob_solv;
+	&c_11_oop;
+	&c_12_io;
+	&c_13_exception;
+	&c_14_stdlib;
+	&c_15_more;
+	&c_16_next;
+	&a_floss;
+	&a_about;
+	&a_revhistory;
+</book>

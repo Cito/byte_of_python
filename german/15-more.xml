@@ -1,0 +1,632 @@
+﻿<chapter id="more-python">
+
+	<!-- German Translation 2005-02-27 by Christoph Zwerschke -->
+	<!-- Proofreading 2005-02-27 Lutz Horn -->
+	<!-- Proofreading 2006-08-04 Gunter Hannig -->
+
+	<title>Noch mehr Python</title> <!-- More Python -->
+
+	<para>
+
+	Wir haben hiermit den größten Teil der verschiedenen Aspekte von Python angesprochen,
+	die Sie benutzen werden. In diesem Kapitel werden wir einige weitere Aspekte besprechen, die
+	Ihre Python-Kenntnisse noch etwas <emphasis>vollständiger</emphasis> machen werden.
+
+	<!-- Till now, we have covered majority of the various aspects of Python that you will use.
+	In this chapter, we will cover some more aspects that will make our knowledge of Python
+	more <emphasis>complete</emphasis>. -->
+
+	</para>
+
+	<section id="special-methods">
+		<title>Besondere Methoden</title> <!-- Special Methods -->
+
+		<para>
+
+		Es gibt einige besondere Methoden, die in Klassen eine spezielle Bedeutung haben,
+		so wie die Methoden <methodname>__init__</methodname> oder
+		<methodname>__del__</methodname>, deren Bedeutung wir bereits kennen
+		gelernt haben.
+
+		<!-- There are certain special methods which have special significance in classes such as
+		the <methodname>__init__</methodname> and <methodname>__del__</methodname> methods
+		whose significance we have already seen. -->
+
+		</para>
+		<para>
+
+		Allgemein werden spezielle Methoden verwendet, um eine bestimmte Funktionalität zu imitieren.
+		Wenn Sie zum Beispiel die Indizierungs-Operation <literal>x[key]</literal> für Ihre Klasse
+		benutzen wollen (als wenn Sie eine Liste oder ein Tupel wäre), dann implementieren Sie einfach
+		die Methode <methodname>__getitem__()</methodname>, und haben dieses Problem damit
+		gelöst. Wenn Sie darüber nachdenken, ist es genau das, was Python selber bei der Klasse
+		<classname>list</classname> macht. <!-- (CZ:--> Man spricht bei dieser Vorgehensweise
+		auch vom <emphasis>Überladen von Operatoren</emphasis>.  <!-- ) -->
+
+		<!-- Generally, special methods are used to mimic certain behavior. For example, if you want
+		to use the <literal>x[key]</literal> indexing operation for your class (just like you use
+		for lists and tuples) then just implement the <methodname>__getitem__()</methodname>
+		method and your job is done. If you think about it, this is what Python does for the
+		<classname>list</classname> class itself! -->
+
+		</para>
+		<para>
+
+		Einige nützliche speziellen Methoden sind in der folgenden Tabelle aufgelistet.
+		Wenn Sie alle speziellen Methoden wissen wollen, dann finden Sie diese große Liste
+		im Python-Referenz-Handbuch.
+
+		<!-- Some useful special methods are listed in the following table. If you want to know about
+		all the special methods, then a huge list is available in the Python Reference Manual. -->
+
+		</para>
+
+		<table id="special-methods-table">
+			<title>Einige spezielle Methoden</title> <!-- Some Special Methods -->
+
+			<tgroup cols="2">
+				<thead>
+					<row>
+						<entry>Name</entry> <!-- Name -->
+						<entry>Erklärung</entry> <!-- Explanation -->
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>__init__(self, ...)</entry>
+						<entry>
+
+						Diese Methode wird aufgerufen, gerade bevor das neu erzeugte Objekt
+						zum Gebrauch zurückgegeben wird.
+
+						<!-- This method is called just before the newly created object
+						is returned for usage. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>__del__(self)</entry>
+						<entry>
+
+						Wird aufgerufen gerade bevor das Objekt zerstört wird.
+
+						<!-- Called just before the object is destroyed -->,
+
+						</entry>
+					</row>
+					<row>
+						<entry>__str__(self)</entry>
+						<entry>
+
+						Wird aufgerufen, wenn man das Objekt mit der <literal>print</literal>-Anweisung
+						ausgibt oder wenn <classname>str()</classname> benutzt wird.
+
+						<!-- Called when we use the <literal>print</literal> statement
+						with the object or when <classname>str()</classname> is used. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>__lt__(self, other)</entry>
+						<entry>
+
+						Wird aufgerufen, wenn der Operator <![CDATA[<]]> für 'kleiner als'
+						(<foreignphrase>less than</foreignphrase>) benutzt wird.
+						Entsprechend gibt es spezielle Methoden für alle möglichen Operatoren
+						(+, <![CDATA[>]]>, usw.).
+
+						<!-- Called when the <emphasis>less than</emphasis> operator
+						( <![CDATA[<]]> ) is used. Similarly, there are special
+						methods for all the operators (+, <![CDATA[>]]>, etc.) -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>__getitem__(self, key)</entry>
+						<entry>
+
+						Wird aufgerufen, wenn der Indizierungs-Operator <literal>x[key]</literal>
+						verwendet wird.
+
+						<!-- Called when <literal>x[key]</literal> indexing operation is used. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>__len__(self)</entry>
+						<entry>
+
+						Wird aufgerufen, wenn die eingebaute <function>len()</function>-Funktion
+						auf das Sequenz-Objekt angewendet wird.
+
+						<!-- Called when the built-in <function>len()</function> function
+						is used for the sequence object. -->
+
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</section>
+	<section id="single-statement-blocks">
+		<title>Einzelanweisungsblöcke</title> <!-- Single Statement Blocks -->
+
+		<para>
+
+		Inzwischen sollten Sie gut verstanden haben, dass jeder Anweisungsblock vom Rest
+		des Programms durch seine eigene Einrückungstiefe abgesetzt wird. Dies trifft zwar
+		meistens zu, ist aber nicht 100% genau. Wenn Ihr Anweisungsblock nur aus einer einzigen
+		Anweisung besteht, dann können Sie ihn in der gleichen Zeile von z.B. einer Bedingungs-
+		oder Schleifenanweisung angeben. Das folgende Beispiel sollte dies deutlich machen:
+
+		<!-- By now, you should have firmly understood that each block of statements is set apart
+		from the rest by its own indentation level. Well, this is true for the most part but
+		it is not 100% accurate. If your block of statements contains only one single statement,
+		then you can specify it on the same line of, say, a conditional statement or looping
+		statement. The following example should make this clear: -->
+
+		</para>
+		<screen>
+		<![CDATA[
+>>> schalter = True
+>>> if schalter: print 'Ja'
+...
+Ja
+		]]>
+		</screen>
+		<!-- <![CDATA[
+>>> flag = True
+>>> if flag: print 'Yes'
+...
+Yes
+		]]> -->
+
+		<para>
+		Wie man sieht, wird die einzelne Anweisung nicht in einen separaten Block,
+		sondern direkt hinter die Bedingungsanweisung in die gleiche Zeile geschrieben.
+		Man kann dies zwar verwenden, um sein Programm <emphasis>kleiner</emphasis>
+		zu machen, aber ich empfehle dennoch <emphasis role="bold">stark</emphasis>,
+		dass Sie diese abkürzende Schreibweise nicht benutzen, außer zur Fehlerprüfung usw.
+		Ein Hauptgrund dafür ist, dass es sehr viel einfacher ist, eine weitere Anweisung zu
+		ergänzen, wenn man die Anweisungen sauber separat eingerückt hinschreibt.
+
+		<!-- As we can see, the single statement is used in-place and not as a separate block.
+		Although, you can use this for making your program <emphasis>smaller</emphasis>, I
+		<emphasis role="bold">strongly</emphasis> recommend that you do not use this
+		short-cut method except for error checking, etc. One major reason is that it will
+		be much easier to add an extra statement if you are using proper indentation. -->
+
+		</para>
+		<para>
+
+		Beachten Sie auch, dass der Python-Interpreter Ihnen bei der Eingabe von Anweisungen
+		hilft, wenn er im interaktiven Modus verwendet wird, indem er die Eingabeaufforderung
+		je nach Situation ändert. Im obigen Fall wechselt die Eingabeaufforderung zu <literal>...</literal>,
+		nachdem Sie das Schlüsselwort <literal>if</literal> eingegeben haben, um anzuzeigen,
+		dass die Anweisung noch nicht vollständig ist. Nachdem wir die Anweisung auf diese Weise
+		vervollständigt haben, schließen wir die Eingabe mit <keycap>Enter</keycap> an, um
+		zu bestätigen, dass die Anweisung vollständig ist. Danach führt Python die gesamte Anweisung
+		aus und zeigt wieder die Eingabeaufforderung für die nächste Eingabe an.
+
+		<!-- Also notice that when the Python interpreter is used in interactive mode, it helps you
+		enter the statements by changing prompts appropriately. In the aboe case, after you entered
+		the keyword <literal>if</literal>, it changes the prompt to <literal>...</literal> to
+		indicate that the statement is not yet complete. When we do complete the statement in
+		this manner, we press <keycap>enter</keycap> to confirm that the statement is complete.
+		Then, Python finishes executing the whole statement and returns to the old prompt waiting
+		for the next input. -->
+
+		</para>
+	</section>
+
+	<section id="list-comprehension">
+		<title>Listenkomprehension</title> <!-- List Comprehension -->
+
+		<para>
+
+		Listenkomprehension (Listenbeschreibung) ist ein Fachbegriff für eine sehr nützliche
+		Funktionalität von Python, die es erlaubt, aus einer existierenden Liste eine neue Liste abzuleiten.
+		Nehmen Sie zum Beispiel an, Sie haben eine Liste von Zahlen und wollen eine entsprechende
+		Liste erzeugen, die aus den mit 2 multiplizierten Zahlen besteht, aber nur, wenn die
+		jeweilige Zahl selbst kleiner als 2 ist. Eine Listenkomprehension ist in solchen Fällen ideal.
+
+		<!-- List comprehensions are used to derive a new list from an existing list. For example, you
+		have a list of numbers and you want to get a corresponding list with all the numbers
+		multiplied by 2 but only when the number itself is greater than 2. List comprehensions
+		are ideal for such situations. -->
+
+		</para>
+
+		<section id="using-list-comprehension">
+			<title>Gebrauch von Listenkomprehension</title> <!-- Using List Comprehensions -->
+
+			<example id="using-list-comprehension-example">
+				<title>Gebrauch von Listenkomprehension
+					(<ulink url="code/listenkomprehension.py">listenkomprehension.py</ulink>)
+				</title> <!-- Using List Comprehensions -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+listeeins = [2, 3, 4]
+listezwei = [2*i for i in listeeins if i > 2]
+print listezwei
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: list_comprehension.py
+
+listone = [2, 3, 4]
+listtwo = [2*i for i in listone if i > 2]
+print listtwo
+				]]> -->
+			</example>
+
+			<section id="using-list-comprehension-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python listenkomprehension.py
+[6, 8]
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python list_comprehension.py
+[6, 8]
+				]]> -->
+			</section>
+
+			<section id="using-list-comprehension-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wir leiten hier von der vorhandenen Liste <literal>listeeins</literal>
+				eine neue Liste <literal>listezwei</literal> ab, indem wir die Manipulationsvorschrift
+				angeben (<literal>2*i</literal>), die an der Liste vorgenommen werden soll,
+				wenn eine bestimmte Bedingung (<literal><![CDATA[if i > 2]]></literal>) erfüllt ist.
+				Beachten Sie, dass die ursprüngliche Liste davon unberührt bleibt.
+				Oftmals, wenn wir Schleifen verwenden, um alle Elemente einer Liste zu durchlaufen,
+				können wir das Gleiche auf präzisere, kompaktere und deutlichere Weise durch eine
+				Listenkomprehension ausdrücken.
+
+				<!-- Here, we derive a new list by specifying the manipulation to be done
+				(<literal>2*i</literal>) when some condition is satisfied
+				(<literal><![CDATA[if i > 2]]></literal>). Note that the original list
+				remains unmodified. Many a time, we use loops to process each element of
+				a list, the same can be achieved using list comprehensions in a more
+				precise, compact and explicit manner. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="tuples-lists-functions">
+		<title>Übergabe von Tupeln und Dictionaries in Funktionen</title> <!-- Receiving Tuples and Lists in Functions -->
+
+		<para>
+
+		Es gibt eine besondere Methode, um einer Funktion Parameter als Tupel oder
+		Dictionary zu übergeben, nämlich indem man den Parametern
+		<literal>*</literal> bzw. <literal>**</literal> voranstellt.
+		Dies ist nützlich, wenn eine Funktion eine beliebige Zahl von Parametern
+		entgegennehmen soll.
+
+		<!-- There is a special way of receiving parameters to a function as a tuple or a dictionary
+		using the <literal>*</literal> or <literal>**</literal> prefix respectively. This is
+		useful when taking variable number of arguments in the function. -->
+
+		</para>
+		<simpara>Beispiel: <ulink url="code/potenzsumme.py">potenzsumme.py</ulink></simpara>
+		<programlisting>
+		<![CDATA[
+>>> def potenzsumme(potenz, *parameter):
+...     '''Gibt die Summe der angegebenen Potenz aller Parameter zurueck.'''
+...     summe = 0
+...     for i in parameter:
+...             summe += pow(i, potenz)
+...     return summe
+...
+>>> potenzsumme(2, 3, 4) # 3^2 + 4^2
+25
+
+>>> potenzsumme(2, 10) # 10^2
+100
+		]]>
+		</programlisting>
+		<!-- <![CDATA[
+>>> def powersum(power, *args):
+...     '''Return the sum of each argument raised to specified power.'''
+...     total = 0
+...     for i in args:
+...             total += pow(i, power)
+...     return total
+...
+>>> powersum(2, 3, 4)
+25
+
+>>> powersum(2, 10)
+100
+		]]> -->
+
+		<para>
+
+		Aufgrund des vorangestellten <literal>*</literal> bei der Variable <varname>parameter</varname>,
+		werden alle zusätzlichen Parameter, die der Funktion übergeben werden, als ein Tupel
+		in <varname>parameter</varname> gespeichert. Wenn stattdessen ein <literal>**</literal>
+		vorangestellt worden wäre, dann wären die zusätzlichen Parameter als Schlüssel/Wert-Paare eines
+		Dictionaries betrachtet worden.
+
+		<!-- Due to the <literal>*</literal> prefix on the <varname>args</varname> variable, all
+		extra arguments passed to the function are stored in <varname>args</varname> as a tuple.
+		If a <literal>**</literal> prefix had been used instead, the extra parameters would be
+		considered to be key/value pairs of a dictionary. -->
+
+		</para>
+	</section>
+
+	<section id="lambda-forms">
+		<title>Der lambda-Operator</title> <!-- Lambda Forms -->
+
+		<para>
+
+		Eine <literal>lambda</literal>-Anweisung wird verwendet, wenn man neue
+		Funktions-Objekte erzeugen und zur Laufzeit zurückgeben möchte.
+
+		<!-- A <literal>lambda</literal> statement is used to create new function objects and then
+		return them at runtime. -->
+
+		</para>
+
+		<section id="using-lambda-forms">
+			<title>Gebrauch des lambda-Operators</title> <!-- Using Lambda Forms -->
+
+			<example id="using-lambda-forms-example">
+				<title>Gebrauch des lambda-Operators
+					(<ulink url="code/lambda.py">lambda.py</ulink>)
+				</title> <!-- Using Lambda Forms -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def erzeuge_wiederholer(n):
+	return lambda s: s * n
+
+verdoppler = erzeuge_wiederholer(2)
+
+print verdoppler('wort')
+print verdoppler(5)
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: lambda.py
+
+def make_repeater(n):
+	return lambda s: s * n
+
+twice = make_repeater(2)
+
+print twice('word')
+print twice(5)
+				]]> -->
+			</example>
+
+			<section id="using-lambda-forms-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python lambda.py
+wortwort
+10
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python lambda.py
+wordword
+10
+				]]> -->
+			</section>
+
+			<section id="using-lambda-forms-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wir benutzen hier eine Funktion <function>erzeuge_wiederholer</function>, um
+				ein 	neues Funktions-Objekt zur Laufzeit zu erzeugen und es zurückzugeben. Um dieses
+				Funktions-Objekt zu erzeugen, wird eine <literal>lambda</literal>-Anweisung
+				verwendet. Der <literal>lambda</literal>-Operator nimmt dabei einen Parameter
+				entgegen, gefolgt von einem einzelnen Ausdruck, der dann zum Rumpf der Funktion
+				wird und von der neuen Funktion ausgewertet und zurückgegeben wird. Beachten Sie,
+				dass innerhalb eines <literal>lambda</literal>-Operators keine Anweisung verwendet
+				werden darf, nicht einmal eine <literal>print</literal>-Anweisung, sondern dass hier
+				nur Ausdrücke erlaubt sind.
+
+				<!-- Here, we use a function <function>make_repeater</function> to create new
+				function objects at runtime and return it. A <literal>lambda</literal>
+				statement is used to create the function object. Essentially, the
+				<literal>lambda</literal> takes a parameter followed by a single expression
+				only which becomes the body of the function and the value of this
+				expression is returned by the new function. Note that even a
+				<literal>print</literal> statement cannot be used inside a lambda form,
+				only expressions. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="exec-statement">
+		<title>Die exec- und eval-Anweisungen</title> <!-- The exec and eval statements -->
+
+		<para>
+
+		Die <literal>exec</literal>-Anweisung wird benutzt, um Python-Anweisungen
+		auszuführen, die in einem String oder in einer Datei gespeichert sind. Zum Beispiel können
+		wir zur Laufzeit einen String erzeugen, der Python-Code enthält, und diese Befehle
+		dann mittels der <literal>exec</literal>-Anweisung ausführen.
+		Unten sehen Sie ein einfaches Beispiel hierfür.
+
+		<!-- The <literal>exec</literal> statement is used to execute Python statements which are
+		stored in a string or file. For example, we can generate a string containing Python code
+		at runtime and then execute these statements using the <literal>exec</literal> statement.
+		A simple example is shown below. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+>>> exec 'print "Hallo Welt"'
+Hallo Welt
+		]]>
+		</screen>
+		<!-- <![CDATA[
+>>> exec 'print "Hello World"'
+Hello World
+		]]> -->
+
+		<para>
+
+		Die <literal>eval</literal>-Anweisung wird verwendet, um gültige Python-Ausdrücke
+		auszuwerten, die in einem String gespeichert sind. Unten sehen Sie wieder ein einfaches Beispiel.
+
+		<!-- The <literal>eval</literal> statement is used to evaluate valid Python expressions
+		which are stored in a string. A simple example is shown below. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+>>> eval('2*3')
+6
+		]]>
+		</screen>
+	</section>
+
+	<section id="assert-statement">
+		<title>Die assert-Anweisung</title> <!-- The assert statement -->
+
+		<para>
+
+		Die <literal>assert</literal>-Anweisung wird benutzt, um sicherzustellen, dass
+		eine bestimmte Voraussetzung, die Sie machen, wirklich erfüllt ist. Zum Beispiel könnten
+		Sie von der Voraussetzung ausgehen, dass sich  in einer bestimmten Liste, die Sie benutzen,
+		mindestens ein Element befindet. Wenn Sie überprüfen wollen, ob dies wirklich stimmt
+		und andernfalls einen Fehler ausgeben wollen, dann ist eine <literal>assert</literal>-Anweisung
+		hierfür ideal. Wenn die Überprüfung mittels der <literal>assert</literal>-Anweisung fehlschlägt,
+		dann wird ein <classname>AssertionError</classname> ausgelöst.
+
+		<!-- The <literal>assert</literal> statement is used to assert that something is true. For
+		example, if you are very sure that you will have at least one element in a list you are
+		using and want to check this, and raise an error if it is not true, then
+		<literal>assert</literal> statement is ideal in this situation. When the assert
+		statement fails, an <classname>AssertionError</classname> is raised. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+>>> meineliste = ['element']
+>>> assert len(meineliste) >= 1
+>>> meineliste.pop()
+'element'
+>>> assert len(meineliste) >= 1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in ?
+AssertionError
+		]]>
+		</screen>
+		<!-- <![CDATA[
+>>> mylist = ['item']
+>>> assert len(mylist) >= 1
+>>> mylist.pop()
+'item'
+>>> assert len(mylist) >= 1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in ?
+AssertionError
+		]]> -->
+	</section>
+
+	<section id="repr-function">
+		<title>Die repr-Function</title> <!-- The repr function -->
+
+		<para>
+
+		Die <function>repr</function>-Funktion wird benutzt um eine 'kanonische'
+		Darstellung eines Objekts als String zu erhalten. Das Gleiche kann man mit
+		umgekehrten einfachen Anführungszeichen erreichen (also nicht dem normalen
+		einfachen Anführungszeichen, das mit dem Apostroph identisch ist, und das
+		man für normale Strings in Python verwendet, sondern das schräg rückwärts
+		gerichtete Anführungszeichen, das dem französischen Accent grave entspricht).
+		Beachten Sie, dass meistens <literal>eval(repr(objekt)) == objekt</literal> gilt.
+
+		<!-- The <function>reprt</function> function is used to obtain a canonical string
+		representation of the object. Backticks (also called conversion or reverse quotes) do
+		the same thing. Note that you will have <literal>eval(repr(object)) == object</literal>
+		most of the time. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+>>> liste = []
+>>> liste.append('element')
+>>> `liste`
+"['element']"
+>>> repr(liste)
+"['element']"
+		]]>
+		</screen>
+		<!-- <![CDATA[
+>>> i = []
+>>> i.append('item')
+>>> `i`
+"['item']"
+>>> repr(i)
+"['item']"
+		]]> -->
+
+		<para>
+
+		Die Funktion <function>repr</function> bzw. die umgekehrten Anführungsstriche
+		werden grundsätzlich dafür benutzt, eine Darstellung eines Objekts in druckbarer reiner
+		Textform zu erhalten. Sie können bestimmen, was Ihre Objekte mit <function>repr</function>
+		zurückgeben, indem Sie die für die zugehörige Klasse die Methode
+		<methodname>__repr__</methodname> definieren.
+
+		<!-- Basically, the <function>repr</function> function or the backticks are used to obtain
+		a printable representation of the object. you can control what your objects return
+		for the <function>repr</function> function by defining the <methodname>__repr__</methodname>
+		method in your class. -->
+
+		</para>
+	</section>
+
+	<section id="more-python-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir haben in diesem Kapitel noch mehr Funktionalität von Python behandelt, aber Sie können
+		sich sicher sein, dass die gesamte Funktionalität damit noch nicht abgehandelt ist. Aber wir haben
+		inzwischen die meisten Dinge behandelt, die Sie jemals in der Praxis benutzen werden.
+		Es sollte für Sie als Ausgangspunkt ausreichen, um alle möglichen Programme zu schreiben.
+
+		<!-- We have covered some more features of Python in this chapter and yet you can be sure we
+		haven't covered all the features of Python. However, at this stage, we have covered most
+		of what you are ever going to use in practice. This is sufficient for you to get
+		started with whatever programs you are going to create. -->
+
+		</para>
+		<para>
+
+		Im nächsten Kapitel sprechen wir darüber, was es in Python alles noch weiter zu entdecken gibt.
+		<!-- Next, we will discuss how to explore Python further. -->
+
+		</para>
+	</section>
+</chapter>

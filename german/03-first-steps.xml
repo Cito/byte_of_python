@@ -1,0 +1,735 @@
+﻿<chapter id="first-steps">
+
+	<!-- German translation 2005-02-20 by Bernd Hengelein -->
+	<!-- Corrections and additions 2005-02-24 Christoph Zwerschke -->
+	<!-- Proofreading of additions 2005-02-24 Lutz Horn -->
+	<!-- Proofreading 2006-03-10 Horst Jens -->
+
+	<title>Erste Schritte</title>
+
+	<section id="first-steps-intro">
+		<title>Einführung</title>
+		<para>
+
+		Jetzt werden wir sehen, wie man das traditionelle &quot;Hallo Welt&quot;-Programm in Python
+		zum Laufen bekommt. Sie lernen dadurch, wie man Python-Programme schreibt,
+		sie abspeichert und ausführt.
+
+		<!-- We will now see how to run a traditional 'Hello World' program in Python. This will
+		teach you how to write, save and run Python programs. -->
+
+		</para>
+		<para>
+
+		Mit Python haben Sie zwei verschiedene Möglichkeiten, Ihr Programm auszuführen -
+		entweder über die interaktive Kommandozeile des Interpreters, oder indem Sie eine
+		Quelldatei verwenden. Wir werden jetzt beide Varianten kennen lernen.
+
+		<!-- There are two ways of using Python to run your program - using the interactive
+		interpreter prompt or using a source file. We will now see how to use both the methods. -->
+
+		</para>
+	</section>
+	<section id="interpreter-prompt">
+		<title>Benutzung der Interpreter-Eingabeaufforderung</title>
+		<para>
+
+		Starten Sie die Eingabeaufforderung des Python-Interpreters durch Eingabe
+		von <command>python</command> auf der Kommandozeile.
+		Geben Sie nun <literal>print 'Hallo Welt'</literal> ein und drücken Sie
+		die <keycap>Enter</keycap>-Taste. Als Ausgabe sollten Sie die Wörter
+		<computeroutput>Hallo Welt</computeroutput> sehen.
+
+		<!-- Start the intepreter on the command line by entering <command>python</command> at the
+		shell prompt. Now enter <literal>print 'Hello World'</literal> followed by the
+		<keycap>Enter</keycap> key. You should see the words
+		<computeroutput>Hello World</computeroutput> as output. -->
+
+		</para>
+		<para>
+
+		Wenn Sie Windows benutzen, können Sie den Interpreter von der Eingabeaufforderung aus Windows heraus
+		starten, wenn die Umgebungsvariable <envar>PATH</envar> korrekt gesetzt ist. Alternativ dazu kann
+		auch das Programm <acronym>IDLE</acronym> verwendet werden. IDLE ist die Abkürzung für
+		<foreignphrase>Integrated DeveLopment Environment</foreignphrase> (Integrierte Entwicklungsumgebung).
+		Zum Starten klicken Sie auf <guimenu>Start</guimenu> -> <guisubmenu>Programme</guisubmenu> ->
+		<guisubmenu>Python 2.3</guisubmenu> -> <guisubmenu>IDLE (Python GUI)</guisubmenu>.
+		Linux-Benutzer können IDLE ebenfalls verwenden.
+
+		<!-- For Windows users, you can run the interpreter in the command line if you have set
+		the <envar>PATH</envar> variable appropriately. Alternatively, you can use the
+		<acronym>IDLE</acronym> program. IDLE is short for Integrated DeveLopment Environment.
+		Click on <guimenu>Start</guimenu> -> <guisubmenu>Programs</guisubmenu> ->
+		<guisubmenu>Python 2.3</guisubmenu> -> <guisubmenu>IDLE (Python GUI)</guisubmenu>.
+		Linux users can use IDLE too. -->
+
+		</para>
+		<para>
+
+		Beachten Sie, dass die Zeichen <![CDATA[>>>]]> die Eingabeaufforderung für Python-Anweisungen darstellen.
+
+		<!-- Note that the <![CDATA[<<<]]> signs are the prompt for entering Python statements. -->
+
+		</para>
+		<example id="interpreter-prompt-example">
+			<title>Die Eingabeaufforderung des Python-Interpreters</title> <!-- Using the python interpreter prompt -->
+
+			<screen>
+			<![CDATA[
+$ python
+Python 2.3.4 (#1, Oct 26 2004, 16:42:40)
+[GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print 'Hallo Welt'
+Hallo Welt
+>>>
+			]]>
+			</screen>
+			<!-- <![CDATA[
+$ python
+Python 2.3.4 (#1, Oct 26 2004, 16:42:40)
+[GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print 'hello world'
+hello world
+>>>
+			]]> -->
+		</example>
+		<para>
+
+		Beachten Sie, dass Python Ihnen das Ergebnis der Eingabe sofort ausgibt, nachdem Sie eine
+		einzelne Python-<emphasis>Anweisung</emphasis> eingegeben haben.
+		Der Befehl <literal>print</literal> wird verwendet, um einen beliebigen Wert auszugeben,
+		der diesem Befehl übergeben wird. Hier wird der Text <literal>Hallo Welt</literal> übergeben
+		und auf dem Bildschirm ausgegeben.
+
+		<!-- Notice that Python gives you the output of the line immediately! What you just entered
+		is a single Python <emphasis>statement</emphasis>. We use <literal>print</literal>
+		to (unsurprisingly) print any value that you supply to it. Here, we are supplying the
+		text <literal>Hello World</literal> and this is promptly printed to the screen. -->
+
+		</para>
+		<important>
+			<title>Beenden der Python-Eingabeaufforderung</title> <!-- How to quit the Python prompt -->
+			<para>
+
+			Wenn Sie IDLE verwenden oder in einer Linux/BSD-Kommandozeilen-Umgebung arbeiten,
+			beenden Sie die Kommandozeile mit der Tastenkombination
+			<keycombo><keycap>Strg</keycap><keycap>d</keycap></keycombo>.
+			Für den Fall, dass Sie die Windows Eingabeaufforderung verwenden, drücken
+			Sie <keycombo><keycap>Strg</keycap><keycap>z</keycap></keycombo> gefolgt von
+			der <keycap>Enter</keycap>-Taste.
+
+			<!-- To exit the prompt, press
+			<keycombo><keycap>Ctrl</keycap><keycap>d</keycap></keycombo>
+			if you are using IDLE or are using a Linux/BSD shell. In case of the Windows
+			command prompt, press <keycombo><keycap>Ctrl</keycap><keycap>z</keycap></keycombo>
+			followed by <keycap>Enter</keycap>. -->
+
+			</para>
+		</important>
+	</section>
+	<section id="choosing-an-editor">
+		<title>Die Auswahl des Editors</title> <!-- Choosing an Editor -->
+		<para>
+
+		Bevor wir anfangen, Quelldateien für Python-Programme zu schreiben, brauchen
+		wir einen Texteditor zum Editieren der Quelldateien. Die Wahl des Editors ist wirklich
+		eine äußerst wichtige Angelegenheit. Sie sollten Ihren Editor genauso sorgfältig auswählen,
+		wie ein Auto, das Sie kaufen wollen. Mit einem guten Editor fällt es Ihnen leichter,
+		Python-Programme zu schreiben. Um beim Vergleich mit einem Auto zu bleiben:
+		Er macht Ihre Reise bequemer und Sie werden Ihr Ziel wesentlich schneller und sicherer erreichen.
+
+		<!-- Before we move on to writing Python programs in source files, we need an editor
+		to write the source files. The choice of an editor is crucial indeed.  You have
+		to choose an editor as you would choose a car you would buy. A good editor will
+		help you write Python programs easily, making your journey more comfortable and
+		helps you reach your destination (achieve your goal) in a much faster and safer
+		way. -->
+
+		</para>
+		<para>
+
+		Eine der wichtigsten Anforderungen ist <emphasis role="bold">Syntax-Hervorhebung</emphasis>.
+		Hierdurch werden die verschiedenen Teile Ihres Python-Programms farblich hervorgehoben, so dass
+		Sie Ihr Programm <emphasis>sehen</emphasis> und sich den Ablauf vorstellen können.
+
+		<!-- One of the very basic requirements is <emphasis role="bold">syntax
+		highlighting</emphasis> where all the different parts of your Python program are
+		colorized so that you can <emphasis>see</emphasis> your program and visualize its
+		running. -->
+
+		</para>
+		<para>
+
+		Wenn Sie Windows verwenden, empfehle ich Ihnen, IDLE zu verwenden. IDLE bieten Ihnen neben
+		Syntax-Hervorhebung und anderen Dingen auch die Möglichkeit, Ihr Programm direkt in IDLE auszuführen.
+		Eine wichtige Anmerkung: <emphasis role="bold">verwenden Sie nicht Notepad</emphasis>
+		(den Standard-Editor unter Windows) - er unterstützt weder Syntax-Hervorhebung noch das Einrücken
+		von Text, was für uns ebenfalls sehr wichtig ist, wie wir später noch sehen werden. Gute Editoren wie
+		IDLE (oder auch VIM) helfen Ihnen automatisch bei diesen Vorgängen.
+
+		<!-- If you are using Windows, then I suggest that you use IDLE. IDLE does syntax highlighting
+		and a lot more such as allowing you to run your programs within IDLE among other things.
+		A special note: <emphasis role="bold">don't use Notepad</emphasis> - it is a bad choice
+		because it does not do syntax highlighting and also importantly it does not support
+		indentation of the text which is very important in our case as we will see later. Good
+		editors such as IDLE (and also VIM) will automatically help you do this. -->
+
+		</para>
+		<para>
+
+		Als Benutzer von Linux/FreeBSD haben Sie eine große Auswahl an Editoren. Wenn Sie ein
+		erfahrener Programmierer sind, haben Sie bestimmt schon <application>VIM</application>
+		oder <application>Emacs</application> verwendet. Das sind natürlich zwei der leistungsfähigsten
+		Editoren, von deren Verwendung Sie bei der Entwicklung Ihrer Python-Programme profitieren werden.
+		Ich persönlich verwende für die meisten meiner Programme <application>VIM</application>.
+		Als Programmieranfänger kann ich Ihnen auch <application>Kate</application> empfehlen. Wenn Sie
+		sich die Zeit nehmen können, den Umgang mit VIM oder Emacs zu erlernen, empfehle ich Ihnen, sich mit
+		einem der beiden vertraut zu machen, da Sie langfristig davon profitieren werden.
+
+		<!-- If you are using Linux/FreeBSD, then you have a lot of choices for an editor. If you are
+		an experienced programmer, then you must be already using <application>VIM</application>
+		or <application>Emacs</application>. Needless to say, these are two of the most powerful
+		editors and you will be benefitted by using them to write your Python programs. I
+		personally use <application>VIM</application> for most of my programs. If you are a
+		beginner programmer, then you can use <application>Kate</application> which is one of my
+		favorites. In case you are willing to take the time to learn VIM or Emacs, then I highly
+		recommend that you do learn to use either of them as it will be very useful for you in
+		the long run. -->
+		</para>
+		<para>
+
+		Wenn Sie sich noch nicht für einen Editor entscheiden konnten, dann hilft Ihnen vielleicht
+		diese ausführliche <ulink url="http://www.python.org/cgi-bin/moinmoin/PythonEditors">Liste
+		von Editoren für Python</ulink>. Sie können auch eine <acronym>IDE</acronym>
+		(<foreignphrase>Integrated Development Environment</foreignphrase>, Integrierte Entwicklungsumgebung)
+		für Python verwenden. Einzelheiten dazu finden Sie in der umfangreichen <ulink
+		url="http://www.python.org/cgi-bin/moinmoin/IntegratedDevelopmentEnvironments">
+		Liste von IDEs, die Python unterstützen</ulink>. Der Einsatz einer IDE kann für größere
+		Python-Programme durchaus sinnvoll sein.
+
+		<!-- If you still want to explore other choices of an editor, see the comprehensive
+		<ulink url="http://www.python.org/cgi-bin/moinmoin/PythonEditors">list of Python
+		editors</ulink> and make your choice. You can also choose an
+		<acronym>IDE</acronym> (Integrated Development Environment) for Python. See the
+		comprehensive <ulink
+		url="http://www.python.org/cgi-bin/moinmoin/IntegratedDevelopmentEnvironments"
+		>list of IDEs that support Python</ulink> for more details. Once you start writing
+		large Python programs, IDEs can be very useful indeed. -->
+
+		</para>
+		<para>
+
+		Nochmals zur Wiederholung: Bitte verwenden Sie einen geeigneten Editor - dies erleichtert
+		das Schreiben von Python-Programmen enorm und macht einfach mehr Spaß.
+
+		<!-- I repeat once again, please choose a proper editor - it can make writing Python
+		programs more fun and easy. -->
+
+		</para>
+	</section>
+	<section id="source-file">
+		<title>Die Verwendung von Quelldateien</title> <!-- Using a Source File -->
+
+		<para>
+
+		Jetzt aber zurück zum Programmieren. Traditionell ist das erste Programm, das Sie schreiben
+		und ausführen, wenn Sie eine neue Programmiersprache lernen, das &quot;Hallo Welt&quot;-Programm -
+		beim Ausführen macht es nichts anderes als 'Hallo Welt' zu sagen. Simon Cozens
+		<!-- Now let's get back to programming. There is a tradition that whenever you learn a new
+		programming language, the first program that you write and run is the 'Hello World'
+		program - all it does is just say 'Hello World' when you run it. As Simon Cozens -->
+		<footnote>
+			<para>
+			einer der führenden Perl6/Parrot-Hacker und Autor des
+			fantastischen Buchs &quot;Beginning Perl&quot;
+			<!-- one of the leading Perl6/Parrot hackers and the author of the amazing
+			'Beginning Perl' book -->
+			</para>
+		</footnote>
+		nennt es die &quot;traditionelle Beschwörung der Programmiergötter, damit sie einem helfen
+		mögen, die Programmiersprache besser zu lernen&quot; :).
+		<!-- puts it, it is the 'traditional incantation to the programming gods to help you learn
+		the language better' :) . -->
+		</para>
+
+		<para>
+
+		Starten Sie den von Ihnen bevorzugten Editor, geben Sie das folgende Programm ein, und
+		speichern Sie es unter dem Namen <filename>hallowelt.py</filename>
+
+		<!-- Start your choice of editor, enter the following program and save it as
+		<filename>helloworld.py</filename> -->
+		</para>
+
+		<example id="source-file-example">
+			<title>Gebrauch einer Quelldatei
+					(<ulink url="code/hallowelt.py">hallowelt.py</ulink>)
+			</title> <!-- Using a Source File -->
+			<programlisting>
+			<![CDATA[
+#!/usr/bin/python
+
+print 'Hallo Welt'
+			]]>
+			</programlisting>
+			<!-- <![CDATA[
+#!/usr/bin/python
+# Filename : helloworld.py
+print 'Hello World'
+			]]> -->
+		</example>
+		<para>
+
+		Um das Programm auszuführen, öffnen Sie eine Kommandozeilen-Umgebung (Linux-Terminal
+		oder DOS-Eingabeaufforderung) und geben Sie den Befehl
+		<command>python <replaceable>hallowelt.py</replaceable></command> ein.
+		Wenn Sie IDLE benutzen, verwenden Sie das Menü <guimenu>Edit</guimenu> ->
+		<guimenuitem>Run Script</guimenuitem> oder die Tastenkombination
+		<keycombo><keycap>Strg</keycap><keycap>F5</keycap></keycombo>.
+		Unten sehen Sie	die Ausgabe des Programms.
+
+		<!-- Run this program by opening a shell (Linux terminal or DOS prompt) and entering the
+		command <command>python <replaceable>helloworld.py</replaceable></command>. If you
+		are using IDLE, use the menu <guimenu>Edit</guimenu> ->
+		<guimenuitem>Run Script</guimenuitem> or the keyboard shortcut
+		<keycombo><keycap>Ctrl</keycap><keycap>F5</keycap></keycombo>. The output is as shown
+		below. -->
+
+		</para>
+		<section id="source-file-output">
+			<title>Ausgabe</title> <!-- Output -->
+			<screen>
+			<![CDATA[
+$ python hallowelt.py
+Hallo Welt
+			]]>
+			</screen>
+			<!-- <![CDATA[
+$ python helloworld.py
+Hello World
+			]]> -->
+		</section>
+		<para>
+
+		Sie sehen die gleiche Ausgabe wie oben gezeigt? Glückwunsch! - Sie haben gerade Ihr erstes
+		Python-Programm erfolgreich ausgeführt.
+
+		<!-- If you got the output as shown above, congratulations! - you have successfully run your
+		first Python program. -->
+
+		</para>
+		<para>
+
+		Sollten Sie eine Fehlermeldung erhalten, überprüfen Sie bitte, ob Sie es
+		<emphasis>genau so</emphasis> wie oben angegeben abgetippt haben.
+		Beachten Sie, dass Python zwischen Groß- und Kleinschreibung unterscheidet.
+		D.h. <literal>print</literal> ist nicht das Gleiche wie <literal>Print</literal>.
+		Stellen Sie auch sicher, dass sich keine Leerzeichen oder Tabulatorzeichen vor dem
+		ersten Zeichen einer Zeile befinden - wir werden später sehen, warum das wichtig ist.
+
+		<!-- In case you got an error, please type the above program <emphasis>exactly</emphasis> as
+		shown and above and run the program again. Note that Python is case-sensitive i.e.
+		<literal>print</literal> is not the same as <literal>Print</literal> - note the
+		lowercase <literal>p</literal> in the former and the uppercase <literal>P</literal> in
+		the latter. Also, ensure there are no spaces or tabs before the first character in each
+		line - we will see why this is important later. -->
+
+		</para>
+
+		<section id="source-file-how">
+			<title>So funktioniert es</title> <!-- How It Works -->
+			<para>
+
+			Sehen wir uns die ersten beiden Zeilen des Programms an. Hierbei handelt es
+			sich um <emphasis>Kommentare</emphasis> - alles was rechts des Zeichens
+			<literal>#</literal> steht, ist ein Kommentar und dient hauptsächlich als
+			Hinweis für Leser des Programms.
+
+			<!-- Let us consider the first two lines of the program. These are called
+			<emphasis>comments</emphasis> - anything to the right of the <literal>#</literal>
+			symbol is a comment and is mainly useful as notes for the reader of the program. -->
+
+			</para>
+			<para>
+
+			Außer im Spezialfall der ersten Zeile interpretiert Python die Kommentare nicht weiter.
+			Diese erste Zeile wird <emphasis>Shebang-Zeile</emphasis>
+			genannt - immer wenn Ihre Quelldatei mit den Zeichen <literal>#!</literal>
+			und der Pfadangabe für ein Programm beginnt, weiß Ihr Linux/Unix-System, dass das
+			Programm mit diesem Interpreter gestartet werden soll, wenn Sie es <emphasis>ausführen</emphasis>.
+			Eine ausführliche Erklärung dazu folgt im <link linkend="executable-python-programs">nächsten Kapitel</link>.
+			Unabhängig von der verwendeten Plattform können Sie das Programm immer ausführen,
+			indem Sie den Interpreter direkt in der Kommandozeile mit angeben, wie zum Beispiel
+			<command>python <replaceable>hallowelt.py</replaceable></command>.
+
+			<!-- Python does not use comments except for the special case of the first line here.
+			It is called the <emphasis>shebang line</emphasis> - whenever the first two
+			characters of the source file are <literal>#!</literal> followed by the location
+			of a program, this tells your Linux/Unix system that this program should be run
+			with this interpreter when you <emphasis>execute</emphasis> the program. This is
+			explained in detail in the <link linkend="executable-python-programs"
+			>next section</link>. Note that you can always run the program on any platform by
+			specifying the interpreter directly on the command line such as the command
+			<command>python <replaceable>helloworld.py</replaceable></command>. -->
+
+			</para>
+			<important>
+				<para>
+
+				Verwenden Sie Kommentare auf sinnvolle Weise in Ihrem Programm, um wichtige
+				Details zu erklären - dadurch können Leser Ihres Programms leichter verstehen,
+				wie es funktioniert. Vergessen Sie nicht, dass Sie selbst in sechs Monaten dieser Leser
+				sein könnten!
+
+				<!-- Use comments sensibly in your program to explain some important details
+				of your program - this is useful for readers of your program so that they
+				can easily understand what the program is doing. Remember, that person
+				can be yourself after six months! -->
+
+				</para>
+			</important>
+
+			<para>
+
+			Nach den Kommentaren folgt eine Python-<emphasis>Anweisung</emphasis> - diese
+			gibt den Text <literal>'Hallo Welt'</literal> aus.
+			<literal>print</literal> ist eigentlich ein Operator und <literal>'Hallo Welt'</literal>
+			wird als String (Zeichenkette) bezeichnet. Keine Bange, wir werden diese Fachausdrücke
+			später ausführlich besprechen.
+
+			<!-- The comments are followed by a Python <emphasis>statement</emphasis> - this just
+			prints the text <literal>'Hello World'</literal>. The <literal>print</literal>
+			is actually an operator and <literal>'Hello World'</literal> is referred to as a
+			string - don't worry, we will explore these terminologies in detail later. -->
+
+			</para>
+		</section>
+	</section>
+
+		<!-- Note added 2005-02-24 by Christoph Zwerschke -->
+		<note>
+			<title>Eine Anmerkung für deutsche Anwender</title>
+			<para>
+
+			Das deutsche Alphabet besitzt ja bekanntlich zusätzlich zum englischen Alphabet, das dem
+			so genannten <abbrev>ASCII</abbrev>-Zeichensatz zugrunde liegt, auch noch die
+			Umlaute ä, ö, ü sowie das ß, das sich trotz Rechtschreibreform hartnäckig hält. Diese Zeichen
+			kommen im normalen ASCII-Zeichensatz nicht vor und führen daher des Öfteren zu Problemen,
+			da sie speziell kodiert werden müssen, wofür es verschiedene Standards gibt.
+
+		</para>
+			<para>
+
+			Auch in Python-Programmen machen diese und andere Sonderzeichen Probleme,
+			wenn Sie keine Kodierung angeben. In der Sprache Python an sich kommen zwar
+			keine derartigen Sonderzeichen vor, aber Sie werden sie eventuell in Kommentaren
+			oder innerhalb von String-Konstanten (Zeichenketten) in Python verwenden wollen.
+
+		</para>
+			<para>
+
+			Wollen Sie ein Python-Programm wie das folgende ausführen (beachten Sie das
+			<literal>ä</literal> im Wort 'Käse'),
+			<programlisting>
+			<![CDATA[
+#!/usr/bin/python
+
+print 'Käse!' # ein Umlaut
+			]]>
+			</programlisting>
+			dann werden neuere Python-Versionen die folgende Warnung ausgeben:
+			<screen>
+			<![CDATA[
+sys:1: DeprecationWarning: Non-ASCII character '\xe4'
+in file kaese.py on line 3, but no encoding declared;
+see http://www.python.org/peps/pep-0263.html for details
+Käse!
+			]]>
+			</screen>
+			Diese Warnung besagt, dass Sie ein Sonderzeichen eingegeben haben,
+			das nicht im ASCII-Zeichensatz vorhanden ist, aber nicht dazu angegeben haben,
+			welche Kodierung für Sonderzeichen gelten soll.
+
+			</para>
+			<para>
+
+			Windows-Benutzer können dieses Problem lösen, indem sie die Datei z. B. mit
+			Notepad, dem Standard-Editor unter Windows, laden und dann mit 'Speichern unter...'
+			in der Kodierung UTF-8 abspeichern. Das Python-Programm bekommt dadurch
+			eine (normalerweise nicht sichtbare) Kennung am Dateianfang, wodurch das System
+			und auch Python bescheid weiß, dass in dieser Datei die UTF-8-Kodierung verwendet
+			wird. Mit dieser Kodierung können Sie sämtliche Zeichen des universellen
+			Unicode-Zeichensatzes speichern, darunter natürlich auch die deutschen Umlaute.
+
+			</para>
+			<para>
+
+			Eine andere Möglichkeit, die Kodierung anzugeben, wird unter der Internetadresse
+			erläutert, die in der Warnmeldung angegeben ist. Sie besteht darin, am Dateianfang
+			eine weitere 'magische' Kommentarzeile einzufügen, in der die Kodierung angegeben wird:
+			<programlisting>
+			<![CDATA[
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+print 'Käse!' # kein Problem mehr
+			]]>
+			</programlisting>
+			Neben der universellen Kodierung <literal>utf-8</literal> ist im westeuropäischen Sprachraum
+			auch <literal>latin-1</literal> (auch als <literal>iso-8859-1</literal> bekannt) weit verbreitet;
+			diese Kodierung war auch der Standard in Python bis Version 2.1.
+
+			</para>
+			<para>
+			Um nicht durch diese Kodierungsproblematik vom Wesentlichen abzulenken,
+			haben wir bei den Beispielprogrammen Umlaute vermieden bzw. mit ASCII-Zeichen umschrieben.
+			Denken Sie aber daran, dass Sie hier keineswegs eingeschränkt sind, sondern nach
+			Angabe einer Kodierung nach Herzenslust nicht nur Umlaute verwenden dürfen,
+			sondern auch kyrillische oder beliebig exotische Zeichen, wie sie z. B. in der Kodierung
+			UTF-8 im Unicode-Zeichenvorrat reichlich vorhanden sind.
+
+			</para>
+		</note>
+
+	<section id="executable-python-programs">
+		<title>Ausführbare Python-Programme</title> <!-- Executable Python programs -->
+		<para>
+
+		Dieser Abschnitt trifft nur für Linux/Unix-Benutzer zu. Aber auch Windows-Benutzer
+		könnte es interessieren, was es mit der ersten Zeile des Programms auf sich hat.
+		Mit dem Befehl <command>chmod</command> ändern wir zuerst die Berechtigung des
+		Programms so, dass es ausgeführt werden kann. Danach <emphasis>starten</emphasis>
+		wir das Programm.
+
+		<!-- This applies only to Linux/Unix users but Windows users might be curious as well
+		about the first line of the program. First, we have to give the program executable
+		permission using the <command>chmod</command> command then <emphasis>run</emphasis>
+		the source program. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+$ chmod a+x hallowelt.py
+$ ./hallowelt.py
+Hallo Welt
+		]]>
+		</screen>
+		<!-- <![CDATA[
+$ chmod a+x helloworld.py
+$ ./helloworld.py
+Hello World
+		]]> -->
+		<para>
+
+		Der Befehl <command>chmod</command> wird hier verwendet,
+		um die Zugriffsrechte der Datei so zu ändern,
+		dass alle Benutzer des Systems (<emphasis>a</emphasis>)
+		die Berechtigung zum Ausführen (<emphasis>x</emphasis>) des Programms bekommen.
+		Danach wird das Programm sofort gestartet, indem wir den Pfad der Quelldatei
+		eingeben. Die Zeichenfolge <literal>./</literal> gibt an, dass sich die Datei im
+		aktuellen Verzeichnis befindet.
+
+		<!-- The chmod command is used here to <emphasis>ch</emphasis>ange the
+		<emphasis>mod</emphasis>e of the file by giving e<emphasis>x</emphasis>ecute
+		permission to <emphasis>a</emphasis>ll users of the system. Then, we execute the
+		program directly by specifying the location of the source file. We use the
+		<literal>./</literal> to indicate that the program is located in the current
+		directory. -->
+
+		</para>
+		<para>
+
+		Das Ganze macht noch mehr Spaß, wenn Sie die Datei in <filename>hallowelt</filename>
+		umbenennen und mit <command>./hallowelt</command> starten. Es funktioniert immer noch,
+		da das System weiß, dass es das Programm mit dem Interpreter ausführen muss, der in
+		der ersten Zeile der Quelldatei angegeben ist.
+
+		<!-- To make things more fun, you can rename the file to just <filename>helloworld</filename>
+		and run it as <command>./helloworld</command> and it will still work since the system
+		knows that it has to run the program using the interpreter whose location is specified
+		in the first line in the source file. -->
+
+		</para>
+		<para>
+
+		Sie können das Programm jetzt laufen lassen, solange Sie den genauen Pfad des Programms kennen
+		- aber vielleicht wollen Sie das Programm aus jedem beliebigen Verzeichnis heraus starten können?
+		Um dies zu erreichen, können Sie das Programm in einem der Verzeichnisse speichern, die in der
+		Umgebungsvariable <envar>PATH</envar> aufgeführt sind. Immer wenn Sie irgendein
+		Programm starten, sucht das System in jedem Verzeichnis, das in der <envar>PATH</envar>-Variable
+		vorkommt, und führt es dann dort aus. Wir können unser Programm auch von überall
+		erreichbar machen, indem wir die Quelldatei einfach in eines der in <envar>PATH</envar>
+		aufgeführten Verzeichnisse kopieren.
+
+		<!-- You are now able to run the program as long as you know the exact path of the program
+		- but what if you wanted to be able to run the program from anywhere? You can do this
+		by storing the program in one of the directories listed in the <envar>PATH</envar>
+		environment variable. Whenever you run any program, the system looks for that program
+		in each of the directories listed in the <envar>PATH</envar> environment variable and
+		then runs that program. We can make this program available everywhere by simply
+		copying this source file to one of the directories listed in <envar>PATH</envar>. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+$ echo $PATH
+/opt/mono/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/swaroop/bin
+$ cp hallowelt.py /home/swaroop/bin/hallowelt
+$ hallowelt
+Hallo Welt
+		]]>
+		</screen>
+		<!-- <![CDATA[
+$ echo $PATH
+/opt/mono/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/swaroop/bin
+$ cp helloworld.py /home/swaroop/bin/helloworld
+$ helloworld
+Hello World
+		]]> -->
+		<para>
+
+		Um die <envar>PATH</envar>-Variable anzuzeigen, verwenden wir den Befehl
+		<command>echo</command>. Durch Voranstellen von <literal>$</literal>
+		weiß der Kommandozeilen-Interpreter, dass wir uns für den Wert der Variable interessieren.
+		Wie wir sehen, ist <filename>/home/swaroop/bin</filename> ein Verzeichnis, das in der
+		Variablen PATH vorkommt. <emphasis role="bold">swaroop</emphasis> ist dabei
+		der Benutzer, den ich auf meinem System verwende. Üblicherweise haben Sie auf
+		Ihrem System ein entsprechendes Verzeichnis für Ihren Benutzernamen.
+		Sie können auch wahlweise ein anderes Verzeichnis zu der <envar>PATH</envar>-Variablen
+		hinzufügen. Dazu geben Sie den Befehl <command>PATH=$PATH:/home/swaroop/meinverzeichnis</command>
+		als Kommandozeile ein, wobei <literal>'/home/swaroop/meinverzeichnis'</literal> für das Verzeichnis
+		stehen soll, das Sie hinzufügen wollen.
+
+		<!-- We can display the <envar>PATH</envar> variable using the <command>echo</command>
+		command and prefixing the variable name by <literal>$</literal> to indicate to the
+		shell that we need the value of this variable. We see that
+		<filename>/home/swaroop/bin</filename> is one of the directories in the PATH variable
+		where <emphasis role="bold">swaroop</emphasis> is the username I am using in my
+		system. There will usually be a similar directory for your username on your system.
+		Alternatively, you can add a directory of your choice to the <envar>PATH</envar>
+		variable - this can be done by running
+		<command>PATH=$PATH:/home/swaroop/mydir</command> where
+		<literal>'/home/swaroop/mydir'</literal> is the directory I want to add to the
+		<envar>PATH</envar> variable. -->
+
+		</para>
+		<para>
+		Dieses Verfahren ist sehr hilfreich, wenn Sie nützliche Skripte schreiben wollen,
+		die Sie als Programm von überall und jederzeit ausführen können wollen.
+		Sie können auf diese Weise Ihren eigenen <command>cd</command>-Befehl oder irgendeinen
+		anderen Linux- oder DOS-Befehl selbst schreiben.
+
+		<!-- This method is very useful if you want to write useful scripts that you want to run
+		the program anytime, anywhere. It is like creating your own commands just like
+		<command>cd</command> or any other commands that you use in the Linux terminal or
+		DOS prompt. -->
+
+		</para>
+		<caution>
+			<para>
+
+			Im Zusammenhang mit Python bedeuten die Begriffe Programm, Skript oder Software alle das Gleiche.
+			<!-- W.r.t. Python, a program or a script or software all mean the same thing. -->
+			<!-- (W.r.t. = With respect to) -->
+
+			</para>
+		</caution>
+
+	</section>
+	<section id="getting-help">
+		<title>Wenn Sie Hilfe brauchen</title> <!-- Getting Help -->
+		<para>
+
+		Mit der eingebauten Hilfe (<literal>help</literal>) bekommen Sie zu jeder
+		Funktion oder jeder Anweisung in Python eine kurze Information angezeigt. Das ist vor allem sehr
+		nützlich, wenn Sie die Kommandozeile des Interpreters verwenden. Wenn Sie z. B.
+		<literal>help(str)</literal> eingeben, wird Ihnen die Hilfe zu der Klasse <literal>str</literal>
+		 angezeigt. Diese Klasse wird dazu verwendet um Text (Strings, Zeichenketten)
+		in Ihrem Programm zu speichern. Was man unter einer Klasse zu verstehen hat, wird
+		im Kapitel über <link linkend="oops">objektorientierte Programmierung</link>
+		ausführlich behandelt.
+
+		<!-- If you need quick information about any function or statement in Python, then you can
+		use the built-in <literal>help</literal> functionality. This is very useful especially
+		when using the interpreter prompt. For example, run <literal>help(str)</literal> - this
+		displays the help for the <literal>str</literal> class which is used to store all
+		text (strings) that you use in your program. Classes will be explained in detail in
+		the chapter on object-oriented programming. --> <!-- FIXME : Put a link, linkend here -->
+
+		</para>
+		<note>
+			<para>
+
+			Durch Drücken der Taste <keycap>q</keycap> verlassen Sie die Hilfe.
+
+			<!-- Press <keycap>q</keycap> to exit the help. -->
+
+			</para>
+		</note>
+		<para>
+		Analog dazu können Sie sich für fast alles, was es in Python gibt, Informationen ausgeben lassen.
+		Durch den Aufruf von <literal>help()</literal> können Sie zum Beispiel mehr über den Hilfe-Befehl
+		<literal>help</literal> selbst erfahren.
+
+		<!-- Similarly, you can obtain information about almost anything in Python. Use
+		<literal>help()</literal> to learn more about using <literal>help</literal> itself! -->
+
+		</para>
+		<para>
+
+		Wenn Sie Hilfe zu Operatoren wie <literal>print</literal> benötigen, müssen Sie die
+		Umgebungsvariable <envar>PYTHONDOCS</envar> entsprechend setzen. Unter Linux/Unix können
+		Sie dies einfach mit dem <command>env</command>-Befehl erledigen.
+
+		<!--In case you need to get help for operators like <literal>print</literal>, then you need
+		to set the <envar>PYTHONDOCS</envar> environment variable appropriately. This can be
+		done easily on Linux/Unix using the <command>env</command> command. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+$ env PYTHONDOCS=/usr/share/doc/python-docs-2.3.4/html/ python
+Python 2.3.4 (#1, Oct 26 2004, 16:42:40)
+[GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> help('print')
+		]]>
+		</screen>
+		<para>
+
+		Wie Sie sehen, habe ich <literal>'print'</literal> in Anführungszeichen gesetzt, damit
+		Python versteht, dass ich Hilfe zu 'print' haben möchte und nicht etwa mit print etwas
+		ausgeben will.
+
+		<!-- You will notice that I have used quotes to specify <literal>'print'</literal> so that
+		Python can understand that I want to fetch help about 'print' and I am not asking it
+		to print something. -->
+
+		</para>
+		<para>
+
+		Beachten Sie, dass der Pfad, den ich angegeben habe, der Pfad für Fedora Core 3 Linux ist - bei
+		anderen Linux-Distributionen oder -Versionen kann der Pfad variieren.
+
+		<!-- Note that the location I have used is the location in Fedora Core 3 Linux - it may be
+		different for different distributions and versions.
+		NOTE: Update this section when using newer versions of Python or Fedora -->
+
+		</para>
+	</section>
+	<section id="first-steps-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+		<para>
+
+		Sie können jetzt schon Python-Programme schreiben, abspeichern und ausführen lassen.
+		Nachdem Sie nun zu einem Python-Benutzer geworden sind, wollen wir ein paar weitere
+		Konzepte der Programmiersprache Python kennen lernen.
+
+		<!-- You should now be able to write, save and run Python programs at ease. Now that you
+		are a Python user, let's learn some more Python concepts. -->
+
+		</para>
+	</section>
+</chapter>

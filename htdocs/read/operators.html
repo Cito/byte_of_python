@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Operatoren</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="operators-expressions.html" title="Kapitel 5. Operatoren und Ausdrücke" /><link rel="prev" href="operators-expressions.html" title="Kapitel 5. Operatoren und Ausdrücke" /><link rel="next" href="operator-precedence.html" title="Auswertungsreihenfolge der Operatoren" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Operatoren</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="operators-expressions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 5. Operatoren und Ausdrücke</th><td width="20%" align="right"> <a accesskey="n" href="operator-precedence.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="operators"></a>Operatoren</h2></div></div></div><p>
+
+		Lassen Sie uns einen kurzen Blick auf die Operatoren und ihre Verwendung werfen:
+
+
+
+		</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Tipp</h3><p>
+
+			Die Ausdrücke aus den Beispielen können mit dem Interpreter interaktiv
+			ausgewertet werden. Um z.B. den Ausdruck <code class="literal">2 + 3</code> zu testen,
+			geben Sie folgendes in der Kommandozeile des Interpreters ein:
+
+			
+
+			</p><pre class="screen">
+			
+&gt;&gt;&gt; 2 + 3
+5
+&gt;&gt;&gt; 3 * 5
+15
+&gt;&gt;&gt;
+			
+			</pre></div><div class="table"><a id="operator-usage-table"></a><p class="title"><strong>Tabelle 5.1. Operatoren und ihre Verwendung</strong></p><div class="table-contents"><table summary="Operatoren und ihre Verwendung" border="1"><colgroup><col /><col /><col /><col /></colgroup><thead><tr><th>Operator</th><th>Name</th><th>Erklärung</th><th>Beispiele</th></tr></thead><tbody><tr><td>+</td><td>Plus</td><td>
+
+						Addiert bzw. verkettet die beiden Objekte 
+
+						</td><td>
+
+						<code class="literal">3 + 5</code> ergibt <code class="literal">8</code>.
+						
+						<code class="literal">'a' + 'b'</code> ergibt <code class="literal">'ab'</code>.
+						
+
+						</td></tr><tr><td>-</td><td>Minus</td><td>
+
+						Ergibt entweder eine negative Zahl, oder das Ergebnis
+						einer Subtraktion zweier Zahlen
+						
+
+						</td><td>
+
+						<code class="literal">-5.2</code> ergibt eine negative Zahl.
+						<code class="literal">50 - 24</code> ergibt <code class="literal">26</code>.
+						
+
+						</td></tr><tr><td>*</td><td>Multiplikation</td><td>
+
+						Multipliziert zwei Zahlen miteinander oder gibt eine mehrfache Wiederholung
+						eines Strings (einer Sequenz) zurück.
+						
+
+						</td><td>
+
+						<code class="literal">2 * 3</code> ergibt <code class="literal">6</code>.
+						<code class="literal">'la' * 3</code> ergibt <code class="literal">'lalala'</code>.
+						
+
+						</td></tr><tr><td>**</td><td>Potenz</td><td>
+
+						Gibt die Potenzierung x hoch y zurück
+						
+
+						</td><td>
+
+						<code class="literal">3 ** 4</code> ergibt <code class="literal">81</code>
+						(d.h. <code class="literal">3 * 3 * 3 * 3</code>)
+						
+
+						</td></tr><tr><td>/</td><td>Division</td><td>
+
+						Dividiere x durch y
+						
+
+						</td><td>
+
+						<code class="literal">4/3</code> ergibt <code class="literal">1</code> (die Division
+						von Ganzzahlen ergibt wieder eine Ganzzahl).
+						<code class="literal">4.0/3</code> oder <code class="literal">4/3.0</code> ergibt
+						<code class="literal">1.3333333333333333</code>
+						
+
+						</td></tr><tr><td>//</td><td>Ganzzahlige Division</td><td>
+
+						Liefert das Ergebnis der ganzzahligen Division zurück
+						
+
+						</td><td>
+
+						<code class="literal">4 // 3.0</code> ergibt <code class="literal">1.0</code>
+						
+
+						</td></tr><tr><td>%</td><td>Modulo</td><td>
+
+						Liefert den Rest bei einer ganzzahligen Division zurück
+						
+
+						</td><td>
+
+						<code class="literal">8%3</code> ergibt <code class="literal">2</code>.
+						<code class="literal">-25.5%2.25</code> ergibt <code class="literal">1.5</code> .
+						
+
+						</td></tr><tr><td>&lt;&lt;</td><td>Bitweises Linksschieben</td><td>
+
+						Verschiebt das Bitmuster des linken Operanden um die angegebene
+						Anzahl von Bit-Positionen nach links (jede Zahl wird im Speicher
+						durch Bits, d.h. die Binärzeichen 0 und 1 repräsentiert).
+						
+
+						</td><td>
+
+						<code class="literal">2 &lt;&lt; 2</code> ergibt
+						<code class="literal">8</code>.
+						- <code class="literal">2</code> wird durch das Bitmuster
+						<code class="literal">10</code> repräsentiert. Eine Verschiebung um 2 Bits
+						nach links ergibt <code class="literal">1000</code>, was wiederum der
+						Dezimalzahl <code class="literal">8</code> entspricht.
+						
+
+						</td></tr><tr><td>&gt;&gt;</td><td>Bitweises Rechtsschieben</td><td>
+
+						Verschiebt das Bitmuster des linken Operanden um die angegebene
+						Anzahl von Bit-Positionen nach rechts.
+						
+
+						</td><td>
+
+						<code class="literal">11 &gt;&gt; 1</code> ergibt
+						<code class="literal">5</code> -
+						<code class="literal">11</code> wird durch das Bitmuster
+						<code class="literal">1011</code> repräsentiert. Eine Verschiebung um 1 Bit
+						nach rechts ergibt <code class="literal">101</code>, was wiederum der
+						Dezimalzahl <code class="literal">5</code> entspricht.
+
+						
+
+						</td></tr><tr><td>&amp;</td><td>Bitweises UND</td><td>
+
+						Die Bitmuster der beiden Zahlen werden mit UND verknüpft.
+						
+
+						</td><td>
+
+						<code class="literal">5 &amp; 3</code> ergibt
+						<code class="literal">1</code>.
+						
+
+						</td></tr><tr><td>|</td><td>Bitweises ODER</td><td>
+
+						Die Bitmuster der beiden Zahlen werden mit ODER verknüpft
+
+						
+
+						</td><td>
+
+						<code class="literal">5 | 3</code> ergibt <code class="literal">7</code>
+						
+
+						</td></tr><tr><td>^</td><td>Bitweises XOR</td><td>
+
+						Die Bitmuster der beiden Zahlen werden mit XOR (exklusivem ODER) verknüpft
+
+						
+
+						</td><td>
+
+						<code class="literal">5 ^ 3</code> ergibt <code class="literal">6</code>
+						
+
+						</td></tr><tr><td>~</td><td>Bitweises NICHT</td><td>
+
+						Ergibt die bitweise Negation des Operanden. Dies wird auch als
+						das Einerkomplement bezeichnet. Das Einerkomplement einer Zahl x ist gleich -(x+1).
+
+						
+
+						</td><td>
+
+						<code class="literal">~5</code> ergibt <code class="literal">-6</code>.
+						
+
+						</td></tr><tr><td>&lt;</td><td>Kleiner als</td><td>
+
+						Das Ergebnis zeigt an, ob x kleiner als y ist.
+						Alle Vergleichsoperatoren liefern als Rückgabewert 1 für wahr und 0 für falsch.
+						Diese Werte entsprechen den speziellen logischen Konstanten
+						<code class="literal">True</code> bzw. <code class="literal">False</code>.
+						Beachten Sie die Großschreibung dieser Konstanten.
+						
+
+						</td><td>
+
+						<code class="literal">5 &lt; 3</code> ergibt
+						<code class="literal">0</code> (d.h. <code class="literal">False</code>) und
+						<code class="literal">3 &lt; 5</code> ergibt
+						<code class="literal">1</code> (d.h. <code class="literal">True</code>).
+						
+
+						Vergleiche können beliebig hintereinander geschaltet werden:
+						
+
+						3 &lt; 5 &lt; 7 ergibt <code class="literal">True</code>.
+						
+
+						</td></tr><tr><td>&gt;</td><td>Größer als</td><td>
+
+						Das Ergebnis zeigt an, ob x größer als y ist
+						
+
+						</td><td>
+
+						<code class="literal">5 &gt; 3</code> ist wahr, ergibt also
+						<code class="literal">True</code>. Falls beide Operanden Zahlen sind,
+						werden sie vor dem Vergleich zuerst in einen gemeinsamen Datentyp
+						umgewandelt. Andernfalls erhält man immer <code class="literal">False</code>.
+
+						
+
+						</td></tr><tr><td>&lt;=</td><td>Kleiner gleich</td><td>
+
+						Das Ergebnis zeigt an, ob x kleiner als oder gleich y ist
+						
+
+						</td><td>
+
+						<code class="literal">x = 3; y = 6; x &lt;= y</code>
+						ergibt <code class="literal">True</code>.
+						
+
+						</td></tr><tr><td>&gt;=</td><td>Größer gleich</td><td>
+
+						Das Ergebnis zeigt an, ob x größer als oder gleich y ist
+						
+
+						</td><td>
+
+						x = 4; y = 3; x &gt;= 3 ergibt <code class="literal">True</code>.
+						
+
+						</td></tr><tr><td>==</td><td>Gleichheit</td><td>
+
+						Prüft die beiden Objekte auf Gleichheit
+						
+
+						</td><td>
+
+						<code class="literal">x = 2; y = 2; x == y</code> ergibt <code class="literal">True</code>.
+						
+
+						<code class="literal">x = 'str'; y = 'stR'; x == y</code> ergibt <code class="literal">False</code>.
+						
+
+						<code class="literal">x = 'str'; y = 'str'; x == y</code> ergibt <code class="literal">True</code>.
+						
+
+						</td></tr><tr><td>!=</td><td>Ungleichheit</td><td>
+
+						Prüft die beiden Objekte auf Ungleichheit
+						
+
+						</td><td>
+
+						<code class="literal">x = 2; y = 3; x != y</code> ergibt <code class="literal">True</code>.
+						
+
+						</td></tr><tr><td>not</td><td>Logisches NICHT</td><td>
+
+						Bewirkt eine Invertierung des Wahrheitswertes: Wenn x <code class="literal">True</code>
+						ist, ist das Ergebnis <code class="literal">False</code>. Wenn x <code class="literal">False</code>
+						ist, ist das Ergebnis <code class="literal">True</code>.
+						
+
+						</td><td>
+
+						<code class="literal">x = True; not x</code> ergibt <code class="literal">False</code>.
+						
+
+						</td></tr><tr><td>and</td><td>Logisches UND</td><td>
+
+						<code class="literal">x and y</code> ergibt <code class="literal">x</code>, wenn
+						<code class="literal">x</code> als Wahrheitswert interpretiert gleich <code class="literal">False</code> ist.
+						Andernfalls ist das Ergebnis der Wert von of <code class="literal">y</code>.
+						Das Ergebnis entspricht daher einer logischen UND-Verknüpfung.
+
+						
+
+						</td><td>
+
+						<code class="literal">x = False; y = True; x and y</code> ergibt
+						<code class="literal">False</code>, da <code class="literal">x</code> <code class="literal">False</code> ist.
+						In diesem Fall wird der Python-Interpreter die Variable <code class="literal">y</code>
+						gar nicht erst in die Auswertung mit einbeziehen, da der Ausdruck
+						bereits falsch ist (da <code class="literal">x</code> <code class="literal">False</code> ist).
+						Dies wird eine "Kurzschlussauswertung" genannt: Sie liefert das
+						richtige Ergebnis, ohne dass <code class="literal">y</code> ausgewertet werden muss
+						(bedenken Sie, dass an der Stelle von <code class="literal">y</code> auch ein sehr komplizierter
+						Ausdruck stehen kann, dessen Berechnung lange Zeit in Anspruch nehmen würde oder
+						zu einem Fehler führen könnte - durch die verkürzte Auswertung wird dies vermieden).
+						So liefert z.B. <code class="literal">0 and 1/0</code> den Wert 0 zurück, da die Zahl 0
+						dem Wahrheitswert <code class="literal">False</code> entspricht. Der Ausdruck
+						<code class="literal">1/0</code> wird in diesem Fall nicht ausgewertet und führt daher
+						auch nicht zu einer Fehlermeldung.
+
+						
+						
+
+						</td></tr><tr><td>or</td><td>Logisches ODER</td><td>
+
+						<code class="literal">x or y</code> ergibt <code class="literal">x</code>, wenn
+						<code class="literal">x</code> als Wahrheitswert interpretiert gleich <code class="literal">True</code> ist.
+						Andernfalls ist das Ergebnis der Wert von <code class="literal">y</code>.
+						Das Ergebnis entspricht daher einer logischen ODER-Verknüpfung.
+
+						
+
+						</td><td>
+
+						<code class="literal">x = True; y = False; x or y</code> ergibt <code class="literal">True</code>.
+						Hier wird ebenfalls das Prinzip der Kurzschlussauswertung verwendet.
+						So liefert z.B. <code class="literal">3 and 1/0</code> ohne Fehlermeldung den Wert 123
+						zurück, da die Zahl 3 dem Wahrheitswert <code class="literal">True</code> entspricht.
+						Die Auswertung von <code class="literal">3/4 and 1/0</code> führt jedoch zu einer Fehlermeldung,
+						da die Division der Ganzzahlen den Wert 0 ergibt, was logisch gleich <code class="literal">False</code> ist.
+						
+
+						</td></tr></tbody></table></div></div><br class="table-break" /></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="operators-expressions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="operators-expressions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="operator-precedence.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 5. Operatoren und Ausdrücke </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Auswertungsreihenfolge der Operatoren</td></tr></table></div></body></html>

@@ -1,0 +1,89 @@
+﻿<appendix id="about">
+
+	<!-- German Translation 2005-03-23 by Christoph Zwerschke -->
+	<!-- Proofreading 2005-07-16 Christoph Zwerschke -->
+
+	<title>Zum Buch und seinem Autor</title> <!-- About -->
+
+	<section id="colophon">
+		<title>Schlusswort</title> <!-- Colophon -->
+
+		<para>
+			Fast alle Software, die ich zur Erstellung dieses Buchs benutzt habe,
+			ist <emphasis>freie Open-Source-Software</emphasis>.
+			Für den ersten Entwurf des Buchs hatte ich die Linux-Distribution
+			Red Hat 9.0 als Ausgangsbasis meiner Softwareinstallation benutzt,
+			und für diesen sechsten Entwurf benutze ich nun Fedora Core 3,
+			das ebenfalls auf Red Hat basiert.
+
+			<!-- Almost all of the software that I have used in the creation of this
+			book are <emphasis>free and open source software</emphasis>. In the
+			first draft of this book, I had used Red Hat 9.0 Linux as the foundation
+			of my setup and now for this sixth draft, I am using Fedora Core 3 Linux
+			as the basis of my setup. -->
+		</para>
+		<para>
+			Zunächst hatte ich KWord benutzt, um das Buch zu schreiben (wie in der
+			<link linkend="history-lesson">Geschichtsstunde</link> im Vorwort erläutert).
+			Später habe ich zu DocBook XML mit Kate als Editor gewechselt, fand es aber
+			zu mühsam. Daher habe ich zu OpenOffice gewechselt, das einfach hervorragend
+			war, weil es einem Kontrolle über die Formatierung gab und die Generierung von PDF
+			ermöglichte. Die Generierung von HTML war jedoch mangelhaft. Schließlich entdeckte
+			ich XEmacs und habe das Buch (noch einmal) von Anfang an in DocBook XML neu
+			geschrieben, nachdem ich entschieden hatte, dass dieses Format die langfristige Lösung war.
+			In diesem sechsten Entwurf habe ich entschieden, Quanta+ als Editor zu verwenden.
+
+			<!-- Initially, I was using KWord to write the book (as explained in the
+			<link linkend="history-lesson">History Lesson</link> in the preface). Later,
+			I switched to DocBook XML using Kate but I found it too tedious. So, I
+			switched to OpenOffice which was just excellent with the level of control
+			it provided for formatting as well as the PDF generation, but it produced
+			very sloppy HTML from the document. Finally, I discovered XEmacs and I rewrote
+			the book from scratch in DocBook XML (again) after I decided that this format
+			was the long term solution. In this new sixth draft, I decided to use Quanta+
+			to do all the editing. -->
+		</para>
+		<para>
+			Es werden die Standard-XSL-Stylesheets eingesetzt, wie sie Fedora Core 3 beiliegen.
+			Es werden auch die Standard-Zeichensätze benutzt. Ich habe aber eine CSS-Datei
+			geschrieben, um den HTML-Seiten etwas Farbe und Stil hinzuzufügen. Ich habe auch
+			ein simples lexikalisches Analyseprogramm geschrieben, natürlich in Python, das in den
+			Programmlistings automatisch Syntax-Hervorhebungen hinzufügt.
+
+			<!-- The standard XSL stylesheets that came with Fedora Core 3 Linux are being used.
+			The standard default fonts are used as well. The standard fonts are used as well.
+			However, I have written a CSS document to give color and style to the HTML pages.
+			I have also written a crude lexical analyzer, in Python of course, which
+			automatically provides syntax highlighting to all the program listings. -->
+		</para>
+	</section>
+
+	<section id="about-the-author">
+		<title>Über den Autor</title> <!-- About the Author -->
+
+		<para>
+			C. H. Swaroop liebt seine Arbeit als ein Softwareentwickler für Yahoo!
+			in der indischen Stadt Bangalore. Zu seinen technischen Interessengebieten
+			gehören FLOSS (Free/Libre Open Source Software) wie Linux, DotGNU,
+			Qt und MySQL, großartige Programmiersprachen wie Python und C#,
+			in der Freizeit Dinge wie dieses Buch und alle mögliche Software zu schreiben,
+			und auch sein Blog zu schreiben. Zu seinen weiteren Interessen gehören
+			Kaffee, Romane von Robert Ludlum, Trekking und Politik.
+
+			<!-- Swaroop C H loves his job which is being a software developer at Yahoo! in the
+			Bangalore office in India. His interests on the technological side
+			include FLOSS such as Linux, DotGNU, Qt and MySQL, great languages like Python
+			and C#, writing stuff like this book and any software he can create in his
+			spare time, as well as writing his blog. His other interests include coffee,
+			reading Robert Ludlum novels, trekking and politics. -->
+		</para>
+		<para>
+			Wenn Sie immer noch mehr über diesen Typ herausfinden möchten,
+			schauen Sie sich sein Blog unter
+			<ulink url="http://www.swaroopch.info">www.swaroopch.info</ulink> an.
+
+			<!-- If you are still to interested to know more about this guy, check out his
+			blog at <ulink url="http://www.swaroopch.info">www.swaroopch.info</ulink> . -->
+		</para>
+	</section>
+</appendix>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die Verwendung von Quelldateien</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="first-steps.html" title="Kapitel 3. Erste Schritte" /><link rel="prev" href="choosing-an-editor.html" title="Die Auswahl des Editors" /><link rel="next" href="executable-python-programs.html" title="Ausführbare Python-Programme" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die Verwendung von Quelldateien</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="choosing-an-editor.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 3. Erste Schritte</th><td width="20%" align="right"> <a accesskey="n" href="executable-python-programs.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="source-file"></a>Die Verwendung von Quelldateien</h2></div></div></div><p>
+
+		Jetzt aber zurück zum Programmieren. Traditionell ist das erste Programm, das Sie schreiben
+		und ausführen, wenn Sie eine neue Programmiersprache lernen, das "Hallo Welt"-Programm -
+		beim Ausführen macht es nichts anderes als 'Hallo Welt' zu sagen. Simon Cozens
+		
+		<a href="#ftn.idp5834672" class="footnote" id="idp5834672"><sup class="footnote">[1]</sup></a>
+		nennt es die "traditionelle Beschwörung der Programmiergötter, damit sie einem helfen
+		mögen, die Programmiersprache besser zu lernen" :).
+		
+		</p><p>
+
+		Starten Sie den von Ihnen bevorzugten Editor, geben Sie das folgende Programm ein, und
+		speichern Sie es unter dem Namen <code class="filename">hallowelt.py</code>
+
+		
+		</p><div class="example"><a id="source-file-example"></a><p class="title"><strong>Beispiel 3.2. Gebrauch einer Quelldatei
+					(<a class="ulink" href="code/hallowelt.py" target="_top">hallowelt.py</a>)
+			</strong></p><div class="example-contents"><pre class="programlisting">
+			
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">print</span> <span class="py-string">'Hallo Welt'</span>
+			
+			</pre></div></div><br class="example-break" /><p>
+
+		Um das Programm auszuführen, öffnen Sie eine Kommandozeilen-Umgebung (Linux-Terminal
+		oder DOS-Eingabeaufforderung) und geben Sie den Befehl
+		<span class="command"><strong>python <em class="replaceable"><code>hallowelt.py</code></em></strong></span> ein.
+		Wenn Sie IDLE benutzen, verwenden Sie das Menü <span class="guimenu">Edit</span> -&gt;
+		<span class="guimenuitem">Run Script</span> oder die Tastenkombination
+		<span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>F5</strong></span>.
+		Unten sehen Sie	die Ausgabe des Programms.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="source-file-output"></a>Ausgabe</h3></div></div></div><pre class="screen">
+			
+$ python hallowelt.py
+Hallo Welt
+			
+			</pre></div><p>
+
+		Sie sehen die gleiche Ausgabe wie oben gezeigt? Glückwunsch! - Sie haben gerade Ihr erstes
+		Python-Programm erfolgreich ausgeführt.
+
+		
+
+		</p><p>
+
+		Sollten Sie eine Fehlermeldung erhalten, überprüfen Sie bitte, ob Sie es
+		<span class="emphasis"><em>genau so</em></span> wie oben angegeben abgetippt haben.
+		Beachten Sie, dass Python zwischen Groß- und Kleinschreibung unterscheidet.
+		D.h. <code class="literal">print</code> ist nicht das Gleiche wie <code class="literal">Print</code>.
+		Stellen Sie auch sicher, dass sich keine Leerzeichen oder Tabulatorzeichen vor dem
+		ersten Zeichen einer Zeile befinden - wir werden später sehen, warum das wichtig ist.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="source-file-how"></a>So funktioniert es</h3></div></div></div><p>
+
+			Sehen wir uns die ersten beiden Zeilen des Programms an. Hierbei handelt es
+			sich um <span class="emphasis"><em>Kommentare</em></span> - alles was rechts des Zeichens
+			<code class="literal">#</code> steht, ist ein Kommentar und dient hauptsächlich als
+			Hinweis für Leser des Programms.
+
+			
+
+			</p><p>
+
+			Außer im Spezialfall der ersten Zeile interpretiert Python die Kommentare nicht weiter.
+			Diese erste Zeile wird <span class="emphasis"><em>Shebang-Zeile</em></span>
+			genannt - immer wenn Ihre Quelldatei mit den Zeichen <code class="literal">#!</code>
+			und der Pfadangabe für ein Programm beginnt, weiß Ihr Linux/Unix-System, dass das
+			Programm mit diesem Interpreter gestartet werden soll, wenn Sie es <span class="emphasis"><em>ausführen</em></span>.
+			Eine ausführliche Erklärung dazu folgt im <a class="link" href="executable-python-programs.html" title="Ausführbare Python-Programme">nächsten Kapitel</a>.
+			Unabhängig von der verwendeten Plattform können Sie das Programm immer ausführen,
+			indem Sie den Interpreter direkt in der Kommandozeile mit angeben, wie zum Beispiel
+			<span class="command"><strong>python <em class="replaceable"><code>hallowelt.py</code></em></strong></span>.
+
+			
+
+			</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Wichtig</h3><p>
+
+				Verwenden Sie Kommentare auf sinnvolle Weise in Ihrem Programm, um wichtige
+				Details zu erklären - dadurch können Leser Ihres Programms leichter verstehen,
+				wie es funktioniert. Vergessen Sie nicht, dass Sie selbst in sechs Monaten dieser Leser
+				sein könnten!
+
+				
+
+				</p></div><p>
+
+			Nach den Kommentaren folgt eine Python-<span class="emphasis"><em>Anweisung</em></span> - diese
+			gibt den Text <code class="literal">'Hallo Welt'</code> aus.
+			<code class="literal">print</code> ist eigentlich ein Operator und <code class="literal">'Hallo Welt'</code>
+			wird als String (Zeichenkette) bezeichnet. Keine Bange, wir werden diese Fachausdrücke
+			später ausführlich besprechen.
+
+			
+
+			</p></div><div class="footnotes"><br /><hr style="width:100; text-align:left;margin-left: 0" /><div id="ftn.idp5834672" class="footnote"><p><a href="#idp5834672" class="para"><sup class="para">[1] </sup></a>
+			einer der führenden Perl6/Parrot-Hacker und Autor des
+			fantastischen Buchs "Beginning Perl"
+			
+			</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="choosing-an-editor.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="first-steps.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="executable-python-programs.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die Auswahl des Editors </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Ausführbare Python-Programme</td></tr></table></div></body></html>

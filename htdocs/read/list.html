@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Listen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="data-structures.html" title="Kapitel 9. Datenstrukturen" /><link rel="prev" href="data-structures.html" title="Kapitel 9. Datenstrukturen" /><link rel="next" href="tuple.html" title="Tupel" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Listen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="data-structures.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 9. Datenstrukturen </th><td width="20%" align="right"> <a accesskey="n" href="tuple.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="list"></a>Listen</h2></div></div></div><p>
+
+		Eine <code class="literal">Liste</code> ist eine Datenstruktur, die eine angeordnete
+		Sammlung von Objekten enthält, d.h. in einer Liste kann man eine
+		<span class="emphasis"><em>Sequenz</em></span> (eine Abfolge) von Objekten abspeichern.
+		Sie können sich das wie eine Einkaufsliste vorstellen, die eine Liste
+		von zu kaufenden Dingen darstellt, außer dass Sie auf ihrer Einkaufsliste
+		die Dinge wahrscheinlich in getrennten Zeilen stehen haben,
+		wohingegen in Python zwischen den Objekten Kommas gesetzt werden müssen.
+
+		
+
+		</p><p>
+
+		Eine Liste von Objekten muss durch eckige Klammern (<code class="literal">[</code>
+		und <code class="literal">]</code>) eingeschlossen sein, damit Python sie als Liste erkennt.
+		Sobald Sie eine Liste erzeugt haben, können Sie ihr Objekte hinzufügen,
+		welche aus ihr entfernen oder nach bestimmten Objekten in ihr suchen. Da wir
+		Objekte hinzufügen und entfernen können, nennen wir eine Liste einen
+		<span class="emphasis"><em>veränderlichen</em></span> Datentyp.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="list-objects-classes"></a>Kurzeinführung in Objekte und Klassen</h3></div></div></div><p>
+
+			Bisher habe ich zwar die Diskussion von Objekten und Klassen
+			prinzipiell aufgeschoben, doch brauchen wir jetzt eine kurze Erläuterung
+			dieser Konzepte, damit Sie Listen besser verstehen können. Wir werden
+			dieses Thema noch detaillierter in einem eigenen
+			<a class="link" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung">Kapitel</a> untersuchen.
+
+			
+
+			</p><p>
+
+			Eine Liste ist ein Beispiel für die Verwendung von Objekten und Klassen.
+			Wenn Sie eine Variable <code class="varname">i</code> verwenden und ihr einen Wert,
+			z.B. die Ganzzahl <code class="literal">5</code> zuweisen, können Sie sich das als
+			die Erzeugung eines <span class="bold"><strong>Objekts</strong></span> (einer
+			Instanz) <code class="varname">i</code> der <span class="bold"><strong>Klasse</strong></span>
+			(des Typs) <code class="classname">int</code> vorstellen. Sie können sich auch
+			den Hilfetext <code class="literal">help(int)</code> anzeigen lassen, um dies besser
+			zu verstehen.
+
+			
+
+			</p><p>
+
+			Eine Klasse kann <span class="bold"><strong>Methoden</strong></span> haben, d.h.
+			Funktionen, die zur Verwendung im Zusammenhang mit genau dieser Klasse
+			definiert werden. Sie können diese Funktionen einer Klasse nur verwenden,
+			wenn Sie ein Objekt der Klasse haben. Zum Beispiel stellt Python die Methode
+			<code class="function">append</code> der Klasse <code class="classname">list</code> zur
+			Verfügung. Diese Methode erlaubt es Ihnen, ein Objekt am Ende einer
+			Liste anzufügen. So wird zum Beispiel <code class="literal">meineliste.append("ein Ding")</code>
+			den String <code class="literal">"ein Ding"</code> am Ende der Liste
+			<code class="varname">meineliste</code> anfügen. Beachten Sie die Verwendung der
+			Punktnotation, mit der Sie die Methode eines Objekts aufrufen können.
+
+			
+
+			</p><p>
+
+			Außerdem kann eine Klasse <span class="bold"><strong>Felder</strong></span> haben,
+			bei denen es sich um nichts weiter als Variablen handelt, die nur im Zusammenhang
+			mit der Klasse verwendet werden können. Sie können diese Variablen/Namen nur
+			verwenden, wenn Sie ein Objekt der Klasse haben. Auf Felder wird ebenfalls
+			mit der Punktnotation zugegriffen, z.B. <code class="varname">meineliste.feld</code>.
+
+			
+
+			</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-lists"></a>Benutzung von Listen</h3></div></div></div><div class="example"><a id="using-lists-example"></a><p class="title"><strong>Beispiel 9.1. Benutzung von Listen 
+					(<a class="ulink" href="code/listen.py" target="_top">listen.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-comment"># Dies ist meine Einkaufsliste</span>
+einkaufsliste = [<span class="py-string">'Aepfel'</span>, <span class="py-string">'Mangos'</span>, <span class="py-string">'Karotten'</span>, <span class="py-string">'Bananen'</span>]
+
+<span class="py-statement">print</span> <span class="py-string">'Ich habe'</span>, <span class="py-builtin">len</span>(einkaufsliste), <span class="py-string">'Dinge einzukaufen.'</span>
+
+<span class="py-statement">print</span> <span class="py-string">'Diese Dinge sind:'</span>, <span class="py-comment"># Beachten Sie das Komma am Zeilenende</span>
+<span class="py-statement">for</span> ding <span class="py-statement">in</span> einkaufsliste:
+	<span class="py-statement">print</span> ding,
+
+<span class="py-statement">print</span> <span class="py-string">'\nIch muss auch Reis einkaufen.'</span>
+einkaufsliste.append(<span class="py-string">'Reis'</span>)
+<span class="py-statement">print</span> <span class="py-string">'Meine Einkaufsliste ist jetzt:'</span>
+<span class="py-statement">print</span> einkaufsliste
+
+<span class="py-statement">print</span> <span class="py-string">'Jetzt werde ich meine Einkaufsliste sortieren.'</span>
+einkaufsliste.sort()
+<span class="py-statement">print</span> <span class="py-string">'Die sortierte Einkaufsliste ist:'</span>
+<span class="py-statement">print</span> einkaufsliste
+
+<span class="py-statement">print</span> <span class="py-string">'Zuerst werde ich'</span>, einkaufsliste[<span class="py-number">0</span>], <span class="py-string">'kaufen.'</span>
+altesding = einkaufsliste[<span class="py-number">0</span>]
+<span class="py-statement">del</span> einkaufsliste[<span class="py-number">0</span>]
+<span class="py-statement">print</span> <span class="py-string">'Ich habe'</span>, altesding, <span class="py-string">'gekauft.'</span>
+<span class="py-statement">print</span> <span class="py-string">'Meine Einkaufsliste ist jetzt:'</span>
+<span class="py-statement">print</span> einkaufsliste
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-lists-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python listen.py
+Ich habe 4 Dinge einzukaufen.
+Diese Dinge sind: Aepfel Mangos Karotten Bananen
+Ich muss auch Reis einkaufen.
+Meine Einkaufsliste ist jetzt:
+['Aepfel', 'Mangos', 'Karotten', 'Bananen', 'Reis']
+Jetzt werde ich meine Einkaufsliste sortieren.
+Die sortierte Einkaufsliste ist:
+['Aepfel', 'Bananen', 'Karotten', 'Mangos', 'Reis']
+Zuerst werde ich Aepfel kaufen.
+Ich habe Aepfel gekauft.
+Meine Einkaufsliste ist jetzt:
+['Bananen', 'Karotten', 'Mangos', 'Reis']
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-lists-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Die Variable <code class="varname">einkaufsliste</code> ist eine Einkaufsliste für
+				jemanden, der auf den Markt geht. In <code class="varname">einkaufsliste</code>
+				speichern wir nur die Namen der Dinge als Strings ab; aber denken Sie daran,
+				dass Sie einer Liste <span class="emphasis"><em>alle Arten von Objekten</em></span> hinzufügen
+				können, also auch Zahlen und sogar andere Listen.
+
+				
+
+				</p><p>
+
+				Wir haben auch die <code class="literal">for..in</code>-Schleife verwendet, um
+				die Elemente in der Liste zu durchlaufen. Inzwischen werden Sie gemerkt
+				haben, dass eine Liste auch eine Sequenz ist. Die Besonderheiten von
+				Sequenzen werden wir in einem späteren
+				<a class="link" href="sequences.html" title="Sequenzen">Abschnitt</a> besprechen.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass wir ein <span class="emphasis"><em>Komma</em></span> am Ende der
+				<code class="literal">print</code>-Anweisung verwendet haben, um die automatische
+				Ausgabe eines Zeilenumbruchs nach der <code class="literal">print</code>-Anweisung
+				zu unterdrücken. Das ist eine etwas unschöne Weise, dies zu erreichen,
+				aber sie ist einfach und erreicht genau das, was wir wollen.
+
+				
+
+				</p><p>
+
+				Als Nächstes fügen wir unter Benutzung der Methode
+				<code class="methodname">append</code> der Liste ein Objekt hinzu, wie
+				wir es bereits besprochen haben. Dann überprüfen wir, ob das
+				Objekt der Liste wirklich hinzugefügt wurde, indem wir den Inhalt
+				der Liste einfach der <code class="literal">print</code>-Anweisung übergeben,
+				die uns die Liste in einer übersichtlichen Weise ausgibt.
+
+				
+
+				</p><p>
+
+				Danach sortieren wir die Liste mit der zur Liste gehörenden Methode
+				<code class="methodname">sort</code>. Beachten Sie, dass diese Methode
+				die Liste selbst verändert und nicht etwa eine veränderte Liste
+				zurückliefert - hierin unterscheidet sie sich im Verhalten von Strings.
+				Das ist gemeint, wenn wir sagen, eine Liste sei
+				<span class="emphasis"><em>veränderlich</em></span>, Strings dagegen
+				<span class="emphasis"><em>unveränderlich</em></span>.
+
+				
+
+				</p><p>
+
+				Nachdem wir etwas auf dem Markt gekauft haben, wollen wir es aus der
+				Liste entfernen. Das erreichen wir durch die Anweisung <code class="literal">del</code>.
+				Wir geben hierbei an, welches Objekt wir aus der Liste entfernen wollen, und
+				die <code class="literal">del</code>-Anweisung löscht es für uns aus der Liste.
+				Da wir das erste Objekt aus der Liste entfernen wollen, verwenden wir
+				<code class="literal">del einkaufsliste[0]</code> (erinnern Sie sich daran, dass
+				Python bei 0 zu zählen beginnt).
+
+				
+
+				</p><p>
+
+				Wenn Sie alle Methoden wissen möchten, die für Listen-Objekte
+				definiert sind, dann erhalten Sie die Details mit <code class="literal">help(list)</code>.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="data-structures.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="data-structures.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="tuple.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 9. Datenstrukturen  </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Tupel</td></tr></table></div></body></html>

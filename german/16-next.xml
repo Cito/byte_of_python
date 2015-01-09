@@ -1,0 +1,502 @@
+﻿<chapter id="what-next">
+
+	<!-- German translation 2005-02-28 by Christoph Zwerschke -->
+	<!-- Proofreading 2005-07-16 Christoph Zwerschke -->
+
+	<title>Was kommt als Nächstes?</title> <!-- What Next? -->
+
+	<para>
+
+	Wenn Sie dieses Buch bis hierher gründlich gelesen haben, und sich darin geübt haben,
+	viele Programme zu schreiben, dann müssten Sie sich inzwischen mit Python angefreundet
+	haben und damit vertraut geworden sein. Sie haben vermutlich einige Python-Programme
+	geschrieben, um verschiedene Dinge auszuprobieren, und um Ihre Python-Kenntnisse in
+	der Praxis zu üben. Wenn Sie dies noch nicht getan haben, dann sollten Sie es noch tun.
+	Jetzt stellt sich die Frage: &quot;Was kommt als Nächstes?&quot;
+
+	<!-- If you have read this book thoroughly till now and practiced writing a lot of programs, then you
+	must have become comfortable and familiar with Python.  You have probably created some Python
+	programs to try out stuff and to exercise your Python skills as well. If you have not done it
+	already, you should. The question now is 'What Next?'. -->
+
+	</para>
+	<para>
+
+	Ich möchte vorschlagen, dass Sie sich einmal an dieses Problem heran wagen: Schreiben Sie Ihr
+	eigenes kommandozeilenbasiertes <emphasis>Adressbuch</emphasis>-Programm, mit dem
+	Sie Ihre Kontaktadressen wie Freunde, Familie, Kollegen, und die zugehörigen Informationen
+	wie E-Mail-Adresse und/oder Telefonnummer hinzufügen, verändern, löschen oder durchsuchen können.
+	Die Daten müssen für den späteren Zugriff gespeichert werden.
+
+	<!-- I would suggest that you tackle this problem: create your own command-line
+	<emphasis>address-book</emphasis> program using which you can add, modify, delete or search for
+	your contacts such as friends, family and colleagues and their information such as email address
+	and/or phone number. Details must be stored for later retrieval. -->
+
+	</para>
+	<para>
+
+	Dies ist einigermaßen einfach, wenn Sie darüber vor dem Hintergrund der Dinge
+	nachdenken, die wir bisher schon besprochen haben. Wenn Sie dennoch Hinweise wünschen,
+	wie Sie dabei vorgehen können, dann ist hier ein Tipp für Sie.
+
+	<!-- This is fairly easy if you think about it in terms of all the various stuff that we have come
+	across till now. If you still want directions on how to proceed, then here's a hint. -->
+
+	</para>
+	<formalpara>
+		<title>Tipp (Sie sollten ihn eigentlich nicht lesen)</title> <!-- Hint. (You shouldn't be reading this) -->
+
+		<para>
+
+		Erzeugen Sie eine Klasse, um die Informationen der Person zu speichern. Benutzen
+		Sie ein Dictionary, um die Personen-Objekte mit ihrem jeweiligen Namen als Schlüssel zu speichern.
+		Benutzen Sie das <literal>pickle</literal>-Modul, um die Objekte persistent auf Ihrer Festplatte
+		zu speichern. Benutzen Sie die eingebauten Dictionary-Methoden, um Personen hinzuzufügen,
+		zu löschen und zu ändern.
+
+		<!-- Create a class to represent the person's information. Use a dictionary to store person
+		objects with their name as the key. Use the cPickle module to store the objects
+		persistently on your hard disk. Use the dictionary built-in methods to add, delete and
+		modify the persons. -->
+
+		</para>
+	</formalpara>
+
+	<para>
+
+	Wenn Sie dies einmal geschafft haben, können Sie behaupten, ein Python-Programmierer zu sein.
+	Danach sollten Sie mir sofort eine Mail schicken, um sich für dieses großartige Buch zu bedanken ;-)
+	Dieser Schritt ist optional, aber empfohlen.
+
+	<!-- Once you are able to do this, you can claim to be a Python programmer. Now, immediately send me
+	a mail thanking me for this great book ;-) . This step is optional but recommended. -->
+
+	</para>
+	<para>
+
+	Hier sind einige weitere Möglichkeiten für Ihre weitere Python-Entdeckungsreise:
+
+	<!-- Here are some ways to continue your journey with Python: -->
+
+	</para>
+
+	<section id="graphical-software">
+		<title>Software mit grafischer Oberfläche</title> <!-- Graphical Software -->
+
+		<para>
+
+		<emphasis role="bold">GUI</emphasis>-Bibliotheken für Python - Sie brauchen
+		diese, um Ihre eigenen grafischen Benutzeroberflächen (GUIs) zu programmieren.
+		Sie können sich Ihr eigenes IrfanView oder Kuickshow oder irgendetwas in der Art schreiben,
+		indem Sie GUI-Bibliotheken mit ihrer jeweiligen Python-Anbindung benutzen.
+		Eine solche Anbindung ermöglicht es Ihnen, Programme in Python zu schreiben, in
+		denen Sie auf diese Bibliotheken zurückgreifen, die ihrerseits in C oder C++ oder
+		anderen Sprachen geschrieben sind.
+
+		<!-- <emphasis role="bold">GUI</emphasis> Libraries using Python - you need these to create
+		your own graphical programs using Python. You can create your own IrfanView or
+		Kuickshow or anything like that using the GUI libraries with their Python bindings.
+		Bindings are what allow you to write programs in Python and use the libraries which are
+		themselves written in C or C++ or other languages. -->
+
+		</para>
+		<para>
+
+		Es gibt eine große Auswahl an GUI-Bibliotheken für Python:
+
+		<!-- There are lots of choices for GUI using Python: -->
+
+		</para>
+
+		<itemizedlist>
+			<listitem>
+				<formalpara>
+					<title>PyQt</title>
+
+					<para>
+
+					Dies ist die Python-Anbindung für das Qt-Toolkit, das die Grundlage ist,
+					auf der KDE aufgebaut wurde. Qt ist äußerst einfach zu benutzen und sehr
+					mächtig, besonders aufgrund des Qt-Designers und der hervorragenden
+					Qt-Dokumentation. Sie können es unter Linux kostenlos benutzen, aber Sie
+					müssen es bezahlen, wenn Sie es unter Windows benutzen wollen. PyQt
+					ist frei, wenn Sie freie Software (gemäß der GPL) unter Linux/Unix erstellen,
+					und muss bezahlt werden, wenn Sie proprietäre Software erstellen wollen.
+					Eine gute (englische) Informationsquelle zu PyQt ist <ulink
+					url="http://www.opendocs.org/pyqt/">&quot;GUI Programming with
+					Python: Qt Edition&quot;</ulink>. Weitere Einzelheiten finden Sie auf der offiziellen
+					<ulink url="http://www.riverbankcomputing.co.uk/pyqt/">PyQt-Website</ulink>.
+
+					<!-- This is the Python binding for the Qt toolkit which is the foundation
+					upon which the KDE is built. Qt is extremely easy to use and very
+					powerful especially due to the Qt Designer and the amazing Qt
+					documentation. You can use it for free on Linux but you will have to
+					pay for it if you want to use it on Windows. PyQt is free if you want
+					to create free (GPL'ed) software on Linux/Unix and paid if you want to
+					create proprietary software. A good resource on PyQt is
+					<ulink url="http://www.opendocs.org/pyqt/">'GUI Programming with
+					Python: Qt Edition'</ulink>. See the
+					<ulink url="http://www.riverbankcomputing.co.uk/pyqt/index.php"
+					>official homepage</ulink> for more details. -->
+
+					</para>
+				</formalpara>
+			</listitem>
+			<listitem>
+				<formalpara>
+					<title>PyGTK</title>
+
+					<para>
+
+					Dies ist die Python-Anbindung für das GTK+-Toolkit, das die Grundlage ist,
+					auf der GNOME aufgebaut wurde. GTK+ hat im Gebrauch viele Eigenheiten;
+					wenn Sie aber einmal damit vertraut sind, können Sie schnell GUI-Anwendungen
+					erstellen. Das Werkzeug Glade zum entwerfen  der grafischen Schnittstelle
+					ist hierbei unverzichtbar. Die Dokumentation müsste noch verbessert werden.
+					GTK+ läuft gut unter Linux, aber die Portierung auf Windows ist unvollständig.
+					Sie können mit GTK+ sowohl freie als auch proprietäre Software entwickeln.
+					Weitere Einzelheiten finden Sie auf der offiziellen
+					<ulink url="http://www.pygtk.org">PyGTK-Website</ulink>.
+
+					<!-- This is the Python binding for the GTK+ toolkit which is the
+					foundation upon which GNOME is built. GTK+ has many quirks in usage
+					but once you become comfortable, you can create GUI apps fast. The
+					Glade graphical interface designer is indispensable. The documentation
+					is yet to improve. GTK+ works well on Linux but its port to Windows
+					is incomplete. You can create both free as well as proprietary software
+					using GTK+. See the <ulink url="http://www.pygtk.org/">official
+					homepage</ulink> for more details. -->
+
+					</para>
+				</formalpara>
+			</listitem>
+			<listitem>
+				<formalpara>
+					<title>wxPython</title>
+
+					<para>
+
+					Dies ist die Python-Anbindung für das wxWidgets-Toolkit. Mit wxPython
+					ist eine gewisse Lernkurve verbunden. Es ist jedoch sehr portabel und läuft
+					unter Linux, Windows, Mac und sogar auf  Embedded-Systemen.
+					Für wxPython sind viele IDEs verfügbar, darunter
+					<ulink url="http://drpython.sourceforge.net">DrPython</ulink>,
+					<ulink url="http://spe.pycs.net">SPE (Stani's Python Editor)</ulink>,
+					das auch einen GUI-Designer beinhaltet, sowie der GUI-Builder
+					<ulink url="http://wxglade.sourceforge.net">wxGlade</ulink>.
+					Sie können mit wxPython sowohl freie als auch proprietäre Software entwickeln.
+					Weitere Einzelheiten finden Sie auf der offiziellen
+					<ulink url="http://www.wxpython.org">wxPython-Website</ulink>.
+
+					<!-- This is the Python bindings for the wxWidgets toolkit. wxPython has
+					a learning curve associated with it. However, it is very portable
+					and runs on Linux, Windows, Mac and even embedded platforms. There
+					are many IDEs available for wxPython which include GUI designers as
+					well such as <ulink url="http://spe.pycs.net/">SPE (Stani's Python
+					Editor)</ulink> and the
+					<ulink url="http://wxglade.sourceforge.net/">wxGlade</ulink> GUI
+					builder. You can create free as well as proprietary software using
+					wxPython. See the <ulink url="http://www.wxpython.org/">official
+					homepage</ulink> for more details. -->
+
+					</para>
+				</formalpara>
+			</listitem>
+			<listitem>
+				<formalpara>
+					<title>TkInter</title>
+
+					<para>
+
+					Dies ist das älteste existierende GUI-Toolkit für Python. Wenn Sie
+					<application>IDLE</application> benutzt haben, dann haben Sie
+					bereits gesehen, wie ein TkInter-Programm aussehen kann.
+					Die Dokumentation für TkInter in der <ulink
+					url="http://www.pythonware.com/library/tkinter/introduction/"
+					>PythonWare</ulink>-Bibliothek ist umfangreich. TkInter ist portierbar
+					und läuft sowohl unter Linux/Unix als auch unter Windows.
+					Ein wichtiger Vorteil von TkInter ist, dass es Bestandteil der
+					Standard-Distribution von Python ist.
+
+					<!-- This is one of the oldest GUI toolkits in existence. If you have used
+					<application>IDLE</application>, you have seen a TkInter program at
+					work. The documentation for TkInter at <ulink
+					url="http://www.pythonware.com/library/tkinter/introduction/index.htm"
+					>PythonWare.org</ulink> is comprehensive. TkInter is portable and works
+					on both Linux/Unix as well as Windows. Importantly, TkInter is part of
+					the standard Python distribution. -->
+
+					</para>
+				</formalpara>
+			</listitem>
+			<listitem>
+				<para>
+
+				Eine weitere Auswahl von grafischen Oberflächen für Python
+				finden Sie auf der Wiki-Seite über <ulink
+				url="http://www.python.org/cgi-bin/moinmoin/GuiProgramming"
+				>GUI-Programmierung</ulink> auf Python.org.
+
+				<!-- For more choices, see the <ulink
+				url="http://www.python.org/cgi-bin/moinmoin/GuiProgramming"
+				>GuiProgramming wiki page at Python.org</ulink> -->
+
+				</para>
+			</listitem>
+		</itemizedlist>
+
+		<section id="summary-gui-tools">
+			<title>Zusammenfassung GUI-Tools</title> <!-- Summary of GUI Tools -->
+
+			<para>
+
+			Leider gibt es kein Standard-GUI-Tool für Python. Ich schlage vor, dass Sie
+			eines der obigen Toolkits auswählen, je nach Ihrer Situation. Der erste Faktor,
+			den Sie dabei bedenken müssen, ist, ob Sie bereit sind, für das GUI-Tool
+			Geld auszugeben. Der zweite Faktor ist, ob Sie Ihr Programm für Linux oder
+			für Windows oder für beides entwickeln wollen. Der dritte Faktor ist, ob Sie
+			als Linux-Benutzer eher eine Präferenz für KDE oder für GNOME haben.
+
+			<!-- Unfortunately, there is no one standard GUI tool for Python. I suggest that you
+			choose one of the above tools depending on your situation. The first factor is
+			whether you are willing to pay to use any of the GUI tools. The second factor
+			is whether you want the program to run on Linux or Windows or both. The third
+			factor is whether you are a KDE or GNOME user on Linux. -->
+
+			</para>
+			<important>
+				<title>Zukünftige Kapitel</title> <!-- Future Chapters -->
+
+				<!-- TODO: Work on future chapter on one of the GUI toolkit -->
+
+				<para>
+
+				Ich erwäge, für dieses Buch ein oder zwei Kapitel über GUI-Programmierung
+				zu schreiben. Ich werde wahrscheinlich hierbei wxPython als Toolkit auswählen.
+				Wenn Sie Ihre Ansicht über dieses Thema äußern möchten, dann können Sie dies
+				auf der <ulink url="http://lists.ibiblio.org/mailman/listinfo/byte-of-python"
+				>Byte-of-Python-Mailingliste</ulink> tun, wo Leser mit mir diskutieren, welche
+				Verbesserungen an dem Buch vorgenommen werden können.
+
+				<!-- I am contemplating writing 1 or 2 chapters for this book on GUI Programming.
+				I will be probably be choosing wxPython as the choice of toolkit. If you would
+				like to present your views on the subject, please join the
+				<ulink url="http://lists.ibiblio.org/mailman/listinfo/byte-of-python"
+				>byte-of-python mailing list</ulink> where readers discuss with me on what
+				improvements can be made to the book. -->
+
+				</para>
+			</important>
+		</section>
+	</section>
+	<section id="explore-more">
+		<title>Entdecken Sie mehr</title> <!-- Explore More -->
+
+		<itemizedlist>
+			<listitem>
+				<para>
+
+				Die <emphasis role="bold">Python-Standardbibliothek</emphasis> ist sehr
+				umfangreich. In den meisten Fällen hält diese Bibliothek wahrscheinlich schon das bereit,
+				wonach Sie vielleicht suchen. Für diesen Ansatz von Python, dem Programmierer möglichst viel
+				Funktionalität von Haus aus bereitzustellen, wird oft der Slogan &quot;Batterien im
+				Lieferumfang&quot; (<foreignphrase>batteries included</foreignphrase>) verwendet.
+				Ich empfehle Ihnen auch sehr, dass Sie sich die
+				<ulink url="http://docs.python.org">Standard-Dokumentation von Python</ulink>
+				anschauen, bevor Sie anfangen, größere Programme zu schreiben. Auf der Website
+				Python.org finden Sie übrigens auch Verweise auf Artikel und Anleitungen zu
+				<ulink url="http://www.python.org/doc/NonEnglish.html#german"
+				>Python in deutscher Sprache</ulink>.
+
+				<!-- The <emphasis role="bold">Python Standard Library</emphasis> is an
+				extensive library. Most of the time, this library will have what you are
+				looking for. This is referred to as the 'batteries included' philosophy of
+				Python. I highly recommend that you go through the
+				<ulink url="http://docs.python.org/">Python Standard Documentation</ulink>
+				before you proceed to start writing large Python programs. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				<ulink url="http://www.python.org">Python.org</ulink> - die offizielle
+				Website der Programmiersprache Python. Hier finden Sie die jeweils aktuelle Version
+				von Python. Es gibt hier auch verschiedene Mailinglisten, in denen aktiv über
+				verschiedene Aspekte von Python diskutiert wird.
+
+				<!-- <ulink url="http://www.python.org/">Python.org</ulink> - the official homepage
+				of the Python programming language. You will find the latest versions of the
+				Python language and interpreter here. There are also various mailing lists where
+				active discussions on various aspects of Python take place. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				<emphasis role="bold">comp.lang.python</emphasis> ist das Usenet-Forum,
+				in dem über diese Sprache diskutiert wird. Sie können Ihre Zweifel und Anfragen in
+				diesem Forum äußern. Sie können auf das Forum über <ulink
+				url="http://groups.google.com/groups?hl=de&amp;ie=UTF-8&amp;group=comp.lang.python"
+				>Google Groups</ulink> online zugreifen, oder die
+				<ulink url="http://mail.python.org/mailman/listinfo/python-list">Mailingliste</ulink>
+				abbonieren, die in dieses Forum gespiegelt wird.
+
+				<!-- <emphasis role="bold">comp.lang.python</emphasis> is the usenet newsgroup
+				where discussion about this language takes place. You can post your doubts
+				and queries to this newsgroup. You can access this online using
+				<ulink
+				url="http://groups.google.com/groups?hl=en&amp;lr=&amp;ie=UTF-8&amp;group=comp.lang.python"
+				>Google Groups</ulink> or join the
+				<ulink url="http://mail.python.org/mailman/listinfo/python-list"
+				>mailing list</ulink> which is just a mirror of the newsgroup. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Das <ulink url="http://aspn.activestate.com/ASPN/Python/Cookbook/"
+				>Python-Kochbuch</ulink> ist eine äußerst wertvolle Sammlung von Rezepten
+				oder Tipps, wie man bestimmte Problemarten mit Python lösen kann. Es ist eine der
+				Websites, die man als Python-Benutzer unbedingt gelesen haben muss.
+
+				<!-- <ulink url="http://aspn.activestate.com/ASPN/Python/Cookbook/">Python
+				Cookbook</ulink> is an extremely valuable collection of recipes or tips
+				on how to solve certain kinds of problems using Python. This is a
+				must-read for every Python user. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				<ulink url="http://gnosis.cx/publish/tech_index_cp.html">Charming
+				Python</ulink> ist eine exzellente Serie von Artikeln rund um Python von David Mertz.
+
+				<!-- <ulink url="http://gnosis.cx/publish/tech_index_cp.html">Charming
+				Python</ulink> is an excellent series of Python-related articles by David Mertz. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				<ulink url="http://www.diveintopython.org/">Dive Into Python</ulink> ist
+				ein sehr gutes Buch für erfahrene Python-Programmierer. Wenn Sie das Buch, das Sie
+				gerade lesen, gründlich durchgelesen haben, empfehle ich Ihnen, als Nächstes
+				&quot;Dive Into Python&quot; zu lesen. Es behandelt eine Reihe von Themen,
+				darunter auch die Verarbeitung von XML, Test von Programmeinheiten
+				(<foreignphrase>Unit Testing</foreignphrase>), sowie funktionale Programmierung.
+
+				<!-- <ulink url="http://www.diveintopython.org/">Dive Into Python</ulink>
+				is a very good book for experienced Python programmers. If you have
+				thoroughly read the current book you are reading, then I would highly
+				recommend that you read 'Dive Into Python' next. It covers a range
+				of topics including XML Processing, Unit Testing and Functional
+				Programming. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				<ulink url="http://www.jython.org">Jython</ulink> ist eine Implementierung
+				des Python-Interpreters in der Sprache Java. Das bedeutet, dass Sie Programme in Python
+				schreiben können, und dabei auch auf die Java-Bibliotheken zugreifen können!
+				Jython ist eine stabile und ausgereifte Software. Wenn Sie auch ein Java-Programmierer sind,
+				empfehle ich Ihnen sehr, Jython einmal auszuprobieren.
+
+				<!-- <ulink url="http://www.jython.org/">Jython</ulink> is an implementation of
+				the Python interpreter in the Java language. This means that you can write
+				programs in Python and use the Java libraries as well! Jython is a stable
+				and mature software. If you are a Java programmer as well, I highly
+				recommend that you give Jython a try. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				<ulink url="http://www.ironpython.com">IronPython</ulink> ist eine
+				Implementierung des Python-Interpreters in der Sprache C# und läuft auf den
+				.NET/Mono/DotGNU-Plattformen. Das bedeutet, dass Sie Programme in Python schreiben
+				und dabei auf die .NET-Bibliotheken und andere Bibliotheken zugreifen können, die von diesen
+				drei Plattformen zur Verfügung gestellt werden! IronPython ist noch Prä-Alpha-Software
+				und bisher nur zum Experimentieren geeignet. Jim Hugunin, der IronPython geschrieben hat,
+				ist inzwischen ein Microsoft-Mitarbeiter und wird zukünftig an einer vollständigen Version
+				von IronPython arbeiten.
+
+				<!-- <ulink url="http://www.ironpython.com/">IronPython</ulink> is an implementation
+				of the Python interpreter in C# language and can run on the .NET / Mono / DotGNU
+				platform. This means that you can write programs in Python and use the
+				.NET Libraries and other libraries provided by these 3 platforms as well!
+				IronPython is still pre-alpha software and is suitable only for experimenting
+				as of now. Jim Hugunin, who wrote IronPython has joined Microsoft and will be
+				working towards a full version of IronPython in future. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				<ulink url="http://www.caddr.com/code/lython/">Lython</ulink> ist ein
+				Lisp-Frontend für die Sprache Python. Es ähnelt Common Lisp und kompiliert direkt in
+				Python-Bytecode, was bedeutet, dass es mit normalem Python-Code zusammen arbeitet.
+
+				<!-- <ulink url="http://www.caddr.com/code/lython/">Lython</ulink> is a Lisp
+				frontend to the Python language. It is similar to Common Lisp and compiles
+				directly to Python bytecode which means that it will interoperate with our
+				usual Python code. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Es gibt eine Menge weiteres Material über und für Python im Internet. Einige der interessanten
+				Webseiten sind <ulink url="http://www.pythonware.com/daily/">Daily Python-URL</ulink>,
+				wo man über die letzten Trends rund um Python auf dem Laufenden gehalten wird,
+				<ulink url="http://www.vex.net/parnassus/">Vaults of Parnassus</ulink>,
+				<ulink url="http://www.onlamp.com/python/">ONLamp.com Python DevCenter</ulink>,
+				<ulink url="http://dirtsimple.org/">dirtSimple.org</ulink>,
+				<ulink url="http://pythonnotes.blogspot.com/">Python Notes</ulink>,
+				und es gibt noch sehr viele weitere interessante Python-Webseiten zu entdecken.
+
+				<!-- There are many many more resources on Python. Interesting ones are
+				<ulink url="http://www.pythonware.com/daily/">Daily Python-URL!</ulink>
+				which keeps you up to date on the latest Python happenings,
+				<ulink url="http://www.vex.net/parnassus/">Vaults of Parnassus</ulink>,
+				<ulink url="http://www.onlamp.com/python/">ONLamp.com Python DevCenter</ulink>,
+				<ulink url="http://dirtsimple.org/">dirtSimple.org</ulink>,
+				<ulink url="http://pythonnotes.blogspot.com/">Python Notes</ulink>
+				and many many more. -->
+
+				</para>
+			</listitem>
+		</itemizedlist>
+	</section>
+
+	<section id="what-next-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir sind nun am Ende des Buchs angelangt, aber, wie man sagt,
+		<emphasis>dies ist der Anfang vom Ende</emphasis>!
+		Sie sind nun ein begeisterter und eifriger Python-Anwender, und brennen bestimmt darauf,
+		viele Probleme mit Python zu lösen. Sie können damit anfangen, Ihren Computer zu automatisieren,
+		alle möglichen früher unvorstellbaren Dinge zu tun, oder Ihre eigenen Spiele zu schreiben
+		und noch viel mehr. Also, worauf warten Sie noch?
+
+		<!-- We have now come to the end of this book but, as they say, this is the
+		<emphasis>the beginning of the end</emphasis>!. You are now an avid Python user and you
+		are no doubt ready to solve many problems using Python. You can start automating your
+		computer to do all kinds of previously unimaginable things or write your own games
+		and much much more. So, get started! -->
+
+		</para>
+	</section>
+</chapter>

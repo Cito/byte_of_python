@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Dictionaries</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="data-structures.html" title="Kapitel 9. Datenstrukturen" /><link rel="prev" href="tuple.html" title="Tupel" /><link rel="next" href="sequences.html" title="Sequenzen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Dictionaries</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="tuple.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 9. Datenstrukturen </th><td width="20%" align="right"> <a accesskey="n" href="sequences.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="dictionary"></a>Dictionaries</h2></div></div></div><p>
+
+		Ein Dictionary (Wörterbuch) ist wie ein Adressbuch, in dem man die Adressen oder
+		Kontaktangaben zu einer Person finden kann, wenn man ihren Namen kennt, d.h. wir
+		ordnen <span class="bold"><strong>Schlüssel</strong></span> (Namen) <span class="bold"><strong>Werte</strong></span>
+		(Kontaktdaten) zu. Beachten Sie, dass der Schlüssel eindeutig sein muss, genau wie
+		man auch nicht die korrekte Information herausfinden kann, wenn man zwei Personen
+		des exakt gleichen Namens in seinem Adressbuch hat.
+
+		
+
+		</p><p>
+
+		Beachten Sie, dass man nur unveränderliche Objekte (wie Strings) als Schlüssel eines
+		Dictionaries verwenden kann, aber dass man sowohl unveränderliche als auch veränderliche
+		Objekte als Werte des Dictionaries benutzen darf. Das bedeutet im Wesentlichen,
+		dass man nur einfache Objekte als Schlüssel verwenden sollte.
+
+		
+
+		</p><p>
+
+		Paare von Schlüsseln und Werten werden in einem Dictionary mittels der Schreibweise
+		<code class="literal">d = { schluessel1 : wert1, schluessel2 : wert2 }</code> angegeben.
+		Beachten Sie, dass die Schlüssel/Wert-Paare mit Doppelpunkte getrennt werden
+		und die Paare selbst durch Kommas voneinander getrennt werden, und alles insgesamt
+		in ein paar geschweifter Klammern eingeschlossen wird.
+
+		
+
+		</p><p>
+
+		Denken Sie daran, dass Schlüssel/Wert-Paare in einem Dictionary in keiner Weise
+		sortiert sind. Wenn Sie eine bestimmte Reihenfolge wünschen, dann müssen Sie diese
+		vor Gebrauch durch Sortierung der Schlüssel selbst herstellen.
+
+		
+
+		</p><p>
+
+		Die Dictionaries, die Sie benutzen werden, sind Instanzen/Objekte
+		der Klasse <code class="classname">dict</code>.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-dictionaries"></a>Benutzung von Dictionaries</h3></div></div></div><div class="example"><a id="using-dictionaries-example"></a><p class="title"><strong>Beispiel 9.4. Benutzung von Dictionaries 
+					(<a class="ulink" href="code/dict.py" target="_top">dict.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-comment"># 'ab' steht kurz fuer 'A'dress'b'uch</span>
+
+ab = {		<span class="py-string">'Swaroop'</span>   : <span class="py-string">'swaroopch@byteofpython.info'</span>,
+		<span class="py-string">'Larry'</span>     : <span class="py-string">'larry@wall.org'</span>,
+		<span class="py-string">'Matsumoto'</span> : <span class="py-string">'matz@ruby-lang.org'</span>,
+		<span class="py-string">'Spammer'</span>   : <span class="py-string">'spammer@hotmail.com'</span>
+	}
+
+<span class="py-statement">print</span> <span class="py-string">"Swaroops Adresse ist %s"</span> % ab[<span class="py-string">'Swaroop'</span>]
+
+<span class="py-comment"># Ein Schluessel/Wert-Paar hinzufuegen</span>
+ab[<span class="py-string">'Guido'</span>] = <span class="py-string">'guido@python.org'</span>
+
+<span class="py-comment"># Ein Schluessel/Wert-Paar loeschen</span>
+<span class="py-statement">del</span> ab[<span class="py-string">'Spammer'</span>]
+
+<span class="py-statement">print</span> <span class="py-string">'\nEs gibt %d Kontakte im Adressbuch\n'</span> % <span class="py-builtin">len</span>(ab)
+
+<span class="py-statement">for</span> name, adresse <span class="py-statement">in</span> ab.items():
+	<span class="py-statement">print</span> <span class="py-string">'%s hat die Adresse %s'</span> % (name, adresse)
+
+<span class="py-statement">if</span> <span class="py-string">'Guido'</span> <span class="py-statement">in</span> ab: <span class="py-comment"># oder: ab.has_key('Guido')</span>
+	<span class="py-statement">print</span> <span class="py-string">"\nGuidos Adresse ist %s"</span> % ab[<span class="py-string">'Guido'</span>]
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-dictionaries-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python dict.py
+Swaroops Adresse ist swaroopch@byteofpython.info
+
+Es gibt 4 Kontakte im Adressbuch
+
+Swaroop hat die Adresse swaroopch@byteofpython.info
+Matsumoto hat die Adresse matz@ruby-lang.org
+Larry hat die Adresse larry@wall.org
+Guido hat die Adresse guido@python.org
+
+Guidos Adresse ist guido@python.org
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-dictionaries-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wir haben unter Benutzung der bereits erläuterten Schreibweise
+				ein Dictionary <code class="varname">ab</code> erzeugt. Wir greifen dann
+				auf die Schlüssel/Wert-Paare zu, indem wir den Schlüssel mittels
+				des Indizierungsoperators angeben, den wir im Zusammenhang mit
+				Listen und Tupeln erörtert haben. Beachten Sie, dass die
+				Schreibweise für Dictionaries damit ebenfalls sehr einfach ist.
+
+				
+
+				</p><p>
+
+				Wir können neue Schlüssel/Wert-Paare hinzufügen, indem wir einfach den
+				Indizierungsoperator verwenden, um auf einen Schlüssel zuzugreifen und
+				den Wert zuzuweisen, so wie wir es für 'Guido' im obigen Fall getan haben.
+
+				
+
+				</p><p>
+
+				Wir können Schlüssel/Wert-Paare löschen, indem wir unseren alten Freund
+				benutzen - die <code class="literal">del</code>-Anweisung. Wir geben einfach das
+				Dictionary und den Indizierungsoperator für den zu entfernenden Schlüssel
+				an und übergeben es an die <code class="literal">del</code>-Anweisung. Man braucht
+				für diese Operation nicht den Wert zu kennen, der diesem Schlüssel entspricht.
+
+				
+
+				</p><p>
+
+				Als Nächstes greifen wir auf alle Schlüssel/Wert-Paare des Dictionaries zu,
+				indem wir die <code class="methodname">items</code>-Methode des Dictionaries verwenden,
+				die eine Liste von Tupeln zurückgibt, bei der jedes Tupel ein Paar von Objekten
+				enthält - den Schlüssel, gefolgt von seinem zugehörigen Wert. Wir ermitteln dieses
+				Paar und weisen es den Variablen <code class="varname">name</code> bzw. <code class="varname">adresse</code>
+				zu, und zwar mittels der <code class="literal">for..in</code>-Schleife für jedes vorhandene
+				Schlüssel/Wert-Paar im Dictionary, und geben diese Werte dann im for-Block aus.
+
+				
+
+				</p><p>
+
+				Wir können den <code class="literal">in</code>-Operator oder auch die Methode
+				<code class="methodname">has_key</code> der Klasse <code class="classname">dict</code>
+				verwenden, um zu überprüfen, ob ein bestimmter Schlüssel im Dictionary
+				einen Wert zugeordnet hat. Sie können sich die Dokumentation für die
+				vollständige Liste von Methoden der Klasse <code class="classname">dict</code>
+				mittels <code class="literal">help(dict)</code> anzeigen lassen.
+
+				
+
+				</p><p><strong>Schlüsselwort-Argumente und Dictionaries. </strong>
+
+					Nebenbei bemerkt haben Sie bereits Dictionaries verwendet, wenn
+					Sie in Ihren Funktionen Schlüsselwort-Argumente benutzt haben!
+					Denken Sie einmal darüber nach - jedes Schlüssel/Wert-Paar wurde
+					von Ihnen in der Parameterliste der Funktionsdefinition angegeben,
+					und wenn Sie auf Variablen innerhalb der Funktion zugreifen, ist
+					dies nur ein Schlüsselzugriff auf ein Dictionary (das in der Sprache
+					der Compilerbauer die <span class="emphasis"><em>Symbol-Tabelle</em></span> genannt wird).
+
+					
+
+					</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="tuple.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="data-structures.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="sequences.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Tupel </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Sequenzen</td></tr></table></div></body></html>

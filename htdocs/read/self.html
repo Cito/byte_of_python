@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Der Selbstbezug</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung" /><link rel="prev" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung" /><link rel="next" href="classes.html" title="Klassen" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Der Selbstbezug</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="oops.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 11. Objektorientierte Programmierung</th><td width="20%" align="right"> <a accesskey="n" href="classes.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="self"></a>Der Selbstbezug</h2></div></div></div><p>
+
+		Klassenmethoden haben nur eine Besonderheit gegenüber gewöhnlichen Funktionen - sie müssen
+		einen zusätzlichen ersten Namen haben, der am Beginn der Parameterliste hinzugefügt wird,
+		dabei übergibt man diesem Parameter jedoch <span class="bold"><strong>nicht</strong></span>
+		einen Wert, wenn man die Methode aufruft, sondern Python sorgt dafür. Diese spezielle Variable
+		repräsentiert das Objekt selbst, und es hat sich eingebürgert, ihr den Namen <code class="literal">self</code> zu geben.
+
+		
+
+		</p><p>
+
+		Man könnte diesem Parameter zwar irgendeinen Namen geben, aber es wird dennoch <span class="emphasis"><em>ausdrücklich
+		empfohlen</em></span>, den Namen <code class="literal">self</code> zu benutzen - jeder andere Name ist
+		an dieser Stelle eindeutig verpönt. Es hat viele Vorzüge, einen Standardnamen zu benutzen - jeder Leser
+		Ihres Programms wird ihn sofort erkennen, und spezielle <abbr class="abbrev">IDEs</abbr> (Integrierte
+		Entwicklungsumgebungen) können einen unterstützen, wenn man die Bezeichnung <code class="literal">self</code> verwendet.
+
+		
+
+		</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C++/Java/C#-Programmierer</h3><p>
+
+			Das <code class="literal">self</code> in Python entspricht dem <code class="literal">self</code>-Zeiger in C++
+			und dem <code class="literal">this</code> in Java und C#.
+
+			
+
+			</p></div><p>
+
+		Sie fragen sich wahrscheinlich, auf welche Weise Python den Wert für <code class="literal">self</code>
+		übergibt und warum Sie dafür keinen Wert zu übergeben brauchen. Ein Beispiel wird dies klar machen.
+		Angenommen, Sie haben eine Klasse, die <code class="classname">MeineKlasse</code> heißt und eine
+		Instanz dieser Klasse, die <code class="varname">MeinObjekt</code> heißt. Wenn Sie eine Methode dieses
+		Objekts als <code class="literal">MeinObjekt.methode(param1, param2)</code> aufrufen, dann wird dies von
+		Python automatisch in <code class="literal">MeineKlasse.methode(MeinObjekt, param1, param2)</code>
+		umgewandelt - und genau dafür ist dieses besondere <code class="literal">self</code> da.
+
+		
+
+		</p><p>
+
+		Das bedeutet auch, dass man selbst bei einer Methode, die keine Parameter entgegennimmt,
+		dennoch diese Methode mit einem <code class="literal">self</code>-Parameter definieren muss.
+
+		
+
+		</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="oops.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="oops.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="classes.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 11. Objektorientierte Programmierung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Klassen</td></tr></table></div></body></html>

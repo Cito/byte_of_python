@@ -1,0 +1,77 @@
+﻿<bookinfo id="about-byte-of-python">
+
+	<!-- German translation 2005-02-18 by Lutz Horn -->
+	<!-- Proofreading 2005-07-16 Christoph Zwerschke -->
+
+	<title>A Byte of Python</title>
+	<subtitle>Deutsche Übersetzung</subtitle>
+
+	<author>
+		<firstname>Swaroop</firstname>
+		<surname>C H</surname>
+		<affiliation>
+			<orgname>www.byteofpython.info</orgname>
+		</affiliation>
+	</author>
+	<othercredit class="translator">
+		<contrib>Deutsche Übersetzung</contrib>
+		<firstname>Bernd</firstname>
+		<surname>Hengelein</surname>
+	</othercredit>
+	<othercredit class="translator">
+		<contrib>Deutsche Übersetzung</contrib>
+		<firstname>Lutz</firstname>
+		<surname>Horn</surname>
+	</othercredit>
+	<othercredit class="translator">
+		<contrib>Deutsche Übersetzung</contrib>
+		<firstname>Bernhard</firstname>
+		<surname> Krieger</surname>
+	</othercredit>
+	<othercredit class="translator">
+		<contrib>Deutsche Übersetzung</contrib>
+		<firstname>Christoph</firstname>
+		<surname> Zwerschke</surname>
+	</othercredit>
+	<date>
+		11.01.2005, 15.11.2005 (deutsche Übersetzung)
+	</date>
+	<releaseinfo>Version 1.20, deutsche Übersetzung</releaseinfo>
+	<edition>A Byte of Python v1.20, deutsche Übersetzung</edition>
+	<copyright>
+		<year>2003-2005</year>
+		<holder>Swaroop C H</holder>
+	</copyright>
+	<copyright>
+		<year>2005</year>
+		<holder>Bernd Hengelein, Lutz Horn, Bernhard Krieger, Christoph Zwerschke (Deutsche Übersetzung)</holder>
+	</copyright>
+
+	<abstract>
+		<title>Zusammenfassung</title>
+		<para>
+			Dieses Buch wird Ihnen dabei helfen, die Programmiersprache Python zu
+			lernen, unabhängig davon, ob Sie ein erfahrener Programmierer sind
+			oder ob Sie zum ersten Mal mit Computern zu tun haben.
+		</para>
+		<para>
+		<inlinemediaobject>
+		<imageobject>
+		<imagedata fileref="berlios.png" format="PNG" align="right" />
+		</imageobject>
+		</inlinemediaobject>
+		Die Zusammenarbeit an der deutschen Übersetzung dieses Buchs wurde von
+		<ulink url="http://developer.berlios.de">BerliOS</ulink>
+		freundlich unterstützt.
+		</para>
+	</abstract>
+
+	<legalnotice>
+		<para>
+			Dieses Buch ist unter der <ulink
+			url="http://creativecommons.org/licenses/by-nc-sa/2.0/">Creative
+			Commons Attribution-NonCommercial-ShareAlike License 2.0</ulink>
+			lizensiert.
+		</para>
+	</legalnotice>
+</bookinfo>

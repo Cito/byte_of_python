@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Klassen- und Objektvariablen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="oops.html" title="Kapitel 11. Objektorientierte Programmierung" /><link rel="prev" href="class-init.html" title="Die __init__-Methode" /><link rel="next" href="inheritance.html" title="Vererbung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Klassen- und Objektvariablen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="class-init.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 11. Objektorientierte Programmierung</th><td width="20%" align="right"> <a accesskey="n" href="inheritance.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="class-and-object-vars"></a>Klassen- und Objektvariablen</h2></div></div></div><p>
+
+		Wir haben bereits den Teil der Klassen und Objekte besprochen, der für ihre Funktionalität sorgt;
+		nun werden wir den Teil betrachten, der die Daten enthält. Eigentlich handelt es sich um nichts anderes
+		als gewöhnliche Variablen, die an die <span class="bold"><strong>Namensräume</strong></span> der
+		Klassen und Objekte <span class="emphasis"><em>gebunden</em></span> sind, d.h. die Namen sind nur innerhalb
+		des Kontextes der Klassen und Objekte gültig.
+
+		
+
+		</p><p>
+
+		Es gibt zwei Arten von <span class="emphasis"><em>Feldern</em></span> - Klassenvariablen und Objektvariablen,
+		die danach klassifiziert werden, ob die Klasse oder das Objekt die jeweiligen Variablen <span class="emphasis"><em>besitzt</em></span>.
+
+		
+
+		</p><p>
+
+		<span class="emphasis"><em>Klassenvariablen</em></span> werden gemeinsam benutzt, in dem Sinne, dass auf sie von allen
+		Objekten (Instanzen) der Klasse zugegriffen wird. Es gibt nur eine Kopie einer Klassenvariable, und wenn irgendein
+		Objekt eine Änderung an einer Klassenvariable vornimmt, dann spiegelt sich diese Änderung sofort auch in allen
+		anderen Instanzen der Klasse wieder.
+
+		
+
+		</p><p>
+
+		<span class="emphasis"><em>Objektvariablen</em></span> gehören den einzelnen Objekten (Instanzen) der Klasse individuell.
+		In diesem Fall hat jedes Objekt seine eigene Kopie des Feldes, d.h. sie werden nicht gemeinsam benutzt
+		und sind auf keine Weise mit dem Feld des gleichen Namens in einer anderen Instanz der selben Klasse verknüpft.
+		An einem Beispiel werden wir das leicht verstehen.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-class-and-obj-vars"></a>Benutzung von Klassen- und Objektvariablen</h3></div></div></div><div class="example"><a id="using-class-and-obj-vars-example"></a><p class="title"><strong>Beispiel 11.4. Benutzung von Klassen- und Objektvariablen
+					(<a class="ulink" href="code/objvar.py" target="_top">objvar.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">class</span> <span class="py-identifier">Person</span>:
+	<span class="py-string">'''Stellt eine Person dar.'''</span>
+	bevoelkerung = <span class="py-number">0</span>
+
+	<span class="py-statement">def</span> <span class="py-identifier">__init__</span>(<span class="py-builtin">self</span>, name):
+		<span class="py-string">'''Initialisiert die Daten der Person.'''</span>
+		<span class="py-builtin">self</span>.name = name
+		<span class="py-statement">print</span> <span class="py-string">'(Initialisiere %s)'</span> % <span class="py-builtin">self</span>.name
+
+		<span class="py-comment"># Wenn diese Person erzeugt wird,</span>
+		<span class="py-comment"># traegt er/sie zur Bevoelkerung bei</span>
+		Person.bevoelkerung += <span class="py-number">1</span>
+
+	<span class="py-statement">def</span> <span class="py-identifier">__del__</span>(<span class="py-builtin">self</span>):
+		<span class="py-string">'''Ich sterbe.'''</span>
+		<span class="py-statement">print</span> <span class="py-string">'%s verabschiedet sich.'</span> % <span class="py-builtin">self</span>.name
+
+		Person.bevoelkerung -= <span class="py-number">1</span>
+
+		<span class="py-statement">if</span> Person.bevoelkerung == <span class="py-number">0</span>:
+			<span class="py-statement">print</span> <span class="py-string">'Ich bin der letzte.'</span>
+		<span class="py-statement">else</span>:
+			<span class="py-statement">print</span> <span class="py-string">'Es gibt noch %d Leute.'</span> % Person.bevoelkerung
+
+	<span class="py-statement">def</span> <span class="py-identifier">sagHallo</span>(<span class="py-builtin">self</span>):
+		<span class="py-string">'''Begruessung durch die Person.
+
+		Das ist wirklich alles, was hier geschieht.'''</span>
+		<span class="py-statement">print</span> <span class="py-string">'Hallo, mein Name ist %s.'</span> % <span class="py-builtin">self</span>.name
+
+	<span class="py-statement">def</span> <span class="py-identifier">wieViele</span>(<span class="py-builtin">self</span>):
+		<span class="py-string">'''Gibt die aktuelle Bevoelkerungszahl aus.'''</span>
+		<span class="py-statement">if</span> Person.bevoelkerung == <span class="py-number">1</span>:
+			<span class="py-statement">print</span> <span class="py-string">'Ich bin ganz allein hier.'</span>
+		<span class="py-statement">else</span>:
+			<span class="py-statement">print</span> <span class="py-string">'Es gibt hier %d Leute.'</span> % Person.bevoelkerung
+
+swaroop = Person(<span class="py-string">'Swaroop'</span>)
+swaroop.sagHallo()
+swaroop.wieViele()
+
+kalam = Person(<span class="py-string">'Abdul Kalam'</span>)
+kalam.sagHallo()
+kalam.wieViele()
+
+swaroop.sagHallo()
+swaroop.wieViele()
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-class-and-obj-vars-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python objvar.py
+(Initialisiere Swaroop)
+Hallo, mein Name ist Swaroop.
+Ich bin ganz allein hier.
+(Initialisiere Abdul Kalam)
+Hallo, mein Name ist Abdul Kalam.
+Es gibt hier 2 Leute.
+Hallo, mein Name ist Swaroop.
+Es gibt hier 2 Leute.
+Abdul Kalam verabschiedet sich.
+Es gibt noch 1 Leute.
+Swaroop verabschiedet sich.
+Ich bin der letzte.
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-class-and-obj-vars-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Dies ist ein langes Beispiel, aber es hilft uns, das Wesen von Klassen- und
+				Objektvariablen zu demonstrieren. Die Variable <code class="varname">bevoelkerung</code>
+				gehört hier zur Klasse <code class="classname">Person</code> und ist daher
+				eine Klassenvariable. Die Variable <code class="varname">name</code> gehört
+				dagegen zum jeweiligen Objekt (das durch <code class="literal">self</code> zugewiesen wird)
+				und ist daher eine Objektvariable.
+
+				
+
+				</p><p>
+
+				Wir nehmen daher auf die Klassenvariable <code class="varname">bevoelkerung</code>
+				Bezug, indem wir schreiben <code class="varname">Person.bevoelkerung</code> und nicht
+				<code class="varname">self.bevoelkerung</code>. Beachten Sie, dass eine Objektvariable
+				mit dem gleichen Namen wie eine Klassenvariable diese Klassenvariable versteckt!
+				Wir nehmen auf die Objektvariable <code class="varname">name</code> Bezug,
+				indem wir die Schreibweise <code class="varname">self.name</code> in den Methoden
+				dieses Objekts benutzen. Merken Sie sich diesen einfachen Unterschied zwischen
+				Klassen- und Objektvariablen.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass die <code class="methodname">__init__</code>-Methode benutzt wird,
+				um die Instanz von <code class="classname">Person</code> mit einem Namen zu initialisieren.
+				In dieser Methode erhöhen wir den Zähler <code class="varname">bevoelkerung</code> um 1,
+				weil wir eine weitere Person hinzugefügt haben. Beachten Sie auch, dass der Wert von
+				<code class="varname">self.name</code> vom jeweiligen Objekt abhängt, was das Wesen von
+				Objektvariablen ausmacht.
+
+				
+
+				</p><p>
+
+				Denken Sie daran, dass Sie auf die Variablen und Methoden des gleichen Objekts
+				<span class="bold"><strong>nur</strong></span> mit Hilfe der Variablen
+				<code class="varname">self</code> Bezug nehmen können. Dies wird als
+				<span class="emphasis"><em>Attribut-Referenzierung</em></span> bezeichnet.
+
+				
+
+				</p><p>
+
+				Wir sehen in diesem Programm auch die Benutzung von
+				<span class="bold"><strong>Dokumentations-Strings</strong></span> sowohl
+				für Klassen als auch für Methoden. Wir können auf den Dokumentations-String
+				der Klasse zur Laufzeit mit <code class="varname">Person.__doc__</code> zugreifen,
+				und mit <code class="varname">Person.sagHallo.__doc__</code> auf den
+				Dokumentations-String der Methode.
+
+				
+
+				</p><p>
+
+				Ganz ähnlich zur Methode <code class="methodname">__init__</code> gibt es eine andere
+				spezielle Methode <code class="methodname">__del__</code>, die aufgerufen wird, wenn
+				ein Objekt aufhört zu leben, d.h. wenn es nicht mehr gebraucht wird und der von ihm belegte Speicher
+				an das System zur Wiederverwendung zurückgegeben wird. In dieser Methode erniedrigen wir einfach
+				den Zähler <code class="varname">Person.bevoelkerung</code> um 1.
+
+				
+
+				</p><p>
+
+				Die <code class="methodname">__del__</code>-Methode wird automatisch aufgerufen,
+				wenn das Objekt nicht mehr gebraucht wird, und es gibt keine Garantie dafür,
+				<span class="emphasis"><em>wann</em></span> dies der Fall ist. Wenn Sie dies explizit tun wollen,
+				müssen Sie einfach die <code class="literal">del</code>-Anweisung benutzen, die wir bereits
+				aus früheren Beispielen kennen.
+
+				
+
+				</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C++/Java/C#-Programmierer</h3><p>
+
+					In Python sind alle Mitglieder, d.h. alle Attribute einschließlich der Felder <span class="emphasis"><em>public</em></span>,
+					und alle Methoden sind <span class="emphasis"><em>virtual</em></span>.
+
+					
+
+					</p><p>
+
+					Eine Ausnahme: Wenn Sie Felder verwenden, deren Namen mit
+					<span class="emphasis"><em>einem doppelten Unterstrich beginnt</em></span>,
+					so wie <code class="varname">__privatvar</code>, dann modifiziert Python
+					den Namen so, dass daraus praktisch eine private Variable wird.
+
+					
+
+					</p><p>
+
+					Daraus hat sich die Konvention ergeben, dass Variablen, die nur innerhalb der Klasse
+					oder des Objekts benutzt werden, mit einem Unterstrich beginnen sollten,
+					während alle anderen Namen öffentlich sind und von anderen Klassen/Objekten
+					benutzt werden können. Denken Sie daran, dass dies nur eine Konvention ist,
+					und nicht von Python erzwungen wird (außer bei Variablen, deren Name mit
+					einem doppelten Unterstrich beginnt).
+
+					
+
+					</p><p>
+
+					Beachten Sie auch, dass die <code class="methodname">__del__</code>-Methode
+					dem Konzept eines Destruktors entspricht.
+
+					
+
+					</p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="class-init.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="oops.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="inheritance.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die __init__-Methode </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Vererbung</td></tr></table></div></body></html>

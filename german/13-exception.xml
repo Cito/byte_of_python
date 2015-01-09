@@ -1,0 +1,586 @@
+﻿<chapter id="exceptions">
+
+	<!-- German translation 2005-02-24 by Christoph Zwerschke -->
+	<!-- Proofreading 2005-02-25 Lutz Horn -->
+
+	<title>Ausnahmen</title> <!-- Exceptions -->
+
+	<para>
+
+	Ausnahmen (<foreignphrase>exceptions</foreignphrase>) treten auf, wenn bestimmte
+	<emphasis>Ausnahmesituationen</emphasis> in Ihrem Programm eintreten.
+	Was zum Beispiel passiert, wenn Sie eine Datei einlesen wollen, und die Datei gar nicht existiert?
+	Oder wenn Sie die Datei aus Versehen gelöscht haben, während das Programm lief?
+	Solche Situationen werden mittels <emphasis role="bold">Ausnahmen</emphasis>
+	behandelt.
+
+	<!-- Exceptions occur when certain <emphasis>exceptional</emphasis> situations occur in your program.
+	For example, what if you are going to read a file and the file does not exist? Or what if you
+	accidentally deleted it when the program was running? Such situations are handled using
+	<emphasis role="bold">exceptions</emphasis>. -->
+
+	</para>
+	<para>
+
+	Was passiert, wenn es in Ihrem Programm ungültige Anweisungen gibt? In einem solchen Fall
+	reagiert Python, indem es eine Ausnahme <emphasis role="bold">auslöst</emphasis>, und
+	Ihnen mitteilt, dass es auf einen <emphasis role="bold">Fehler</emphasis> gestoßen ist.
+
+	<!-- What if your program had some invalid statements? This is handled by Python which
+	<emphasis role="bold">raises</emphasis> its hands and tells you there is an
+	<emphasis role="bold">error</emphasis>. -->
+
+	</para>
+
+	<section id="errors">
+		<title>Fehler</title> <!-- Errors -->
+
+		<para>
+
+		Nehmen Sie eine einfache <literal>print</literal>-Anweisung als Beispiel.
+		Was passiert, wenn wir uns vertippt haben, und <literal>Print</literal> statt
+		<literal>print</literal> geschrieben haben? Beachten Sie die fehlerhafte Großschreibung.
+		In diesem Fall wird von Python ein Syntaxfehler <emphasis>ausgelöst</emphasis>.
+
+		<!-- Consider a simple <literal>print</literal> statement. What if we misspelt
+		<literal>print</literal> as <literal>Print</literal>? Note the capitalization.
+		In this case, Python <emphasis>raises</emphasis> a syntax error. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+>>> Print 'Hallo Welt'
+    File "<stdin>", line 1
+      Print 'Hallo Welt'
+                        ^
+SyntaxError: invalid syntax
+
+>>> print 'Hallo Welt'
+Hallo Welt
+		]]>
+		</screen>
+		<!-- <![CDATA[
+>>> Print 'Hello World'
+    File "<stdin>", line 1
+      Print 'Hello World'
+                        ^
+SyntaxError: invalid syntax
+
+>>> print 'Hello World'
+Hello World
+		]]> -->
+		<para>
+
+		Beachten Sie, dass eine Ausnahme namens <classname>SyntaxError</classname>
+		ausgelöst wird, und dass außerdem die Stelle, an der dieser Fehler auftrat, ausgegeben wird.
+		Dies geschieht durch eine eingebaute <emphasis>Fehlerbehandlung</emphasis>
+		für solche Ausnahmen, die durch Syntaxfehler ausgelöst wurden.
+
+		<!-- Observe that a <classname>SyntaxError</classname> is raised and also the location
+		where the error was detected is printed. This is what an <emphasis>error handler</emphasis>
+		for this error does. -->
+
+		</para>
+	</section>
+
+	<section id="try-except">
+		<title>try..except</title> <!-- Try..Except -->
+
+		<para>
+
+		Wir wollen <emphasis>versuchen</emphasis>, eine Eingabe vom Benutzer entgegenzunehmen.
+		Drücken Sie <keycombo><keycap>Strg</keycap><keycap>d</keycap></keycombo>
+		(oder <keycombo><keycap>Strg</keycap><keycap>z</keycap></keycombo> unter Windows),
+		und achten Sie darauf, was passiert.
+
+		<!-- We will <emphasis role="bold">try</emphasis> to read input from the user. Press
+		<keycombo><keycap>Ctrl</keycap><keycap>d</keycap></keycombo> and see what happens. -->
+
+		</para>
+		<screen>
+		<![CDATA[
+>>> s = raw_input('Geben Sie etwas ein --> ')
+Enter something --> Traceback (most recent call last):
+  File "<stdin>", line 1, in ?
+EOFError
+		]]>
+		</screen>
+		<!-- <![CDATA[
+>>> s = raw_input('Enter something - - > ')
+Enter something - - > Traceback (most recent call last):
+  File "<stdin>", line 1, in ?
+EOFError
+		]]> -->
+		<para>
+
+		Python löst als Fehler eine Ausnahme namens <classname>EOFError</classname> aus,
+		was grundsätzlich bedeutet, dass das <emphasis>Ende einer Datei</emphasis> (EOF)
+		erreicht wurde (bewirkt durch die Eingabe <keycombo><keycap>Strg</keycap><keycap>d</keycap></keycombo>
+		oder <keycombo><keycap>Strg</keycap><keycap>z</keycap></keycombo>),
+		wo dies nicht erwartet wurde.
+
+		<!-- Python raises an error called <classname>EOFError</classname> which basically means
+		it found an <emphasis>end of file</emphasis> when it did not expect to (which is
+		represented by <keycombo><keycap>Ctrl</keycap><keycap>d</keycap></keycombo>) -->
+
+		</para>
+		<para>
+
+		Wir sehen nun, wie man solche Fehler behandelt.
+		<!-- Next, we will see how to handle such errors. -->
+
+		</para>
+
+		<section id="handling-exceptions">
+			<title>Ausnahmebehandlung</title> <!-- Handling Exceptions -->
+
+			<para>
+
+			Wir können Ausnahmen mit Hilfe der Anweisung <literal>try..except</literal>
+			behandeln. Wir schreiben dazu unsere normalen Anweisungen in den Block,
+			der auf <literal>try</literal> folgt, und schreiben unsere Anweisungen zur
+			Fehlerbehandlung in den Block, der auf <literal>except</literal> folgt.
+
+			<!-- We can handle exceptions using the <literal>try..except</literal> statement.
+			We basically put our usual statements within the try-block and put all our
+			error handlers in the except-block. -->
+
+			</para>
+
+			<example id="handling-exceptions-example">
+				<title>Ausnahmebehandlung
+					(<ulink url="code/try_except.py">try_except.py</ulink>)
+				</title> <!-- Handling Exceptions -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import sys
+
+try:
+	s = raw_input('Geben Sie etwas ein --> ')
+except EOFError:
+	print '\nWarum haben Sie die Eingabe abgebrochen?'
+	sys.exit() # beendet das Programm
+except:
+	print '\nIrgendein Fehler hat eine Ausnahme ausgeloest.'
+	# an dieser Stelle beenden wir das Programm nicht
+
+print 'Fertig'
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: try_except.py
+
+import sys
+
+try:
+	s = raw_input('Enter something - - > ')
+except EOFError:
+	print '\nWhy did you do an EOF on me?'
+	sys.exit() # exit the program
+except:
+	print '\nSome error/exception occurred.'
+	# here, we are not exiting the program
+
+print 'Done'
+				]]> -->
+			</example>
+
+			<section id="handling-exceptions-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python try_except.py
+Geben Sie etwas ein -->
+Warum haben Sie die Eingabe abgebrochen?
+
+$ python try_except.py
+Geben Sie etwas ein --> Python ist eine Ausnahmeerscheinung!
+Fertig
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python try_except.py
+Enter something - - >
+Why did you do an EOF on me?
+
+$ python try_except.py
+Enter something - - > Python is exceptional!
+Done
+				]]> -->
+			</section>
+
+			<section id="handling-exceptions-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wir stecken alle Anweisungen, die einen Fehler auslösen könnten,
+				in den <literal>try</literal>-Block und behandeln dann alle Fehler
+				und Ausnahmen in dem Block der <literal>except</literal>-Klausel.
+				Die <literal>except</literal>-Klausel kann einzeln angegebene
+				Fehler oder Ausnahmen behandeln, oder auch eine in Klammern
+				angegebene Liste von Fehlern/Ausnahmen. Wenn keine Namen von
+				Fehlern oder Ausnahmen angegeben werden, dann behandelt sie
+				<emphasis>alle</emphasis> Fehler und Ausnahmen.
+				Zu jeder <literal>try</literal>-Klausel muss mindestens eine
+				<literal>except</literal>-Klausel gehören (oder stattdessen eine
+				<literal>finally</literal>-Klausel, aber darüber sprechen wir später).
+
+				<!-- We put all the statements that might raise an error in the
+				<literal>try</literal> block and then handle all the errors and exceptions
+				in the <literal>except</literal> clause/block. The <literal>except</literal>
+				clause can handle a single specified error or exception, or a parenthesized
+				list of errors/exceptions. If no names of errors or exceptions are
+				supplied, it will handle <emphasis>all</emphasis> errors and exceptions.
+				There has to be at least one <literal>except</literal> clause associated
+				with every <literal>try</literal> clause. -->
+
+				</para>
+				<para>
+
+				Wenn irgendein Fehler oder eine Ausnahme nicht behandelt wird, dann
+				wird die Standard-Ausnahmebehandlung von Python aufgerufen, die einfach
+				die Ausführung des Programms beendet und eine Fehlermeldung ausgibt.
+				Wir haben dies bereits mehrfach gesehen.
+
+				<!-- If any error or exception is not handled, then the default Python handler
+				is called which just stops the execution of the program and prints a
+				message. We have already seen this in action. -->
+
+				</para>
+				<para>
+
+				Sie können auch eine <literal>else</literal>-Klausel mit einem
+				<literal>try..except</literal>-Block kombinieren. Die <literal>else</literal>-Klausel
+				wird dann ausgeführt, wenn keine Ausnahme auftritt.
+
+				<!-- You can also have an <literal>else</literal> clause associated with a
+				<literal>try..catch</literal> block. The <literal>else</literal> clause
+				is executed if no exception occurs. -->
+
+				</para>
+				<para>
+
+				Wir können auch auf das Ausnahmeobjekt zugreifen, um dadurch weitere Informationen
+				über die Ausnahme zu erhalten, die aufgetreten ist. Dies wird im nächsten Beispiel gezeigt.
+
+				<!-- We can also get the exception object so that we can retrieve additional
+				information about the exception which has occurred. This is demonstrated
+				in the next example. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+	<section id="raising-exceptions">
+		<title>Auslösen von Ausnahmen</title> <!-- Raising Exceptions -->
+
+		<para>
+
+		Sie können Ausnahmen mit der Anweisung <literal>raise</literal> auch selber
+		<emphasis>auslösen</emphasis>. Sie müssen zusätzlich den Namen des Fehlers
+		bzw. der Ausnahme angeben, und können außerdem weitere Informationen angeben,
+		die bei der Auslösung dieser Ausnahme an die Ausnahmebehandlung weitergegeben
+		werden sollen. Der Fehler oder die Ausnahme sollte eine Klasse sein, die direkt oder
+		indirekt von der Klasse <!-- <classname>Error</classname> bzw. -->
+		<classname>Exception</classname> abgeleitet ist.
+
+		<!-- You can <emphasis>raise</emphasis> exceptions using the <literal>raise</literal> statement.
+		You also have to specify the name of the error/exception and the exception object that is
+		to be <emphasis>thrown</emphasis> along with the exception. The error or exception that you
+		can arise should be class which directly or indirectly is a derived class of the
+		<classname>Error</classname> or <classname>Exception</classname> class respectively. -->
+
+		</para>
+
+		<section id="how-to-raise-exceptions">
+			<title>So löst man Ausnahmen aus</title> <!-- How To Raise Exceptions -->
+
+			<example id="how-to-raise-exceptions-example">
+				<title>So löst man Ausnahmen aus
+					(<ulink url="code/ausnahmen.py">ausnahmen.py</ulink>)
+				</title> <!-- How To Raise Exceptions -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+class KurzeEingabeAusnahme(Exception):
+	'''Eine benutzerdefinierte Ausnahmeklasse.'''
+	def __init__(self, laenge, mindestens):
+		Exception.__init__(self)
+		self.laenge = laenge
+		self.mindestens = mindestens
+
+try:
+	s = raw_input('Geben Sie etwas ein --> ')
+	if len(s) < 3:
+		raise KurzeEingabeAusnahme(len(s), 3)
+	# Hier kann man ganz normal mit der Arbeit fortfahren
+except EOFError:
+	print '\nWarum haben Sie die Eingabe abgebrochen?'
+except KurzeEingabeAusnahme, x:
+	print 'KurzeEingabeAusnahme: Eingabe hatte die Laenge %d,' \
+		' gefordert war mindestens %d.' % (x.laenge, x.mindestens)
+else:
+	print 'Es wurde keine Ausnahme ausgeloest.'
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: raising.py
+
+class ShortInputException(Exception):
+	'''A user-defined exception class.'''
+	def __init__(self, length, atleast):
+		Exception.__init__(self)
+		self.length = length
+		self.atleast = atleast
+
+try:
+	s = raw_input('Enter something - - > ')
+	if len(s) < 3:
+		raise ShortInputException(len(s), 3)
+	# Other work can continue as usual here
+except EOFError:
+	print '\nWhy did you do an EOF on me?'
+except ShortInputException, x:
+	print 'ShortInputException: The input was of length %d, \
+		was expecting at least %d' % (x.length, x.atleast)
+else:
+	print 'No exception was raised.'
+				]]> -->
+			</example>
+
+			<section id="how-to-raise-exceptions-output">
+				<title>Ausgabe</title> <!--  Output -->
+
+				<screen>
+				<![CDATA[
+$ python ausnahmen.py
+Geben Sie etwas ein -->
+Warum haben Sie die Eingabe abgebrochen?
+
+$ python ausnahmen.py
+Geben Sie etwas ein --> ab
+KurzeEingabeAusnahme: Eingabe hatte die Laenge 2, gefordert war mindestens 3.
+
+$ python ausnahmen.py
+Geben Sie etwas ein --> abc
+Es wurde keine Ausnahme ausgeloest.
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python raising.py
+Enter something - - >
+Why did you do an EOF on me?
+
+$ python raising.py
+Enter something - - > ab
+ShortInputException: The input was of length 2, was expecting at least 3
+
+$ python raising.py
+Enter something - - > abc
+No exception was raised.
+				]]> -->
+			</section>
+
+			<section id="how-to-raise-exceptions-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wir erzeugen hier unseren eigenen Ausnahmetyp, obwohl wir auch jede
+				andere vordefinierte Ausnahme zu Demonstrationszwecken hätten benutzen
+				können. Dieser neue Ausnahmetyp ist die Klasse <classname>KurzeEingabeAusnahme</classname>.
+				Sie hat zwei Felder - <varname>laenge</varname>, die Länge der Eingabe,
+				und <varname>mindestens</varname>, die Mindestlänge für die Eingabe,
+				die das Programm erwartet.
+
+				<!-- Here, we are creating our own exception type although we could've used any
+				predefined exception/error for demonstration purposes. This new exception
+				type is the <classname>ShortInputException</classname> class. It has two
+				fields - <varname>length</varname> which is the length of the given input,
+				and <varname>atleast</varname> which is the minimum length that the program
+				was expecting. -->
+
+				</para>
+				<para>
+
+				In der <literal>except</literal>-Klausel geben wir sowohl die Fehlerklasse an,
+				als auch die Variable, die das entsprechende Fehler/Ausnahmeobjekt erhalten soll.
+				Dies entspricht den Parametern und Argumenten in einem Funktionsaufruf.
+				Innerhalb dieser speziellen <literal>except</literal>-Klausel benutzen wir die Felder
+				<varname>laenge</varname> und <varname>mindestens</varname> des
+				Ausnahmeobjekts, um eine entsprechende Fehlermeldung für den Benutzer auszugeben.
+
+				<!-- In the <literal>except</literal> clause, we mention the class of error as
+				well as the variable to hold the corresponding error/exception object.
+				This is analogous to parameters and arguments in a function call. Within
+				this particular <literal>except</literal> clause, we use the
+				<varname>length</varname> and <varname>atleast</varname> fields of the
+				exception object to print an appropriate message to the user. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="try-finally">
+		<title>try..finally</title> <!-- Try..Finally -->
+
+		<para>
+
+		Wie würden Sie vorgehen, wenn Sie eine Datei lesen, und diese Datei danach schließen
+		wollen, unabhängig davon, ob eine Ausnahme ausgelöst wurde oder nicht? Dies kann
+		mit Hilfe eines <literal>finally</literal>-Blocks erreicht werden. Beachten Sie jedoch,
+		dass Sie <emphasis>keine</emphasis> <literal>except</literal>-Klausel zusammen
+		mit einem <literal>finally</literal>-Block für den gleichen zugehörigen
+		<literal>try</literal>-Block benutzen dürfen. Wenn Sie beide zusammen benutzen wollen,
+		dann müssen Sie einen von beiden Blöcken in den anderen verschachteln.
+
+		<!-- What if you were reading a file and you wanted to close the file whether or not an
+		exception was raised? This can be done using the <literal>finally</literal> block.
+		Note that you can (not!) use an <literal>except</literal> clause along with a
+		<literal>finally</literal> block for the same corresponding <literal>try</literal>
+		block. You will have to embed one within another if you want to use both. -->
+
+		</para>
+
+		<section id="using-try-finally">
+			<title>Gebrauch von finally</title> <!-- Using Finally -->
+
+			<example id="using-try-finally-example">
+				<title>Gebrauch von finally
+					(<ulink url="code/finally.py">finally.py</ulink>)
+				</title> <!-- Using Finally -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import time
+
+try:
+	f = file('gedicht.txt')
+	while True: # unsere uebliche Weise, Dateien zu lesen
+		zeile = f.readline()
+		if len(zeile) == 0:
+			break
+		time.sleep(2)
+		print zeile,
+finally:
+	f.close()
+	print 'Raeume auf... Datei geschlossen.'
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: finally.py
+
+import time
+
+try:
+	f = file('poem.txt')
+	while True: # our usual file-reading idiom
+		line = f.readline()
+		if len(line) == 0:
+			break
+		time.sleep(2)
+		print line,
+finally:
+	f.close()
+	print 'Cleaning up...closed the file'
+				]]> -->
+			</example>
+
+			<section id="using-try-finally-output">
+				<title>Ausgabe</title> <!-- Ausgabe -->
+
+				<screen>
+				<![CDATA[
+$ python finally.py
+Programmieren mit Elan
+und die Arbeit wird getan,
+Raeume auf... Datei geschlossen.
+Traceback (most recent call last):
+  File "finally.py", line 12, in ?
+    time.sleep(2)
+KeyboardInterrupt
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python finally.py
+Programming is fun
+When the work is done
+Cleaning up...closed the file
+Traceback (most recent call last):
+  File "finally.py", line 12, in ?
+    time.sleep(2)
+KeyboardInterrupt
+				]]> -->
+			</section>
+
+			<section id="using-try-finally-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wir lesen die Datei wieder auf die übliche Weise ein, aber ich habe absichtlich
+				eine Pause von 2 Sekunden eingebaut, bevor jede Zeile ausgegeben wird, indem ich
+				die Methode <function>time.sleep</function> benutzt habe. Der einzige Grund,
+				warum ich das getan habe, ist, damit das Programm langsam abläuft (Python ist von
+				Natur aus sehr schnell). Während das Programm noch läuft, drücken Sie
+				<keycombo><keycap>Strg</keycap><keycap>c</keycap></keycombo>,
+				um das Programm zu unterbrechen und zu beenden.
+
+				<!-- We do the usual file-reading stuff, but I've arbitrarily introduced a way
+				of sleeping for 2 seconds before printing each line using the
+				<function>time.sleep</function> method. The only reason is so that the
+				program runs slowly (Python is very fast by nature). When the program is
+				still running, press <keycombo><keycap>Ctrl</keycap><keycap>c</keycap></keycombo>
+				to interrupt/cancel the program. -->
+
+				</para>
+				<para>
+
+				Beachten Sie, dass eine <classname>KeyboardInterrupt</classname>-Ausnahme
+				ausgelöst wird und das Programm abbricht, jedoch vor dem Programmabbruch noch
+				die <literal>finally</literal>-Klausel ausführt und die Datei schließt.
+
+				<!-- Observe that a <classname>KeyboardInterrupt</classname> exception is thrown
+				and the program exits, but before the program exits, the finally clause is
+				executed and the file is closed. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="exceptions-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir haben den Gebrauch von <literal>try..except</literal> und <literal>try..finally</literal>
+		erörtert. Wir haben gesehen, wie wir unsere eigenen Ausnahmetypen erzeugen können, und wie wir
+		auch selber Ausnahmen auslösen können.
+
+		<!-- We have discussed the usage of the <literal>try..except</literal> and
+		<literal>try..finally</literal> statements. We have seen how to create our own exception
+		types and how to raise exceptions as well. -->
+
+		</para>
+		<para>
+
+		Als Nächstes untersuchen wir die Python-Standard-Bibliothek.
+		<!-- Next, we will explore the Python Standard Library. -->
+
+		</para>
+	</section>
+</chapter>

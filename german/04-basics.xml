@@ -1,0 +1,1054 @@
+﻿<chapter id="basics">
+
+	<!-- German translation 2005-02-17 by Christoph Zwerschke -->
+	<!-- Proofreading 2005-02-24 Lutz Horn -->
+	<!-- Proofreading, small changes 2005-02-27 Bernd Hengelein -->
+	<!-- Proofreading 2006-03-10 Horst Jens -->
+
+	<title>Die Grundlagen</title> <!-- The Basics -->
+
+	<para>
+
+	Es ist natürlich ein bisschen wenig, wenn man nur 'Hallo Welt' ausgeben kann.
+	Sie wollen mehr als das tun können - Sie wollen Eingaben entgegennehmen, diese
+	verarbeiten und daraus irgendwelche Ausgaben produzieren. Wir können dies in Python
+	mithilfe von Konstanten und Variablen erreichen.
+
+	<!-- Just printing 'Hello World' is not enough, is it? You want to do more than that - you
+	want to take some input, manipulate it and get something out of it. We can achieve this
+	in Python using constants and variables. -->
+
+	</para>
+
+	<section id="literal-constants">
+		<title>Literale</title> <!-- Literal Constants -->
+
+		<para>
+
+		Beispiele für Literale sind Zahlen wie <literal>5</literal>, <literal>1.23</literal>,
+		<literal>9.25e-3</literal> oder Zeichenketten (Strings) wie <literal>'Dies ist ein String'</literal>
+		oder <literal><![CDATA["Das ist auch ein String!"]]></literal>. Sie werden Literale oder
+		Direkt-Wert-Konstanten genannt, weil sie für Konstanten stehen, die <emphasis>direkt</emphasis>
+		und wortwörtlich den Wert bezeichnen, für den sie stehen. Die Zahl <literal>2</literal> steht
+		immer für sich selbst und nichts anderes - sie ist eine Konstante, weil ihr Wert nicht geändert werden kann.
+
+		<!-- An example of a literal constant is a number like <literal>5</literal>,
+		<literal>1.23</literal>, <literal>9.25e-3</literal> or a string like
+		<literal>'This is a string'</literal> or <literal><![CDATA["It's a string!"]]></literal>.
+		It is called a literal because it is <emphasis>literal</emphasis> - you use its value
+		literally. The number <literal>2</literal> always represents itself and nothing else - it
+		is a constant because its value cannot be changed. Hence, all these are referred to as
+		literal constants. -->
+
+		</para>
+	</section>
+	<section id="numbers">
+		<title>Zahlen</title> <!-- Numbers -->
+
+		<para>
+
+		Es gibt vier Zahlentypen in Python - Ganzzahlen (int), lange Ganzzahlen (long),
+		Fließkommazahlen (float) und komplexe Zahlen (complex).
+
+		<!-- Numbers in Python are of four types - integers, long integers, floating point and complex
+		numbers. -->
+
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>
+
+				Beispiele für Ganzzahlen sind <literal>2</literal> oder <literal>-100</literal>,
+				also Zahlen ohne Nachkommastellen.
+
+				<!-- Examples of integers are <literal>2</literal> which are just whole numbers. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Lange Ganzzahlen sind einfach betragsmäßig größere Ganzzahlen. Im Gegensatz
+				zu den normalen Ganzzahlen ist ihre Größe prinzipiell nicht eingeschränkt (d.h.
+				eigentlich	nur durch die Größe des Hauptspeichers beschränkt).
+
+				<!-- Long integers are just bigger whole numbers. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Beispiele für Fließkommazahlen sind <literal>3.23</literal> oder <literal>52.3E-4</literal>.
+				Die Schreibweise mit dem <literal>E</literal> bezeichnet Zehnerpotenzen,
+				<literal>52.3E-4</literal> steht hier also für <literal>52.3 * 10<superscript>-4</superscript></literal>.
+
+				<!-- Examples of floating point numbers (or <emphasis>floats</emphasis>
+				for short) are <literal>3.23</literal> and <literal>52.3E-4</literal>.
+				The <literal>E</literal> notation indicates powers of 10. In this case,
+				<literal>52.3E-4</literal> means
+				<literal>52.3 * 10<superscript>-4</superscript></literal>. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Beispiele für komplexe Zahlen sind <literal>(-5 + 4j)</literal> oder <literal>(2.3 - 4.6j)</literal>.
+				Beachten Sie, dass die imaginäre Einheit hierbei nicht wie in der Mathematik üblich mit <literal>i</literal>,
+				sondern in der Schreibweise der Elektrotechniker mit <literal>j</literal> bezeichnet wird.
+
+				<!-- Examples of complex numbers are <literal>(-5+4j)</literal> and
+				<literal>(2.3 - 4.6j)</literal> -->
+
+				</para>
+			</listitem>
+		</itemizedlist>
+	</section>
+	<section id="strings">
+		<title>Strings</title> <!-- Strings -->
+		<para>
+
+		Ein String, d.h. eine Zeichenkette, denkt man sich in Python als eine <emphasis>Sequenz</emphasis>
+		(Abfolge) von einzelnen <emphasis>Zeichen</emphasis>.
+
+		<!-- A string is a <emphasis>sequence</emphasis> of <emphasis>characters</emphasis>. Strings
+		are basically just a bunch of words. -->
+
+		</para>
+		<para>
+
+		Ich kann Ihnen fast garantieren, dass Sie in nahezu jedem von Ihnen geschriebenen Python-Programm
+		auch Strings benutzen werden. Bitte beachten Sie daher die folgenden Hinweise zum Gebrauch von Strings in Python:
+
+		<!-- I can almost guarantee that you will be using strings in almost every Python program that
+		you write, so pay attention to the following part. Here's how you use strings in Python: -->
+
+		</para>
+		<itemizedlist>
+			<listitem>
+				<bridgehead renderas="sect5">Benutzung einzelner Anführungszeichen (<literal>'</literal>)</bridgehead>
+				<!-- Using Single Quotes -->
+				<para>
+
+				Sie können Strings durch Benutzung einzelner Anführungszeichen angeben, so wie
+				<literal>'Berufen Sie sich nur auf mich'</literal>. Sämtlicher Leerraum, d. h.
+				Leerzeichen und Tabulatoren, wird genauso beibehalten.
+
+				<!-- You can specify strings using single quotes such as
+				<literal>'Quote me on this'</literal> . All white space i.e. spaces and
+				tabs are preserved as-is. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<bridgehead renderas="sect5">Benutzung doppelter Anführungszeichen (<literal><![CDATA["]]></literal>)</bridgehead>
+				<!-- Using Double Quotes -->
+				<para>
+
+				Strings in doppelten Anführungszeichen verhalten sich genauso wie Strings
+				in einfachen Anführungszeichen.
+				Ein Beispiel hierfür: <literal><![CDATA["Wie heißen's doch gleich?"]]></literal>.
+
+				<!-- Strings in double quotes work exactly the same way as strings in single
+				quotes. An example is
+				<literal><![CDATA["What's your name?"]]></literal> -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<bridgehead renderas="sect5">Benutzung dreifacher Anführungszeichen (<literal>'''</literal> oder <literal><![CDATA["""]]></literal>)</bridgehead>
+				<!-- Using Triple Quotes -->
+				<para>
+
+				Sie können mehrzeilige Strings angeben, indem Sie dreifache Anführungszeichen verwenden.
+				Innerhalb der dreifachen Anführungszeichen können Sie einfache und doppelte Anführungszeichen
+				nach Belieben benutzen. Ein Beispiel:
+
+				<!-- You can specify multi-line strings using triple quotes. You can use single
+				quotes and double quotes freely within the triple quotes. An example is -->
+
+				</para>
+				<programlisting>
+				<![CDATA[
+'''Dies ist ein mehrzeiliger String. Dies ist die erste Zeile.
+Dies ist die zweite Zeile.
+"Wie heißen's doch gleich?", fragte ich ihn.
+Er sagte: "Mein Name ist Bond, James Bond."
+'''
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+'''This is a multi-line string. This is the first line.
+This is the second line.
+"What's your name?," I asked.
+He said "Bond, James Bond."
+'''
+				]]> -->
+			</listitem>
+			<listitem>
+				<bridgehead renderas="sect5">Maskierungscodes</bridgehead> <!-- Escape Sequences -->
+				<para>
+
+				Angenommen, Sie wollen einen String eingeben, der ein einzelnes Anführungszeichen
+				(<literal>'</literal>) enthält. Wie würden Sie diesen angeben? Nehmen Sie zum Beispiel
+				den String <literal>Wie heißen's doch gleich?</literal>. Sie können Ihn nicht als
+				<literal>'Wie heißen's doch gleich?'</literal> eingeben, weil Python dann durcheinander
+				käme und nicht mehr wüsste, wo der String anfängt und wo er aufhört. Daher müssen Sie
+				irgendwie angeben, dass dieses einzelne Anführungszeichen nicht das Ende des
+				Strings bedeutet. Dies kann mit Hilfe eines so genannten <emphasis>Maskierungscodes</emphasis>
+				geschehen. Sie geben ein einzelnes Anführungszeichen dabei als <literal>\'</literal> an
+				- beachten Sie dabei den umgekehrten Schrägstrich (&quot;backslash&quot;).
+				Nun können Sie den String als <literal>'Wie heißen\'s doch gleich?'</literal> eingeben.
+
+				<!-- Suppose, you want to have a string which contains a single quote
+				(<literal>'</literal>), how will you specify this string? For example,
+				the string is <literal>What's your name?</literal>. You cannot specify
+				<literal>'What's your name?'</literal> because Python will be confused
+				as to where the string starts and ends. So, you will have to specify
+				that this single quote does not indicate the end of the string. This can
+				be done with the help of what is called an <emphasis>escape
+				sequence</emphasis>. You specify the single quote as <literal>\'</literal>
+				- notice the backslash. Now, you can specify the string as
+				<literal>'What\'s your name?'</literal>. -->
+
+				</para>
+				<para>
+
+				Eine andere Möglichkeit, diesen speziellen String anzugeben, wäre
+				<literal>"Wie heißen's doch gleich?"</literal>, d. h. unter Benutzung doppelter Anführungszeichen.
+				Gleichermaßen müssen Sie einen Maskierungscode benutzen, um ein doppeltes Anführungszeichen
+				als solches innerhalb eines Strings zu benutzen, der von doppelten Anführungszeichen umschlossen ist.
+				Außerdem müssen Sie den umgekehrten Schrägstrich selber innerhalb eines Strings mittels des
+				Maskierungscodes <literal>\\</literal> eingeben.
+
+				<!-- Another way of specifying this specific string would be
+				<literal>"What's your name?"</literal> i.e. using double quotes. Similarly,
+				you have to use an escape sequence for using a double quote itself in a
+				double quoted string. Also, you have to indicate the backslash itself using
+				the escape sequence <literal>\\</literal>. -->
+
+				</para>
+				<para>
+
+				Was machen Sie, wenn Sie einen zweizeiligen String eingeben wollen? Eine Möglichkeit
+				besteht darin, wie oben dreifache Anführungszeichen zu benutzen. Eine andere Möglichkeit
+				ist, hierfür den Maskierungscode für einen Zeilenvorschub zu benutzen - <literal>\n</literal>,
+				um anzugeben, dass an dieser Stelle eine neue Zeile anfängt. Ein Beispiel hierfür ist
+				<literal>Dies ist die erste Zeile\nDies ist die zweite Zeile</literal>. Ein weiterer nützlicher
+				Maskierungscode, den man kennen sollte, ist der für den Tabulator - <literal>\t</literal>.
+				Es gibt viele weitere Maskierungscodes, von denen ich hier nur die nützlichsten aufgeführt habe.
+
+				<!-- What if you wanted to specify a two-line string? One way is to use a
+				triple-quoted string as shown above or you can use an escape sequence for
+				the newline character - <literal>\n</literal> to indicate the start of a
+				new line. An example is <literal>This is the first line\nThis is the
+				second line</literal> . Another useful escape sequence to know is the tab
+				- <literal>\t</literal>. There are many more escape sequences but I have
+				mentioned only the most useful ones here. -->
+
+				</para>
+				<para>
+
+				Eine Sache, die man sich merken sollte, ist, dass ein einzelner umgekehrter Schrägstrich
+				am Ende der Zeile anzeigt, dass der String auf der nächsten Zeile weitergeht, jedoch
+				ohne dass ein Zeilenvorschub hinzugefügt wird. Zum Beispiel ist
+
+				<!-- One thing to note is that in a string, a single backslash at the end of
+				the line indicates that the string is continued in the next line, but
+				no newline is added. For example, -->
+
+				</para>
+				<programlisting>
+				<![CDATA[
+"Dieses war der erste Streich. \
+Doch der zweite folgt sogleich."
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+"This is the first sentence. \
+This is the second sentence."
+				]]> -->
+				<para>
+
+				gleichbedeutend mit <literal><![CDATA["Dieses war der erste Streich. Doch der zweite folgt sogleich."]]></literal>
+
+				<!-- is equivalent to <literal><![CDATA["This is the first sentence. This is the second sentence."]]></literal> -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<bridgehead renderas="sect5">&quot;Rohe&quot; Zeichenketten</bridgehead> <!-- Raw Strings -->
+				<para>
+
+				Wenn Sie einen String angeben müssen, bei dem keine Zeichen besonders ausmaskiert
+				werden sollen, dann müssen Sie ihn als eine <emphasis>rohe</emphasis> Zeichenkette
+				(<foreignphrase>raw string</foreignphrase>) eingeben, indem Sie dem String
+				ein <literal>r</literal> oder ein <literal>R</literal> voranstellen. Ein Beispiel ist
+				<literal>r"Zeilenvorschübe kennzeichnet man mit \n"</literal>.
+
+				<!-- If you need to specify some strings where no special processing such as
+				escape sequences are handled, then what you need is to specify a
+				<emphasis>raw</emphasis> string by prefixing <literal>r</literal> or
+				<literal>R</literal> to the string. An example is
+				<literal>r"Newlines are indicated by \n"</literal>. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<bridgehead renderas="sect5">Unicode-Strings</bridgehead> <!-- Unicode Strings -->
+				<para>
+
+				Unicode ist ein Standard, der es einem erlaubt, beliebige internationale Zeichen
+				in seinen Texten zu verwenden. Wenn Sie einen Text in Ihrer Heimatsprache wie Deutsch,
+				Hindi oder Arabisch schreiben wollen, benötigen Sie einen Text-Editor, der entweder
+				mit Ihren länderspezifischen Zeichensätzen umgehen kann, die z.B. die deutschen Umlaute
+				enthalten, oder mit Unicode, das alle diese länderspezifischen Zeichen enthält.
+				Analog ist es auch in Python möglich, Unicode-Text zu verarbeiten - das Einzige,
+				was Sie hierfür tun müssen ist, dem String ein <literal>u</literal> oder ein
+				<literal>U</literal> voranzustellen, um ihn zu einem Unicode-String zu machen.
+				Beispiel: <literal><![CDATA[u"Dies ist ein Unicode-String."]]></literal>
+
+				<!-- Unicode is a standard way of writing international text. If you want to
+				write text in your native language such as Hindi or Arabic, then you need
+				to have a Unicode-enabled text editor. Similarly, Python allows you to
+				handle Unicode text - all you need to do is prefix <literal>u</literal>
+				or <literal>U</literal>. For example,
+				<literal><![CDATA[u"This is a Unicode string."]]></literal>. -->
+
+				</para>
+				<para>
+
+				Denken Sie daran, Unicode-Strings zu benutzen, wenn Sie Text-Dateien bearbeiten,
+				besonders, wenn Sie wissen, dass die Datei Text enthält, der in anderen Sprachen als
+				Englisch geschrieben wurde.
+
+				<!-- Remember to use Unicode strings when you are dealing with text files,
+				especially when you know that the file will contain text written in
+				languages other than English. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<bridgehead renderas="sect5">Strings sind unveränderlich</bridgehead> <!-- Strings are immutable -->
+				<para>
+
+				Das bedeutet, dass man einen String, wenn man ihn einmal erzeugt hat, nicht mehr ändern kann.
+				Das sieht zwar zuerst ziemlich problematisch aus, ist es aber in Wirklichkeit nicht.
+				Wir werden in den verschiedenen Programmbeispielen, die wir später durchgehen werden,
+				sehen, warum dies keine Beschränkung darstellt.
+
+				<!-- This means that once you have created a string, you cannot change it.
+				Although this might seem like a bad thing, it really isn't. We will see
+				why this is not a limitation in the various programs that we see later on. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<bridgehead renderas="sect5">Verkettung von String-Literalen</bridgehead> <!-- String literal concatenation -->
+				<para>
+
+				Wenn man zwei Strings direkt hintereinander schreibt, werden sie automatisch von Python verkettet.
+				Zum Beispiel wird <literal>'Wie heißen\'s' 'doch gleich?'</literal> automatisch in
+				<literal><![CDATA["Wie heißen's doch gleich?"]]></literal> umgewandelt.
+
+				<!-- If you place two string literals side by side, they are automatically
+				concatenated by Python. For example, <literal>'What\'s' 'your name?'</literal>
+				is automatically converted in to <literal><![CDATA["What's your name?"]]></literal>. -->
+
+				</para>
+			</listitem>
+		</itemizedlist>
+		<note>
+			<title>Anmerkung für C/C++-Programmierer</title> <!-- Note for C/C++ Programmers -->
+			<para>
+
+			In Python gibt es keinen eigenen Datentyp <classname>char</classname> für einzelne Zeichen.
+			Es gibt hierfür keine echte Notwendigkeit und ich bin sicher, dass Sie ihn nicht vermissen werden.
+
+			<!-- There is no separate <classname>char</classname> data type in Python. There is
+			no real need for it and I am sure you won't miss it.-->
+
+			</para>
+		</note>
+		<note>
+			<title>Anmerkung für Perl/PHP-Programmierer</title> <!-- Note for Perl/PHP Programmers -->
+			<para>
+
+			Denken Sie daran, dass Strings in einfachen und doppelten Anführungszeichen gleich sind -
+			sie unterscheiden sich in keinster Weise.
+
+			<!-- Remember that single-quoted strings and double-quoted strings are the same - they
+			do not differ in any way. -->
+
+			</para>
+		</note>
+		<note>
+			<title>Anmerkung, wenn Sie reguläre Ausdrücke verwenden</title> <!-- Note for Regular Expression Users -->
+			<para>
+
+			Verwenden Sie immer rohe Zeichenketten, wenn Sie mit regulären Ausdrücken hantieren,
+			weil sie sonst ständig Zeichen mit umgekehrten Schrägstrichen ausmaskieren müssen
+			und dabei schnell den Überblick verlieren. Zum Beispiel können Rückwärtsverweise
+			als <literal>'\\1'</literal> oder als <literal>r'\1'</literal> eingegeben werden.
+
+			<!-- Always use raw strings when dealing with regular expressions. Otherwise, a lot of
+			backwhacking may be required. For example, backreferences can be referred to as
+			<literal>'\\1'</literal> or <literal>r'\1'</literal>. -->
+
+			</para>
+		</note>
+	</section>
+	<section id="variables">
+		<title>Variablen</title> <!-- Variables -->
+		<para>
+
+		Immer nur Literale zu verwenden würde schnell langweilig werden - wir brauchen eine Möglichkeit,
+		beliebige Informationen zu speichern und sie auch zu verarbeiten. An dieser Stelle treten
+		die <emphasis>Variablen</emphasis> auf den Plan. Variablen sind genau so, wie sie heißen -
+		ihr Wert ist variabel, d.h. man kann alles Mögliche in einer Variable abspeichern. Variablen sind einfach
+		ein Bereich im Speicher Ihres Computers, in welchem Sie Informationen ablegen. Anders als bei Literalen
+		braucht man eine Möglichkeit, auf diese Variablen zuzugreifen. Deswegen gibt man ihnen Namen.
+
+		<!-- Using just literal constants can soon become boring - we need some way of storing any
+		information and manipulate them as well. This is where <emphasis>variables</emphasis>
+		come into the picture. Variables are exactly what they mean - their value can vary i.e.
+		you can store anything using a variable. Variables are just parts of your computer's
+		memory where you store some information. Unlike literal constants, you need some method
+		of accessing these variables and hence you give them names. -->
+
+		</para>
+	</section>
+	<section id="identifier">
+		<title>Bezeichner</title> <!-- Identifier Naming -->
+
+		<para>
+
+		Variablennamen sind Beispiele für Bezeichner. <emphasis>Bezeichner</emphasis> sind Namen,
+		die vergeben werden, um <emphasis>irgendetwas</emphasis> zu identifizieren.
+		Es gibt einige Regeln, die Sie bei Bezeichnern berücksichtigen müssen:
+
+		<!-- Variablen are examples of identifiers. <emphasis>Identifiers</emphasis> are names given
+		to identify <emphasis>something</emphasis>. There are some rules you have to follow for
+		naming identifiers: -->
+
+		</para>
+
+		<itemizedlist>
+			<listitem>
+				<para>
+
+				Das erste Zeichen eines Bezeichners muss ein (großer oder kleiner) Buchstabe des (englischen) Alphabets
+				oder ein Unterstrich sein ('_').
+
+				<!-- The first character of the identifier must be a letter of the alphabet
+				(upper or lowercase) or an underscore ('_'). -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Der Rest des Bezeichners kann aus (großen oder kleinen englischen) Buchstaben,
+				Unterstrichen ('_') oder Ziffern (0-9) bestehen. Denken Sie also daran, dass deutsche Umlaute
+				und andere Sonderzeichen in Bezeichnern nicht zulässig sind.
+
+				<!-- The rest of the identifier name can consist of letters (upper or lowercase),
+				underscores ('_') or digits (0-9). -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Bei Bezeichnern spielt die Groß-/Kleinschreibung eine Rolle. So bezeichnen zum Beispiel
+				<literal>meinname</literal> und <literal>meinName</literal>
+				<emphasis role="bold">nicht</emphasis> die gleichen Variablen.
+				Beachten Sie, dass das <literal>n</literal> in ersterem klein geschrieben ist,
+				während das <literal>N</literal> in letzterem groß geschrieben wurde.
+
+				<!-- Identifier names are case-sensitive. For example, <literal>myname</literal>
+				and <literal>myName</literal> are <emphasis role="bold">not</emphasis> the
+				same. Note the lowercase <literal>n</literal> in the former and the
+				uppercase <literal>N</literal> in te latter. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Beispiele <emphasis>zulässiger</emphasis> Bezeichner sind
+				<literal>i</literal>, <literal>__mein_name</literal>, <literal>name_23</literal>,
+				<literal>a1b2_c3</literal> oder <literal>Kaese</literal>.
+
+				<!-- Examples of <emphasis>valid</emphasis> identifier names are
+				<literal>i</literal>, <literal>__my_name</literal>, <literal>name_23</literal>
+				and <literal>a1b2_c3</literal>. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Beispiele <emphasis>unzulässiger</emphasis> Bezeichner sind
+				<literal>2dinge</literal>, <literal>leer zeichen</literal>,
+				<literal>mein-name</literal> oder <literal>käse</literal>.
+
+				<!-- Examples of <emphasis>invalid</emphasis> identifier names are
+				<literal>2things</literal>, <literal>this is spaced out</literal>
+				and <literal>my-name</literal>. -->
+
+				</para>
+			</listitem>
+		</itemizedlist>
+	</section>
+
+	<section id="data-types">
+		<title>Datentypen</title> <!-- Data Types -->
+
+		<para>
+
+		Variablen können verschiedene Arten von Werten enthalten, die
+		<emphasis role="bold">Datentypen</emphasis> genannt werden.
+		Die grundlegenden Datentypen sind Zahlen und Strings, die wir bereits besprochen haben.
+		In späteren Kapiteln werden wir sehen, wie wir unter Benutzung von <link linkend="oops">Klassen</link>
+		unsere eigenen Datentypen erzeugen können.
+
+		<!-- Variables can hold values of different types called <emphasis role="bold">data
+		types</emphasis>. The basic types are numbers and strings, which we have already
+		discussed. In later chapters, we will see how to create our own types using
+		<link linkend="oops">classes</link>. -->
+
+		</para>
+	</section>
+	<section id="data-type-object">
+		<title>Objekte</title> <!-- Objects -->
+		<para>
+
+		Denken Sie daran, dass in einem Python-Programm alles als ein <emphasis>Objekt</emphasis>
+		angesehen wird. Das ist in einem allgemeinen Sinn gemeint. Anstatt zu sagen 'das <emphasis>Dings</emphasis>',
+		sagen wir 'das <emphasis>Objekt</emphasis>'.
+
+		<!-- Remember, Python refers to anything used in a program as an <emphasis>object</emphasis>.
+		This is meant in the generic sense. Instead of saying 'the <emphasis>something</emphasis>',
+		we say 'the <emphasis>object</emphasis>'. -->
+
+		</para>
+
+		<note>
+			<title>Anmerkung für objekt-orientierte Programmierer</title> <!-- Note for Object Oriented Programming users -->
+			<para>
+
+			Python ist stark objekt-orientiert in dem Sinne, dass alles ein Objekt ist,
+			einschließlich Zahlen, Strings und sogar Funktionen.
+
+			<!-- Python is strongly object-oriented in the sense that everything is an object
+			including numbers, strings and even functions. -->
+
+			</para>
+		</note>
+
+		<para>
+
+		Wir werden nun sehen, wie wir Variablen zusammen mit Literalen benutzen können. Um dies
+		auszuprobieren, können Sie das folgende Beispiel als Programm abpeichern und laufen lassen.
+
+		<!-- We will now see how to use variables along with literal constants. Save the following
+		example and run the program. -->
+
+		</para>
+
+		<note>
+			<title>Wie man Python-Programme schreibt</title> <!-- How to write Python programs -->
+			<para>
+
+			Um ein Python-Programm abzuspeichern und laufen zu lassen,
+			gehen wir im Folgenden immer wie folgt vor:
+
+			<!-- Henceforth, the standard procedure to save and run a Python program is as follows: -->
+
+			</para>
+
+			<procedure>
+				<step>
+					<para>
+
+					Starten Sie Ihren Lieblings-Editor.
+					<!-- Open your favorite editor. -->
+
+					</para>
+				</step>
+				<step>
+					<para>
+
+					Geben Sie den Programm-Code aus dem Beispiel ein.
+					<!-- Enter the program code given in the example. -->
+
+					</para>
+				</step>
+				<step>
+					<para>
+
+					Speichern Sie das Programm als Datei mit dem Dateinamen,
+					der im Kommentar angegeben ist.
+					Ich halte mich an die Vereinbarung, nach der alle Python-Programme mit
+					der Datei-Endung <literal>.py</literal> gespeichert werden.
+
+					<!-- Save it as a file with the filename mentioned in the comment.
+					I follow the convention of having all Python programs saved with
+					the extension <literal>.py</literal>. -->
+
+					</para>
+				</step>
+				<step>
+					<para>
+
+					Starten Sie den Python-Interpreter mit dem Befehl
+					<command>python <replaceable>programm.py</replaceable></command> oder
+					benutzen Sie IDLE, um Ihre Programme laufen zu lassen. Unter Linux/Unix können Sie
+					auch die bereits erläuterte <link linkend="executable-python-programs">Methode für
+					ausführbare Dateien</link> verwenden.
+
+					<!-- Run the interpreter with the command
+					<command>python <replaceable>program.py</replaceable></command> or
+					use IDLE to run the programs. You can also use the
+					<link linkend="executable-python-programs">executable method</link>
+					as explained earlier.-->
+
+					</para>
+				</step>
+			</procedure>
+		</note>
+
+		<example id="data-type-object-example">
+			<title>Benutzung von Variablen und Literalen
+					(<ulink url="code/var.py">var.py</ulink>)
+			</title> <!-- Using Variables and Literal constants -->
+			<programlisting>
+			<![CDATA[
+#!/usr/bin/python
+
+i = 5
+print i
+i = i + 1
+print i
+
+s = '''Dies ist ein mehrzeiliger String.
+Dies ist die zweite Zeile.'''
+print s
+			]]>
+			</programlisting>
+			<!-- <![CDATA[
+# Filename : var.py
+
+i = 5
+print i
+i = i + 1
+print i
+
+s = '''This is a multi-line string.
+This is the second line.'''
+print s
+			]]> -->
+		</example>
+
+		<section id="data-type-object-output">
+			<title>Ausgabe</title> <!-- Output -->
+			<screen>
+			<![CDATA[
+$ python var.py
+5
+6
+Dies ist ein mehrzeiliger String.
+Dies ist die zweite Zeile.
+			]]>
+			</screen>
+			<!-- <![CDATA[
+$ python var.py
+5
+6
+This is a multi-line string.
+This is the second line.
+			]]> -->
+		</section>
+
+		<section id="data-type-object-how">
+			<title>So funktioniert es</title> <!-- How It Works -->
+
+			<para>
+
+			Und so funktioniert dieses Programm: Zuerst weisen wir der Variable <varname>i</varname>
+			die als Literal angegebene Zahl <literal>5</literal> zu, indem wir den Zuweisungsoperator
+			(<literal>=</literal>) verwenden. Diese Zeile wird eine Anweisung genannt, weil sie angibt,
+			dass etwas getan werden soll. In diesem Fall wird der Variablenname <literal>i</literal>
+			mit dem Wert <literal>5</literal> verbunden. Als Nächstes geben wir den Wert von <varname>i</varname>
+			unter Benutzung der <literal>print</literal>-Anweisung aus, die uns, kaum überraschend,
+			einfach den Wert der Variable auf den Bildschirm ausgibt.
+
+			<!-- Here's how this program works. First, we assign the literal constant value
+			<literal>5</literal> to the variable <varname>i</varname> using the
+			assignment operator (<literal>=</literal>). This line is called a statement
+			because it states that something should be done and in this case, we connect
+			the variable name <literal>i</literal> to the value <literal>5</literal>.
+			Next, we print the value of <varname>i</varname> using the <literal>print</literal>
+			statement which, unsurprisingly, just prints the value of the variable to the
+			screen. -->
+
+			</para>
+			<para>
+
+			Danach addieren wir <literal>1</literal> zu dem in der Variable <varname>i</varname>
+			gespeicherten Wert und speichern das Ergebnis zurück in die Variable. Wir geben es dann wieder
+			aus und erhalten wie erwartet den Wert <literal>6</literal>.
+
+			<!-- The we add <literal>1</literal> to the value stored in <varname>i</varname> and
+			store it back. We then print it and expectedly, we get the value
+			<literal>6</literal>. -->
+
+			</para>
+			<para>
+
+			Entsprechend weisen wir der Variable <varname>s</varname> den String-Literal
+			in dreifachen Anführungszeichen zu und geben ihn dann aus.
+
+			<!-- Similarly, we assign the literal string to the variable <varname>s</varname>
+			and then print it. -->
+
+			</para>
+
+			<note>
+				<title>Anmerkung für C/C++-Programmierer</title> <!-- Note for C/C++ Programmers -->
+
+				<para>
+
+				Variablen werden benutzt, indem man ihnen einfach einen Wert zuweist.
+				Es wird keine Deklaration oder Datentyp-Definition benötigt/verwendet.
+
+				<!-- Variables are used by just assigning them a value. No declaration or
+				data type definition is needed/used. -->
+
+				</para>
+			</note>
+		</section>
+	</section>
+	<section id="logical-and-physical-lines">
+		<title>Logische und physikalische Zeilen</title> <!-- Logical and Physical Lines -->
+
+		<para>
+
+		Eine physikalische Zeile ist das, was man beim Schreiben eines Programms als Zeile <emphasis>sieht</emphasis>.
+		Eine logische Zeile ist das, was Python als eine einzelne Anweisung <emphasis>ansieht</emphasis>.
+		Python nimmt zunächst einmal implizit an, dass jede <emphasis>physikalische Zeile</emphasis>
+		einer <emphasis>logischen Zeile</emphasis> entspricht.
+
+		<!-- A physical line is what you <emphasis>see</emphasis> when you write the program. A
+		logical line is what Python <emphasis>sees</emphasis> as a single statement. Python
+		implicitly assumes that each <emphasis>physical line</emphasis> corresponds to a
+		<emphasis>logical line</emphasis>. -->
+
+		</para>
+		<para>
+
+		Ein Beispiel für eine logische Zeile ist eine Anweisung wie <literal>print 'Hallo Welt'</literal>
+		- wenn sie in einer Zeile für sich steht (wie man sie im Editor sieht), dann entspricht sie auch
+		einer physikalischen Zeile.
+
+		<!-- An example of a logical line is a statement like <literal>print 'Hello World'</literal>
+		- if this was on a line by itself (as you see it in an editor), then this also
+		corresponds to a physical line. -->
+
+		</para>
+		<para>
+
+		Hierdurch legt es Python nahe, pro Zeile nur eine einzige Anweisung zu schreiben, wodurch der Code
+		auch lesbarer wird.
+
+		<!-- Implicitly, Python encourages the use of a single statement per line which makes code
+		more readable. -->
+
+		</para>
+		<para>
+
+		Wenn Sie mehr als eine logische Zeile in einer einzigen physikalischen Zeile angeben wollen,
+		dann müssen Sie dies explizit durch ein Semikolon (<literal>;</literal>) kennzeichnen,
+		mit dem Sie das Ende einer logischen Zeile/Anweisung markieren. Zum Beispiel bewirkt
+
+		<!-- If you want to specify more than one logical line on a single physical line, then you have
+		to explicitly specify this using a semicolon (<literal>;</literal>) which indicates the
+		end of a logical line/statement. For example, -->
+
+		</para>
+		<programlisting>
+		<![CDATA[
+i = 5
+print i
+		]]>
+		</programlisting>
+		<para>
+
+		genau das Gleiche wie
+		<!-- is effectively same as -->
+
+		</para>
+		<programlisting>
+		<![CDATA[
+i = 5;
+print i;
+		]]>
+		</programlisting>
+		<para>
+
+		oder das Gleiche wie
+		<!-- and the same can be written as -->
+
+		</para>
+		<programlisting>
+		<![CDATA[
+i = 5; print i;
+		]]>
+		</programlisting>
+		<para>
+
+		oder auch
+		<!-- or even -->
+
+		</para>
+		<programlisting>
+		<![CDATA[
+i = 5; print i
+		]]>
+		</programlisting>
+		<para>
+
+		Ich möchte jedoch die <emphasis role="bold">ausdrückliche Empfehlung</emphasis> aussprechen,
+		dass Sie dabei bleiben, <emphasis role="bold">eine einzelne logische Zeile pro physikalischer
+		Zeile</emphasis> zu schreiben. Man sollte das Semikolon also möglichst vermeiden, um den Code
+		übersichtlich und lesbar zu halten. Tatsächlich habe ich <emphasis>noch nie</emphasis>
+		ein Semikolon in einem Python-Programm benutzt oder auch nur gesehen. Umgekehrt sollten Sie
+		mehr als eine physikalische Zeile für eine einzelne logische Zeile nur dann benutzen, wenn die
+		logische Zeile wirklich sehr lang ist.
+
+		<!-- However, I <emphasis role="bold">strongly recommend</emphasis> that you stick to
+		<emphasis role="bold">writing a single logical line in a single physical line
+		only</emphasis>. Use more than one physical line for a single logical line only
+		if the logical line is really long. The idea is to avoid the semicolon as far as
+		possible since it leads to more readable code. In fact, I have <emphasis>never</emphasis>
+		used or even seen a semicolon in a Python program. -->
+
+		</para>
+		<para>
+
+		Im Folgenden ein Beispiel dafür, wie man eine logische Zeile schreiben kann, die mehrere physikalische
+		Zeilen umspannt. Dies wird als <emphasis role="bold">explizite Zeilenverkettung</emphasis> bezeichnet.
+
+		<!-- An example of writing a logical line spanning many physical lines follows. This is
+		referred to as <emphasis role="bold">explicit line joining</emphasis>. -->
+
+		</para>
+		<programlisting>
+		<![CDATA[
+s = 'Dies ist ein String. \
+Hier geht der String weiter.'
+print s
+		]]>
+		</programlisting>
+		<para>
+		<!-- <![CDATA[
+s = 'This is a string. \
+This continues the string.'
+print s
+		]]> -->
+
+		Dies führt zu folgender Ausgabe:
+		<!-- This gives the output: -->
+
+		</para>
+		<screen>
+		<![CDATA[
+Dies ist ein String. Hier geht der String weiter.
+		]]>
+		</screen>
+		<!-- <![CDATA[
+This is a string. This continues the string.
+		]]> -->
+		<para>
+
+		Entsprechend ist
+		<!-- Similarly, -->
+
+		</para>
+		<programlisting>
+		<![CDATA[
+print \
+i
+		]]>
+		</programlisting>
+		<para>
+
+		das gleiche wie
+		<!-- is the same as -->
+
+		</para>
+		<programlisting>
+		<![CDATA[
+print i
+		]]>
+		</programlisting>
+		<para>
+
+		Manchmal geht Python implizit von einer Zeilenverkettung aus, so dass
+		man keinen umgekehrten Schrägstrich verwenden muss. Dies ist der Fall,
+		wenn die logische Zeile runde, eckige oder geschweifte Klammern enthält,
+		und vor dem Zeilenende Klammern noch nicht geschlossen wurden. Dies
+		wird <emphasis role="bold">implizite Zeilenverkettung</emphasis> genannt.
+		Sie können sehen, wie dies funktioniert, wenn wir in späteren Kapiteln
+		Programme schreiben werden, die <link linkend="list">Listen</link> verwenden.
+
+		<!-- Sometimes, there is an implicit assumption where you don't need to use a backslash. This
+		is the case where the logical line uses parentheses, square brackets or curly braces. This
+		is is called <emphasis role="bold">implicit line joining</emphasis>.  You can see this in
+		action when we write programs using <link linkend="list">lists</link> in later chapters. -->
+
+		</para>
+	</section>
+	<section id="indentation">
+		<title>Einrückung</title> <!-- Indentation -->
+
+		<para>
+
+		Leerraum spielt in Python eine Rolle. Vor allem der <emphasis role="bold">Leerraum
+		am Zeilenanfang ist wichtig</emphasis>. Man meint diesen Leerraum, wenn man von der
+		<emphasis role="bold">Einrückung</emphasis> einer Zeile spricht.
+		Der Leerraum (Leerzeichen und Tabulatoren) am Anfang der logischen Zeile wird benutzt,
+		um die Einrückungstiefe der logischen Zeile zu bestimmen, die wiederum benutzt wird,
+		um die Gruppierung der Anweisungen zu bestimmen.
+
+		<!-- Whitespace is important in Python. Actually, <emphasis role="bold">whitespace at the
+		beginning of the line is important</emphasis>. This is called
+		<emphasis role="bold">indentation</emphasis>. Leading whitespace (spaces and tabs) at
+		the beginning of the logical line is used to determine the indentation level of the
+		logical line, which in turn is used to determine the grouping of statements. -->
+
+		</para>
+		<para>
+
+		Das bedeutet, dass Anweisungen, die zusammen gehören, die gleiche Einrückungstiefe
+		haben <emphasis role="bold">müssen</emphasis>. Jeder solche Abschnitt von
+		Anweisungen mit der gleichen Einrückungstiefe wird ein <emphasis role="bold">Block</emphasis>
+		genannt. Wir werden bald in den folgenden Kapiteln Beispiele dafür sehen, warum Blöcke wichtig sind.
+
+		<!-- This means that statements which go together <emphasis role="bold">must</emphasis>
+		have the same indentation. Each such set of statements is called a
+		<emphasis role="bold">block</emphasis>. We will see examples of how blocks are
+		important in later chapters. -->
+
+		</para>
+		<para>
+
+		Sie sollten im Kopf behalten, dass falsche Einrückung zu Fehlern führen kann.
+		Zum Beispiel:
+		<!-- One thing you should remember is how wrong indentation can give rise to errors.
+		For example: -->
+
+		</para>
+		<simpara>(<ulink url="code/leerzeichen.py">leerzeichen.py</ulink>)</simpara>
+		<programlisting>
+		<![CDATA[
+#!/usr/bin/python
+
+i = 5
+ print 'Der Wert ist', i # Fehler! Leerzeichen am Zeilenanfang
+print 'Ich wiederhole, der Wert ist', i
+		]]>
+		</programlisting>
+		<!-- <![CDATA[
+i = 5
+ print 'Value is', i # Error! Notice a single space at the start of the line
+print 'I repeat, the value is', i
+		]]> -->
+		<para>
+
+		Wenn Sie dies laufen lassen, erhalten Sie die folgende Fehlermeldung:
+		<!-- When you run this, you get the following error: -->
+
+		</para>
+		<screen>
+		<![CDATA[
+  File "leerzeichen.py", line 4
+    print 'Der Wert ist', i # Fehler! Leerzeichen am Zeilenanfang
+    ^
+SyntaxError: invalid syntax
+		]]>
+		</screen>
+		<!-- <![CDATA[
+  File "whitespace.py", line 4
+    print 'Value is', i # Error! Notice a single space at the start of the line
+    ^
+SyntaxError: invalid syntax
+		]]> -->
+		<para>
+
+		Beachten Sie das Leerzeichen, das da am Anfang der zweiten Zeile steht.
+		Der Fehler, auf den Python hinweist, sagt uns, dass die Syntax des Programms unzulässig ist,
+		d.h. dass das Programm nicht sauber geschrieben wurde. Das bedeutet für Sie, dass Sie
+		<emphasis>nicht nach Belieben neue Blöcke von Anweisungen anfangen können</emphasis>
+		(außer dem Hauptblock natürlich, den Sie die ganze Zeit verwenden).
+		Die Fälle, in denen Sie neue Blöcke benutzen können, werden in späteren Kapiteln ausgeführt,
+		wie dem <link linkend="control-flow">Kapitel über den Kontrollfluss</link>.
+
+		<!-- Notice that there is a single space at the beginning of the second line. The error
+		indicated by Python tells us that the syntax of the program is invalid i.e. the
+		program was not properly written. What this means to you is that <emphasis>you cannot
+		arbitrarily start new blocks of statements</emphasis> (except for the main block which
+		you have been using all along, of course). Cases where you can use new blocks will be
+		detailed in later chapters such as the <link linkend="control-flow">control flow
+		chapter</link>. -->
+
+		</para>
+		<important>
+			<title>So macht man Einrückungen</title> <!-- How to indent -->
+			<para>
+
+			Benutzen Sie <emphasis role="bold">auf keinen Fall</emphasis> ein Mischmasch
+			von Tabulatoren und Leerzeichen zur Einrückung, weil es nicht sauber plattformübergreifend
+			funktioniert, da die Breite eines Tabulators in Leerzeichen nicht eindeutig für alle Plattformen definiert ist.
+			Meine <emphasis>eindringliche Empfehlung</emphasis> ist, dass Sie entweder
+			einen <emphasis>einzelnen Tabulator</emphasis> oder <emphasis>zwei oder vier
+			Leerzeichen</emphasis> pro Einrückungs-Ebene benutzen.
+
+			<!-- Do <emphasis role="bold">not</emphasis> use a mixture of tabs and spaces for
+			the indentation as it does not work across different platforms properly. I
+			<emphasis>strongly recommend</emphasis> that you use a
+			<emphasis>single tab</emphasis> or <emphasis>two or four spaces</emphasis> for
+			each indentation level. -->
+
+			</para>
+			<para>
+
+			Wählen Sie einen dieser drei Einrückungsstile. Vor allem aber, wählen und benutzen Sie
+			diesen Stil <emphasis role="bold">einheitlich</emphasis>, d.h. benutzen Sie
+			<emphasis>ausschließlich</emphasis> diesen einen Einrückungsstil.
+
+			<!-- Choose any of these three indentation styles. More importantly, choose one and
+			use it <emphasis role="bold">consistently</emphasis> i.e. use that indentation
+			style <emphasis>only</emphasis>. -->
+
+			</para>
+		</important>
+	</section>
+	<section id="basics-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Nachdem wir nun viele konkrete Details im Einzelnen durchgesprochen haben, können wir uns
+		jetzt interessanteren Dingen widmen, wie den Anweisungen, die den Kontrollfluss steuern. Sie sollten
+		sich aber zuerst mit den in diesem Kapitel besprochenen Dingen wirklich vertraut gemacht haben.
+
+		<!-- Now that we have gone through many nitty-gritty details, we can move on to more
+		interesting stuff such as control flow statements. Be sure to become comfortable with
+		what you have read in this chapter. -->
+
+		</para>
+	</section>
+</chapter>

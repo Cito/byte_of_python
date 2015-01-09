@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Eigene Module erstellen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="modules.html" title="Kapitel 8. Module" /><link rel="prev" href="module-name.html" title="Der __name__ eines Moduls" /><link rel="next" href="dir.html" title="Die Funktion dir()" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Eigene Module erstellen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="module-name.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 8. Module</th><td width="20%" align="right"> <a accesskey="n" href="dir.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="making-modules"></a>Eigene Module erstellen</h2></div></div></div><p>
+
+		Es ist einfach, seine eigenen Module zu erstellen, Sie haben es schon die ganze Zeit getan!
+		Jedes Python-Programm ist auch ein Modul. Sie müssen nur sicherstellen, dass es die
+		Dateiendung <code class="filename">.py</code> hat. Das folgende Beispiel soll dies verdeutlichen:
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="creating-modules"></a>Eigene Module erstellen</h3></div></div></div><div class="example"><a id="creating-modules-example"></a><p class="title"><strong>Beispiel 8.3. Wie man ein eigenes Modul erstellt
+					(<a class="ulink" href="code/meinmodul.py" target="_top">meinmodul.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">def</span> <span class="py-identifier">saghallo</span>():
+	<span class="py-statement">print</span> <span class="py-string">'Hallo, hier spricht meinmodul.'</span>
+
+version = <span class="py-string">'0.1'</span>
+
+<span class="py-comment"># Ende von meinmodul.py</span>
+				
+				</pre></div></div><br class="example-break" /><p>
+
+			Hiermit haben wir ein sehr einfaches Beispiel-<span class="emphasis"><em>Modul</em></span> erstellt.
+			Wie Sie sehen können, gibt es daran nichts Besonderes gegenüber einem gewöhnlichen
+			Python-Programm. Als nächstes werden wir sehen, wie wir dieses Modul in unseren anderen
+			Python-Programmen verwenden können.
+
+			
+
+			</p><p>
+
+			Erinnern Sie sich, dass das Modul in das gleiche Verzeichnis platziert werden sollte wie das
+			Programm, von dem es importiert wird, oder dass es in einem der Verzeichnisse liegen sollte,
+			die in <code class="varname">sys.path</code> aufgeführt sind.
+
+			
+
+			</p><p>Beispiel: <a class="ulink" href="code/meinmodul_demo.py" target="_top">meinmodul_demo.py</a></p><pre class="programlisting">
+			
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> meinmodul
+
+meinmodul.saghallo()
+<span class="py-statement">print</span> <span class="py-string">'Version'</span>, meinmodul.version
+			
+			</pre><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="creating-modules-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python meinmodul_demo.py
+Hallo, hier spricht meinmodul.
+Version 0.1
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="creating-modules-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Beachten Sie, dass wir beide Male die Punktnotation verwenden, um auf
+				die Mitglieder des Moduls zuzugreifen. In Python verwendet man immer
+				wieder die gleichen Schreibweisen, die einen besonderen 'pythonischen' Stil
+				bilden, so dass wir nicht immer neue Weisen lernen müssen, Dinge zu tun.
+
+				
+
+				</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-from-import"></a>from..import</h3></div></div></div><p>
+
+			Hier ist eine Version, in der die <code class="literal">from..import</code>-Syntax verwendet wird.
+
+			
+
+			</p><p>Beispiel: <a class="ulink" href="code/meinmodul_demo2.py" target="_top">meinmodul_demo2.py</a></p><pre class="programlisting">
+			
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">from</span> meinmodul <span class="py-statement">import</span> saghallo, version
+<span class="py-comment"># Andere Moeglichkeit:</span>
+<span class="py-comment"># from meinmodul import *</span>
+
+saghallo()
+<span class="py-statement">print</span> <span class="py-string">'Version'</span>, version
+			
+			</pre><p>
+
+			Die Ausgabe von <code class="filename">meinmodul_demo2.py</code> ist dieselbe
+			wie die von <code class="filename">meinmodul_demo.py</code>.
+
+			
+
+			</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="module-name.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="modules.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="dir.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Der __name__ eines Moduls </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die Funktion dir()</td></tr></table></div></body></html>

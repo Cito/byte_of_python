@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Kapitel 10. Problemlösung - So schreibt man ein Python-Skript</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="index.html" title="A Byte of Python" /><link rel="prev" href="data-structures-summary.html" title="Zusammenfassung" /><link rel="next" href="the-solution.html" title="Die Lösung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Kapitel 10. Problemlösung - So schreibt man ein Python-Skript</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="data-structures-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="the-solution.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="problem-solving"></a>Kapitel 10. Problemlösung - So schreibt man ein Python-Skript</h1></div></div></div><div class="toc"><p><strong>Inhaltsverzeichnis</strong></p><dl class="toc"><dt><span class="section"><a href="problem-solving.html#the-problem">Das Problem</a></span></dt><dt><span class="section"><a href="the-solution.html">Die Lösung</a></span></dt><dd><dl><dt><span class="section"><a href="the-solution.html#first-version">Die erste Version</a></span></dt><dt><span class="section"><a href="the-solution.html#second-version">Die zweite Version</a></span></dt><dt><span class="section"><a href="the-solution.html#third-version">Die dritte Version</a></span></dt><dt><span class="section"><a href="the-solution.html#fourth-version">Die vierte Version</a></span></dt><dt><span class="section"><a href="the-solution.html#more-refinements">Weitere Verfeinerungen</a></span></dt></dl></dd><dt><span class="section"><a href="software-development-process.html">Der Softwareentwicklungsprozess</a></span></dt><dt><span class="section"><a href="problem-solving-summary.html">Zusammenfassung</a></span></dt></dl></div><p>
+
+	Wir haben bereits verschiedene Teile der Sprache Python kennen gelernt und wollen
+	nun sehen, wie all diese Teile zusammenspielen, indem wir ein Progrämmchen entwerfen
+	und schreiben, das etwas Nützliches <span class="emphasis"><em>tut</em></span>.
+
+	
+
+	</p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="the-problem"></a>Das Problem</h2></div></div></div><p>
+
+		Das Problem lautet: <span class="emphasis"><em>'Ich möchte ein Programm,
+		das eine Sicherungskopie all meiner wichtigen Dateien erstellt.'</em></span>
+
+		
+
+		</p><p>
+
+		Dies ist zwar ein einfaches Problem, aber dennoch reicht die Information noch nicht aus,
+		um sofort eine Lösung anbieten zu können. Es ist ein wenig weitere <span class="bold"><strong>Analyse</strong></span>
+		nötig. Zum Beispiel: Wie geben wir an, welche Dateien gesichert werden sollen? Wo wird
+		die Datensicherung gespeichert? Wie werden die Dateien in der Sicherungskopie gespeichert?
+
+		
+
+		</p><p>
+
+		Nachdem wir das Problem gründlich analysiert haben, <span class="bold"><strong>entwerfen</strong></span>
+		wir unser Programm. Wir machen eine Liste von Dingen, wie unser Programm funktionieren sollte.
+		In diesem Fall habe ich die folgende Liste erstellt, in der ich festhalte, wie es nach <span class="emphasis"><em>meiner</em></span>
+		Meinung funktionieren sollte. Wenn Sie den Entwurf erstellen, kann er bei Ihnen anders aussehen -
+		jeder Mensch hat seine eigene Weise, Dinge zu tun, das ist völlig in Ordnung so.
+
+		
+
+		</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+
+				Die Dateien und Verzeichnisse, die gesichert werden sollen, werden als Liste angegeben.
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Datensicherung muss in einem Hauptverzeichnis für Sicherungen gespeichert werden.
+				
+
+				</p></li><li class="listitem"><p>
+
+				Die Dateien werden in einer ZIP-Datei komprimiert gesichert.
+				
+
+				</p></li><li class="listitem"><p>
+
+				Der Name des ZIP-Archivs setzt sich aus dem aktuellen Datum und der Uhrzeit zusammen.
+				
+
+				</p></li><li class="listitem"><p>
+
+				Wir benutzen den gewöhnlichen <span class="command"><strong>zip</strong></span>-Befehl, der normalerweise in jeder
+				Linux/Unix-Distribution vorhanden ist. Windows-Benutzer können <span class="application">PKZIP</span>
+				oder das <span class="application">Info-ZIP</span>-Programm verwenden. Beachten Sie, dass Sie jedes
+				beliebige Programm für die Archivierung verwenden können, solange es eine Kommandozeilenschnittstelle
+				zur Verfügung stellt, über die es Parameter von unserem Skript entgegennehmen kann.
+
+				
+
+				</p></li></ol></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="data-structures-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="the-solution.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Zusammenfassung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die Lösung</td></tr></table></div></body></html>

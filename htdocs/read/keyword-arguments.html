@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Schlüsselwort-Argumente</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="functions.html" title="Kapitel 7. Funktionen" /><link rel="prev" href="default-argument-values.html" title="Voreingestellte Argumentwerte" /><link rel="next" href="return.html" title="Die return-Anweisung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Schlüsselwort-Argumente</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="default-argument-values.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 7. Funktionen</th><td width="20%" align="right"> <a accesskey="n" href="return.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="keyword-arguments"></a>Schlüsselwort-Argumente</h2></div></div></div><p>
+
+		Wenn Sie Funktionen mit vielen Parametern haben, aber nur einige von ihnen angeben wollen,
+		dann können Sie solchen Parametern Werte übergeben, indem Sie sie benennen. Man spricht hier
+		auch von <span class="emphasis"><em>Schlüsselwort-Argumenten</em></span>. Wir benutzen hier den Namen
+		(ein Schlüsselwort) anstatt (wie bisher) die Position, um die Argumente der Funktion zu spezifizieren.
+
+		
+
+		</p><p>
+
+		Dies hat zwei <span class="emphasis"><em>Vorteile</em></span>. Erstens: Die Benutzung der Funktion wird einfacher,
+		da wir uns keine Gedanken über die Reihenfolge der Argumente machen müssen. Zweites: Wir brauchen
+		nur denjenigen Parametern Werte zu übergeben, die wir wirklich benötigen, vorausgesetzt, die anderen
+		Parameter haben für uns akzeptable voreingestellte Argumentwerte.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-keyword-arguments"></a>Schlüsselwort-Argumente benutzen</h3></div></div></div><div class="example"><a id="using-keyword-arguments-example"></a><p class="title"><strong>Beispiel 7.6. Schlüsselwort-Argumente benutzen
+					(<a class="ulink" href="code/funk_schluessel.py" target="_top">funk_schluessel.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">def</span> <span class="py-identifier">funk</span>(a, b=<span class="py-number">5</span>, c=<span class="py-number">10</span>):
+	<span class="py-statement">print</span> <span class="py-string">'a ist'</span>, a, <span class="py-string">'und b ist'</span>, b, <span class="py-string">'und c ist'</span>, c
+
+funk(<span class="py-number">3</span>, <span class="py-number">7</span>)
+funk(<span class="py-number">25</span>, c=<span class="py-number">24</span>)
+funk(c=<span class="py-number">50</span>, a=<span class="py-number">100</span>)
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-keyword-arguments-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python funk_schluessel.py
+a ist 3 und b ist 7 und c ist 10
+a ist 25 und b ist 5 und c ist 24
+a ist 100 und b ist 5 und c ist 50
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-keyword-arguments-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Die Funktion <code class="function">funk</code> hat einen Parameter ohne voreingestellten
+				Argumentwert, gefolgt von zwei Parametern mit voreingestellten Argumentwerten.
+
+				
+
+				</p><p>
+
+				Wenn wir die Funktion zum ersten Mal aufrufen, <code class="literal">funk(3, 7)</code>,
+				bekommt der Parameter <code class="varname">a</code> den Wert <code class="literal">3</code>,
+				der Parameter <code class="varname">b</code> den Wert <code class="literal">5</code> und
+				<code class="varname">c</code> den voreingestellten Wert <code class="literal">10</code> zugewiesen.
+
+				
+
+				</p><p>
+
+				Beim zweiten Aufruf, <code class="literal">funk(25, c=24)</code>, bekommt die Variable
+				<code class="varname">a</code> den Wert 25 aufgrund der Position des Argumentes.
+				Danach bekommt der Parameter <code class="varname">c</code> den Wert
+				<code class="literal">24</code> aufgrund seiner Benennung, d.h. als Schlüsselwort-Argument.
+				Die Variable <code class="varname">b</code> erhält den voreingestellten Wert <code class="literal">5</code>.
+
+				
+
+				</p><p>
+
+				Beim dritten Aufruf der Funktion, <code class="literal">funk(c=50, a=100)</code>, verwenden wir
+				ausschließlich Schlüsselwort-Argumente, um die Werte anzugeben. Beachten Sie,
+				dass wir den Wert des Parameters <code class="varname">c</code> vor dem des Parameters
+				<code class="varname">a</code> angeben, obwohl <code class="varname">a</code>
+				in der Funktionsdefinition vor <code class="varname">c</code> angegeben ist.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="default-argument-values.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="functions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="return.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Voreingestellte Argumentwerte </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Die return-Anweisung</td></tr></table></div></body></html>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Das sys-Modul</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="stdlib.html" title="Kapitel 14. Die Standardbibliothek von Python" /><link rel="prev" href="stdlib.html" title="Kapitel 14. Die Standardbibliothek von Python" /><link rel="next" href="os-module.html" title="Das os-Modul" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Das sys-Modul</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="stdlib.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 14. Die Standardbibliothek von Python</th><td width="20%" align="right"> <a accesskey="n" href="os-module.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sys-module"></a>Das sys-Modul</h2></div></div></div><p>
+
+		Das <code class="literal">sys</code>-Modul enthält systemspezifische Funktionalität.
+		Wir haben bereits gesehen, dass die Liste <code class="varname">sys.argv</code>
+		die Kommandozeilenparameter enthält.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="command-line-arguments"></a>Kommandozeilenparameter</h3></div></div></div><div class="example"><a id="command-line-arguments-example"></a><p class="title"><strong>Beispiel 14.1. Der Gebrauch von sys.argv
+					(<a class="ulink" href="code/cat.py" target="_top">cat.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">sys</span>
+
+<span class="py-statement">def</span> <span class="py-identifier">liesdatei</span>(dateiname):
+	<span class="py-string">'''Gib eine Datei auf der Standardausgabe aus.'''</span>
+	f = <span class="py-builtin">file</span>(dateiname)
+	<span class="py-statement">while</span> <span class="py-builtin">True</span>:
+		zeile = f.readline()
+		<span class="py-statement">if</span> <span class="py-builtin">len</span>(zeile) == <span class="py-number">0</span>:
+			<span class="py-statement">break</span>
+		<span class="py-statement">print</span> zeile, <span class="py-comment"># beachten Sie das Komma</span>
+	f.close()
+
+<span class="py-comment"># das Skript beginnt hier</span>
+<span class="py-statement">if</span> <span class="py-builtin">len</span>(<span class="py-builtin">sys</span>.argv) &lt; <span class="py-number">2</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Es wurden keine Parameter uebergeben.'</span>
+	<span class="py-builtin">sys</span>.exit()
+
+<span class="py-statement">if</span> <span class="py-builtin">sys</span>.argv[<span class="py-number">1</span>].startswith(<span class="py-string">'--'</span>):
+	option = <span class="py-builtin">sys</span>.argv[<span class="py-number">1</span>][<span class="py-number">2</span>:]
+	<span class="py-comment"># hole sys.argv[1], aber ohne die ersten beiden Zeichen</span>
+	<span class="py-statement">if</span> option == <span class="py-string">'version'</span>:
+		<span class="py-statement">print</span> <span class="py-string">'Version 1.2'</span>
+	<span class="py-statement">elif</span> option == <span class="py-string">'hilfe'</span>:
+		<span class="py-statement">print</span> <span class="py-string">'''\
+Dieses Programm gibt Dateien auf der Standardausgabe aus.
+Es kann eine beliebige Anzahl von Dateien angegeben werden.
+Als Optionen koennen angegeben werden:
+  --version : Gibt die Versionsnummer aus
+  --hilfe   : Gibt diese Hilfe aus'''</span>
+	<span class="py-statement">else</span>:
+		<span class="py-statement">print</span> <span class="py-string">'Unbekannte Option.'</span>
+	<span class="py-builtin">sys</span>.exit()
+<span class="py-statement">else</span>:
+	<span class="py-statement">for</span> dateiname <span class="py-statement">in</span> <span class="py-builtin">sys</span>.argv[<span class="py-number">1</span>:]:
+		liesdatei(dateiname)
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="command-line-arguments-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python cat.py
+Es wurden keine Parameter uebergeben.
+
+$ python cat.py --hilfe
+Dieses Programm gibt Dateien auf der Standardausgabe aus.
+Es kann eine beliebige Anzahl von Dateien angegeben werden.
+Als Optionen koennen angegeben werden:
+  --version : Gibt die Versionsnummer aus
+  --hilfe   : Gibt diese Hilfe aus
+
+$ python cat.py --version
+Version 1.2
+
+$ python cat.py --unsinn
+Unbekannte Option.
+
+$ python cat.py gedicht.txt
+Programmieren mit Elan
+und die Arbeit wird getan,
+willst du Spass haben daran:
+        Nimm Python!
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="command-line-arguments-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Dieses Programm versucht, den <span class="command"><strong>cat</strong></span>-Befehl zu imitieren,
+				der Linux/Unix-Benutzern wohlbekannt ist (er entspricht <span class="command"><strong>type</strong></span>
+				unter DOS/Windows). Sie geben einfach den Namen einiger Textdateien an, und
+				der Befehl gibt sie auf der Standardausgabe aus.
+
+				
+
+				</p><p>
+
+				Wenn ein Python-Programm gestartet ist, d.h. nicht im interaktiven Modus,
+				dann gibt es stets mindestens einen Eintrag in der Liste <code class="varname">sys.argv</code>,
+				nämlich den Namen des gerade laufenden Programms, der als <code class="literal">sys.argv[0]</code>
+				verfügbar ist, da Python von 0 anfängt zu zählen. Weitere eventuell vorhandene
+				Kommandozeilenparameter folgen auf diesen Eintrag.
+
+				
+
+				</p><p>
+
+				Um das Programm benutzerfreundlich zu gestalten, haben wir bestimmte Optionen
+				vorgesehen, die der Benutzer angeben kann, um mehr über das Programm zu lernen.
+				Wir benutzen den ersten Parameter, um zu prüfen, ob unserem Programm irgendwelche
+				Optionen übergeben worden sind. Wenn die Option <code class="literal">--version</code>
+				benutzt wird, dann wird die Versionsnummer des Programms ausgegeben. Auf ähnliche
+				Weise geben wir ein wenig Erklärung über das Programm aus, wenn die Option
+				<code class="literal">--help</code> angegeben wird. Wir benutzen die Funktion <code class="function">sys.exit</code>,
+				um das laufende Programm zu beenden. Wie immer erhalten Sie mit <code class="literal">help(sys.exit)</code>
+				weitere Einzelheiten hierzu.
+
+				
+
+				</p><p>
+
+				Wenn keine Optionen angegeben wurden und dem Programm Dateinamen übergeben
+				werden, dann gibt es einfach jede Zeile jeder Datei aus, eine nach der anderen, in der
+				Reihenfolge, wie sie auf der Kommandozeile angegeben wurde.
+
+				
+
+				</p><p>
+
+				Nebenbei bemerkt ist der Name <span class="command"><strong>cat</strong></span> eine Abkürzung
+				für <span class="foreignphrase"><em class="foreignphrase">concatenate</em></span>, was 'verketten' bedeutet und
+				genau das bezeichnet, was dieses Programm tut - es kann eine Datei ausgeben, oder
+				zwei oder mehr Dateien in der Ausgabe einander anfügen und so miteinander verketten.
+
+				
+
+				</p></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="more-sys"></a>Weiteres aus sys</h3></div></div></div><p>
+
+			Der String <code class="varname">sys.version</code> liefert Informationen über die Python-Version,
+			die Sie installiert haben. Mit dem Tupel <code class="varname">sys.version_info</code> kann man auf
+			einfache Weise Fallunterscheidungen für verschiedene Python-Versionen durchführen.
+
+			
+
+			</p><pre class="screen">
+			
+[swaroop@localhost code]$ python
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.version
+'2.3.4 (#1, Oct 26 2004, 16:42:40) \n[GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)]'
+&gt;&gt;&gt; sys.version_info
+(2, 3, 4, 'final', 0)
+			
+			</pre><p>
+
+			Für erfahrene Programmierer sind weitere interessante Dinge im <code class="literal">sys</code>-Modul
+			zu finden, wie <code class="varname">sys.stdin</code>, <code class="varname">sys.stdout</code> und
+			<code class="varname">sys.stderr</code>, die den Datenströmen Standardeingabe, Standardausgabe
+			bzw. Standardfehlerausgabe Ihres Programms entsprechen.
+
+			
+
+			</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="stdlib.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="stdlib.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="os-module.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 14. Die Standardbibliothek von Python </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Das os-Modul</td></tr></table></div></body></html>

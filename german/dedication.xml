@@ -1,0 +1,36 @@
+﻿<dedication id="dedication">
+
+	<!-- German translation 2005-07-18 by Christoph Zwerschke -->
+
+	<title>Widmung</title> <!-- Dedication -->
+	<para>
+		Dieses Buch ist jedem Menschen in der freien und Open-Source Software-Gemeinschaft
+		gewidmet. Sie arbeiten hart daran, solch wunderbare Software und Technologie
+		zu erstellen und sie frei mit anderen zu teilen. Sie teilen selbstlos ihr Wissen und
+		ihre fachliche Kompetenz mit uns.
+		<!-- This book is dedicated to each and every person in the free and open source
+		software community. They work hard to create such wonderful software and
+		technology and freely share it with others. They selflessly share their
+		knowledge and expertise with us. -->
+	</para>
+	<para>
+		Die Anstrengungen aller Programmierer, Designer, Künstler, Dokumentationsschreiber,
+		Fehlerkorrigierer, und natürlich, der Benutzer, solche Software und Technologie zu schaffen
+		ist wahrhaftig begeisternd und staunenswert.
+		<!-- The efforts of all the programmers, designers, artists, documentation writers,
+		bug fixers, and of course, the users, in creating such software and technologies
+		is truly inspiring and amazing. -->
+	</para>
+	<para>
+		Dieses Buch ist auch meinen Eltern gewidmet: Danke, Mom und Dad, eure unbeirrbare
+		Unterstützung und euer Vertrauen haben mich zu dem Mann gemacht, der ich heute bin.
+		<!-- This book is also dedicated to my parents: Thank you, Mom and Dad, your unflinching
+		support and trust makes me the man I am today. -->
+	</para>
+	<para>
+		Dieses Buch ist meiner Schwester gewidmet. Danke liebe Swathi, du bist solch
+		ein Freudenbündel!
+		<!-- This book is dedicated to my sister: Thank you dear Swathi, you are such a bundle
+		of joy. -->
+	</para>
+</dedication>

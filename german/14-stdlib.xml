@@ -1,0 +1,503 @@
+﻿<chapter id="stdlib">
+
+	<!-- German translation 2005-02-24 by Christoph Zwerschke -->
+	<!-- Proofreading 2005-07-16 Christoph Zwerschke -->
+
+	<title>Die Standardbibliothek von Python</title> <!-- The Python Standard Library -->
+
+	<section id="stdlib-intro">
+		<title>Einführung</title> <!-- Introduction -->
+
+		<para>
+
+		Die Python-Standardbibliothek ist in jeder Python-Installation verfügbar. Sie enthält
+		eine riesige Anzahl äußerst nützlicher Module. Es ist sehr wichtig, dass Sie sich mit der
+		Python-Standardbibliothek vertraut machen, denn die meisten Ihrer Probleme können
+		leichter und schneller gelöst werden, wenn Sie mit dieser Bibliothek von Modulen vertraut sind.
+
+		<!-- The Python Standard Library is available with every Python installation. It contains a
+		huge number of very useful modules. It is important that you become familiar with the
+		Python Standard Library since most of your problems can be solved more easily and quickly
+		if you are familiar with this library of modules. -->
+
+		</para>
+		<para>
+
+		Wir werden einige der häufig gebrauchten Module in dieser Bibliothek untersuchen.
+		Sie können die vollständigen Einzelheiten zu allen Modulen der Python-Standardbibliothek
+		in der (leider nur in Englisch verfügbaren) 'Python Library Reference' nachlesen,
+		die ebenfalls ein Bestandteil Ihrer Python-Installation ist.
+
+		<!-- We will explore some of the commonly used modules in this library. You can find complete
+		details for all of the modules in the Python Standard Library in the 'Library
+		Reference' section in the documentation that comes with your Python installation. -->
+
+		</para>
+	</section>
+
+	<section id="sys-module">
+		<title>Das sys-Modul</title> <!-- The sys module -->
+
+		<para>
+
+		Das <literal>sys</literal>-Modul enthält systemspezifische Funktionalität.
+		Wir haben bereits gesehen, dass die Liste <varname>sys.argv</varname>
+		die Kommandozeilenparameter enthält.
+
+		<!-- The <literal>sys</literal> module contains system-specific functionality. we have already
+		seen that the <varname>sys.argv</varname> list contains the command-line arguments. -->
+
+		</para>
+
+<!-- 		TODO: Change this example to something which exposes more of sys module functionality -->
+
+		<section id="command-line-arguments">
+			<title>Kommandozeilenparameter</title> <!-- Command Line Arguments -->
+
+			<example id="command-line-arguments-example">
+				<title>Der Gebrauch von sys.argv
+					(<ulink url="code/cat.py">cat.py</ulink>)
+				</title> <!-- Using sys.argv -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import sys
+
+def liesdatei(dateiname):
+	'''Gib eine Datei auf der Standardausgabe aus.'''
+	f = file(dateiname)
+	while True:
+		zeile = f.readline()
+		if len(zeile) == 0:
+			break
+		print zeile, # beachten Sie das Komma
+	f.close()
+
+# das Skript beginnt hier
+if len(sys.argv) < 2:
+	print 'Es wurden keine Parameter uebergeben.'
+	sys.exit()
+
+if sys.argv[1].startswith('--'):
+	option = sys.argv[1][2:]
+	# hole sys.argv[1], aber ohne die ersten beiden Zeichen
+	if option == 'version':
+		print 'Version 1.2'
+	elif option == 'hilfe':
+		print '''\
+Dieses Programm gibt Dateien auf der Standardausgabe aus.
+Es kann eine beliebige Anzahl von Dateien angegeben werden.
+Als Optionen koennen angegeben werden:
+  --version : Gibt die Versionsnummer aus
+  --hilfe   : Gibt diese Hilfe aus'''
+	else:
+		print 'Unbekannte Option.'
+	sys.exit()
+else:
+	for dateiname in sys.argv[1:]:
+		liesdatei(dateiname)
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: cat.py
+
+import sys
+
+def readfile(filename):
+	'''Print a file to the standard output.'''
+	f = file(filename)
+	while True:
+		line = f.readline()
+		if len(line) == 0:
+			break
+		print line, # notice comma
+	f.close()
+
+# Script starts from here
+if len(sys.argv) < 2:
+	print 'No action specified.'
+	sys.exit()
+
+if sys.argv[1].startswith('- -'):
+	option = sys.argv[1][2:]
+	# fetch sys.argv[1] but without the first two characters
+	if option == 'version':
+		print 'Version 1.2'
+	elif option == 'help':
+		print '''\
+This program prints files to the standard output.
+Any number of files can be specified.
+Options include:
+  - -version : Prints the version number
+  - -help    : Display this help'''
+	else:
+		print 'Unknown option.'
+	sys.exit()
+else:
+	for filename in sys.argv[1:]:
+		readfile(filename)
+				]]> -->
+			</example>
+
+			<section id="command-line-arguments-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python cat.py
+Es wurden keine Parameter uebergeben.
+
+$ python cat.py --hilfe
+Dieses Programm gibt Dateien auf der Standardausgabe aus.
+Es kann eine beliebige Anzahl von Dateien angegeben werden.
+Als Optionen koennen angegeben werden:
+  --version : Gibt die Versionsnummer aus
+  --hilfe   : Gibt diese Hilfe aus
+
+$ python cat.py --version
+Version 1.2
+
+$ python cat.py --unsinn
+Unbekannte Option.
+
+$ python cat.py gedicht.txt
+Programmieren mit Elan
+und die Arbeit wird getan,
+willst du Spass haben daran:
+        Nimm Python!
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python cat.py
+No action specified.
+
+$ python cat.py - -help
+This program prints files to the standard output.
+Any number of files can be specified.
+Options include:
+  - -version : Prints the version number
+  - -help    : Display this help
+
+$ python cat.py - -version
+Version 1.2
+
+$ python cat.py - -nonsense
+Unknown option.
+
+$ python cat.py poem.txt
+Programming is fun
+When the work is done
+if you wanna make your work also fun:
+        use Python!
+				]]> -->
+			</section>
+
+			<section id="command-line-arguments-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Dieses Programm versucht, den <command>cat</command>-Befehl zu imitieren,
+				der Linux/Unix-Benutzern wohlbekannt ist (er entspricht <command>type</command>
+				unter DOS/Windows). Sie geben einfach den Namen einiger Textdateien an, und
+				der Befehl gibt sie auf der Standardausgabe aus.
+
+				<!-- This program tries to mimic the <command>cat</command> command familiar to
+				Linux/Unix users. You just speicfy the names of some text files and it will
+				print them to the output. -->
+
+				</para>
+				<para>
+
+				Wenn ein Python-Programm gestartet ist, d.h. nicht im interaktiven Modus,
+				dann gibt es stets mindestens einen Eintrag in der Liste <varname>sys.argv</varname>,
+				nämlich den Namen des gerade laufenden Programms, der als <literal>sys.argv[0]</literal>
+				verfügbar ist, da Python von 0 anfängt zu zählen. Weitere eventuell vorhandene
+				Kommandozeilenparameter folgen auf diesen Eintrag.
+
+				<!-- When a Python program is run i.e. not an interactive mode, there is always
+				at least one item in the <varname>sys.argv</varname> list which is the name
+				of the current program being run and is available as
+				<literal>sys.argv[0]</literal> since Python starts counting from 0. Other
+				command line arguments follow this item. -->
+
+				</para>
+				<para>
+
+				Um das Programm benutzerfreundlich zu gestalten, haben wir bestimmte Optionen
+				vorgesehen, die der Benutzer angeben kann, um mehr über das Programm zu lernen.
+				Wir benutzen den ersten Parameter, um zu prüfen, ob unserem Programm irgendwelche
+				Optionen übergeben worden sind. Wenn die Option <literal>--version</literal>
+				benutzt wird, dann wird die Versionsnummer des Programms ausgegeben. Auf ähnliche
+				Weise geben wir ein wenig Erklärung über das Programm aus, wenn die Option
+				<literal>--help</literal> angegeben wird. Wir benutzen die Funktion <function>sys.exit</function>,
+				um das laufende Programm zu beenden. Wie immer erhalten Sie mit <literal>help(sys.exit)</literal>
+				weitere Einzelheiten hierzu.
+
+				<!-- To make the program user-friendly we have supplied certain options that the
+				user can specify to learn more about the program. We use the first argument
+				to check if any options have been specified to our program. If the
+				<literal>- -version</literal> option is used, the version number of the program
+				is printed. Similarly, when the <literal>- -help</literal> option is specified,
+				we give a bit of explanation about the program. We make use of the
+				<function>sys.exit</function> function to exit the running program. As always,
+				see <literal>help(sys.exit)</literal> for more details. -->
+
+				</para>
+				<para>
+
+				Wenn keine Optionen angegeben wurden und dem Programm Dateinamen übergeben
+				werden, dann gibt es einfach jede Zeile jeder Datei aus, eine nach der anderen, in der
+				Reihenfolge, wie sie auf der Kommandozeile angegeben wurde.
+
+				<!-- When no options are specified and filenames are passed to the program, it
+				simply prints out each line of each file, one after the other in the order
+				specified on the command line. -->
+
+				</para>
+				<para>
+
+				Nebenbei bemerkt ist der Name <command>cat</command> eine Abkürzung
+				für <foreignphrase>concatenate</foreignphrase>, was 'verketten' bedeutet und
+				genau das bezeichnet, was dieses Programm tut - es kann eine Datei ausgeben, oder
+				zwei oder mehr Dateien in der Ausgabe einander anfügen und so miteinander verketten.
+
+				<!-- As an aside, the name <command>cat</command> is short for
+				<emphasis>concatenate</emphasis> which is basically what this program does
+				- it can print out a file or attach/concatenate two or more files together
+				in the output. -->
+
+				</para>
+			</section>
+		</section>
+		<section id="more-sys">
+			<title>Weiteres aus sys</title> <!-- More sys -->
+
+			<para>
+
+			Der String <varname>sys.version</varname> liefert Informationen über die Python-Version,
+			die Sie installiert haben. Mit dem Tupel <varname>sys.version_info</varname> kann man auf
+			einfache Weise Fallunterscheidungen für verschiedene Python-Versionen durchführen.
+
+			<!-- The <varname>sys.version</varname> string gives you information about the version
+			of Python that you have installed. The <varname>sys.version_info</varname> tuple
+			gives an easier way of enabling Python-version specific parts of your program. -->
+
+			</para>
+			<screen>
+			<![CDATA[
+[swaroop@localhost code]$ python
+>>> import sys
+>>> sys.version
+'2.3.4 (#1, Oct 26 2004, 16:42:40) \n[GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)]'
+>>> sys.version_info
+(2, 3, 4, 'final', 0)
+			]]>
+			</screen>
+			<para>
+
+			Für erfahrene Programmierer sind weitere interessante Dinge im <literal>sys</literal>-Modul
+			zu finden, wie <varname>sys.stdin</varname>, <varname>sys.stdout</varname> und
+			<varname>sys.stderr</varname>, die den Datenströmen Standardeingabe, Standardausgabe
+			bzw. Standardfehlerausgabe Ihres Programms entsprechen.
+
+			<!-- For experienced programmers, other items of interest in the <literal>sys</literal>
+			module include <varname>sys.stdin</varname>, <varname>sys.stdout</varname> and
+			<varname>sys.stderr</varname> which correspond to the standard input, standard
+			output and standard error streams of your program respectively. -->
+
+			</para>
+		</section>
+	</section>
+
+	<section id="os-module">
+		<title>Das os-Modul</title> <!-- The os module -->
+
+		<para>
+
+		Das Modul <literal>os</literal> stellt allgemeine Betriebssystemfunktionalität zur Verfügung
+		(<literal>os</literal> steht hierbei für <emphasis role="bold">O</emphasis>perating
+		<emphasis role="bold">S</emphasis>ystem). Dieses Modul ist besonders wichtig, wenn Sie
+		Ihr Programm plattformunabhängig gestalten wollen, d.h. es ermöglicht es, das Programm so zu schreiben,
+		dass es sowohl unter Linux als auch unter Windows oder MacOS problemlos und ohne erforderliche
+		Änderungen abläuft.
+
+		<!-- This module represents generic <emphasis role="bold">o</emphasis>perating
+		<emphasis role="bold">s</emphasis>ystem functionality. This module is especially important
+		if you want to make your programs platform-independent i.e. it allows the program to be
+		written such that it will run on Linux as well as Windows without any problems and without
+		requiring changes. An example of this is using the <varname>os.sep</varname> variable
+		instead of the operation system-specific path separator. -->
+
+		</para>
+		<para>
+
+		Im Folgenden sind einige der nützlicheren Teile des <literal>os</literal>-Moduls aufgelistet.
+		Die meisten davon sind selbsterklärend.
+
+		<!-- Some of the more useful parts of the <literal>os</literal> module are listed below
+		Most of them are self-explanatory. -->
+
+		</para>
+
+		<itemizedlist>
+			<listitem>
+				<para>
+
+				Der String <varname>os.name</varname> gibt an, auf welcher Plattform das Programm läuft,
+				etwa <literal>'nt'</literal> für Windows oder <literal>'posix'</literal> für Linux/Unix.
+
+				<!-- The <varname>os.name</varname> string specifies which platform you are using,
+				such as <literal>'nt'</literal> for Windows and <literal>'posix'</literal>
+				for Linux/Unix users. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Funktion <function>os.getcwd()</function> liefert das aktuelle Arbeitsverzeichnis,
+				d.h. den Pfad des Verzeichnisses, unter dem das aktuelle Python-Skript läuft.
+
+				<!-- The <function>os.getcwd()</function> function gets the current working
+				directory i.e. the path of the directory from which the curent Python
+				script is working. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Funktionen <function>os.getenv()</function> und <function>os.putenv()</function>
+				werden benutzt, um Umgebungsvariablen auszulesen bzw. zu setzen.
+
+				<!-- The <function>os.getenv()</function> and <function>os.putenv()</function>
+				functions are used to get and set environment variables respectively. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Funktion <function>os.listdir()</function> gibt die Namen aller Dateien und
+				Verzeichnisse in dem angegeben Verzeichnis zurück.
+
+				<!-- The <function>os.listdir()</function> function returns the name of all
+				files and directories in the specified directory. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Funktion <function>os.remove()</function> wird benutzt, um eine Datei zu löschen.
+
+				<!-- The <function>os.remove()</function> function is used to delete a file. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Funktion <function>os.system()</function> wird benutzt, um einen Befehl
+				auf der Kommandozeilenebene des Betriebssystems ablaufen zu lassen.
+
+				<!-- The <function>os.system()</function> function is used to run a shell
+				command. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Der String <varname>os.linesep</varname> ist die Zeilenendekennung, die auf der
+				jeweiligen Plattform benutzt wird. Zum Beispiel verwendet Windows <literal>'\r\n'</literal>,
+				Linux verwendet <literal>'\n'</literal> und Mac verwendet <literal>'\r'</literal>.
+
+				<!-- The <varname>os.linesep</varname> string gives the line terminator used
+				in the current platform. For example, Windows uses <literal>'\r\n'</literal>,
+				Linux uses <literal>'\n'</literal> and Mac uses <literal>'\r'</literal>. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Funktion <function>os.path.split()</function> gibt den Verzeichnisnamen und
+				den Dateinamen zurück, die zu einem bestimmten Pfad gehören.
+
+				<!-- The <function>os.path.split()</function> function returns the directory
+				name and file name of the path. -->
+
+				</para>
+				<screen>
+				<![CDATA[
+>>> os.path.split('/home/swaroop/byte/code/gedicht.txt')
+('/home/swaroop/byte/code', 'gedicht.txt')
+				]]>
+				</screen>
+				<!-- <![CDATA[
+>>> os.path.split('/home/swaroop/byte/code/poem.txt')
+('/home/swaroop/byte/code', 'poem.txt')
+				]]> -->
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Funktionen <function>os.path.isfile()</function> und
+				<function>os.path.isdir()</function> überprüfen, ob der angegebene Pfad
+				auf eine Datei bzw. ein Verzeichnis verweist. Entsprechend wird die Funktion
+				<function>os.path.exists()</function> benutzt, um zu überprüfen, ob der
+				angegebene Pfad wirklich existiert.
+
+				<!-- The <function>os.path.isfile()</function> and the
+				<function>os.path.isdir()</function> functions check if the given path
+				refers to a file or directory respectively. Similarly, the
+				<function>os.path.exists()</function> function is used to check if a
+				given path actually exists. -->
+
+				</para>
+			</listitem>
+		</itemizedlist>
+
+		<para>
+
+		Sie können die Python-Standard-Dokumentation zu Rate ziehen, wenn Sie weitere
+		Einzelheiten zu diesen Funktionen und Variablen erfahren möchten.
+		Sie können außerdem <literal>help(sys)</literal> usw. verwenden.
+
+		<!-- You can explore the Python Standard Documentation for more details on these functions and
+		variables. You can use <literal>help(sys)</literal>, etc. as well. -->
+
+		</para>
+	</section>
+
+	<section id="stdlib-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir haben ein wenig der Funktionalität der Module <literal>sys</literal> und
+		<literal>os</literal> der Python-Standardbibliothek kennen gelernt. Sie sollten
+		die Python-Standard-Dokumentation zu Rate ziehen, um mehr über diese und auch
+		über andere Module zu herauszufinden.
+
+		<!-- We have seen some of the functionality of the <literal>sys</literal> module and
+		<literal>sys</literal> modules in the Python Standard Library. You should explore the
+		Python Standard Documentation to find out more about these and other modules as well. -->
+
+		</para>
+		<para>
+
+		Als Nächstes werden wir verschiedene Aspekte von Python behandeln, die unsere
+		Python-Rundreise <emphasis>vollständiger</emphasis> machen.
+
+		<!-- Next, we will cover various aspects of Python that will make our tour of Python more
+		<emphasis>complete</emphasis>. -->
+
+		</para>
+	</section>
+</chapter>

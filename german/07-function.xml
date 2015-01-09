@@ -1,0 +1,1069 @@
+﻿<chapter id="functions">
+
+	<!-- German translation 2005-03-01 by Bernhard Krieger -->
+	<!-- Proofreading 2005-03-15 Christoph Zwerschke -->
+	<!-- Proofreading 2006-08-04 Gunter Hannig -->
+
+	<title>Funktionen</title> <!-- Functions -->
+
+	<section id="function-intro">
+		<title>Einführung</title> <!-- Introduction -->
+
+		<para>
+
+		Funktionen sind wieder verwendbare Teile eines Programms. Sie ermöglichen es Ihnen, einem Block
+		von Anweisungen einen Namen zu geben. Sie können dann den Block irgendwo in Ihrem Programm
+		beliebig oft laufen lassen, indem Sie seinen Namen benutzen. Man spricht hier auch davon, eine Funktion
+		<emphasis>aufzurufen</emphasis>. Wir haben bereits viele eingebauten Funktionen wie etwa
+		<function>len</function> oder <function>range</function> verwendet.
+
+		<!-- Functions are reusable pieces of programs. They allow you to give a name to a block of
+		statements and you can run that block using that name anywhere in your program and any
+		number of times. This is known as <emphasis>calling</emphasis> the function. We have
+		already used many built-in functions such as the <function>len</function> and
+		<function>range</function>. -->
+
+		</para>
+		<para>
+
+		Funktionen werden mit dem Schlüsselwort <literal>def</literal>
+		<emphasis role="bold">definiert</emphasis>. Diesem Schlüsselwort folgt ein
+		<emphasis>Bezeichner</emphasis> als Name für die Funktion.
+		Danach kommt ein Klammerpaar, welches einige Variablennamen enthalten kann.
+		Die Zeile endet mit einem Doppelpunkt. Danach kommt der Block mit den Anweisungen,
+		die zu der Funktion gehören. An einem Beispiel sehen wir, wie einfach das eigentlich ist:
+
+		<!-- Functions are <emphasis role="bold">def</emphasis>ined using the <literal>def</literal>
+		keyword. This is followed by an <emphasis>identifier</emphasis> name for the function
+		followed by a pair of parentheses which may enclose some names of variables and the
+		line ends with a colon. Next follows the block of statements that are part of this
+		function. An example will show that this is actually very simple: -->
+
+		</para>
+		<section id="def-function">
+			<title>Definition einer Funktion</title> <!--Defining a Function -->
+			<example id="def-function-example">
+				<title>Definition einer Funktion
+					(<ulink url="code/funktion1.py">funktion1.py</ulink>)
+				</title> <!-- Defining a function -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def sagHallo():
+	print 'Hallo Welt!' # Block gehoert zur Funktion
+# Ende der Funktion
+
+sagHallo() # Aufruf der Funktion
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: function1.py
+
+def sayHello():
+	print 'Hello World!' # block belonging to the function
+# End of function
+
+sayHello() # call the function
+				]]> -->
+			</example>
+			<section id="def-function-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funktion1.py
+Hallo Welt!
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python function1.py
+Hello World!
+				]]> -->
+			</section>
+
+			<section id="def-function-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wir definieren eine Funktion <literal>sagHallo</literal>, indem wir die oben erläuterte
+				Syntax verwenden. Diese Funktion nimmt keine Parameter entgegen, weswegen keine
+				Variablen zwischen den Klammern angegeben sind. Parameter dienen einer Funktion
+				einfach als Eingabewerte. Auf diese Weise können wir ihr verschiedene Werte übergeben
+				und entsprechende Ausgaben als Ergebnis zurückbekommen.
+
+				<!-- We define a function called <literal>sayHello</literal> using the syntax
+				as explained above. This function takes no parameters and hence there are
+				no variables declared in the parentheses. Parameters to functions are just
+				input to the function so that we can pass in different values to it and
+				get back corresponding results. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+	<section id="function-parameters">
+		<title>Funktionsparameter</title><!-- Function Parameters -->
+
+		<para>
+		Eine Funktion kann als Parameter Werte verarbeiten, die Sie der Funktion übergeben, damit die
+		Funktion unter Benutzung dieser Werte irgendetwas <emphasis>tun</emphasis> kann.
+		Diese Parameter verhalten sich genauso wie gewöhnliche Variablen, nur dass deren Werte nicht
+		innerhalb der Funktion zugewiesen werden, sondern beim Aufruf der Funktion definiert werden.
+
+		<!-- A function can take parameters which are just values you supply to the function so
+		that the function can <emphasis>do</emphasis> something utilising those values. These
+		parameters are just like variables except that the values of these variables are defined
+		when we call the function and are not assigned values within the function itself. -->
+
+		</para>
+		<para>
+
+		Parameter werden innerhalb des Klammernpaars der Funktionsdefinition festgelegt und durch Kommas
+		voneinander getrennt. Wenn wir die Funktion später aufrufen, legen wir die Werte auf die gleiche Weise
+		fest. Beachten Sie aber die Terminologie - während die in der Funktionsdefinition angegebenen Namen
+		<emphasis>Parameter</emphasis> heißen, werden die Werte, die Sie beim Funktionsaufruf
+		übergeben, <emphasis>Argumente</emphasis> genannt.
+
+		<!-- Parameters are specified within the pair of parentheses in the function definition,
+		separated by commas. When we call the function, we supply the values in the same way.
+		Note the terminology used - the names given in the function definition are called
+		<emphasis>parameters</emphasis> whereas the values you supply in the function call are
+		called <emphasis>arguments</emphasis>. -->
+
+		</para>
+
+		<section id="using-function-parameters">
+			<title>Funktionsparameter benutzen</title><!-- Using Function Parameters -->
+			<example id="using-function-parameters-example">
+				<title>Funktionsparameter benutzen
+					(<ulink url="code/funk_param.py">funk_param.py</ulink>)
+				</title> <!-- Using Function Parameters -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def printMax(a, b):
+	if a > b:
+		print a, 'ist Maximalwert'
+	else:
+		print b, 'ist Maximalwert'
+
+printMax(3, 4) # uebergebe Zahlen direkt als Literale
+
+x = 5
+y = 7
+
+printMax(x, y) # uebergebe Variablen als Argumente
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: func_param.py
+
+def printMax(a, b):
+	if a > b:
+		print a, 'is maximum'
+	else:
+		print b, 'is maximum'
+
+printMax(3, 4) # directly give literal values
+
+x = 5
+y = 7
+
+printMax(x, y) # give variables as arguments
+				]]> -->
+			</example>
+			<section id="using-function-parameters-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funk_param.py
+4 ist Maximalwert
+7 ist Maximalwert
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python func_param.py
+4 is maximum
+7 is maximum
+				]]> -->
+			</section>
+
+			<section id="using-function-parameters-how">
+				<title>So funktioniert es</title><!-- How It Works -->
+
+				<para>
+
+				Wir definieren hier eine Funktion <function>printMax</function> mit zwei Variablen
+				<varname>a</varname> und <varname>b</varname>. Wir berechnen die größere Zahl
+				indem wir eine einfache <literal>if..else</literal>-Anweisung verwenden, und geben dann
+				die größere Zahl mit <literal>print</literal> aus.
+
+				<!-- Here, we define a function called <function>printMax</function> where we
+				take two parameters called <varname>a</varname> and <varname>b</varname>.
+				We find out the greater number using a simple <literal>if..else</literal>
+				statement and then print the bigger number. -->
+
+				</para>
+				<para>
+
+				Beim ersten Aufruf der Funktion <function>printMax</function> übergeben wir die
+				Zahlen direkt als Argumente. Beim zweiten Aufruf benutzen wir hierfür Variablen.
+				<literal>printMax(x, y)</literal> bewirkt, dass der Wert des Argumentes
+				<varname>x</varname> dem Parameter <varname>a</varname> zugewiesen
+				wird, und der Wert des Argumentes <varname>y</varname> dem Parameter
+				<varname>b</varname>. Für die Funktion <function>printMax</function>
+				ist es egal, auf welche Weise man ihr die Argumente übergibt, sie arbeitet immer gleich.
+
+				<!-- In the first usage of <function>printMax</function>, we directly supply the
+				numbers i.e. arguments. In the second usage, we call the function using
+				variables. <literal>printMax(x, y)</literal> causes value of argument
+				<varname>x</varname> to be assigned to parameter <varname>a</varname> and
+				the value of argument <varname>y</varname> assigned to parameter
+				<varname>b</varname>. The printMax function works the same in both the cases. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="local-variables">
+		<title>Lokale Variablen</title><!-- Local Variables -->
+
+		<para>
+
+		Wenn wir Variablen innerhalb einer Funktion definieren, sind sie in keinster Weise mit anderen
+		Variablen des gleichen Namens verbunden, die außerhalb der Funktion benutzt werden, d.h.
+		die Variablennamen sind für die Funktion <emphasis>lokal</emphasis> gültig.
+		Dies nennt man den <emphasis>Geltungsbereich</emphasis> einer Variablen.
+		Alle Variablen haben als Geltungsbereich den Block, in dem sie erklärt werden, beginnend
+		an der Stelle, wo der Name definiert wird.
+
+		<!-- When you declare variables inside a function definition, they are not related in any way
+		to other variables with the same names used outside the function i.e. variable names are
+		<emphasis>local</emphasis> to the function. This is called the <emphasis>scope</emphasis>
+		of the variable. All variables have the scope of the block they are declared in starting
+		from the point of definition of the name. -->
+
+		</para>
+
+		<section id="using-local-variables">
+			<title>Benutzung lokaler Variablen</title> <!-- Using Local Variables -->
+			<example id="using-local-variables-example">
+				<title>Benutzung lokaler Variablen
+					(<ulink url="code/funk_lokal.py">funk_lokal.py</ulink>)
+				</title> <!-- Using Local Variables -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def funk(x):
+	print 'x ist', x
+	x = 2
+	print 'Lokales x ist jetzt', x
+
+x = 50
+funk(x)
+print 'x ist immer noch', x
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: func_local.py
+
+def func(x):
+	print 'x is', x
+	x = 2
+	print 'Changed local x to', x
+
+x = 50
+func(x)
+print 'x is still', x
+				]]> -->
+			</example>
+			<section id="using-local-variables-out">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funk_lokal.py
+x ist 50
+Lokales x ist jetzt 2
+x ist immer noch 50
+				]]>
+				<!-- <![CDATA[
+$ python func_local.py
+x is 50
+Changed local x to 2
+x is still 50
+				]]> -->
+				</screen>
+			</section>
+
+			<section id="using-local-variables-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wenn wir das erste mal in der Funktion den <emphasis>Wert</emphasis>
+				mit dem Namen <varname>x</varname> verwenden, benutzt Python
+				hierfür den Wert des in der Funktion angegeben gleichnamigen Parameters.
+
+				<!-- In the function, the first time that we use the <emphasis>value</emphasis>
+				of the name <varname>x</varname>, Python uses the value of the parameter
+				declared in the function. -->
+
+				</para>
+				<para>
+
+				Als nächstes weisen wir <varname>x</varname> den Wert <literal>2</literal> zu.
+ 				Der Name <varname>x</varname> ist innerhalb unserer Funktion lokal gültig.
+				Wenn wir also den Wert von <varname>x</varname> in der Funktion verändern,
+				wird hierdurch das im Hauptblock definierte <varname>x</varname> nicht beeinflusst.
+
+				<!-- Next, we assign the value <literal>2</literal> to <varname>x</varname>.
+				The name <varname>x</varname> is local to our function.
+				So, when we change the value of <varname>x</varname> in the function, the
+				<varname>x</varname> defined in the main block remains unaffected. -->
+
+				</para>
+				<para>
+
+				Mit der <literal>print</literal>-Anweisung am Ende bestätigen wir, dass der Wert
+				von <varname>x</varname> im Hauptblock tatsächlich unverändert geblieben ist.
+
+				<!-- In the last <literal>print</literal> statement, we confirm that the value
+				of <varname>x</varname> in the main block is actually unaffected. -->
+
+				</para>
+			</section>
+		</section>
+
+		<section id="using-global-statement">
+			<title>Benutzung der global-Anweisung</title> <!-- Using the global statement -->
+
+			<para>
+
+			Wenn Sie einem außerhalb der Funktion definierten Namen einen Wert zuweisen wollen,
+			dann müssen Sie Python mitteilen, dass der Name nicht lokal ist, sondern <emphasis>global</emphasis>.
+			Wir können dies mit der <literal>global</literal>-Anweisung erreichen. Es ist unmöglich,
+			ohne die <literal>global</literal>-Anweisung einer außerhalb der Funktion definierten Variablen
+			einen Wert zuzuweisen.
+
+			<!-- If you want to assign a value to a name defined outside the function, then you
+			have to tell Python that the name is not local, but it is <emphasis>global</emphasis>.
+			We do this using the <literal>global</literal> statement. It is impossible to assign
+			a value to a variable defined outside a function without the <literal>global</literal>
+			statement. -->
+
+			</para>
+			<para>
+
+			Sie können die Werte außerhalb der Funktion definierter Variablen benutzen (vorausgesetzt, dass es
+			innerhalb der Funktion keine gleichnamige Variable gibt). Dies wird jedoch nicht empfohlen und sollte
+			vermieden werden, da es einem Leser des Programms nicht sofort klar ist, wo diese Variable definiert
+			wurde. Wenn man die <literal>global</literal>-Anweisung benutzt, ist damit sofort klar, dass
+			die Variable in einem äußeren Block definiert wurde.
+
+			<!-- You can use the values of such variables defined outside the function (assuming there
+			is no variable with the same name within the function). However, this is not
+			encouraged and should be avoided since it becomes unclear to the reader of the program
+			as to where that variable's definition is. Using the <literal>global</literal>
+			statement makes it amply clear that the variable is defined in an outer block. -->
+
+			</para>
+
+			<example id="using-global-statement-example">
+				<title>Benutzung der global-Anweisung
+					(<ulink url="code/funk_global.py">funk_global.py</ulink>)
+				</title> <!-- Using the global statement -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def funk():
+	global x
+
+	print 'x ist', x
+	x = 2
+	print 'Globales x ist jetzt', x
+
+x = 50
+funk()
+print 'Der Wert von x ist', x
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: func_global.py
+
+def func():
+	global x
+
+	print 'x is', x
+	x = 2
+	print 'Changed global x to', x
+
+x = 50
+func()
+print 'Value of x is', x
+				]]> -->
+			</example>
+			<section id="using-global-statement-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funk_global.py
+x ist 50
+Globales x ist jetzt 2
+Der Wert von x ist 2
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python func_global.py
+x is 50
+Changed global x to 2
+Value of x is 2
+				]]> -->
+			</section>
+
+			<section id="using-global-statement-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Die Anweisung <literal>global</literal> wird benutzt, um <varname>x</varname> als
+				globale Variable zu erklären. Wenn wir also <varname>x</varname> innerhalb der Funktion
+				einen Wert zuweisen, wird sich diese Veränderung widerspiegeln, wenn wir den Wert von
+				<varname>x</varname> im Hauptblock benutzen.
+
+				<!-- The <literal>global</literal> statement is used to decare that
+				<varname>x</varname> is a global variable - hence, when we assign a value
+				to <varname>x</varname> inside the function, that change is reflected
+				when we use the value of <varname>x</varname> in the main block. -->
+
+				</para>
+				<para>
+
+				Sie können in derselben <literal>global</literal>-Anweisung mehr als eine globale Variable
+				angeben. Zum Beispiel: <literal>global x, y, z</literal>.
+
+				<!-- You can specify more than one global variable using the same
+				<literal>global</literal> statement. For example,
+				<literal>global x, y, z</literal>. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="default-argument-values">
+		<title>Voreingestellte Argumentwerte</title> <!-- Default Argument Values -->
+
+		<para>
+
+		Bei einigen Funktionen möchten Sie vielleicht die Parameter ganz oder
+		teilweise <emphasis>optional</emphasis> machen und voreingestellte Werte verwenden,
+		wenn der Benutzer für solche Parameter keine Werte bereitstellt. Dies kann man mit
+		voreingestellten Argumentwerten erreichen. Sie können voreingestellte Argumentwerte für Parameter
+		angeben, indem Sie in der Funktionsdefinition nach dem Parameternamen den Zuweisungsoperator
+		(<literal>=</literal>) und danach den voreingestellten Wert schreiben.
+
+		<!-- For some functions, you may want to make some of its parameters as
+		<emphasis>optional</emphasis> and use default values if the user does not want to provide
+		values for such parameters. This is done with the help of default argument values. You
+		can specify default argument values for parameters by following the parameter name in the
+		function definition with the assignment operator (<literal>=</literal>) followed by the
+		default value. -->
+
+		</para>
+		<para>
+
+		Beachten Sie, dass der voreingestellte Wert für das Argument eine Konstante sein sollte.
+		Genauer gesagt sollte der voreingestellte Wert unveränderbar sein - wir werden in den
+		nächsten Kapiteln näher erklären, was das heißt. Halten Sie dies zuerst einmal so in Erinnerung.
+
+		<!-- Note that the default argument value should be a constant. More precisely, the default
+		argument value should be immutable - this is explained in detail in later chapters. For
+		now, just remember this. -->
+
+		</para>
+
+		<section id="using-default-arguments">
+			<title>Verwendung voreingestellter Argumentwerte</title> <!-- Using Default Argument Values -->
+			<example id="using-default-arguments-example">
+				<title>Verwendung voreingestellter Argumentwerte
+					(<ulink url="code/funk_vorein.py">funk_vorein.py</ulink>)
+				</title> <!-- Using Default Argument Values -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def sag(nachricht, wiederholungen = 1):
+	print nachricht * wiederholungen
+
+sag('Hallo')
+sag('Welt', 5)
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: func_default.py
+
+def say(message, times = 1):
+	print message * times
+
+say('Hello')
+say('World', 5)
+				]]> -->
+			</example>
+			<section id="using-default-arguments-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funk_vorein.py
+Hallo
+WeltWeltWeltWeltWelt
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python func_default.py
+Hello
+WorldWorldWorldWorldWorld
+				]]> -->
+			</section>
+
+			<section id="using-default-arguments-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Die Funktion <function>sag</function> wird verwendet, um einen String
+				so oft wie gewünscht auszugeben. Wenn wir keinen Wert übergeben, wird der String
+				wie voreingestellt nur einmal ausgegeben. Wir erreichen dies, indem wir für den
+				Parameter <varname>wiederholungen</varname> den voreingestellten
+				Argumentwert <literal>1</literal> angeben.
+
+				<!-- The function named <function>say</function> is used to print a string
+				as many times as want. If we don't supply a value, then by default, the
+				string is printed just once. We achieve this by specifying a default
+				argument value of <literal>1</literal> to the parameter
+				<varname>times</varname>. -->
+
+				</para>
+				<para>
+
+				Beim ersten Aufruf von <function>sag</function> übergeben wir nur den String,
+				so dass dieser einmal ausgegeben wird. Beim zweiten Aufruf von <function>sag</function>
+				übergeben wir sowohl den String an als auch ein Argument <literal>5</literal>, das
+				angibt, dass <emphasis>sag</emphasis> den String 5 mal ausgeben soll.
+
+				<!-- In the first usage of <function>say</function>, we supply only the string
+				and it prints the string once. In the second usage of <function>say</function>,
+				we supply both the string and an argument <literal>5</literal> stating that
+				we want to <emphasis>say</emphasis> the string message 5 times. -->
+
+				</para>
+				<important>
+					<para>
+
+					Nur die Parameter am Ende der Parameterliste können voreingestellte Werte besitzen,
+					d.h. es darf kein Parameter mit einem voreingestellten Argumentwert vor einem
+					Parameter ohne voreingestellten Argumentwert nach der Reihenfolge der Parameter
+					vorkommen, wie sie in der Parameterliste der Funktion angegeben sind.
+
+					<!-- Only those parameters which are at the end of the parameter list can
+					be given default argument values i.e. you cannot have a parameter
+					with a default argument value before a parameter without a default
+					argument value in the order of parameters declared in the function
+					parameter list. -->
+
+					</para>
+					<para>
+
+					Der Grund hierfür ist, dass die Werte den Parametern durch Ihre Position zugewiesen
+					werden. Zum Beispiel ist <literal>def funk(a, b=5)</literal> eine gültige Funktionsdefinition,
+					wohingegen <literal>def funk(a=5, b)</literal> <emphasis>nicht gültig</emphasis> ist.
+
+					<!-- This is because the values are assigned to the parameters by
+					position. For example, <literal>def func(a, b=5)</literal> is valid,
+					but <literal>def func(a=5, b)</literal> is <emphasis>not
+					valid</emphasis>. -->
+
+					</para>
+				</important>
+			</section>
+		</section>
+	</section>
+
+	<section id="keyword-arguments">
+		<title>Schlüsselwort-Argumente</title> <!-- Keyword Arguments -->
+
+		<para>
+
+		Wenn Sie Funktionen mit vielen Parametern haben, aber nur einige von ihnen angeben wollen,
+		dann können Sie solchen Parametern Werte übergeben, indem Sie sie benennen. Man spricht hier
+		auch von <emphasis>Schlüsselwort-Argumenten</emphasis>. Wir benutzen hier den Namen
+		(ein Schlüsselwort) anstatt (wie bisher) die Position, um die Argumente der Funktion zu spezifizieren.
+
+		<!-- If you have some functions with many parameters and you want to specify only some of them,
+		then you can give values for such parameters by naming them - this is called
+		<emphasis>keyword arguments</emphasis> - we use the name (keyword) instead of the position
+		(which we have been using all along) to specify the arguments to the function. -->
+
+		</para>
+		<para>
+
+		Dies hat zwei <emphasis>Vorteile</emphasis>. Erstens: Die Benutzung der Funktion wird einfacher,
+		da wir uns keine Gedanken über die Reihenfolge der Argumente machen müssen. Zweites: Wir brauchen
+		nur denjenigen Parametern Werte zu übergeben, die wir wirklich benötigen, vorausgesetzt, die anderen
+		Parameter haben für uns akzeptable voreingestellte Argumentwerte.
+
+		<!-- There are two <emphasis>advantages</emphasis> - one, using the function is easier since we
+		do not need to worry about the order of the arguments. Two, we can give values to only
+		those parameters which we want, provided that the other parameters have default argument
+		values. -->
+
+		</para>
+
+		<section id="using-keyword-arguments">
+			<title>Schlüsselwort-Argumente benutzen</title> <!-- Using Keyword Arguments -->
+			<example id="using-keyword-arguments-example">
+				<title>Schlüsselwort-Argumente benutzen
+					(<ulink url="code/funk_schluessel.py">funk_schluessel.py</ulink>)
+				</title> <!-- Using Keyword Arguments -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def funk(a, b=5, c=10):
+	print 'a ist', a, 'und b ist', b, 'und c ist', c
+
+funk(3, 7)
+funk(25, c=24)
+funk(c=50, a=100)
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: func_key.py
+
+def func(a, b=5, c=10):
+	print 'a is', a, 'and b is', b, 'and c is', c
+
+func(3, 7)
+func(25, c=24)
+func(c=50, a=100)
+				]]> -->
+			</example>
+			<section id="using-keyword-arguments-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funk_schluessel.py
+a ist 3 und b ist 7 und c ist 10
+a ist 25 und b ist 5 und c ist 24
+a ist 100 und b ist 5 und c ist 50
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python func_key.py
+a is 3 and b is 7 and c is 10
+a is 25 and b is 5 and c is 24
+a is 100 and b is 5 and c is 50
+				]]> -->
+			</section>
+
+			<section id="using-keyword-arguments-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Die Funktion <function>funk</function> hat einen Parameter ohne voreingestellten
+				Argumentwert, gefolgt von zwei Parametern mit voreingestellten Argumentwerten.
+
+				<!-- The function named <function>func</function> has one parameter without
+				default argument values, followed by two parameters with default argument
+				values. -->
+
+				</para>
+				<para>
+
+				Wenn wir die Funktion zum ersten Mal aufrufen, <literal>funk(3, 7)</literal>,
+				bekommt der Parameter <varname>a</varname> den Wert <literal>3</literal>,
+				der Parameter <varname>b</varname> den Wert <literal>5</literal> und
+				<varname>c</varname> den voreingestellten Wert <literal>10</literal> zugewiesen.
+
+				<!-- In the first usage, <literal>func(3, 7)</literal>, the parameter
+				<varname>a</varname> gets the value <literal>3</literal>, the parameter
+				<varname>b</varname> gets the value <literal>5</literal> and
+				<varname>c</varname> gets the default value of <literal>10</literal>. -->
+
+				</para>
+				<para>
+
+				Beim zweiten Aufruf, <literal>funk(25, c=24)</literal>, bekommt die Variable
+				<varname>a</varname> den Wert 25 aufgrund der Position des Argumentes.
+				Danach bekommt der Parameter <varname>c</varname> den Wert
+				<literal>24</literal> aufgrund seiner Benennung, d.h. als Schlüsselwort-Argument.
+				Die Variable <varname>b</varname> erhält den voreingestellten Wert <literal>5</literal>.
+
+				<!-- In the second usage <literal>func(25, c=24)</literal>, the variable
+				<varname>a</varname> gets the value of 25 due to the position of the
+				argument. Then, the parameter <varname>c</varname> gets the value of
+				<literal>24</literal> due to naming i.e. keyword arguments. The variable
+				<varname>b</varname> gets the default value of <literal>5</literal>. -->
+
+				</para>
+				<para>
+
+				Beim dritten Aufruf der Funktion, <literal>funk(c=50, a=100)</literal>, verwenden wir
+				ausschließlich Schlüsselwort-Argumente, um die Werte anzugeben. Beachten Sie,
+				dass wir den Wert des Parameters <varname>c</varname> vor dem des Parameters
+				<varname>a</varname> angeben, obwohl <varname>a</varname>
+				in der Funktionsdefinition vor <varname>c</varname> angegeben ist.
+
+				<!-- In the third usage <literal>func(c=50, a=100)</literal>, we use keyword
+				arguments completely to specify the values. Notice, that we are specifying
+				value for parameter <varname>c</varname> before that for
+				<varname>a</varname> even though <varname>a</varname> is defined before
+				<varname>c</varname> in the function definition. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="return">
+		<title>Die return-Anweisung</title> <!-- The return statement -->
+
+		<para>
+
+		Die <literal>return</literal>-Anweisung wird benutzt, um aus einer Funktion
+		<emphasis>zurückzukehren</emphasis>, d.h. die Funktion an dieser Stelle
+		wieder zu verlassen. Bei Bedarf können wir die Funktion an dieser Stelle auch
+		einen <emphasis>Wert zurückgeben</emphasis> lassen.
+
+		<!-- The <literal>return</literal> statement is used to <emphasis>return</emphasis> from a
+		function i.e. break out of the function. We can optionally <emphasis>return a value</emphasis>
+		from the function as well. -->
+
+		</para>
+
+		<section id="using-return-statement">
+			<title>Verwendung der return-Anweisung</title> <!-- Using the literal statement --> <!-- ? -->
+			<example id="using-return-statement-example">
+				<title>Verwendung der return-Anweisung
+					(<ulink url="code/funk_return.py">funk_return.py</ulink>)
+				</title> <!-- Using the literal statement --> <!-- ? -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def maximum(x, y):
+	if x > y:
+		return x
+	else:
+		return y
+
+print maximum(2, 3)
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: func_return.py
+
+def maximum(x, y):
+	if x > y:
+		return x
+	else:
+		return y
+
+print maximum(2, 3)
+				]]> -->
+			</example>
+			<section id="using-return-statement-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funk_return.py
+3
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python func_return.py
+3
+				]]> -->
+			</section>
+
+			<section id="using-return-statement-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Die Funktion <function>maximum</function> gibt als Wert das Maximum ihrer Parameter
+				zurück. In diesem Fall sind dies Zahlen, die der Funktion als Argumente übergeben werden. In der
+				Funktion wird eine einfache <literal>if..else</literal>-Anweisung benutzt, um den größeren
+				Wert zu finden, und dieser Wert wird dann mit <literal>return</literal> zurückgegeben.
+
+				<!-- The <function>maximum</function> function returns the maximum of the
+				parameters, in this case the numbers supplied to the function. It uses a
+				simple <literal>if..else</literal> statement to find the greater value
+				and then <emphasis>returns</emphasis> that value. -->
+
+				</para>
+				<para>
+
+				Beachten Sie, dass eine <literal>return</literal>-Anweisung ohne Wert gleichbedeutend
+				ist mit <literal>return None</literal>. <literal>None</literal> ist ein besonderer
+				Datentyp in Python, der einfach für <emphasis>Nichts</emphasis> steht.
+				Man benutzt ihn zum Beispiel, um anzuzeigen, dass eine Variable keinen speziellen Wert hat,
+				wenn sie den Wert <literal>None</literal> besitzt.
+
+				<!-- Note that a <literal>return</literal> statement without a value is
+				equivalent to <literal>return None</literal>. <literal>None</literal> is
+				a special type in Python that represents nothingness. For example, it
+				is used to indicate that a variable has no value if it has a value of
+				<literal>None</literal>. -->
+
+				</para>
+				<para>
+
+				Jede Funktion hat am Ende implizit die Anweisung <literal>return None</literal>,
+				wenn Sie nicht stattdessen Ihre eigene <literal>return</literal>-Anweisung geschrieben haben.
+				Sie können das ausprobieren, indem Sie <literal>print eineFunktion()</literal>
+				ausführen, wobei <function>eineFunktion</function> eine Funktion ohne
+				<literal>return</literal>-Anweisung sein soll, etwa:
+
+				<!-- Every function implicitly contains a <literal>return None</literal>
+				statement at the end unless you have written your own <literal>return</literal>
+				statement. You can see this by running <literal>print someFunction()</literal>
+				where the function <function>someFunction</function> does not use the
+				<literal>return</literal> statement such as: -->
+
+				</para>
+				<programlisting>
+				<![CDATA[
+def eineFunktion():
+	pass
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+def someFunction():
+	pass
+				]]> -->
+				<para>
+
+				Die <literal>pass</literal>-Anweisung wird in Python benutzt,
+				um einen leeren Anweisungsblock anzuzeigen.
+
+				<!-- The <literal>pass</literal> statement is used in Python to indicate an
+				empty block of statements. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+	<section id="docstrings">
+		<title>DocStrings</title>
+
+		<para>
+
+		In Python gibt es eine sehr elegante Möglichkeit, Funktionen mit so genannten
+		<emphasis>Dokumentations-Strings</emphasis> oder kurz
+		<emphasis>DocStrings</emphasis> zu erläutern. DocStrings sind ein wichtiges
+		Werkzeug, von dem Sie Gebrauch machen sollten, da sie dazu beitragen, das Programm zu
+		dokumentieren und es besser verständlich zu machen. Bemerkenswert daran ist z.B., dass
+		wir den DocString etwa einer Funktion sogar während des Programmablaufs abfragen können!
+
+		<!-- Python has a nifty feature called <emphasis>documentation strings</emphasis> which is
+		usually referred to by its shorter name <emphasis>docstrings</emphasis>. DocStrings are an
+		important tool that you should make use of since it helps to document the program better
+		and makes it more easy to understand. Amazingly, we can even get back the docstring
+		from, say a function, when the program is actually running! -->
+
+
+		</para>
+
+		<section id="using-docstrings">
+			<title>Verwendung von DocStrings</title> <!-- Using DocStrings -->
+			<example id="using-docstrings-example">
+				<title>Verwendung von DocStrings
+					(<ulink url="code/funk_doc.py">funk_doc.py</ulink>)
+				</title> <!-- Using DocStrings -->
+				<!-- adapted according to PEP 257 -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+def printMax(x, y):
+	"""Gib das Maximum von zwei Zahlen aus.
+
+	Die beiden Werte muessen ganze Zahlen sein."""
+	x = int(x) # Umwandlung in ganze Zahlen, falls moeglich
+	y = int(y)
+
+	if x > y:
+		print x, 'ist das Maximum'
+	else:
+		print y, 'ist das Maximum'
+
+printMax(3, 5)
+print printMax.__doc__
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: func_doc.py
+
+def printMax(x, y):
+	'''Prints the maximum of two numbers.
+
+	The two values must be integers.'''
+	x = int(x) # convert to integers, if possible
+	y = int(y)
+
+	if x > y:
+		print x, 'is maximum'
+	else:
+		print y, 'is maximum'
+
+printMax(3, 5)
+print printMax.__doc__
+				]]> -->
+			</example>
+			<section id="using-docstrings-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python funk_doc.py
+5 ist das Maximum
+Gib das Maximum von zwei Zahlen aus.
+
+	Die beiden Werte muessen ganze Zahlen sein.
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python func_doc.py
+5 is maximum
+Prints the maximum of two numbers.
+
+	The two values must be integers.
+				]]> -->
+			</section>
+
+			<section id="using-docstrings-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Ein String in der ersten logischen Zeile einer Funktion ist der
+				<emphasis>DocString</emphasis> für diese Funktion. Beachten Sie, dass man
+				DocStrings auch für <link linkend="modules">Module</link> und
+				<link linkend="classes">Klassen</link> verwenden kann,
+				die wir in den jeweiligen Kapiteln noch kennen lernen werden.
+
+				<!-- A string on the first logical line of a function is the
+				<emphasis>docstring</emphasis> for that function. Note that DocStrings
+				also apply to <link linkend="modules">modules</link> and
+				<link linkend="classes">classes</link> which we will learn about in the
+				respective chapters. -->
+
+				</para>
+				<para>
+
+				Als Konvention benutzt man für DocStrings einen mehrzeiligen String, wobei die erste Zeile
+				mit einem Großbuchstaben beginnt und mit einem Punkt endet. Danach bleibt die
+				zweite Zeile leer. Dann kommt ab der dritten Zeile eine ausführlichere Erläuterung.
+				Es wird <emphasis>ausdrücklich empfohlen</emphasis>, dieser Konvention
+				in allen DocStrings für alle nichttrivialen Funktionen zu folgen.
+				Bei sehr einfachen Funktionen verwendet man einen einzeiligen String, aber dennoch die
+				dreifachen Anführungszeichen. Weitere Einzelheiten dieser Konvention finden Sie in der
+				Python-Dokumentation unter dem Stichwort <emphasis>PEP 257</emphasis>.
+
+				<!-- The convention followed for a docstring is a multi-line string where the
+				first line starts with a capital letter and ends with a dot. Then the
+				second line is blank followed by any detailed explanation starting from
+				the third line. You are <emphasis>strongly advised</emphasis> to follow
+				this convention for all your docstrings for all your non-trivial functions. -->
+
+				</para>
+				<para>
+
+				Wir erhalten den DocString der Funktion <function>printMax</function> über das
+				mit der Funktion verbundene Attribut <literal>__doc__</literal>
+				(beachten Sie die doppelten Unterstriche). Behalten Sie im Kopf, dass in Python
+				<emphasis>alles</emphasis> als ein Objekt behandelt wird, also auch
+				Funktionen. Wir werden im Kapitel über <link linkend="oops">Klassen</link>
+				mehr über Objekte lernen.
+
+				<!-- We can access the docstring of the <function>printMax</function> function
+				using the <literal>__doc__</literal> (notice the double underscores)
+				attribute (name belonging to) of the function. Just remember that Python treats
+				<emphasis>everything</emphasis> as an object and this includes functions.
+				We'll learn more about objects in the chapter on
+				<link linkend="oops">classes</link>. -->
+
+				</para>
+				<para>
+
+				Wenn Sie die Hilfefunktion <literal>help()</literal> in Python benutzt haben,
+				haben Sie bereits den Gebrauch von DocStrings gesehen! Sie macht nämlich nichts
+				anderes, als das <varname>__doc__</varname>-Attribut der Funktion
+				auszuwerten und es in benutzerfreundlicher Weise auszugeben.
+				Sie können das an der obigen Funktion ausprobieren - fügen Sie dem Programm
+				einfach die Zeile <literal>help(printMax)</literal> hinzu. Denken Sie daran,
+				dass Sie die Hilfefunktion mit der Taste <keycap>q</keycap> beenden.
+
+				<!-- If you have used the <literal>help()</literal> in Python, then you have
+				already seen the usage of docstrings! What it does is just fetch the
+				<varname>__doc__</varname> attribute of that function and displays it in
+				a neat manner for you. You can try it out on the function above - just
+				include <literal>help(printMax)</literal> in your program. Remember to
+				press <keycap>q</keycap> to exit the <literal>help</literal>. -->
+
+				</para>
+				<para>
+
+				Automatisierte Werkzeuge können so die Dokumentation Ihres Programms abrufen.
+				Deshalb möchte ich Ihnen <emphasis>ausdrücklich empfehlen</emphasis>, allen
+				nichttrivialen Funktionen DocStrings hinzuzufügen. Der Befehl <command>pydoc</command>,
+				der mit zur Python-Distribution gehört, arbeitet ähnlich wie <literal>help()</literal> auf
+				der Basis von DocStrings.
+
+				<!-- Automated tools can retrieve the documentation from your program in this
+				manner. Therefore, I <emphasis>strongly recommend</emphasis> that you use
+				docstrings for any non-trivial function that you write. The
+				<command>pydoc</command> command that comes with your Python distribution
+				works similarly to <literal>help()</literal> using docstrings. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="functions-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir haben viele Aspekte von Funktionen kennen gelernt, aber beachten Sie, dass wir noch
+		nicht alle ihrer Aspekte behandelt haben. Jedoch haben wir die meisten Dinge behandelt, die
+		Sie hinsichtlich Funktionen in Python im Alltag wissen müssen.
+
+		<!-- We have seen so many aspects of functions but note that we still haven't covered all
+		aspects of it. However, we have already covered most of what you'll use regarding Python
+		functions on an everyday basis. -->
+
+		</para>
+		<para>
+
+		Als Nächstes werden wir lernen, wie man Python-Module sowohl verwendet als auch erzeugt.
+
+		<!-- Next, we will see how to use as well as create Python modules. -->
+
+		</para>
+	</section>
+</chapter>

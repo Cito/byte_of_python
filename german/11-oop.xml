@@ -1,0 +1,1254 @@
+﻿<chapter id="oops">
+
+	<!-- German tanslation 2005-02-19 by Christoph Zwerschke -->
+	<!-- Proofreading 2004-02-24 Lutz Horn -->
+
+	<title>Objektorientierte Programmierung</title> <!-- Object-Oriented Programming -->
+
+	<section id="oops-intro">
+		<title>Einführung</title> <!-- Introduction -->
+
+		<para>
+
+		In all unseren bisherigen Programmen haben wir unser Programm um Funktionen oder
+		Anweisungsblöcke herum entwickelt, in denen Daten manipuliert werden. Dies wird die
+		<emphasis>prozedurorientierte</emphasis> Programmierweise genannt. Es gibt eine
+		andere Weise, sein Programm zu organisieren, die darin besteht, Daten und Funktionalität
+		zu kombinieren und sie in etwas zusammenzupacken, das man ein Objekt nennt.
+		Dies wird das <emphasis>objektorientierte</emphasis> Paradigma der Programmierung genannt.
+		Meistens kann man mit prozedurorientierter Programmierung auskommen, aber wenn man
+		große Programme schreiben will oder eine Lösung haben möchte, die dafür besser geeignet ist,
+		dann sollte man objektorientierte Programmiertechniken verwenden.
+
+		<!-- In all our programs till now, we have designed our program around functions or blocks
+		of statements which manipulate data. This is called the <emphasis>procedure-oriented</emphasis>
+		way of programming. There is another way of organizing your program which is to combine
+		data and functionality and wrap it inside what is called an object. This is called the
+		<emphasis>object oriented</emphasis> programming paradigm. Most of the time you can use
+		procedural programming but sometimes when you want to write large programs or have a solution
+		that is better suited to it, you can use object oriented programming techniques. -->
+
+		</para>
+		<para>
+
+		Klassen und Objekte sind die beiden Hauptaspekte der objektorientierten Programmierung.
+		Eine <emphasis role="bold">Klasse</emphasis> erzeugt einen neuen <emphasis>Datentyp</emphasis>,
+		wobei <emphasis role="bold">Objekte</emphasis> die <emphasis>Instanzen</emphasis> der Klasse sind.
+		Man kann dies damit vergleichen, dass man Variablen vom Datentyp <classname>int</classname> haben kann,
+		was dann mit anderen Worten bedeutet, dass Variablen, die Ganzzahlen speichern, Variablen sind, die Instanzen (Objekte)
+		der Klasse <classname>int</classname> sind.
+
+		<!-- Classes and objects are the two main aspecs of object oriented programming.
+		A  <emphasis role="bold">class</emphasis> creates a new <emphasis>type</emphasis> where
+		<emphasis role="bold">objects</emphasis> are <emphasis>instances</emphasis> of the class.
+		An analogy is that you can have variables of type <classname>int</classname> which
+		translates to saying that variables that store integers are variables which are instances
+		(objects) of the <classname>int</classname> class. -->
+
+		</para>
+		<note>
+			<title>Anmerkung für C/C++/Java/C#-Programmierer</title> <!-- Note for C/C++/Java/C# Programmers -->
+
+			<para>
+
+			Beachten Sie, dass in Python sogar Ganzzahlen als Objekte (der Klasse <classname>int</classname>)
+			behandelt werden. Dies ist anders als C++ und Java (vor Version 1.5), wo Ganzzahlen primitive eingebaute
+			Datentypen sind. Siehe <literal>help(int)</literal> für weitere Einzelheiten zu dieser Klasse.
+
+			<!-- Note that even integers are treated as objects (of the <classname>int</classname> class).
+			This is unlike C++ and Java (before version 1.5) where integers are primitive native
+			types. See <literal>help(int)</literal> for more details on the class. -->
+
+			</para>
+			<para>
+
+			C#- und Java-1.5-Programmierer wird dieses Konzept bekannt vorkommen, weil es dem
+			<emphasis>Boxing/Unboxing</emphasis>-Mechanismus ähnlich ist.
+
+			<!-- C# and Java 1.5 programmers will be familiar with this concept since it is similar
+			to the <emphasis>boxing and unboxing</emphasis> concept. -->
+
+			</para>
+		</note>
+
+		<para>
+
+		Objekte können Daten in gewöhnlichen Variablen speichern, die zu dem Objekt <emphasis>gehören</emphasis>.
+		Variablen, die zu einem Objekt oder einer Klasse gehören, werden <emphasis role="bold">Felder</emphasis>
+		genannt. Objekte können auch Funktionalität aufweisen, die durch Funktionen ausgelöst werden, die zu der Klasse
+		<emphasis>gehören</emphasis>. Solche Funktionen werden <emphasis role="bold">Methoden</emphasis>
+		der Klasse genannt. Die Sprechweise ist wichtig, weil sie uns hilft, zwischen Funktionen und Variablen zu unterscheiden,
+		die separat für sich stehen, und solchen, die zu einer Klasse oder einem Objekt gehören. Insgesamt werden
+		die Felder und Methoden als die <emphasis role="bold">Attribute</emphasis> der Klasse bezeichnet.
+
+		<!-- Objects can store data using ordinary variables that <emphasis>belong</emphasis> to the
+		object. Variables that belong to an object or class are called as
+		<emphasis role="bold">fields</emphasis>. Objects can also have functionality by using
+		functions that <emphasis>belong</emphasis> to a class. Such functions are called
+		<emphasis role="bold">methods</emphasis> of the class. This terminology is important
+		because it helps us to differentiate between functions and variables which are separate
+		by itself and those which belong to a class or object. Collectively, the fields and
+		methods can be referred to as the <emphasis role="bold">attributes</emphasis> of that class. -->
+
+		</para>
+		<para>
+
+		Von Feldern gibt es zwei Typen - sie können entweder zu jeder Instanz (jedem Objekt) der Klasse gehören,
+		oder sie können zur Klasse selbst gehören. Dementsprechend werden sie im ersten Fall
+		<emphasis role="bold">Instanzvariablen</emphasis> und im zweiten Fall
+		<emphasis role="bold">Klassenvariablen</emphasis> genannt.
+
+		<!-- Fields are of two types - they can belong to each instance/object of the class or they can
+		belong to the class itself. They are called <emphasis role="bold">instance variables</emphasis>
+		and <emphasis role="bold">class variables</emphasis> respectively. -->
+
+		</para>
+		<para>
+
+		Eine Klasse wird mit dem Schlüsselwort <literal>class</literal> erzeugt. Die Felder und Methoden
+		der Klasse werden in einem eingerückten Block aufgelistet.
+
+		<!-- A class is created using the <literal>class</literal> keyword. The fields and methods of the
+		class are listed in an indented block. -->
+
+		</para>
+	</section>
+	<section id="self">
+		<title>Der Selbstbezug</title> <!-- The self -->
+
+		<para>
+
+		Klassenmethoden haben nur eine Besonderheit gegenüber gewöhnlichen Funktionen - sie müssen
+		einen zusätzlichen ersten Namen haben, der am Beginn der Parameterliste hinzugefügt wird,
+		dabei übergibt man diesem Parameter jedoch <emphasis role="bold">nicht</emphasis>
+		einen Wert, wenn man die Methode aufruft, sondern Python sorgt dafür. Diese spezielle Variable
+		repräsentiert das Objekt selbst, und es hat sich eingebürgert, ihr den Namen <literal>self</literal> zu geben.
+
+		<!-- Class methods have only one specific difference from ordinary functions - they must have
+		an extra first name that has to be added to the beginning of the parameter list, but you
+		do <emphasis role="bold">do not</emphasis> give a value for this parameter when you call
+		the method, Python will provide it. This particular variable refers to the object itself,
+		and by convention, it is given the name <literal>self</literal>. -->
+
+		</para>
+		<para>
+
+		Man könnte diesem Parameter zwar irgendeinen Namen geben, aber es wird dennoch <emphasis>ausdrücklich
+		empfohlen</emphasis>, den Namen <literal>self</literal> zu benutzen - jeder andere Name ist
+		an dieser Stelle eindeutig verpönt. Es hat viele Vorzüge, einen Standardnamen zu benutzen - jeder Leser
+		Ihres Programms wird ihn sofort erkennen, und spezielle <abbrev>IDEs</abbrev> (Integrierte
+		Entwicklungsumgebungen) können einen unterstützen, wenn man die Bezeichnung <literal>self</literal> verwendet.
+
+		<!-- Although, you can give any name for this parameter, it is <emphasis>strongly
+		recommended</emphasis> that you use the name <literal>self</literal> - any other name is
+		definitely frowned upon. There are many advantages to using a standard name - any reader
+		of your program will immediately recognize it and even specialized <abbrev>IDEs</abbrev>
+		(Integrated Development Environments) can help you if you use <literal>self</literal>. -->
+
+		</para>
+		<note>
+			<title>Anmerkung für C++/Java/C#-Programmierer</title> <!-- Note for C++/Java/C# Programmers -->
+
+			<para>
+
+			Das <literal>self</literal> in Python entspricht dem <literal>self</literal>-Zeiger in C++
+			und dem <literal>this</literal> in Java und C#.
+
+			<!-- The <literal>self</literal> in Python is equivalent to the <literal>self</literal>
+			pointer in C++ and the <literal>this</literal> reference in Java and C#. -->
+
+			</para>
+		</note>
+
+		<para>
+
+		Sie fragen sich wahrscheinlich, auf welche Weise Python den Wert für <literal>self</literal>
+		übergibt und warum Sie dafür keinen Wert zu übergeben brauchen. Ein Beispiel wird dies klar machen.
+		Angenommen, Sie haben eine Klasse, die <classname>MeineKlasse</classname> heißt und eine
+		Instanz dieser Klasse, die <varname>MeinObjekt</varname> heißt. Wenn Sie eine Methode dieses
+		Objekts als <literal>MeinObjekt.methode(param1, param2)</literal> aufrufen, dann wird dies von
+		Python automatisch in <literal>MeineKlasse.methode(MeinObjekt, param1, param2)</literal>
+		umgewandelt - und genau dafür ist dieses besondere <literal>self</literal> da.
+
+		<!-- You must be wondering how Python gives the value for <literal>self</literal> and why you
+		don't need to give a value for it. An example will make this clear. Say you have a class
+		called <classname>MyClass</classname> and an instance of this class called
+		<varname>MyObject</varname>. When you call a method of this object as
+		<literal>MyObject.method(arg1, arg2)</literal>, this is automatically converted by Python
+		into <literal>MyClass.method(MyObject, arg1, arg2</literal> - this is what the special
+		<literal>self</literal> is all about. -->
+
+		</para>
+		<para>
+
+		Das bedeutet auch, dass man selbst bei einer Methode, die keine Parameter entgegennimmt,
+		dennoch diese Methode mit einem <literal>self</literal>-Parameter definieren muss.
+
+		<!-- This also means that if you have a method which takes no arguments, then you still have
+		to define the method to have a <literal>self</literal> argument. -->
+
+		</para>
+	</section>
+
+	<section id="classes">
+		<title>Klassen</title> <!-- Classes -->
+
+		<para>
+
+		Die einfachste mögliche Klasse zeigt das folgende Beispiel.
+
+		<!-- The simplest class possible is shown in the following example. -->
+
+		</para>
+
+		<section id="creating-class">
+			<title>Erzeugen einer Klasse</title> <!-- Creating a Class -->
+
+			<example id="creating-class-example">
+				<title>Erzeugen einer Klasse
+					(<ulink url="code/einfachsteklasse.py">einfachsteklasse.py</ulink>)
+				</title> <!-- Creating a Class -->
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+class Person:
+	pass # Ein leerer Block
+
+p = Person()
+print p
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: simplestclass.py
+
+class Person:
+	pass # An empty block
+
+p = Person()
+print p
+				]]> -->
+			</example>
+
+			<section id="creating-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python einfachsteklasse.py
+<__main__.Person instance at 0xf6fcb18c>
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python simplestclass.py
+<__main__.Person instance at 0xf6fcb18c>
+				]]> -->
+			</section>
+
+			<section id="creating-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Wir erzeugen eine neue Klasse, indem wir die Anweisung <literal>class</literal> benutzen,
+				gefolgt von dem Namen der Klasse. Darauf folgt ein eingerückter Block von Anweisungen,
+				die den Rumpf der Klasse bilden. In diesem Fall haben wir einen leeren Block, was durch
+				die Anweisung <literal>pass</literal> angezeigt wird.
+
+				<!-- We create a new class using the <literal>class</literal> statement followed
+				by the name of the class. This follows an indented block of statements
+				which form the body of the class. In this case, we have an empty block
+				which is indicated using the <literal>pass</literal> statement. -->
+
+				</para>
+				<para>
+
+				Als Nächstes erzeugen wir ein Objekt (eine Instanz) dieser Klasse, indem wir den Namen
+				der Klasse benutzen, gefolgt von einem Klammerpaar. (Wir werden im nächsten Abschnitt
+				mehr über diese so genannte <link linkend="class-init">Instanziierung</link> lernen).
+				Zur Sicherheit überprüfen wir den Typ der Variable, indem wir sie einfach mit <literal>print</literal>
+				ausgeben. Dies zeigt uns, dass es sich um eine Instanz der Klasse <classname>Person</classname>
+				im Modul <literal>__main__</literal> handelt.
+
+				<!-- Next, we create an object/instance of this class using the name of the
+				class followed by a pair of parentheses. (We will learn
+				<link linkend="class-init">more about instantiation</link> in the next
+				section). For our verification, we confirm the type of the variable
+				by simply printing it. It tells us that we have an instance of the
+				<classname>Person</classname> class in the <literal>__main__</literal>
+				module. -->
+
+				</para>
+				<para>
+
+				Beachten Sie, dass die Adresse, an der Ihr Objekt im Hauptspeicher Ihres Computers gespeichert ist,
+				ebenfalls ausgegeben wird. Diese Adresse wird auf Ihrem Computer einen anderen Wert haben,
+				weil Python die Objekte überall speichern kann, wo es Platz dafür gibt.
+
+				<!-- Notice that the address of the computer memory where your object is stored
+				is also printed. The address will have a different value on your computer
+				since Python can store the object wherever it finds space. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="object-methods">
+		<title>Objektmethoden</title> <!-- object Methods -->
+
+		<para>
+
+		Wir haben bereits besprochen, dass Klassen/Objekte Methoden haben können, die bis auf
+		den zusätzlichen Übergabeparameter <literal>self</literal> gewöhnliche Funktionen sind.
+		Wir werden hierfür nur ein Beispiel sehen.
+
+		<!-- We have already discussed that classes/objects can have methods just like functions except
+		that we have an extra <literal>self</literal> variable. We will now see an example. -->
+
+		</para>
+
+		<section id="using-object-methods">
+			<title>Benutzung von Objektmethoden</title> <!-- Using Object Methds -->
+
+			<example id="using-object-methods-example">
+				<title>Benutzung von Objektmethoden
+					(<ulink url="code/methode.py">methode.py</ulink>)
+				</title> <!-- Using Object Methds -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+class Person:
+	def sagHallo(self):
+		print 'Hallo, wie geht es Ihnen?'
+
+p = Person()
+p.sagHallo()
+
+# Dieses kurze Beispiel kann auch als
+# Person().sagHallo() geschrieben werden.
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: method.py
+
+class Person:
+	def sayHi(self):
+		print 'Hello, how are you?'
+
+p = Person()
+p.sayHi()
+
+# This short example can also be written as Person().sayHi()
+				]]> -->
+			</example>
+
+			<section id="using-object-methods-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python methode.py
+Hallo, wie geht es Ihnen?
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python method.py
+Hello, how are you?
+				]]> -->
+			</section>
+
+			<section id="using-object-methods-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Hier sehen wir, wie die Sache mit dem <literal>self</literal> funktioniert.
+				Beachten Sie, dass die Methode <function>sagHallo</function> keinen Parameter
+				entgegennimmt, aber dennoch das <literal>self</literal> in der Funktionsdefinition hat.
+
+				<!-- Here we see the <literal>self</literal> in action. Notice that the
+				<function>sayHi</function> method takes no parameters but still has the
+				<literal>self</literal> in the function definition. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="class-init">
+		<title>Die __init__-Methode</title> <!-- The __init__ method -->
+
+		<para>
+
+		Es gibt viele Methodennamen, die in Pythonklassen eine besondere Bedeutung haben.
+		Wir werden nun die Bedeutung der Methode <methodname>__init__</methodname> sehen.
+
+		<!-- There are many method names which have special significance in Python classes. We will
+		see the significance of the <methodname>__init__</methodname> method now. -->
+
+		</para>
+		<para>
+
+		Die Methode <methodname>__init__</methodname> wird aufgerufen, sobald ein Objekt einer Klasse
+		instanziiert wird. Die Methode kann dafür benutzt werden, ihr Objekt auf irgendeine Weise zu
+		<emphasis>initialisieren</emphasis>. Beachten Sie die doppelten Unterstriche sowohl am Anfang als
+		auch am Ende des Namens.
+
+		<!-- The <methodname>__init__</methodname> method is run as soon as an object of a class is
+		instantiated. The method is useful to do any <emphasis>initialization</emphasis> you want
+		to do with your object. Notice the double underscore both in the beginning and at the end
+		in the name. -->
+
+		</para>
+
+		<section id="using-class-init">
+			<title>Benutzung der __init__-Method</title> <!-- Using the __init__ method -->
+
+			<example id="using-class-init-example">
+				<title>Benutzung der __init__-Method
+					(<ulink url="code/klasse_init.py">klasse_init.py</ulink>)
+				</title> <!-- Using the __init__ method -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+class Person:
+	def __init__(self, name):
+		self.name = name
+	def sagHallo(self):
+		print 'Hallo, mein Name ist', self.name
+
+p = Person('Swaroop')
+p.sagHallo()
+
+# Dieses kurze Beispiel kann auch als
+# Person('Swaroop').sagHallo() geschrieben werden.
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: class_init.py
+
+class Person:
+	def __init__(self, name):
+		self.name = name
+	def sayHi(self):
+		print 'Hello, my name is', self.name
+
+p = Person('Swaroop')
+p.sayHi()
+
+# This short example can also be written as Person('Swaroop').sayHi()
+				]]> -->
+			</example>
+
+			<section id="using-class-init-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python klasse_init.py
+Hallo, mein Name ist Swaroop
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python class_init.py
+Hello, my name is Swaroop
+				]]> -->
+			</section>
+
+			<section id="using-class-init-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Hier definieren wir die Methode <methodname>__init__</methodname> so,
+				dass sie einen Parameter <varname>name</varname> entgegennimmt
+				(zusammen mit dem üblichen <varname>self</varname>).
+				Wir erzeugen hier einfach ein neues Feld, das ebenfalls <literal>name</literal> heißt.
+				Beachten Sie, dass dies zwei unterschiedliche Variablen sind, obwohl sie den gleichen Namen haben.
+				Die Schreibweise mit dem Punkt ermöglicht es uns, zwischen den beiden zu unterscheiden.
+
+				<!-- Here, we define the <methodname>__init__</methodname> method as taking a
+				parameter <varname>name</varname> (along with the usual <varname>self</varname>).
+				Here, we just create a new field also called <literal>name</literal>. Notice
+				these are two different variables even though they have the same name. The
+				dotted notation allows us to differentiate between them. -->
+
+				</para>
+				<para>
+
+				Beachten Sie vor allem, dass wir die Methode <methodname>__init__</methodname>
+				nicht explizit aufrufen, sondern die Argumente in Klammern nach dem Klassennamen übergeben,
+				wenn wir eine neue Instanz der Klasse erzeugen. Das ist die besondere Bedeutung dieser Methode.
+
+				<!-- Most importantly, notice that we do not explicitly call the
+				<methodname>__init__</methodname> method but pass the arguments in the
+				parentheses following the class name when creating a new instance of the
+				class. This is the special significance of this method. -->
+
+				</para>
+				<para>
+
+				Nun können wir das Feld <varname>self.name</varname> in unseren Methoden benutzen,
+				wie es anhand der Methode <methodname>sagHallo</methodname> demonstriert wird.
+
+				<!-- Now, we are able to use the <varname>self.name</varname> field in our
+				methods which is demonstrated in the <methodname>sayHi</methodname> method. -->
+
+				</para>
+			</section>
+
+			<note>
+				<title>Anmerkung für C++/Java/C#-Programmierer</title> <!-- Note for C++/Java/C# Programmers -->
+
+				<para>
+
+				Die Methode <methodname>__init__</methodname> entspricht einem
+				<emphasis>Konstruktor</emphasis> in C++, C# oder Java.
+
+				<!-- The <methodname>__init__</methodname> method is analogous to a
+				<emphasis>constructor</emphasis> in C++, C# or Java. -->
+
+				</para>
+			</note>
+		</section>
+	</section>
+
+	<section id="class-and-object-vars">
+		<title>Klassen- und Objektvariablen</title> <!-- Class and Object Variables -->
+
+		<para>
+
+		Wir haben bereits den Teil der Klassen und Objekte besprochen, der für ihre Funktionalität sorgt;
+		nun werden wir den Teil betrachten, der die Daten enthält. Eigentlich handelt es sich um nichts anderes
+		als gewöhnliche Variablen, die an die <emphasis role="bold">Namensräume</emphasis> der
+		Klassen und Objekte <emphasis>gebunden</emphasis> sind, d.h. die Namen sind nur innerhalb
+		des Kontextes der Klassen und Objekte gültig.
+
+		<!-- We have already discussed the functionality part of classes and objects, now we'll see the
+		data part of it. Actually, they are nothing but ordinary variables which are
+		<emphasis>bound</emphasis> to the classes and objects <emphasis role="bold">namespaces</emphasis>
+		i.e. the names are valid within the context of these classes and objects only. -->
+
+		</para>
+		<para>
+
+		Es gibt zwei Arten von <emphasis>Feldern</emphasis> - Klassenvariablen und Objektvariablen,
+		die danach klassifiziert werden, ob die Klasse oder das Objekt die jeweiligen Variablen <emphasis>besitzt</emphasis>.
+
+		<!-- There are two types of <emphasis>fields</emphasis> - class variables and object variables
+		which are classified depending on whether the class or the object <emphasis>owns</emphasis>
+		the variables respectively. -->
+
+		</para>
+		<para>
+
+		<emphasis>Klassenvariablen</emphasis> werden gemeinsam benutzt, in dem Sinne, dass auf sie von allen
+		Objekten (Instanzen) der Klasse zugegriffen wird. Es gibt nur eine Kopie einer Klassenvariable, und wenn irgendein
+		Objekt eine Änderung an einer Klassenvariable vornimmt, dann spiegelt sich diese Änderung sofort auch in allen
+		anderen Instanzen der Klasse wieder.
+
+		<!-- <emphasis>Class variables</emphasis> are shared in the sense that they are accessed by all
+		objects (instances) of that class. There is only copy of the class variable and when any one
+		object makes a change to a class variable, the change is reflected in all the other instances
+		as well. -->
+
+		</para>
+		<para>
+
+		<emphasis>Objektvariablen</emphasis> gehören den einzelnen Objekten (Instanzen) der Klasse individuell.
+		In diesem Fall hat jedes Objekt seine eigene Kopie des Feldes, d.h. sie werden nicht gemeinsam benutzt
+		und sind auf keine Weise mit dem Feld des gleichen Namens in einer anderen Instanz der selben Klasse verknüpft.
+		An einem Beispiel werden wir das leicht verstehen.
+
+		<!-- <emphasis>Object variables</emphasis> are owned by each individual object/instance of the
+		class. In this case, each object has its own copy of the field i.e. they are not shared
+		and are not related in any way to the field by the samen name in a different instance of
+		the same class. An example will make this easy to understand. -->
+
+		</para>
+
+		<section id="using-class-and-obj-vars">
+			<title>Benutzung von Klassen- und Objektvariablen</title> <!-- Using Class and Object Variables -->
+
+			<example id="using-class-and-obj-vars-example">
+				<title>Benutzung von Klassen- und Objektvariablen
+					(<ulink url="code/objvar.py">objvar.py</ulink>)
+				</title> <!-- Using Class and Object Variables -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+class Person:
+	'''Stellt eine Person dar.'''
+	bevoelkerung = 0
+
+	def __init__(self, name):
+		'''Initialisiert die Daten der Person.'''
+		self.name = name
+		print '(Initialisiere %s)' % self.name
+
+		# Wenn diese Person erzeugt wird,
+		# traegt er/sie zur Bevoelkerung bei
+		Person.bevoelkerung += 1
+
+	def __del__(self):
+		'''Ich sterbe.'''
+		print '%s verabschiedet sich.' % self.name
+
+		Person.bevoelkerung -= 1
+
+		if Person.bevoelkerung == 0:
+			print 'Ich bin der letzte.'
+		else:
+			print 'Es gibt noch %d Leute.' % Person.bevoelkerung
+
+	def sagHallo(self):
+		'''Begruessung durch die Person.
+
+		Das ist wirklich alles, was hier geschieht.'''
+		print 'Hallo, mein Name ist %s.' % self.name
+
+	def wieViele(self):
+		'''Gibt die aktuelle Bevoelkerungszahl aus.'''
+		if Person.bevoelkerung == 1:
+			print 'Ich bin ganz allein hier.'
+		else:
+			print 'Es gibt hier %d Leute.' % Person.bevoelkerung
+
+swaroop = Person('Swaroop')
+swaroop.sagHallo()
+swaroop.wieViele()
+
+kalam = Person('Abdul Kalam')
+kalam.sagHallo()
+kalam.wieViele()
+
+swaroop.sagHallo()
+swaroop.wieViele()
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: objvar.py
+
+class Person:
+	'''Represents a person.'''
+	population = 0
+
+	def __init__(self, name):
+		'''Initializes the person's data.'''
+		self.name = name
+		print '(Initializing %s)' % self.name
+
+		# When this person is created, he/she
+		# adds to the population
+		Person.population += 1
+
+	def __del__(self):
+		'''I am dying.'''
+		print '%s says bye.' % self.name
+
+		Person.population -= 1
+
+		if Person.population == 0:
+			print 'I am the last one.'
+		else:
+			print 'There are still %d people left.' % Person.population
+
+	def sayHi(self):
+		'''Greeting by the person.
+
+		Really, that's all it does.'''
+		print 'Hi, my name is %s.' % self.name
+
+	def howMany(self):
+		'''Prints the current population.'''
+		if Person.population == 1:
+			print 'I am the only person here.'
+		else:
+			print 'We have %d persons here.' % Person.population
+
+swaroop = Person('Swaroop')
+swaroop.sayHi()
+swaroop.howMany()
+
+kalam = Person('Abdul Kalam')
+kalam.sayHi()
+kalam.howMany()
+
+swaroop.sayHi()
+swaroop.howMany()
+				]]> -->
+			</example>
+
+			<section id="using-class-and-obj-vars-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python objvar.py
+(Initialisiere Swaroop)
+Hallo, mein Name ist Swaroop.
+Ich bin ganz allein hier.
+(Initialisiere Abdul Kalam)
+Hallo, mein Name ist Abdul Kalam.
+Es gibt hier 2 Leute.
+Hallo, mein Name ist Swaroop.
+Es gibt hier 2 Leute.
+Abdul Kalam verabschiedet sich.
+Es gibt noch 1 Leute.
+Swaroop verabschiedet sich.
+Ich bin der letzte.
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python objvar.py
+(Initializing Swaroop)
+Hi, my name is Swaroop.
+I am the only person here.
+(Initializing Abdul Kalam)
+Hi, my name is Abdul Kalam.
+We have 2 persons here.
+Hi, my name is Swaroop.
+We have 2 persons here.
+Abdul Kalam says bye.
+There are still 1 people left.
+Swaroop says bye.
+I am the last one.
+				]]> -->
+			</section>
+
+			<section id="using-class-and-obj-vars-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Dies ist ein langes Beispiel, aber es hilft uns, das Wesen von Klassen- und
+				Objektvariablen zu demonstrieren. Die Variable <varname>bevoelkerung</varname>
+				gehört hier zur Klasse <classname>Person</classname> und ist daher
+				eine Klassenvariable. Die Variable <varname>name</varname> gehört
+				dagegen zum jeweiligen Objekt (das durch <literal>self</literal> zugewiesen wird)
+				und ist daher eine Objektvariable.
+
+				<!-- This is a long example but helps demonstrate the nature of class and
+				object variables. Here, <varname>population</varname> belongs to the
+				<classname>Person</classname> class and hence is a class variable.
+				The <varname>name</varname> variable belongs to the object (it is
+				assigned using <literal>self</literal>) and hence is an object variable. -->
+
+				</para>
+				<para>
+
+				Wir nehmen daher auf die Klassenvariable <varname>bevoelkerung</varname>
+				Bezug, indem wir schreiben <varname>Person.bevoelkerung</varname> und nicht
+				<varname>self.bevoelkerung</varname>. Beachten Sie, dass eine Objektvariable
+				mit dem gleichen Namen wie eine Klassenvariable diese Klassenvariable versteckt!
+				Wir nehmen auf die Objektvariable <varname>name</varname> Bezug,
+				indem wir die Schreibweise <varname>self.name</varname> in den Methoden
+				dieses Objekts benutzen. Merken Sie sich diesen einfachen Unterschied zwischen
+				Klassen- und Objektvariablen.
+
+				<!-- Thus, we refer to the <varname>population</varname> class variable as
+				<varname>Person.population</varname> and not as
+				<varname>self.population</varname>. Note that an object variable with
+				the same name as a class variable will hide the class variable!
+				We refer to the object variable <varname>name</varname> using
+				<varname>self.name</varname> notation in the methods of that object.
+				Remember this simple difference between class and object variables. -->
+
+				</para>
+				<para>
+
+				Beachten Sie, dass die <methodname>__init__</methodname>-Methode benutzt wird,
+				um die Instanz von <classname>Person</classname> mit einem Namen zu initialisieren.
+				In dieser Methode erhöhen wir den Zähler <varname>bevoelkerung</varname> um 1,
+				weil wir eine weitere Person hinzugefügt haben. Beachten Sie auch, dass der Wert von
+				<varname>self.name</varname> vom jeweiligen Objekt abhängt, was das Wesen von
+				Objektvariablen ausmacht.
+
+				<!-- Observe that the <methodname>__init__</methodname> method is used to
+				initialize the <classname>Person</classname> instance with a name.
+				In this method, we increase the <varname>population</varname> count by
+				1 since we have one more person being added. Also observe that the values
+				of <varname>self.name</varname> is specific to each object which
+				indicates the nature of object variables. -->
+
+				</para>
+				<para>
+
+				Denken Sie daran, dass Sie auf die Variablen und Methoden des gleichen Objekts
+				<emphasis role="bold">nur</emphasis> mit Hilfe der Variablen
+				<varname>self</varname> Bezug nehmen können. Dies wird als
+				<emphasis>Attribut-Referenzierung</emphasis> bezeichnet.
+
+				<!-- Remember, that you must refer to the variables and methods of the same
+				object using the <varname>self</varname> variable
+				<emphasis role="bold">only</emphasis>. This is called an
+				<emphasis>attribute reference</emphasis>. -->
+
+				</para>
+				<para>
+
+				Wir sehen in diesem Programm auch die Benutzung von
+				<emphasis role="bold">Dokumentations-Strings</emphasis> sowohl
+				für Klassen als auch für Methoden. Wir können auf den Dokumentations-String
+				der Klasse zur Laufzeit mit <varname>Person.__doc__</varname> zugreifen,
+				und mit <varname>Person.sagHallo.__doc__</varname> auf den
+				Dokumentations-String der Methode.
+
+				<!-- In this program, we also see the use of
+				<emphasis role="bold">docstrings</emphasis> for classes as well as methods.
+				We can access the class docstring at runtime using
+				<varname>Person.__doc__</varname> and the method docstring as
+				<varname>Person.sayHi.__doc__</varname> -->
+
+				</para>
+				<para>
+
+				Ganz ähnlich zur Methode <methodname>__init__</methodname> gibt es eine andere
+				spezielle Methode <methodname>__del__</methodname>, die aufgerufen wird, wenn
+				ein Objekt aufhört zu leben, d.h. wenn es nicht mehr gebraucht wird und der von ihm belegte Speicher
+				an das System zur Wiederverwendung zurückgegeben wird. In dieser Methode erniedrigen wir einfach
+				den Zähler <varname>Person.bevoelkerung</varname> um 1.
+
+				<!-- Just like the <methodname>__init__</methodname> method, there is another
+				special method <methodname>__del__</methodname> which is called when an
+				object is going to die i.e. it is no longer being used and is being returned
+				to the system for reusing that piece of memory. In this method, we simply
+				decrease the <varname>Person.population</varname> count by 1. -->
+
+				</para>
+				<para>
+
+				Die <methodname>__del__</methodname>-Methode wird automatisch aufgerufen,
+				wenn das Objekt nicht mehr gebraucht wird, und es gibt keine Garantie dafür,
+				<emphasis>wann</emphasis> dies der Fall ist. Wenn Sie dies explizit tun wollen,
+				müssen Sie einfach die <literal>del</literal>-Anweisung benutzen, die wir bereits
+				aus früheren Beispielen kennen.
+
+				<!-- The <methodname>__del__</methodname> method is run when the object is no longer
+				in use and there is no guarantee <emphasis>when</emphasis> that method will
+				be run. If you want to explicitly do this, you just have to use the
+				<literal>del</literal> statement which we have used in previous examples. -->
+
+				</para>
+
+				<note>
+					<title>Anmerkung für C++/Java/C#-Programmierer</title> <!-- Note for C++/Java/C# Programmers -->
+
+					<para>
+
+					In Python sind alle Mitglieder, d.h. alle Attribute einschließlich der Felder <emphasis>public</emphasis>,
+					und alle Methoden sind <emphasis>virtual</emphasis>.
+
+					<!-- All class members (including the data members) are
+					<emphasis>public</emphasis> and all the methods are
+					<emphasis>virtual</emphasis> in Python. -->
+
+					</para>
+					<para>
+
+					Eine Ausnahme: Wenn Sie Felder verwenden, deren Namen mit
+					<emphasis>einem doppelten Unterstrich beginnt</emphasis>,
+					so wie <varname>__privatvar</varname>, dann modifiziert Python
+					den Namen so, dass daraus praktisch eine private Variable wird.
+
+					<!-- One exception: If you use data members with names using the
+					<emphasis>double underscore prefix</emphasis> such as
+					<varname>__privatevar</varname>, Python uses name-mangling to
+					effectively make it a private variable. -->
+
+					</para>
+					<para>
+
+					Daraus hat sich die Konvention ergeben, dass Variablen, die nur innerhalb der Klasse
+					oder des Objekts benutzt werden, mit einem Unterstrich beginnen sollten,
+					während alle anderen Namen öffentlich sind und von anderen Klassen/Objekten
+					benutzt werden können. Denken Sie daran, dass dies nur eine Konvention ist,
+					und nicht von Python erzwungen wird (außer bei Variablen, deren Name mit
+					einem doppelten Unterstrich beginnt).
+
+					<!-- Thus, the convention followed is that any variable that is to be
+					used only within the class or object should begin with an
+					underscore and all other names are public and can be used by other
+					classes/objects. Remember that this is only a convention and is not
+					enforced by Python (except for the double underscore prefix). -->
+
+					</para>
+
+					<para>
+
+					Beachten Sie auch, dass die <methodname>__del__</methodname>-Methode
+					dem Konzept eines Destruktors entspricht.
+
+					<!-- Also, note that the <methodname>__del__</methodname> method is
+					analogous to the concept of a <emphasis>destructor</emphasis>. -->
+
+					</para>
+				</note>
+			</section>
+		</section>
+	</section>
+	<section id="inheritance">
+		<title>Vererbung</title> <!-- Inheritance -->
+
+		<para>
+
+		Eine der Hauptvorzüge objektorientierter Programmierung ist die Möglichkeit der
+		<emphasis role="bold">Wiederverwendung</emphasis> von Programmcode,
+		und eine Weise, mit der dies erreicht wird, ist durch den Mechanismus der
+		<emphasis>Vererbung</emphasis>. Vererbung kann man sich am besten
+		als eine mit Klassen realisierte Beziehung zwischen <emphasis>Datentypen und
+		Unterdatentypen</emphasis> vorstellen.
+
+		<!-- One of the major benefits of object oriented programming is
+		<emphasis role="bold">reuse</emphasis> of code and one of the ways this is achieved is
+		through the <emphasis>inheritance</emphasis> mechanism. Inheritance can be best imagined as
+		implementing a <emphasis>type and subtype</emphasis> relationship between classes. -->
+
+		</para>
+		<para>
+
+		Angenommen, Sie wollen ein Programm schreiben, das die Dozenten und Studenten an einer Hochschule
+		verwaltet. Diese beiden Personengruppen haben einige gemeinsame Merkmale wie Name, Alter und Adresse.
+		Sie haben auch einige spezielle Merkmale wie Gehalt, Vorlesungen und Beurlaubungen für Dozenten und
+		Prüfungsnoten und Studiengebühren für Studenten.
+
+		<!-- Suppose you want to write a program which has to keep track of the teachers and students in
+		a college. They have some common characteristics such as name, age and address. They also
+		have specific characteristics such as salary, courses and leaves for teachers and,
+		marks and fees for students. -->
+
+		</para>
+		<para>
+
+		Sie können zwei unabhängige Klassen für die beiden Typen und Prozesse anlegen, aber dies
+		würde bedeuten, dass Sie, wenn Sie ein neues gemeinsames Merkmal hinzufügen wollen, es bei
+		jeder der beiden voneinander unabhängigen Klassen tun hinzufügen müssen. Das wird sehr
+		schnell unhandlich.
+
+		<!-- You can create two independent classes for each type and process them but adding a new
+		common characteristic would mean adding to both of these independent classes. This quickly
+		becomes unwieldy. -->
+
+		</para>
+		<para>
+
+		Eine bessere Lösung besteht darin, eine gemeinsame Klasse namens <classname>SchulMitglied</classname>
+		anzulegen, und dann die Klasssen für Dozenten und Studenten von dieser Klasse <emphasis>erben</emphasis>
+		zu lassen, d.h. sie werden zu Unterdatentypen dieses Datentyps (dieser Klasse) gemacht, und wir können diesen
+		Unterdatentypen dann weitere besondere Merkmale hinzufügen.
+
+		<!-- A better way would be to create a common class called <classname>SchoolMember</classname>
+		and then have the teacher and student classes <emphasis>inherit</emphasis> from this
+		class i.e. they will become sub-types of this type (class) and then we can add specific
+		characteristics to these sub-types. -->
+
+		</para>
+		<para>
+
+		Dieser Ansatz hat viele Vorteile. Wenn wir der Klasse <classname>SchulMitglied</classname>
+		Funktionalität hinzufügen oder diese ändern, dann spiegelt sich dies automatisch in den Unterdatentypen
+		wieder. Zum Beispiel können Sie ein neues Feld für die Nummer einer Identitätskarte sowohl für Dozenten
+		als auch für Studenten hinzufügen, indem Sie dies einfach in der Klasse <classname>SchulMitglied</classname>
+		ergänzen. Änderungen an den Unterdatentypen haben jedoch keine Auswirkung auf andere Unterdatentypen.
+		Ein weiterer Vorteil besteht darin, dass man auf ein Objekt der Klasse Dozent oder Student auch als ein
+		Objekt der Klasse <classname>SchulMitglied</classname> Bezug nehmen kann, was in einigen Situationen
+		nützlich sein könnte, z. B. wenn man die Anzahl der Mitglieder der Hochschule zählen möchte.
+		Diese Möglichkeit, einen Unterdatentyp in jeder Situation, wo ein Elterndatentyp erwartet wird,
+		ersetzen zu können, d.h. ein Objekt als eine Instanz der Elternklasse behandeln zu können,
+		wird <emphasis role="bold">Polymorphismus</emphasis> genannt.
+
+		<!-- There are many advantages to this approach. If we add/change any functionality in
+		<classname>SchoolMember</classname>, this is automatically reflected in the subtypes as
+		well. For example, you can add a new ID card field for both teachers and students by simply
+		adding it to the SchoolMember class. However, changes in the subtypes do not affect other
+		subtypes. Another advantage is that if you can refer to a teacher or student object as a
+		<classname>SchoolMember</classname> object which could be useful in some situations such as
+		counting of the number of school members. This is called
+		<emphasis role="bold">polymorphism</emphasis> where a sub-type can be substituted in any
+		situation where a parent type is expected i.e. the object can be treated as an instance of
+		the parent class. -->
+
+		</para>
+		<para>
+
+		Beachten Sie auch, dass wir den Programmcode der Elternklasse <emphasis>wiederverwenden</emphasis>,
+		dass wir ihn also nicht in den verschiedenen Klassen wiederholen müssen, wie wir es hätten tun müssen, wenn wir
+		unabhängige Klassen benutzt hätten.
+
+		<!-- Also observe that we <emphasis>reuse</emphasis> the code of the parent class and we do not
+		need to repeat it in the different classes as we would have had to in case we had used
+		independent classes. -->
+
+		</para>
+		<para>
+
+		Die Klasse <classname>SchulMitglied</classname> wird in dieser Konstellation auch
+		als die <emphasis>Basisklasse</emphasis> oder die <emphasis>Superklasse</emphasis>
+		bezeichnet. Die Klassen <classname>Dozent</classname> und <classname>Student</classname>
+		werden die <emphasis>abgeleiteten Klassen</emphasis> oder <emphasis>Subklassen</emphasis>
+		genannt.
+
+		<!-- The <classname>SchoolMember</classname> class in this situation is known as the
+		<emphasis>base class</emphasis> or the <emphasis>superclass</emphasis>. The
+		<classname>Teacher</classname> and <classname>Student</classname> classes are called the
+		<emphasis>derived classes</emphasis> or <emphasis>subclasses</emphasis>. -->
+
+		</para>
+		<para>
+
+		Hier ist nun das Beispiel als Programm.
+
+		<!-- We will now see this example as a program. -->
+
+		</para>
+		<section id="using-inheritance">
+			<title>Verwendung von Vererbung</title> <!-- Using Inheritance -->
+
+			<example id="using-inheritance-example">
+				<title>Verwendung von Vererbung
+					(<ulink url="code/vererbung.py">vererbung.py</ulink>)
+				</title> <!-- Using Inheritance -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+class SchulMitglied:
+	'''Repraesentiert ein beliebiges Mitglied der Hochschule.'''
+	def __init__(self, name, alter):
+		self.name = name
+		self.alter = alter
+		print '(SchulMitglied %s initialisiert)' % self.name
+
+	def auskunft(self):
+		'''Gib Auskunft ueber das Mitglied.'''
+		print 'Name: "%s" Alter: "%s"' % (self.name, self.alter),
+
+class Dozent(SchulMitglied):
+	'''Repraesentiert einen Dozenten der Hochschule.'''
+	def __init__(self, name, alter, gehalt):
+		SchulMitglied.__init__(self, name, alter)
+		self.gehalt = gehalt
+		print '(Dozent %s initialisiert)' % self.name
+
+	def auskunft(self):
+		SchulMitglied.auskunft(self)
+		print 'Gehalt: "%d Euro"' % self.gehalt
+
+class Student(SchulMitglied):
+	'''Repraesentiert einen Studenten der Hochschule.'''
+	def __init__(self, name, alter, note):
+		SchulMitglied.__init__(self, name, alter)
+		self.note = note
+		print '(Student %s initialisiert)' % self.name
+
+	def auskunft(self):
+		SchulMitglied.auskunft(self)
+		print 'Letzte Pruefungsnote: "%1.1f"' % self.note
+
+d = Dozent('Mrs. Shrividya', 40, 30000)
+s = Student('Swaroop', 22, 1.7)
+
+print # gib eine Leerzeile aus
+
+mitglieder = [d, s]
+for mitglied in mitglieder:
+	mitglied.auskunft() # geht bei Dozenten und Studenten
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: inherit.py
+
+class SchoolMember:
+	'''Represents any school member.'''
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+		print '(Initialized SchoolMember: %s)' % self.name
+
+	def tell(self):
+		'''Tell my details.'''
+		print 'Name:"%s" Age:"%s"' % (self.name, self.age),
+
+class Teacher(SchoolMember):
+	'''Represents a teacher.'''
+	def __init__(self, name, age, salary):
+		SchoolMember.__init__(self, name, age)
+		self.salary = salary
+		print '(Initialized Teacher: %s)' % self.name
+
+	def tell(self):
+		SchoolMember.tell(self)
+		print 'Salary: "%d"' % self.salary
+
+class Student(SchoolMember):
+	'''Represents a student.'''
+	def __init__(self, name, age, marks):
+		SchoolMember.__init__(self, name, age)
+		self.marks = marks
+		print '(Initialized Student: %s)' % self.name
+
+	def tell(self):
+		SchoolMember.tell(self)
+		print 'Marks: "%d"' % self.marks
+
+t = Teacher('Mrs. Shrividya', 40, 30000)
+s = Student('Swaroop', 22, 75)
+
+print # prints a blank line
+
+members = [t, s]
+for member in members:
+	member.tell() # works for both Teachers and Students
+				]]> -->
+			</example>
+
+			<section id="using-inheritance-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python vererbung.py
+(SchulMitglied Mrs. Shrividya initialisiert)
+(Dozent Mrs. Shrividya initialisiert)
+(SchulMitglied Swaroop initialisiert)
+(Student Swaroop initialisiert)
+
+Name: "Mrs. Shrividya" Alter: "40" Gehalt: "30000 Euro"
+Name: "Swaroop" Alter: "22" Letzte Pruefungsnote: "1.7"
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python inherit.py
+(Initialized SchoolMember: Mrs. Shrividya)
+(Initialized Teacher: Mrs. Shrividya)
+(Initialized SchoolMember: Swaroop)
+(Initialized Student: Swaroop)
+
+Name:"Mrs. Shrividya" Age:"40" Salary: "30000"
+Name:"Swaroop" Age:"22" Marks: "75"
+				]]> -->
+			</section>
+
+			<section id="using-inheritance-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Um Vererbung zu benutzen, geben wir die Namen der Basisklassen
+				in einem Tupel an, das in der Klassendefinition dem Namen der Klasse folgt.
+				Danach ist zu beachten, dass die <methodname>__init__</methodname>-Methode
+				der Basisklasse unter Benutzung der <varname>self</varname>-Variable
+				explizit aufgerufen wird, damit der Anteil des Objekts, der von der Basisklasse
+				bereitgestellt wird, initialisiert werden kann. Es ist sehr wichtig, sich dies zu merken -
+				Python ruft nicht automatisch den Konstruktor der Basisklasse auf; Sie müssen
+				ihn selber explizit aufrufen.
+
+				<!-- To use inheritance, we specify the base class names in a tuple following
+				the class name in the class definition. Next, we observe that the
+				<methodname>__init__</methodname> method of the base class is explicitly
+				called using the <varname>self</varname> variable so that we can initialize
+				the base class part of the object. This is very important to remember -
+				Python does not automatically call the constructor of the base class, you
+				have to explicitly call it yourself. -->
+
+				</para>
+				<para>
+
+				Wir sehen hier auch, dass wir Methoden der Basisklasse aufrufen können,
+				indem wir den Namen der Basisklasse mit einem Punkt voranstellen, und
+				dann die Variable <varname>self</varname> zusammen mit den anderen
+				Parametern der Methode übergeben.
+
+				<!-- We also observe that we can call methods of the base class by prefixing
+				the class name to the method call and then pass in the
+				<varname>self</varname> variable along with any arguments. -->
+
+				</para>
+				<para>
+
+				Beachten Sie, dass wir Instanzen von <classname>Dozent</classname>
+				und <classname>Student</classname> einfach wie Instanzen von
+				<classname>SchulMitglied</classname> behandeln, wenn wir die
+				<methodname>auskunft</methodname>-Methode der Klasse
+				<classname>SchulMitglied</classname> benutzen.
+
+				<!-- Notice that we can treat instances of <classname>Teacher</classname> or
+				<classname>Student</classname> as just instances of the
+				<classname>SchoolMember</classname> when we use the
+				<methodname>tell</methodname> method of the <classname>SchoolMember</classname>
+				class. -->
+
+				</para>
+				<para>
+
+				Beachten Sie auch, dass die <methodname>auskunft</methodname>-Methode
+				der Subklassen aufgerufen wird, und nicht die <methodname>auskunft</methodname>-Methode
+				der Superklasse <classname>SchulMitglied</classname>. Man kann dies so verstehen,
+				dass Python <emphasis>immer</emphasis> zuerst versucht, Methoden der jeweiligen
+				Klasse zu finden, die in diesem Fall vorhanden sind. Wenn die Methode nicht gefunden wird,
+				dann fängt Python an, die Methoden der zugehörigen Basisklassen eine nach der anderen
+				durchzugehen, in der Reihenfolge, wie sie in dem Tupel in der Klassendefinition angegeben ist.
+
+				<!-- Also, observe that the <methodname>tell</methodname> method of the
+				subtype is called and not the <methodname>tell</methodname> method of the
+				<classname>SchoolMember</classname> class. One way to understand this is that
+				Python <emphasis>always</emphasis> starts looking for methods in the type, which
+				in this case it does. If it could not find the method, it starts looking at the
+				methods belonging to its base classes one by one in the order they are specified
+				in the tuple in the class definition. -->
+
+				</para>
+				<para>
+
+				Eine Anmerkung noch zur Sprechweise - wenn mehr als eine Klasse in dem
+				Tupel der Basisklassen angegeben ist, von denen die Klasse erbt, dann spricht
+				man von <emphasis>Mehrfachvererbung</emphasis>.
+
+				<!-- A note on terminology - if more than one class is listed in the inheritance
+				tuple, then it is called <emphasis>multiple inheritance</emphasis>. -->
+
+				</para>
+			</section>
+		</section>
+	</section>
+
+	<section id="oops-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir haben nun die verschiedenen Aspekte von Klassen und Objekten erforscht
+		und die damit verbundenen Sprechweisen kennen gelernt. Wir haben auch die Vorteile
+		und möglichen Stolperfallen bei der objektorientierten Programmierung gesehen.
+		Python ist hochgradig objektorientiert, und wenn wir diese Konzepte genau verstehen,
+		wird uns dies langfristig sehr viel helfen.
+
+		<!-- We have now explored the various aspects of classes and objects as well as the various
+		terminologies associated with it. We have also seen the benefits and pitfalls of
+		object-oriented programming. Python is highly object-oriented and understanding these
+		concepts carefully will help you a lot in the long run. -->
+
+		</para>
+		<para>
+
+		Als Nächstes lernen wir, mit Ein/Ausgaben umzugehen und in Python
+		auf Dateien zuzugreifen.
+
+		<!-- Next, we will learn how to deal with input/output and how to access files in Python. -->
+
+		</para>
+	</section>
+</chapter>

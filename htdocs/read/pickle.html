@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Eingemachtes</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="io.html" title="Kapitel 12. Ein/Ausgabe" /><link rel="prev" href="io.html" title="Kapitel 12. Ein/Ausgabe" /><link rel="next" href="io-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Eingemachtes</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="io.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 12. Ein/Ausgabe</th><td width="20%" align="right"> <a accesskey="n" href="io-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="pickle"></a>Eingemachtes</h2></div></div></div><p>
+
+		Jetzt geht's ans 'Eingemachte'. Python stellt ein Standard-Modul namens <code class="literal">pickle</code>
+		('einmachen') zu Verfügung, mit dessen Hilfe man <span class="bold"><strong>jedes</strong></span>
+		Python-Objekt in eine Datei speichern kann und es dann später wieder intakt zurück erhält.
+		Man nennt dies die <span class="emphasis"><em>persistente</em></span> Speicherung eines Objekts.
+		Sie können Sich dies auch als das 'Einfrieren' und wieder 'Auftauen' eines Objekts vorstellen.
+
+		
+
+		</p><p>
+
+		Es gibt ein anderes Modul namens <code class="literal">cPickle</code>, das ganz genauso wie das
+		<code class="literal">pickle</code>-Modul funktioniert, außer dass es in der Sprache C geschrieben
+		und daher (bis zu 1000 mal) schneller ist. Sie können sich aussuchen, welches der beiden Module
+		Sie verwenden wollen, auch wenn wir hier als Beispiel das Modul <code class="literal">cPickle</code>
+		verwenden. Denken Sie aber daran, dass wir der Einfachheit halber immer nur vom
+		<code class="literal">pickle</code>-Modul sprechen.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="pickling-and-unpickling"></a>Einfrieren und wieder Auftauen</h3></div></div></div><div class="example"><a id="pickling-and-unpickling-example"></a><p class="title"><strong>Beispiel 12.2. Einfrieren und wieder Auftauen
+					(<a class="ulink" href="code/einmachen.py" target="_top">einmachen.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">cPickle</span> as p
+<span class="py-comment">#import pickle as p</span>
+
+einkaufsdatei = <span class="py-string">'einkaufsliste.data'</span> <span class="py-comment"># Datei, in der wir das Objekt speichern</span>
+
+einkaufsliste = [<span class="py-string">'Aepfel'</span>, <span class="py-string">'Mangos'</span>, <span class="py-string">'Karotten'</span>]
+
+<span class="py-comment"># Schreibe in die Datei</span>
+f = <span class="py-builtin">file</span>(einkaufsdatei, <span class="py-string">'w'</span>)
+p.dump(einkaufsliste, f) <span class="py-comment"># speichere das Objekt in der Datei</span>
+f.close()
+
+<span class="py-statement">del</span> einkaufsliste <span class="py-comment"># loesche die einkaufsliste</span>
+
+<span class="py-comment"># Lies die Einkaufsliste aus der Datei wieder ein</span>
+f = <span class="py-builtin">file</span>(einkaufsdatei)
+gespeicherteliste = p.load(f)
+<span class="py-statement">print</span> gespeicherteliste
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="pickling-and-unpickling-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python einmachen.py
+['Aepfel', 'Mangos', 'Karotten']
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="pickling-and-unpickling-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Beachten Sie als erstes, dass wir die <code class="literal">import..as</code>-Syntax
+				verwendet haben. Dies ist praktisch, denn wir können einen kürzeren Namen
+				für das Modul verwenden. Es ermöglicht uns in diesem Fall sogar, ein anderes
+				Modul (<code class="literal">cPickle</code> oder <code class="literal">pickle</code>) zu
+				verwenden, indem wir einfach nur eine Zeile ändern! Im Rest des Programms
+				beziehen wir uns auf dieses Modul als <code class="varname">p</code>.
+
+				
+
+				</p><p>
+
+				Um ein Objekt in einer Datei zu speichern, öffnen wir zunächst ein
+				<code class="classname">file</code>-Objekt im Schreibmodus und speichern
+				das Objekt in der offenen Datei, indem wir die Funktion <code class="function">dump</code>
+				des <code class="literal">pickle</code>-Moduls benutzen. Dieser Vorgang wird als
+				das <span class="emphasis"><em>Einmachen</em></span> (<span class="foreignphrase"><em class="foreignphrase">pickling</em></span>)
+				oder <span class="emphasis"><em>Einfrieren</em></span> bezeichnet.
+
+				
+
+				</p><p>
+
+				Als Nächstes holen wir das Objekt mit der Funktion <code class="function">load</code> des
+				<code class="literal">pickle</code>-Moduls wieder zurück. Dieser Vorgang wird als
+				<span class="emphasis"><em>Wiederauftauen</em></span> (oder
+				<span class="foreignphrase"><em class="foreignphrase">unpickling</em></span>) bezeichnet.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="io.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="io.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="io-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Kapitel 12. Ein/Ausgabe </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Einrückung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="basics.html" title="Kapitel 4. Die Grundlagen" /><link rel="prev" href="logical-and-physical-lines.html" title="Logische und physikalische Zeilen" /><link rel="next" href="basics-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Einrückung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="logical-and-physical-lines.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 4. Die Grundlagen</th><td width="20%" align="right"> <a accesskey="n" href="basics-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="indentation"></a>Einrückung</h2></div></div></div><p>
+
+		Leerraum spielt in Python eine Rolle. Vor allem der <span class="bold"><strong>Leerraum
+		am Zeilenanfang ist wichtig</strong></span>. Man meint diesen Leerraum, wenn man von der
+		<span class="bold"><strong>Einrückung</strong></span> einer Zeile spricht.
+		Der Leerraum (Leerzeichen und Tabulatoren) am Anfang der logischen Zeile wird benutzt,
+		um die Einrückungstiefe der logischen Zeile zu bestimmen, die wiederum benutzt wird,
+		um die Gruppierung der Anweisungen zu bestimmen.
+
+		
+
+		</p><p>
+
+		Das bedeutet, dass Anweisungen, die zusammen gehören, die gleiche Einrückungstiefe
+		haben <span class="bold"><strong>müssen</strong></span>. Jeder solche Abschnitt von
+		Anweisungen mit der gleichen Einrückungstiefe wird ein <span class="bold"><strong>Block</strong></span>
+		genannt. Wir werden bald in den folgenden Kapiteln Beispiele dafür sehen, warum Blöcke wichtig sind.
+
+		
+
+		</p><p>
+
+		Sie sollten im Kopf behalten, dass falsche Einrückung zu Fehlern führen kann.
+		Zum Beispiel:
+		
+
+		</p><p>(<a class="ulink" href="code/leerzeichen.py" target="_top">leerzeichen.py</a>)</p><pre class="programlisting">
+		
+<span class="py-comment">#!/usr/bin/python</span>
+
+i = <span class="py-number">5</span>
+ <span class="py-statement">print</span> <span class="py-string">'Der Wert ist'</span>, i <span class="py-comment"># Fehler! Leerzeichen am Zeilenanfang</span>
+<span class="py-statement">print</span> <span class="py-string">'Ich wiederhole, der Wert ist'</span>, i
+		
+		</pre><p>
+
+		Wenn Sie dies laufen lassen, erhalten Sie die folgende Fehlermeldung:
+		
+
+		</p><pre class="screen">
+		
+  File "leerzeichen.py", line 4
+    print 'Der Wert ist', i # Fehler! Leerzeichen am Zeilenanfang
+    ^
+SyntaxError: invalid syntax
+		
+		</pre><p>
+
+		Beachten Sie das Leerzeichen, das da am Anfang der zweiten Zeile steht.
+		Der Fehler, auf den Python hinweist, sagt uns, dass die Syntax des Programms unzulässig ist,
+		d.h. dass das Programm nicht sauber geschrieben wurde. Das bedeutet für Sie, dass Sie
+		<span class="emphasis"><em>nicht nach Belieben neue Blöcke von Anweisungen anfangen können</em></span>
+		(außer dem Hauptblock natürlich, den Sie die ganze Zeit verwenden).
+		Die Fälle, in denen Sie neue Blöcke benutzen können, werden in späteren Kapiteln ausgeführt,
+		wie dem <a class="link" href="control-flow.html" title="Kapitel 6. Kontrollfluss">Kapitel über den Kontrollfluss</a>.
+
+		
+
+		</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">So macht man Einrückungen</h3><p>
+
+			Benutzen Sie <span class="bold"><strong>auf keinen Fall</strong></span> ein Mischmasch
+			von Tabulatoren und Leerzeichen zur Einrückung, weil es nicht sauber plattformübergreifend
+			funktioniert, da die Breite eines Tabulators in Leerzeichen nicht eindeutig für alle Plattformen definiert ist.
+			Meine <span class="emphasis"><em>eindringliche Empfehlung</em></span> ist, dass Sie entweder
+			einen <span class="emphasis"><em>einzelnen Tabulator</em></span> oder <span class="emphasis"><em>zwei oder vier
+			Leerzeichen</em></span> pro Einrückungs-Ebene benutzen.
+
+			
+
+			</p><p>
+
+			Wählen Sie einen dieser drei Einrückungsstile. Vor allem aber, wählen und benutzen Sie
+			diesen Stil <span class="bold"><strong>einheitlich</strong></span>, d.h. benutzen Sie
+			<span class="emphasis"><em>ausschließlich</em></span> diesen einen Einrückungsstil.
+
+			
+
+			</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="logical-and-physical-lines.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="basics.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="basics-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Logische und physikalische Zeilen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

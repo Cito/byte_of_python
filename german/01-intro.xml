@@ -1,0 +1,473 @@
+﻿<chapter id="introduction">
+
+	<!-- German translation 2005-02-18 by Lutz Horn -->
+	<!-- Proofreading 2005-03-04 Christoph Zwerschke -->
+
+	<title>Einführung</title> <!-- Introduction -->
+
+	<section id="introduction-section">
+		<title>Einführung</title> <!-- Introduction -->
+
+		<para>
+		Python ist eine der wenigen vorhandenen Programmiersprachen, die zu Recht behaupten können,
+		sowohl <emphasis role="bold">einfach</emphasis> als auch
+		<emphasis role="bold">mächtig</emphasis> zu sein. Sie werden positiv überrascht
+		darüber sein, wie einfach es in Python ist, sich auf die Lösung eines Problems zu konzentrieren,
+		anstatt sich ständig mit den Tücken der Syntax und Struktur der Programmiersprache
+		befassen zu müssen.
+
+		<!-- Python is one of those rare languages which can claim to be both
+		<emphasis role="bold">simple</emphasis> and <emphasis role="bold">powerful</emphasis>.
+		You will find that you will be pleasantly surprised on how easy it is to concentrate
+		on the solution to the problem rather than the syntax and structure of the language
+		you are programming in. -->
+
+		</para>
+		<para>
+		Offiziell wird Python wie folgt vorgestellt: <!-- The official introduction to Python is -->
+
+		<blockquote>
+		<para>
+			Python ist eine einfach zu erlernende, mächtige Programmiersprache. Sie
+			hat effiziente Datenstrukturen hoher Abstraktion und einen einfachen, aber
+			effektiven Ansatz zur objektorientierten Programmierung. Die elegante
+			Syntax und die dynamische Typisierung von Python machen sie zusammen
+			mit der Lauffähigkeit in einem Interpreter zur idealen Sprache zum Schreiben
+			von Programmskripts und für die schnelle Anwendungsentwicklung in vielen
+			Bereichen auf den meisten Plattformen.
+
+			<!-- Python is an easy to learn, powerful programming language. It has
+			efficient high-level data structures and a simple but effective approach
+			to object-oriented programming. Python's elegant syntax and dynamic typing,
+			together with its interpreted nature, make it an ideal language for
+			scripting and rapid application development in many areas on most platforms. -->
+
+		</para>
+		</blockquote>
+
+		Ich werde die meisten dieser Eigenschaften detailliert im nächsten Abschnitt besprechen.
+
+		<!-- I will discuss most of these features in more detail in the next section. -->
+
+		</para>
+		<note>
+		Guido van Rossum, der Schöpfer der Sprache Python, benannte die Sprache nach
+		der BBC-Show &quot;Monty Python's Flying Circus&quot;. Er ist kein besonderer
+		Freund von Schlangen, die ihre Beutetiere dadurch töten, dass sie ihre
+		langen Körper um sie schlingen und sie erdrücken.
+
+		<!-- Guido van Rossum, the creator of the Python language, named the language after the
+		BBC show &quot;Monty Python's Flying Circus &quot;. He doesn't particularly like
+		snakes that kill animals for food by winding their long bodies around them and
+		crushing them. -->
+
+		</note>
+	</section>
+
+	<section id="features-of-python">
+		<title>Eigenschaften von Python</title> <!-- Features of Python -->
+		<variablelist>
+		<varlistentry>
+			<term>Einfach</term> <!-- Simple -->
+			<listitem>
+				<para>
+					Python ist eine einfache und minimalistische Sprache. Ein gutes
+					Python-Programm zu lesen kommt einem fast so vor, als würde
+					man die englische Programmbeschreibung im Klartext lesen,
+					wenngleich in einem sehr eingeschränktem englischen Wortschatz.
+					Diese pseudocode-artige Wesen von Python ist eine ihrer größten Stärken.
+					Dadurch wird es Ihnen ermöglicht, sich auf die Lösung Ihres Problems zu
+					konzentrieren, anstatt auf die Sprache selbst.
+
+					<!-- Python is a simple and minimalistic language. Reading a good
+					Python program feels almost like reading English, although very
+					strict English! This pseudo-code nature of Python is one of its
+					greatest strengths. It allows you to concentrate on the solution
+					to the problem rather than the language itself. -->
+
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Einfach zu lernen</term> <!-- Easy to Learn -->
+			<listitem>
+				<para>
+					Wie Sie sehen werden, ist es extrem einfach, in Python einzusteigen.
+					Python hat, wie bereits erwähnt, eine außerordentlich einfache Syntax.
+
+					<!-- As you will see, Python is extremely easy to get started with.
+					Python has an extraordinarily simple syntax, as already mentioned. -->
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Freier und offener Quelltext</term> <!-- Free and Open Source -->
+			<listitem>
+				<para>
+					Python ist ein Beispiel für <acronym>FLOSS</acronym>
+					(Free/Libre and Open Source Software - Freie Software
+					mit offengelegtem Quelltext). Einfach gesagt können Sie frei Kopien
+					solcher Software weitergeben, ihren Quelltext lesen, sie verändern
+					und Teile von ihr in neuer Software verwenden. Außerdem werden Sie
+					darüber aufgeklärt, dass Sie all dies machen dürfen. FLOSS basiert
+					auf dem Konzept einer Gemeinschaft, die Wissen austauscht. Das ist
+					einer der Gründe, warum Python so gut ist - es wurde von
+					einer Gemeinschaft geschaffen und ständig verbessert, die einfach nur
+					ein immer besseres Python haben möchte.
+					<!-- Python is an example of a <acronym>FLOSS</acronym>
+					(Free/Libr&#233; and Open Source Software). In simple terms,
+					you can freely distribute copies of this software, read it's
+					source code, make changes to it, use pieces of it in new
+					free programs, and that you know you can do these things. FLOSS
+					is based on the concept of a community which shares knowledge.
+					This is one of the reasons why Python is so good - it has been
+					created and is constantly improved by a community who just want
+					to see a better Python. -->
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Hochsprache</term> <!-- High-level Language -->
+			<listitem>
+			<para>
+					Wenn Sie Programme in Python schreiben, müssen Sie sich nie um die
+					&quot;niedrigen Dinge&quot; kümmern, d.h. solche Details wie etwa
+					die Verwaltung des von Ihrem Programm verwendeten Speichers.
+					<!-- When you write programs in Python, you never need to bother about
+					the low-level details such as managing the memory used by your
+					program, etc. -->
+			</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Portierbar</term> <!-- Portable -->
+			<listitem>
+			<para>
+					Aufgrund seiner Open-Source-Natur wurde Python auf viele Plattformen
+					portiert (d.h. verändert, um auf ihnen zu laufen). Alle Ihre
+					Python-Programme können auf diesen Plattformen laufen, ohne dass Sie
+					irgendwelche Änderungen an ihnen vornehmen müssen, vorausgesetzt,
+					Sie sind vorsichtig genug, systemabhängige Funktionen zu vermeiden.
+					<!-- Due to its open-source nature, Python has been ported (i.e. changed
+					to make it work on) to many platforms. All your Python programs can
+					work on any of these platforms without requiring any changes at all
+					if you are careful enough to avoid any system-dependent features. -->
+			</para>
+			<para>
+					Sie können Python auf folgenden Plattformen verwenden:
+					Linux, Windows, FreeBSD, Macintosh, Solaris,
+					OS/2, Amiga, AROS, AS/400, BeOS, OS/390, z/OS, Palm OS, QNX, VMS,
+					Psion, Acorn RISC OS, VxWorks, PlayStation, Sharp Zaurus, Windows CE
+					und sogar PocketPC!
+					<!-- You can use Python on Linux, Windows, FreeBSD, Macintosh, Solaris,
+					OS/2, Amiga, AROS, AS/400, BeOS, OS/390, z/OS, Palm OS, QNX, VMS,
+					Psion, Acorn RISC OS, VxWorks, PlayStation, Sharp Zaurus, Windows CE
+					and even PocketPC ! -->
+			</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Interpretiert</term> <!-- Interpreted -->
+			<listitem>
+				<para>
+					Das bedarf einer kleinen Erklärung.
+				</para>
+				<para>
+					Ein in einer kompilierten Sprache wie C oder C++ geschriebenes
+					Programm wird aus der Quellsprache in eine Sprache übersetzt, die
+					Ihr Computer versteht (Binärcode, also Nullen und Einsen). Dazu wird
+					ein Compiler mit verschiedenen Schaltern und Optionen verwendet.
+					Wenn Sie das resultierende Programm ausführen, kopiert eine
+					Software, Linker oder Loader genannt, das Programm von der
+					Festplatte in den Hauptspeicher des Computers und führt es dort aus.
+					<!-- A program written in a compiled language like C or C++ is converted
+					from the source language i.e. C or C++ into a language that is
+					spoken by your computer (binary code i.e. 0s and 1s) using a compiler
+					with various flags and options. When you run the program, the
+					linker/loader software copies the program from hard disk to memory
+					and starts running it. -->
+				</para>
+				<para id="python-vm">
+					Im Gegensatz dazu muss ein in Python geschriebenes Programm nicht in
+					Binärcode kompiliert werden. Es genügt, das Programm direkt als
+					Quellcode <emphasis>auszuführen</emphasis>. Python wandelt
+					den Quellcode automatisch in eine Zwischenform um, die Bytecode genannt
+					wird, übersetzt diese in die Sprache Ihres Computers und führt das
+					Ergebnis aus. All das führt dazu, dass die Benutzung von Python viel
+					leichter gemacht wird, da Sie sich nicht um das Kompilieren des Programms,
+					das korrekte Linken der benötigten Bibliotheken usw. kümmern
+					müssen. Ihre Python-Programme werden dadurch auch einfacher
+					portierbar, da Sie lediglich Ihr Python-Programm auf einen anderen
+					Computer kopieren und es dort einfach funktioniert!
+					<!-- Python, on the other hand, does not need compilation to binary.
+					You just <emphasis>run</emphasis> the program directly from the source
+					code. Internally, Python converts the source code into an intermediate
+					form called bytecodes and then translates this into the native
+					language of your computer and then runs it. All this, actually, makes
+					using Python much easier since you don't have to worry about
+					compiling the program, making sure that the proper libraries are
+					linked and loaded, etc, etc. This also makes your Python programs
+					much more portable, since you can just copy your Python program onto
+					another computer and it just works! -->
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Objektorientiert</term> <!-- Object Oriented -->
+			<listitem>
+				<para>
+					Python unterstützt sowohl die prozedural orientierte Art des
+					Programmierens, als auch das objektorientierte Programmieren. In
+					<emphasis>prozeduralen</emphasis> Sprachen wird ein Programm
+					um Prozeduren oder Funktionen herum aufgebaut, die lediglich Stücke von
+					wieder verwendbarem Programmcode sind. In der objektorientierten
+					Programmierweise wird es um Objekte herum aufgebaut, in denen Daten
+					und Funktionalität vereint sind. Die Weise, in der objektorientierten Programmierung
+					in Python realisiert ist, ist sehr mächtig und zugleich einfach, insbesondere
+					im Vergleich mit Sprachen wie C++ oder Java.
+					<!-- Python supports procedure-oriented programming as well as
+					object-oriented programming. In <emphasis>procedure-oriented</emphasis>
+					languages, the program is built around procedures or functions which
+					are nothing but reusable pieces of programs. In
+					<emphasis>object-oriented</emphasis> languages, the program is built
+					around objects which combine data and functionality. Python has a very
+					powerful but simplistic way of doing OOP, especially when compared to
+					big languages like C++ or Java. -->
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Erweiterbar</term> <!-- Extensible -->
+			<listitem>
+				<para>
+					Falls es nötig ist, dass ein kritisches Stück Code besonders schnell
+					ausgeführt wird, oder wenn Sie möchten, dass einige Algorithmen nicht
+					offen lesbar sind, können Sie solche Teile Ihres Programms in C oder
+					C++ schreiben und dann diese in Ihrem Python-Programm verwenden.
+					<!-- If you need a critical piece of code to run very fast or want to
+					have some piece of algorithm not to be open, you can code that
+					part of your program in C or C++ and then use them from your
+					Python program. -->
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Einbettbar</term> <!-- Embeddable -->
+			<listitem>
+				<para>
+					Sie können umgekehrt Python in Ihre C- oder C++-Programme einbetten,
+					um Ihren Programmbenutzern Skripting (z.B. mit Python-Makros) zu ermöglichen.
+					<!-- You can embed Python within your C/C++ programs to give 'scripting'
+					capabilities for your program's users. -->
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>Umfangreiche Bibliotheken</term> <!-- Extensive Libraries -->
+			<listitem>
+				<para>
+					Die Python-Standardbibliothek ist in der Tat riesig. Sie liefert Hilfsfunktionen in vielen
+					verschiedenen Bereichen: Reguläre Ausdrücke, Dokumentationserzeugung, Testen von
+					Programmeinheiten, Threading, Datenbanken, Webbrowser, CGI, FTP, E-Mail, XML,
+					XML-RPC, HTML, WAV-Dateien, Kryptographie, GUI (grafische Benutzeroberflächen),
+					Tk und systemabhängige Dinge. Denken Sie daran: Dies alles ist überall verfügbar, wo
+					Python installiert ist. Das wird als die &quot;<foreignphrase>Batteries
+					included</foreignphrase>&quot;-Philosophie von Python bezeichnet
+					(&quot;Batterien gehören zum Lieferumfang&quot;).
+					<!-- The Python Standard Library is huge indeed. It can help you do various
+					things involving regular expressions, documentation generation, unit
+					testing, threading, databases, web browsers, CGI, ftp, email, XML,
+					XML-RPC, HTML, WAV files, cryptography, GUI (graphical user interfaces),
+					Tk, and other system-dependent stuff. Remember, all this is always
+					available wherever Python is installed. This is called the 'Batteries
+					Included' philosophy of Python. -->
+				</para>
+				<para>
+					Neben der Standardbibliothek gibt es verschiedene weitere Bibliotheken von hoher
+					Qualität, z.B. <ulink url="http://www.wxpython.org">wxPython</ulink>,
+					<ulink url="http://www.twistedmatrix.com/products/twisted">Twisted</ulink>,
+					<ulink url="http://www.pythonware.com/products/pil/">Python Imaging
+					Library</ulink> und viele andere.
+					<!-- Besides, the standard library, there are various other high-quality
+					libraries such as <ulink url="http://www.wxpython.org">wxPython</ulink>,
+					<ulink url="http://www.twistedmatrix.com/products/twisted">Twisted</ulink>,
+					<ulink url="http://www.pythonware.com/products/pil/index.htm">Python Imaging
+					Library</ulink> and many more. -->
+				</para>
+			</listitem>
+		</varlistentry>
+		</variablelist>
+
+		<section id="introduction-summary">
+			<title>Zusammenfassung</title> <!-- Summary -->
+
+			<para>
+			Python ist in der Tat eine aufregende und mächtige Sprache. Sie hat die
+			richtige Kombination von Leistung und Funktionsumfang, die das Schreiben
+			von Python-Programmen zugleich einfach und zu einem Vergnügen macht.
+			<!-- Python is indeed an exciting and powerful language. It has the right combination
+			of performance and features that make writing programs in Python both fun and easy. -->
+			</para>
+		</section>
+	</section>
+
+	<section id="why-not-perl">
+		<title>Warum nicht Perl?</title> <!-- Why not Perl? -->
+
+		<para>
+		Perl ist, falls Sie es nicht bereits kennen, eine andere sehr populäre
+		interpretierte Open-Source-Programmiersprache.
+		<!-- If you didn't know already, Perl is another extremely popular open source interpreted
+		programming language. -->
+		</para>
+		<para>
+		Falls Sie jemals versucht haben, ein großes Programm in Perl zu schreiben,
+		würden Sie sich diese Frage selbst beantworten! Anders ausgedrückt:
+		Perl-Programm sind einfach, wenn sie klein sind, Perl glänzt, wenn es um
+		kleine Hacks oder um Skripte geht, mit denen einfach etwas erledigt werden
+		soll. Sie werden jedoch schnell unhandlich, sobald Sie mit dem Schreiben
+		von größeren Programmen beginnen. Ich sage das aus der Erfahrung heraus,
+		große Perl-Programme für Yahoo! geschrieben zu haben.
+		<!-- If you have ever tried writing a large program in Perl, you would have answered this
+		question yourself! In other words, Perl programs are easy when they are small and it
+		excels at small hacks and scripts to 'get work done'. However, they quickly become
+		unwieldy once you start writing bigger programs and I am speaking this out of
+		experience of writing large Perl programs at Yahoo! -->
+		</para>
+		<para>
+		Verglichen mit Perl sind Python-Programme auf alle Fälle einfacher,
+		sauberer, leichter zu schreiben und deswegen verständlicher und leichter
+		wartbar. Ich bewundere Perl und verwende es täglich für verschiedene
+		Dinge. Aber wenn ich ein neues Programm schreibe, denke ich immer zuerst
+		in Python-Begriffen, weil das für mich so natürlich geworden ist. Perl war
+		so vielen Hacks und Veränderungen ausgesetzt, dass es sich wie ein einziger großer,
+		höllischer Hack ausnimmt. Traurigerweise scheint das kommende Perl 6 hier
+		keine Verbesserungen zu bringen.
+		<!-- When compared to Perl, Python programs are definitely simpler, clearer, easier to
+		write and hence more understandable and maintainable. I do admire Perl and I do use
+		it on a daily basis for various things but whenever I write a program, I always start
+		thinking in terms of Python because it has become so natural for me. Perl has undergone
+		so many hacks and changes, that it feels like it is one big (but one hell of a) hack.
+		Sadly, the upcoming Perl 6 does not seem to be making any improvements regarding this. -->
+		</para>
+		<para>
+		Der einzige und sehr bedeutsamste Vorteil, den ich bei Perl sehe, ist seine
+		riesige <ulink url="http://cpan.perl.org">CPAN</ulink>-Bibliothek -
+		Das &quot;Comprehensive Perl Archive Network&quot;. Wie der Name vermuten lässt,
+		handelt es sich dabei um eine ungeheure Sammlung von Perl-Modulen, atemberaubend
+		durch seine reine Größe und Tiefe - Sie können nahezu alles, was mit	einem Computer
+		möglich ist, mit Hilfe dieser Module tun. Ein Grund dafür, dass Perl mehr Module als
+		Python hat, liegt darin, dass Perl schon länger existiert als Python. Vielleicht sollte ich einen
+		Hackathon zum Portieren von Perl-Modulen nach Python auf <ulink
+		url="http://groups.google.com/groups?q=comp.lang.python">comp.lang.python</ulink>
+		vorschlagen :)
+		<!-- The only and very significant advantage that I feel Perl has, is its huge
+		<ulink url="http://cpan.perl.org">CPAN</ulink> library - the Comprehensive Perl Archive
+		Network. As the name suggests, this is a humongous collection of Perl modules and it is
+		simply mind-boggling because of its sheer size and depth - you can do virtually anything
+		you can do with a computer using these modules. One of the reasons that Perl has more
+		libraries than Python is that it has been around for a much longer time than Python.
+		Maybe I should suggest a port-Perl-modules-to-Python hackathon on
+		<ulink url="http://groups.google.com/groups?q=comp.lang.python">comp.lang.python</ulink> :) -->
+		</para>
+		<para>
+		Außerdem wird die neue virtuelle Maschine <ulink
+		url="http://www.parrotcode.org">Parrot</ulink> entwickelt, um das komplett
+		neu entworfene Perl 6 und auch Python und andere interpretierte Sprachen
+		wie Ruby, PHP und Tcl ausführen zu können. Das bedeutet, dass Sie
+		<emphasis>vielleicht</emphasis> in der Zukunft all diese Perl-Module auch
+		in Python verwenden können, Sie also das beste beider Welten haben werden:
+		die mächtige CPAN-Bibliothek kombiniert mit der mächtigen Programmiersprache Python.
+		Allerdings werden wir einfach abwarten müssen, wie sich dies entwickelt.
+		<!-- Also, the new <ulink url="http://www.parrotcode.org">Parrot virtual machine</ulink> is
+		designed to run both the completely redesigned Perl 6 as well as Python and other interpreted
+		languages like Ruby, PHP and Tcl. What this means to you is that <emphasis>maybe</emphasis>
+		you will be able to use all Perl modules from Python in the future, so that will give you
+		the best of both worlds - the powerful CPAN library combined with the powerful Python
+		language. However, we will have to just wait and see what happens. -->
+		</para>
+	</section>
+
+	<section id="what-programmers-say">
+		<title>Was Programmierer sagen</title> <!-- What Programmers Say -->
+		<para>
+		Vielleicht interessiert es Sie, was prominente Hacker wie Eric S. Raymond über Python sagen:
+		<!-- You may find it interesting to read what great hackers like ESR have to say about Python: -->
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>
+				<emphasis role="bold">Eric S. Raymond</emphasis> ist der Autor des
+				Buchs &quot;<ulink
+				url="http://www.phone-soft.com/RaymondCathedralBazaar/catb_g.0.html">Die
+				Kathedrale und der Basar</ulink>&quot; und derjenige, der den Begriff
+				&quot;Open Source&quot; geprägt hat. Er sagt, dass <ulink
+				url="http://www.linuxjournal.com/article.php?sid=3882">Python seine
+				bevorzugte Programmiersprache geworden ist</ulink>. Sein Artikel inspirierte
+				mich dazu, mich zum ersten Mal mit Python zu befassen.
+				<!-- <emphasis role="bold">Eric S. Raymond</emphasis> is the author of
+				'The Cathedral and the Bazaar' and is also the person who coined the term
+				'Open Source'. He says that <ulink
+				url="http://www.linuxjournal.com/article.php?sid=3882">Python has become
+				his favorite programming language</ulink>. This article was the real
+				inspiration for my first brush with Python. -->
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+				<emphasis role="bold">Bruce Eckel</emphasis> ist der Autor der berühmten
+				Bücher &quot;<ulink url="http://www.java-net.de/thinking_in_java/">Thinking
+				in Java</ulink>&quot; und &quot;<ulink url="http://java.freeq.de">Thinking in
+				C++</ulink>&quot; (&quot; In C++ denken&quot; ).
+				Er sagt, dass er mit keiner Sprache produktiver sei als mit Python. Python ist
+				für ihn wohl die einzige Sprache, die sich darauf konzentriert, die
+				Arbeit für den Programmierer einfacher zu machen. Lesen Sie das <ulink
+				url="http://www.artima.com/intv/aboutme.html">vollständige
+				Interview</ulink> für mehr Details.
+				<!-- <emphasis role="bold">Bruce Eckel</emphasis> is the author of the
+				famous 'Thinking in Java' and 'Thinking in C++' books. He says that no
+				language has made him more productive than Python. He says that Python
+				is perhaps the only language that focuses on making things easier for
+				the programmer. Read the <ulink
+				url="http://www.artima.com/intv/aboutme.html">complete interview</ulink>
+				for more details. -->
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+				<emphasis role="bold">Peter Norvig</emphasis> ist ein bekannter
+				<ulink url="http://www.norvig.com/python-lisp.html">Lisp</ulink>-Autor
+				und Direktor für Suchqualität bei Google (vielen Dank an Guido van Rossum
+				für diesen Hinweis). Er sagt, dass Python immer ein integraler Bestandteil von
+				Google gewesen ist. Sie können diese Aussage überprüfen, wenn Sie sich die
+				<ulink url="http://www.google.com/jobs/">Google-Jobs</ulink>-Seite
+				anschauen, auf der Python-Kenntnisse als Vorraussetzung für
+				Softwareentwickler genannt werden.
+				<!-- <emphasis role="bold">Peter Norvig</emphasis> is a well-known Lisp
+				author and Director of Search Quality at Google (thanks to Guido van
+				Rossum for pointing that out). He says that Python has always been an
+				integral part of Google. You can actually verify this statement by
+				looking at the <ulink url="http://www.google.com/jobs/index.html"
+				>Google Jobs</ulink> page which lists Python knowledge as a requirement
+				for software engineers. -->
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+				<emphasis role="bold">Bruce Perens</emphasis> ist Mitbegründer von
+				<ulink url="http://opensource.org">OpenSource.org</ulink> und des
+				<ulink url="http://www.userlinux.com">UserLinux</ulink>-Projekts.
+				Das Ziel von UserLinux ist es, eine standardisierte Linux-Distribution zu schaffen,
+				die von verschiedenen Herstellern unterstützt wird. Python hat Mitbewerber wie
+				Perl und Ruby im Wettbewerb um die wesentliche von UserLinux
+				unterstützte Programmiersprache geschlagen.
+				<!-- <emphasis role="bold">Bruce Perens</emphasis> is a co-founder of
+				OpenSource.org and the UserLinux project. UserLinux aims to create a
+				standardized Linux distribution supported by multiple vendors. Python
+				has beaten contenders like Perl and Ruby to become the main programming
+				language that will be supported by UserLinux. -->
+				</para>
+			</listitem>
+		</itemizedlist>
+	</section>
+</chapter>

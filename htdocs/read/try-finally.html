@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>try..finally</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="exceptions.html" title="Kapitel 13. Ausnahmen" /><link rel="prev" href="raising-exceptions.html" title="Auslösen von Ausnahmen" /><link rel="next" href="exceptions-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">try..finally</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="raising-exceptions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 13. Ausnahmen</th><td width="20%" align="right"> <a accesskey="n" href="exceptions-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="try-finally"></a>try..finally</h2></div></div></div><p>
+
+		Wie würden Sie vorgehen, wenn Sie eine Datei lesen, und diese Datei danach schließen
+		wollen, unabhängig davon, ob eine Ausnahme ausgelöst wurde oder nicht? Dies kann
+		mit Hilfe eines <code class="literal">finally</code>-Blocks erreicht werden. Beachten Sie jedoch,
+		dass Sie <span class="emphasis"><em>keine</em></span> <code class="literal">except</code>-Klausel zusammen
+		mit einem <code class="literal">finally</code>-Block für den gleichen zugehörigen
+		<code class="literal">try</code>-Block benutzen dürfen. Wenn Sie beide zusammen benutzen wollen,
+		dann müssen Sie einen von beiden Blöcken in den anderen verschachteln.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-try-finally"></a>Gebrauch von finally</h3></div></div></div><div class="example"><a id="using-try-finally-example"></a><p class="title"><strong>Beispiel 13.3. Gebrauch von finally
+					(<a class="ulink" href="code/finally.py" target="_top">finally.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">import</span> <span class="py-builtin">time</span>
+
+<span class="py-statement">try</span>:
+	f = <span class="py-builtin">file</span>(<span class="py-string">'gedicht.txt'</span>)
+	<span class="py-statement">while</span> <span class="py-builtin">True</span>: <span class="py-comment"># unsere uebliche Weise, Dateien zu lesen</span>
+		zeile = f.readline()
+		<span class="py-statement">if</span> <span class="py-builtin">len</span>(zeile) == <span class="py-number">0</span>:
+			<span class="py-statement">break</span>
+		<span class="py-builtin">time</span>.sleep(<span class="py-number">2</span>)
+		<span class="py-statement">print</span> zeile,
+<span class="py-statement">finally</span>:
+	f.close()
+	<span class="py-statement">print</span> <span class="py-string">'Raeume auf... Datei geschlossen.'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-try-finally-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python finally.py
+Programmieren mit Elan
+und die Arbeit wird getan,
+Raeume auf... Datei geschlossen.
+Traceback (most recent call last):
+  File "finally.py", line 12, in ?
+    time.sleep(2)
+KeyboardInterrupt
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-try-finally-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wir lesen die Datei wieder auf die übliche Weise ein, aber ich habe absichtlich
+				eine Pause von 2 Sekunden eingebaut, bevor jede Zeile ausgegeben wird, indem ich
+				die Methode <code class="function">time.sleep</code> benutzt habe. Der einzige Grund,
+				warum ich das getan habe, ist, damit das Programm langsam abläuft (Python ist von
+				Natur aus sehr schnell). Während das Programm noch läuft, drücken Sie
+				<span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>c</strong></span>,
+				um das Programm zu unterbrechen und zu beenden.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass eine <code class="classname">KeyboardInterrupt</code>-Ausnahme
+				ausgelöst wird und das Programm abbricht, jedoch vor dem Programmabbruch noch
+				die <code class="literal">finally</code>-Klausel ausführt und die Datei schließt.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="raising-exceptions.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="exceptions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="exceptions-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Auslösen von Ausnahmen </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>

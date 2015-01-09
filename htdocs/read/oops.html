@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Kapitel 11. Objektorientierte Programmierung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="index.html" title="A Byte of Python" /><link rel="prev" href="problem-solving-summary.html" title="Zusammenfassung" /><link rel="next" href="self.html" title="Der Selbstbezug" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Kapitel 11. Objektorientierte Programmierung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="problem-solving-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="self.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="oops"></a>Kapitel 11. Objektorientierte Programmierung</h1></div></div></div><div class="toc"><p><strong>Inhaltsverzeichnis</strong></p><dl class="toc"><dt><span class="section"><a href="oops.html#oops-intro">Einführung</a></span></dt><dt><span class="section"><a href="self.html">Der Selbstbezug</a></span></dt><dt><span class="section"><a href="classes.html">Klassen</a></span></dt><dd><dl><dt><span class="section"><a href="classes.html#creating-class">Erzeugen einer Klasse</a></span></dt></dl></dd><dt><span class="section"><a href="object-methods.html">Objektmethoden</a></span></dt><dd><dl><dt><span class="section"><a href="object-methods.html#using-object-methods">Benutzung von Objektmethoden</a></span></dt></dl></dd><dt><span class="section"><a href="class-init.html">Die __init__-Methode</a></span></dt><dd><dl><dt><span class="section"><a href="class-init.html#using-class-init">Benutzung der __init__-Method</a></span></dt></dl></dd><dt><span class="section"><a href="class-and-object-vars.html">Klassen- und Objektvariablen</a></span></dt><dd><dl><dt><span class="section"><a href="class-and-object-vars.html#using-class-and-obj-vars">Benutzung von Klassen- und Objektvariablen</a></span></dt></dl></dd><dt><span class="section"><a href="inheritance.html">Vererbung</a></span></dt><dd><dl><dt><span class="section"><a href="inheritance.html#using-inheritance">Verwendung von Vererbung</a></span></dt></dl></dd><dt><span class="section"><a href="oops-summary.html">Zusammenfassung</a></span></dt></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="oops-intro"></a>Einführung</h2></div></div></div><p>
+
+		In all unseren bisherigen Programmen haben wir unser Programm um Funktionen oder
+		Anweisungsblöcke herum entwickelt, in denen Daten manipuliert werden. Dies wird die
+		<span class="emphasis"><em>prozedurorientierte</em></span> Programmierweise genannt. Es gibt eine
+		andere Weise, sein Programm zu organisieren, die darin besteht, Daten und Funktionalität
+		zu kombinieren und sie in etwas zusammenzupacken, das man ein Objekt nennt.
+		Dies wird das <span class="emphasis"><em>objektorientierte</em></span> Paradigma der Programmierung genannt.
+		Meistens kann man mit prozedurorientierter Programmierung auskommen, aber wenn man
+		große Programme schreiben will oder eine Lösung haben möchte, die dafür besser geeignet ist,
+		dann sollte man objektorientierte Programmiertechniken verwenden.
+
+		
+
+		</p><p>
+
+		Klassen und Objekte sind die beiden Hauptaspekte der objektorientierten Programmierung.
+		Eine <span class="bold"><strong>Klasse</strong></span> erzeugt einen neuen <span class="emphasis"><em>Datentyp</em></span>,
+		wobei <span class="bold"><strong>Objekte</strong></span> die <span class="emphasis"><em>Instanzen</em></span> der Klasse sind.
+		Man kann dies damit vergleichen, dass man Variablen vom Datentyp <code class="classname">int</code> haben kann,
+		was dann mit anderen Worten bedeutet, dass Variablen, die Ganzzahlen speichern, Variablen sind, die Instanzen (Objekte)
+		der Klasse <code class="classname">int</code> sind.
+
+		
+
+		</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Anmerkung für C/C++/Java/C#-Programmierer</h3><p>
+
+			Beachten Sie, dass in Python sogar Ganzzahlen als Objekte (der Klasse <code class="classname">int</code>)
+			behandelt werden. Dies ist anders als C++ und Java (vor Version 1.5), wo Ganzzahlen primitive eingebaute
+			Datentypen sind. Siehe <code class="literal">help(int)</code> für weitere Einzelheiten zu dieser Klasse.
+
+			
+
+			</p><p>
+
+			C#- und Java-1.5-Programmierer wird dieses Konzept bekannt vorkommen, weil es dem
+			<span class="emphasis"><em>Boxing/Unboxing</em></span>-Mechanismus ähnlich ist.
+
+			
+
+			</p></div><p>
+
+		Objekte können Daten in gewöhnlichen Variablen speichern, die zu dem Objekt <span class="emphasis"><em>gehören</em></span>.
+		Variablen, die zu einem Objekt oder einer Klasse gehören, werden <span class="bold"><strong>Felder</strong></span>
+		genannt. Objekte können auch Funktionalität aufweisen, die durch Funktionen ausgelöst werden, die zu der Klasse
+		<span class="emphasis"><em>gehören</em></span>. Solche Funktionen werden <span class="bold"><strong>Methoden</strong></span>
+		der Klasse genannt. Die Sprechweise ist wichtig, weil sie uns hilft, zwischen Funktionen und Variablen zu unterscheiden,
+		die separat für sich stehen, und solchen, die zu einer Klasse oder einem Objekt gehören. Insgesamt werden
+		die Felder und Methoden als die <span class="bold"><strong>Attribute</strong></span> der Klasse bezeichnet.
+
+		
+
+		</p><p>
+
+		Von Feldern gibt es zwei Typen - sie können entweder zu jeder Instanz (jedem Objekt) der Klasse gehören,
+		oder sie können zur Klasse selbst gehören. Dementsprechend werden sie im ersten Fall
+		<span class="bold"><strong>Instanzvariablen</strong></span> und im zweiten Fall
+		<span class="bold"><strong>Klassenvariablen</strong></span> genannt.
+
+		
+
+		</p><p>
+
+		Eine Klasse wird mit dem Schlüsselwort <code class="literal">class</code> erzeugt. Die Felder und Methoden
+		der Klasse werden in einem eingerückten Block aufgelistet.
+
+		
+
+		</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="problem-solving-summary.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="self.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Zusammenfassung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Der Selbstbezug</td></tr></table></div></body></html>

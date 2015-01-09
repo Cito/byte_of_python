@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Auslösen von Ausnahmen</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="exceptions.html" title="Kapitel 13. Ausnahmen" /><link rel="prev" href="try-except.html" title="try..except" /><link rel="next" href="try-finally.html" title="try..finally" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Auslösen von Ausnahmen</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="try-except.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 13. Ausnahmen</th><td width="20%" align="right"> <a accesskey="n" href="try-finally.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="raising-exceptions"></a>Auslösen von Ausnahmen</h2></div></div></div><p>
+
+		Sie können Ausnahmen mit der Anweisung <code class="literal">raise</code> auch selber
+		<span class="emphasis"><em>auslösen</em></span>. Sie müssen zusätzlich den Namen des Fehlers
+		bzw. der Ausnahme angeben, und können außerdem weitere Informationen angeben,
+		die bei der Auslösung dieser Ausnahme an die Ausnahmebehandlung weitergegeben
+		werden sollen. Der Fehler oder die Ausnahme sollte eine Klasse sein, die direkt oder
+		indirekt von der Klasse 
+		<code class="classname">Exception</code> abgeleitet ist.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="how-to-raise-exceptions"></a>So löst man Ausnahmen aus</h3></div></div></div><div class="example"><a id="how-to-raise-exceptions-example"></a><p class="title"><strong>Beispiel 13.2. So löst man Ausnahmen aus
+					(<a class="ulink" href="code/ausnahmen.py" target="_top">ausnahmen.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">class</span> <span class="py-identifier">KurzeEingabeAusnahme</span>(Exception):
+	<span class="py-string">'''Eine benutzerdefinierte Ausnahmeklasse.'''</span>
+	<span class="py-statement">def</span> <span class="py-identifier">__init__</span>(<span class="py-builtin">self</span>, laenge, mindestens):
+		Exception.__init__(<span class="py-builtin">self</span>)
+		<span class="py-builtin">self</span>.laenge = laenge
+		<span class="py-builtin">self</span>.mindestens = mindestens
+
+<span class="py-statement">try</span>:
+	s = <span class="py-builtin">raw_input</span>(<span class="py-string">'Geben Sie etwas ein --&gt; '</span>)
+	<span class="py-statement">if</span> <span class="py-builtin">len</span>(s) &lt; <span class="py-number">3</span>:
+		raise KurzeEingabeAusnahme(<span class="py-builtin">len</span>(s), <span class="py-number">3</span>)
+	<span class="py-comment"># Hier kann man ganz normal mit der Arbeit fortfahren</span>
+<span class="py-statement">except</span> EOFError:
+	<span class="py-statement">print</span> <span class="py-string">'\nWarum haben Sie die Eingabe abgebrochen?'</span>
+<span class="py-statement">except</span> KurzeEingabeAusnahme, x:
+	<span class="py-statement">print</span> <span class="py-string">'KurzeEingabeAusnahme: Eingabe hatte die Laenge %d,'</span> \
+		<span class="py-string">' gefordert war mindestens %d.'</span> % (x.laenge, x.mindestens)
+<span class="py-statement">else</span>:
+	<span class="py-statement">print</span> <span class="py-string">'Es wurde keine Ausnahme ausgeloest.'</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="how-to-raise-exceptions-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python ausnahmen.py
+Geben Sie etwas ein --&gt;
+Warum haben Sie die Eingabe abgebrochen?
+
+$ python ausnahmen.py
+Geben Sie etwas ein --&gt; ab
+KurzeEingabeAusnahme: Eingabe hatte die Laenge 2, gefordert war mindestens 3.
+
+$ python ausnahmen.py
+Geben Sie etwas ein --&gt; abc
+Es wurde keine Ausnahme ausgeloest.
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="how-to-raise-exceptions-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				Wir erzeugen hier unseren eigenen Ausnahmetyp, obwohl wir auch jede
+				andere vordefinierte Ausnahme zu Demonstrationszwecken hätten benutzen
+				können. Dieser neue Ausnahmetyp ist die Klasse <code class="classname">KurzeEingabeAusnahme</code>.
+				Sie hat zwei Felder - <code class="varname">laenge</code>, die Länge der Eingabe,
+				und <code class="varname">mindestens</code>, die Mindestlänge für die Eingabe,
+				die das Programm erwartet.
+
+				
+
+				</p><p>
+
+				In der <code class="literal">except</code>-Klausel geben wir sowohl die Fehlerklasse an,
+				als auch die Variable, die das entsprechende Fehler/Ausnahmeobjekt erhalten soll.
+				Dies entspricht den Parametern und Argumenten in einem Funktionsaufruf.
+				Innerhalb dieser speziellen <code class="literal">except</code>-Klausel benutzen wir die Felder
+				<code class="varname">laenge</code> und <code class="varname">mindestens</code> des
+				Ausnahmeobjekts, um eine entsprechende Fehlermeldung für den Benutzer auszugeben.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="try-except.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="exceptions.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="try-finally.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">try..except </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> try..finally</td></tr></table></div></body></html>

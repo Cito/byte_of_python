@@ -1,0 +1,1272 @@
+﻿<chapter id="problem-solving">
+
+	<!-- German translation 2005-02-23 by Christoph Zwerschke -->
+	<!-- Proofreading 2004-02-24 Lutz Horn -->
+
+	<title>Problemlösung - So schreibt man ein Python-Skript</title> <!-- Problem Solving - Writing a Python Script -->
+
+	<para>
+
+	Wir haben bereits verschiedene Teile der Sprache Python kennen gelernt und wollen
+	nun sehen, wie all diese Teile zusammenspielen, indem wir ein Progrämmchen entwerfen
+	und schreiben, das etwas Nützliches <emphasis>tut</emphasis>.
+
+	<!-- We have explored various parts of the Python language and now we will take a look at how all
+	these parts fit together, by designing and writing a program which <emphasis>does</emphasis>
+	something useful. -->
+
+	</para>
+
+	<section id="the-problem">
+		<title>Das Problem</title> <!-- The Problem -->
+		<para>
+
+		Das Problem lautet: <emphasis>'Ich möchte ein Programm,
+		das eine Sicherungskopie all meiner wichtigen Dateien erstellt.'</emphasis>
+
+		<!-- The problem is <emphasis>'I want a program which creates a backup of all my important
+		files'</emphasis>. -->
+
+		</para>
+		<para>
+
+		Dies ist zwar ein einfaches Problem, aber dennoch reicht die Information noch nicht aus,
+		um sofort eine Lösung anbieten zu können. Es ist ein wenig weitere <emphasis role="bold">Analyse</emphasis>
+		nötig. Zum Beispiel: Wie geben wir an, welche Dateien gesichert werden sollen? Wo wird
+		die Datensicherung gespeichert? Wie werden die Dateien in der Sicherungskopie gespeichert?
+
+		<!-- Although, this is a simple problem, there is not enough information for us to get started with
+		the solution. A little more <emphasis role="bold">analysis</emphasis> is required. For example,
+		how do we specify which files are to be backed up? Where is the backup stored? How are they
+		stored in the backup? -->
+
+		</para>
+		<para>
+
+		Nachdem wir das Problem gründlich analysiert haben, <emphasis role="bold">entwerfen</emphasis>
+		wir unser Programm. Wir machen eine Liste von Dingen, wie unser Programm funktionieren sollte.
+		In diesem Fall habe ich die folgende Liste erstellt, in der ich festhalte, wie es nach <emphasis>meiner</emphasis>
+		Meinung funktionieren sollte. Wenn Sie den Entwurf erstellen, kann er bei Ihnen anders aussehen -
+		jeder Mensch hat seine eigene Weise, Dinge zu tun, das ist völlig in Ordnung so.
+
+		<!-- After analyzing the problem properly, we <emphasis role="bold">design</emphasis> our program. We
+		make a list of things about how our program should work. In this case, I have created the
+		following list on how <emphasis>I</emphasis> want it to work. If you do the design, you may not
+		come up with the same kind of problem - every person has their own way of doing things, this is
+		ok. -->
+
+		</para>
+		<orderedlist>
+			<listitem>
+				<para>
+
+				Die Dateien und Verzeichnisse, die gesichert werden sollen, werden als Liste angegeben.
+				<!-- The files and directories to be backed up are specified in a list. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Datensicherung muss in einem Hauptverzeichnis für Sicherungen gespeichert werden.
+				<!-- The backup must be stored in a main backup directory. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Die Dateien werden in einer ZIP-Datei komprimiert gesichert.
+				<!-- The files are backed up into a zip file. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Der Name des ZIP-Archivs setzt sich aus dem aktuellen Datum und der Uhrzeit zusammen.
+				<!-- The name of the zip archive is the current date and time. -->
+
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+
+				Wir benutzen den gewöhnlichen <command>zip</command>-Befehl, der normalerweise in jeder
+				Linux/Unix-Distribution vorhanden ist. Windows-Benutzer können <application>PKZIP</application>
+				oder das <application>Info-ZIP</application>-Programm verwenden. Beachten Sie, dass Sie jedes
+				beliebige Programm für die Archivierung verwenden können, solange es eine Kommandozeilenschnittstelle
+				zur Verfügung stellt, über die es Parameter von unserem Skript entgegennehmen kann.
+
+				<!-- We use the standard <command>zip</command> command available by default in any
+				standard Linux/Unix distribution. Windows users can use the
+				<application>Info-Zip</application> program. Note that you can use any archiving
+				command you want as long as it has a command line interface so that we can pass
+				arguments to it from our script. -->
+
+				</para>
+			</listitem>
+		</orderedlist>
+	</section>
+
+	<section id="the-solution">
+		<title>Die Lösung</title> <!-- The Solution -->
+
+		<para>
+
+		Nachdem der Entwurf unseres Programms nun feststeht, können wir den Code
+		schreiben, der eine <emphasis role="bold">Implementierung</emphasis>
+		unserer Lösung darstellt.
+
+		<!-- As the design of our program is now stable, we can write the code which is an
+		<emphasis role="bold">implementation</emphasis> of our solution. -->
+
+		</para>
+
+		<section id="first-version">
+			<title>Die erste Version</title> <!-- First Version -->
+
+			<example id="first-version-example">
+				<title>Sicherungsskript - erste Version
+					(<ulink url="code/sicherung_ver1.py">sicherung_ver1.py</ulink>)
+				</title> <!-- Backup Script - The First Version -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import os
+import time
+
+# 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,
+# werden in der folgenden Liste angegeben:
+quellen = ['/home/swaroop/byte', '/home/swaroop/bin']
+# Unter Windows muessen Sie die Pfade auf diese Weise angeben:
+# quellen = ['C:\\Dokumente', 'D:\\Arbeit']
+
+# 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer
+# Sicherungen gespeichert werden:
+ziel_verzeichnis = '/mnt/e/sicherung/'
+# Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.
+
+# 3. Die Dateien werden in einer ZIP-Datei gesichert.
+
+# 4. Der Name der ZIP-Datei setzt sich aus dem aktuellen Datum
+# und der Uhrzeit wie folgt zusammen:
+ziel = ziel_verzeichnis + time.strftime('%Y%m%d%H%M%S') + '.zip'
+
+# 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien
+# zu einem ZIP-Archiv zu komprimieren:
+zip_befehl = 'zip -qr %s %s' % (ziel, ' '.join(quellen))
+# Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das
+# Windows-Systemverzeichnis kopieren, damit dies funktioniert.
+
+# Sicherung starten
+if os.system(zip_befehl) == 0:
+	print 'Erfolgreiche Sicherung nach', ziel
+else:
+	print 'Sicherung fehlgeschlagen!'
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: backup_ver1.py
+
+import os
+import time
+
+# 1. The files and directories to be backed up are specified in a list.
+source = ['/home/swaroop/byte', '/home/swaroop/bin']
+# If you are using Windows, use source = [r'C:\Documents', r'D:\Work'] or something like that
+
+# 2. The backup must be stored in a main backup directory
+target_dir = '/mnt/e/backup/' # Remember to change this to what you will be using
+
+# 3. The files are backed up into a zip file.
+# 4. The name of the zip archive is the current date and time
+target = target_dir + time.strftime('%Y%m%d%H%M%S') + '.zip'
+
+# 5. We use the zip command (in Unix/Linux) to put the files in a zip archive
+zip_command = "zip -qr '%s' %s" % (target, ' '.join(source))
+
+# Run the backup
+if os.system(zip_command) == 0:
+	print 'Successful backup to', target
+else:
+	print 'Backup FAILED'
+				]]> -->
+			</example>
+
+			<section id="first-version-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python sicherung_ver1.py
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208073244.zip
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python backup_ver1.py
+Successful backup to /mnt/e/backup/20041208073244.zip
+				]]> -->
+				<para>
+
+				Wir sind nun in der <emphasis role="bold">Test</emphasis>-Phase, in der
+				wir ausprobieren, ob unser Programm ordentlich funktioniert. Wenn es sich nicht so
+				verhält, wie erwartet, dann müssen wir unser Programm <emphasis role="bold">debuggen</emphasis>,
+				d.h. die <emphasis>Bugs</emphasis> (Fehler) aus dem Programm entfernen.
+
+				<!-- Now, we are in the <emphasis role="bold">testing</emphasis> phase where
+				we test that our program works properly. If it doesn't behave as
+				expected, then we have to <emphasis role="bold">debug</emphasis> our
+				program i.e. remove the <emphasis>bugs</emphasis> (errors) from the
+				program. -->
+
+				</para>
+			</section>
+
+			<section id="first-version-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Sie werden bemerkt haben, wie wir unseren <emphasis>Entwurf</emphasis>
+				Schritt für Schritt in Programm-<emphasis>Code</emphasis> umgewandelt haben.
+
+				<!-- You will notice how we have converted our <emphasis>design</emphasis> into
+				<emphasis>code</emphasis> in a step-by-step manner. -->
+
+				</para>
+				<para>
+
+				Wir benutzen die Module <literal>os</literal> und <literal>time</literal>,
+				weswegen wir sie am Anfang importieren. Danach geben wir in einer Liste namens
+				<varname>Quellen</varname> die Quelldateien und -verzeichnisse an, die
+				gesichert werden sollen. Das Zielverzeichnis, in das wir die Sicherungsdateien speichern,
+				wird in der Variable <varname>ziel_verzeichnis</varname> angegeben.
+				Der Name des ZIP-Archivs, das wir erzeugen werden, setzt sich aus dem aktuellen Datum und
+				der Uhrzeit zusammen, die wir mit der Funktion <function>time.strftime()</function>
+				ermitteln. Dem Namen wird noch die Dateiendung <filename>.zip</filename> angehängt
+				und das Zielverzeichnis vorangestellt. Dieser vollständige Dateiname mit Pfad wird in der
+				Variable <varname>ziel</varname> gespeichert.
+
+				<!-- We make use of the <literal>os</literal> and <literal>time</literal>
+				modules and so we import them. Then, we specify the files and directories
+				to be backed up in the <varname>source</varname> list. The target directory
+				is where store all the backup files and this is specified in the
+				<varname>target_dir</varname> variable. The name of the zip archive that
+				we are going to create is the current date and time which we fetch using the
+				<function>time.strftime()</function> function. It will also have the
+				<filename>.zip</filename> extension and will be stored in the
+				<varname>target_dir</varname> directory. -->
+
+				</para>
+				<para>
+
+				Der Funktion <function>time.strftime()</function> muss eine Formatspezifikation
+				übergeben werden, wie wir sie im obigen Programm benutzt haben. Das <literal>%Y</literal>
+				wird hierbei durch das Jahr <!--ohne das Jahrhundert--> ersetzt. Das <literal>%m</literal> wird
+				durch den Monat als Dezimalzahl zwischen <literal>01</literal> und <literal>12</literal>
+				ersetzt, und so weiter. Die vollständige Liste aller solcher Format-Spezifikationen kann im
+				<citation>Python-Referenz-Handbuch</citation> nachgelesen werden, das zusammen mit
+				Python ausgeliefert wird. Beachten Sie, dass dies der Spezifikation ähnelt (aber nicht das gleiche ist),
+				wie wir sie im <literal>print</literal>-Befehl benutzt haben (mit dem <literal>%</literal>-Zeichen,
+				gefolgt von einem Tupel).
+
+				<!-- The <function>time.strftime()</function> function takes a specification
+				such as the one we have used in the above program. The <literal>%Y</literal>
+				specification will be replaced by the year without the cetury. The
+				<literal>%m</literal> specification will be replaced by the month as a
+				decimal number between  <literal>01</literal> and <literal>12</literal> and
+				so on. The complete list of such specifications can be found in the
+				<citation>Python Reference Manual</citation> that comes with your Python
+				distribution. Notice that this is similar to (but not same as) the
+				specification used in <literal>print</literal> statement (using the
+				<literal>%</literal> followed by tuple). -->
+
+				</para>
+				<para>
+
+				Wir erzeugen den Namen der Ziel-ZIP-Datei, indem wir den Summierungs-Operator (das Plus-Zeichen)
+				benutzen, der die einzelnen Strings miteinander <emphasis>verkettet</emphasis>, d.h. er
+				verbindet zwei Strings und liefert dies als neuen String zurück. Danach erzeugen wir einen String
+				<varname>zip_befehl</varname>, der den Befehl enthält, den wir ausführen wollen.
+				Sie können ausprobieren, ob dieser Befehl funktioniert, indem Sie ihn auf der Kommandozeilen-Ebene
+				ausprobieren (Linux-Terminal oder DOS-Eingabeaufforderung).
+
+				<!-- We create the name of the target zip file using the addition operator
+				which <emphasis>concatenates</emphasis> the strings i.e. it joins the
+				two strings together and returns a new one. Then, we create a string
+				<varname>zip_command</varname> which contains the command that we are
+				going to execute. You can check if this command works by running it on
+				the shell (Linux terminal or DOS prompt). -->
+
+				</para>
+				<para>
+
+				Dem von uns verwendeten Befehl <command>zip</command> geben wir noch
+				einige Optionen und Parameter mit. Die Option <option>-q</option> wird benutzt,
+				um anzuzeigen, dass der zip-Befehl ohne Ausgaben arbeiten soll (d.h. ohne viel bei der
+				Arbeit zu <emphasis role="bold">q</emphasis>uatschen). Die Option <option>-r</option>
+				gibt an, dass der zip-Befehl <emphasis role="bold">r</emphasis>ekursiv arbeiten
+				soll, d.h. er soll die Unterverzeichnisse und Dateien in den Unterverzeichnissen mit archivieren.
+				Die beiden Optionen werden kombiniert in der Kurzform <option>-qr</option> angegeben.
+				Den Optionen folgt der Name des zu erzeugenden ZIP-Archivs und die Liste der Dateien und Verzeichnisse,
+				die in dem Archiv gesichert werden sollen. Wir konvertieren die Liste <varname>quellen</varname>
+				in einen String, indem wir die <methodname>join</methodname>-Methode für Strings benutzen,
+				die wir bereits früher kennen gelernt haben.
+
+				<!-- The <command>zip</command> command that we are using has some options
+				and parameters passed. The <option>-q</option> option is used to indicate
+				that the zip command should work <emphasis role="bold">q</emphasis>uietly.
+				The <option>-r</option> option specifies that the zip command should work
+				<emphasis role="bold">r</emphasis>ecursively for directories i.e. it
+				should include subdirectories and files within the subdirectories as well.
+				The two options are combined and specified in a shorter way as
+				<option>-qr</option>. The options are followed by the name of the zip archive
+				to create followed by the list of files and directories to backup. We
+				convert the <varname>source</varname> list into a string using the
+				<methodname>join</methodname> method of strings which we have already seen
+				how to use. -->
+
+				</para>
+				<para>
+
+				Danach <emphasis>starten</emphasis> wir endlich den Befehl, indem
+				wir die Funktion <function>os.system</function> benutzen, die einen Befehl
+				auf Betriebssystemebene des <emphasis>Systems</emphasis> ausführt, d.h.
+				in einer Kommandozeilen-Umgebung - wobei eine <literal>0</literal> zurückgegeben
+				wird, wenn der Befehl erfolgreich ausgeführt wurde, oder einen Fehlercode ungleich <literal>0</literal>
+				im Fall, dass ein Fehler aufgetreten ist.
+
+				<!-- Then, we finally <emphasis>run</emphasis> the command using the
+				<function>os.system</function> function which runs the command as if it
+				was run from the <emphasis>system</emphasis> i.e. in the shell - it returns
+				<literal>0</literal> if the command was successfully, else it returns an
+				error number. -->
+
+				</para>
+				<para>
+
+				Je nachdem, wie die Ausführung des Befehls ausgegangen ist, geben wir eine entsprechende
+				Meldung auf dem Bildschirm aus, dass die Sicherung fehlgeschlagen ist oder erfolgreich war,
+				und das war's, wir haben damit ein Skript erzeugt, das eine Sicherungskopie unserer wichtigen
+				Dateien erzeugt!
+
+				<!-- Depending on the outcome of the command, we print the appropriate message
+				that the backup has failed or succeeded and that's it, we have created a
+				script to take a backup of our important files! -->
+
+				</para>
+
+				<note>
+					<title>Anmerkung für Windows-Benutzer</title> <!-- Note to Windows Users -->
+
+					<para>
+
+					Sie können in der Liste <varname>quellen</varname> und der Variable
+					<varname>ziel_verzeichnis</varname> beliebige Datei- bzw. Verzeichnisnamen
+					angeben, aber Sie müssen unter Windows ein wenig Acht geben.
+					Das Problem ist, dass Windows den umgekehrten Schrägstrich
+					(<literal>\</literal>) als das Trennzeichen für Verzeichnisse benutzt,
+					Python jedoch den umgekehrten Schrägstrich für Maskierungscodes benutzt!
+
+					<!-- You can set the <varname>source</varname> list and
+					<varname>target</varname> directory to any file and directory names
+					but you have to be a little careful in Windows. The problem is that
+					Windows uses the backslash (<literal>\</literal>) as the directory
+					separator character but Python uses backslashes to represent
+					escape sequences! -->
+
+					</para>
+					<para>
+
+					Daher müssen Sie einen umgekehrten Schrägstrich selber durch einen Maskierungscode
+					oder durch die Benutzung von rohen Zeichenketten darstellen. Zum Beispiel können Sie
+					<literal>'C:\\Dokumente'</literal> oder <literal>r'C:\Dokumente'</literal> schreiben,
+					<emphasis role="bold">nicht</emphasis> aber <literal>'C:\Dokumente'</literal>
+					- Sie verwenden hier einen unbekannten Maskierungscode <literal>\D</literal>!
+
+					<!-- So, you have to represent a backslash itself using an escape
+					sequence or you have to use raw strings. For example, use
+					<literal>'C:\\Documents'</literal> or <literal>r'C:\Documents'</literal>
+					but do <emphasis role="bold">not</emphasis> use
+					<literal>'C:\Documents'</literal> - you are using an unknown
+					escape sequence <literal>\D</literal> ! -->
+
+					</para>
+				</note>
+
+				<para>
+
+				Nachdem wir nun ein funktionierendes Sicherungsskript haben, können wir es jederzeit
+				benutzen, um eine Sicherungskopie der Dateien zu erstellen. Für Linux/Unix-Benutzer
+				empfiehlt es sich, die früher besprochene <link linkend="executable-python-programs">Methode
+				für ausführbare Dateien</link> zu verwenden, damit das Sicherungsskript jederzeit und
+				überall ausgeführt werden kann. Dies wird die <emphasis role="bold">Produktions</emphasis>-
+				oder <emphasis role="bold">Einsatz</emphasis>-Phase der Software genannt.
+
+				<!-- Now that we have a working backup script, we can use it whenever we want
+				to take a backup of the files. Linux/Unix users are advised to use the
+				<link linkend="executable-python-programs">executable method</link> as
+				discussed earlier so that they can run the backup script anytime anywhere.
+				This is called the <emphasis role="bold">operation</emphasis> phase or the
+				<emphasis role="bold">deployment</emphasis> phase of the software. -->
+
+				</para>
+				<para>
+
+				Das obige Programm funktioniert zufrieden stellend, aber (meistens) funktionieren
+				erste Versionen von Programmen nicht genau so, wie man es erwartet. Zum Beispiel
+				könnten Probleme entstehen, wenn das Programm nicht sauber entworfen wurde,
+				oder wenn man einen Fehler beim Eintippen des Programmcodes gemacht hat, usw.
+				Dementsprechend muss man dann wieder in die Entwurfsphase zurückgehen oder
+				sein Programm debuggen.
+
+				<!-- The above program works properly, but (usually) first programs do not work
+				exactly as you expect. For example, there might be problems if you have not
+				designed the program properly or if you have made a mistake in typing the
+				code, etc. Appropriately, you will have to go back to the design phase or
+				you will have to debug your program. -->
+
+				</para>
+			</section>
+		</section>
+
+		<section id="second-version">
+			<title>Die zweite Version</title> <!-- Second Version -->
+
+			<para>
+
+			Die erste Version unseres Skripts funktioniert. Wir können aber noch einige Verfeinerungen
+			daran vornehmen, so dass es für den täglichen Einsatz besser tauglich wird. Man nennt dies
+			die <emphasis role="bold">Wartungs</emphasis>-Phase der Software.
+
+			<!-- The first version of our script works. However, we can make some refinements to it
+			so that it can work better on a daily basis. This is called the
+			<emphasis role="bold">maintenance</emphasis> phase of the software. -->
+
+			</para>
+			<para>
+
+			Eine der Verfeinerungen, die ich nützlich fand, ist ein besserer Mechanismus zur Benennung
+			der Sicherungsdateien - indem die <emphasis>Uhrzeit</emphasis> als der Name der Datei
+			verwendet wird, die in einem Verzeichnis gespeichert wird, dessen Name aus dem aktuellen
+			<emphasis>Datum</emphasis> gebildet wird, und das sich im Hauptverzeichnis für die
+			Sicherungen befindet. Ein Vorteil davon ist, dass die Sicherungen in einer hierarchischen Weise
+			gespeichert werden und daher einfacher zu verwalten sind. Ein weiterer Vorteil ist, dass die Länge
+			der Dateinamen auf diese Weise viel kürzer wird. Noch ein weiterer Vorteil ist, dass verschiedene
+			Verzeichnisse dabei helfen, auf einfache Weise zu überprüfen, ob man an jedem Tag eine Sicherung
+			gemacht hat, denn das Verzeichnis wird nur angelegt, wenn am jeweiligen Tag eine Sicherung
+			vorgenommen wurde.
+
+			<!-- One of the refinements I felt was useful is a better file-naming mechanism - using
+			the <emphasis>time</emphasis> as the name of the file within a directory with the
+			current <emphasis>date</emphasis> as a directory within the main backup directory.
+			One advantage is that your backups are stored in a hierarchical manner and therefore
+			it is much easier to manage. Another advantage is that the length of the filenames
+			are much shorter this way. Yet another advantage is that separate directories will
+			help you to easily check if you have taken a backup for each day since the
+			directory would be created only if you have taken a backup for that day. -->
+
+			</para>
+
+			<example id="second-version-example">
+				<title>Sicherungsskript - zweite Version
+					(<ulink url="code/sicherung_ver2.py">sicherung_ver2.py</ulink>)
+				</title> <!-- Backup Script - The Second Version -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import os
+import time
+
+# 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,
+# werden in der folgenden Liste angegeben:
+quellen = ['/home/swaroop/byte', '/home/swaroop/bin']
+# Unter Windows muessen Sie die Pfade auf diese Weise angeben:
+# quellen = ['C:\\Dokumente', 'D:\\Arbeit']
+
+# 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer
+# Sicherungen gespeichert werden:
+ziel_verzeichnis = '/mnt/e/sicherung/'
+# Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.
+
+# 3. Die Dateien werden in einer ZIP-Datei gesichert.
+
+# 4. Das Tagesdatum ist der Name des Unterverzeichnisses:
+heute = ziel_verzeichnis + time.strftime('%Y%m%d')
+# Die aktuelle Uhrzeit ist der Name des ZIP-Archivs:
+jetzt = time.strftime('%H%M%S')
+
+# Erzeuge das Unterverzeichnis, wenn noch nicht vorhanden:
+if not os.path.exists(heute):
+	os.mkdir(heute) # erzeuge das Verzeichnis
+	print 'Verzeichnis', heute, 'erfolgreich angelegt'
+
+# Der Name der ZIP-Datei:
+ziel = heute + os.sep + jetzt + '.zip'
+
+# 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien
+# zu einem ZIP-Archiv zu komprimieren:
+zip_befehl = 'zip -qr %s %s' % (ziel, ' '.join(quellen))
+# Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das
+# Windows-Systemverzeichnis kopieren, damit dies funktioniert.
+
+# Sicherung starten
+if os.system(zip_befehl) == 0:
+	print 'Erfolgreiche Sicherung nach', ziel
+else:
+	print 'Sicherung fehlgeschlagen!'
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: backup_ver2.py
+
+import os
+import time
+
+# 1. The files and directories to be backed up are specified in a list.
+source = ['/home/swaroop/byte', '/home/swaroop/bin']
+# If you are using Windows, use source = [r'C:\Documents', r'D:\Work'] or something like that
+
+# 2. The backup must be stored in a main backup directory
+target_dir = '/mnt/e/backup/' # Remember to change this to what you will be using
+
+# 3. The files are backed up into a zip file.
+# 4. The current day is the name of the subdirectory in the main directory
+today = target_dir + time.strftime('%Y%m%d')
+# The current time is the name of the zip archive
+now = time.strftime('%H%M%S')
+
+# Create the subdirectory if it isn't already there
+if not os.path.exists(today):
+	os.mkdir(today) # make directory
+	print 'Successfully created directory', today
+
+# The name of the zip file
+target = today + os.sep + now + '.zip'
+
+# 5. We use the zip command (in Unix/Linux) to put the files in a zip archive
+zip_command = "zip -qr '%s' %s" % (target, ' '.join(source))
+
+# Run the backup
+if os.system(zip_command) == 0:
+	print 'Successful backup to', target
+else:
+	print 'Backup FAILED'
+				]]> -->
+			</example>
+
+			<section id="second-version-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python sicherung_ver2.py
+Verzeichnis /mnt/e/backup/20041208 erfolgreich angelegt
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/080020.zip
+
+$ python sicherung_ver2.py
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/080428.zip
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python backup_ver2.py
+Successfully created directory /mnt/e/backup/20041208
+Successful backup to /mnt/e/backup/20041208/080020.zip
+
+$ python backup_ver2.py
+Successful backup to /mnt/e/backup/20041208/080428.zip
+				]]> -->
+			</section>
+
+			<section id="second-version-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				Das Programm bleibt im Wesentlichen das gleiche. Die Änderungen
+				bestehen darin, dass wir prüfen, of es bereits ein Verzeichnis mit dem
+				aktuellen Tagesdatum als Namen innerhalb des Hauptverzeichnisses für
+				Sicherungen gibt, wofür wir die Funktion <function>os.exists</function>
+				einsetzen. Wenn es nicht existiert, legen wir das Verzeichnis mit der
+				Funktion <function>os.mkdir</function> an.
+
+				<!-- Most of the program remains the same. The changes is that we check if there
+				is a directory with the current day as name inside the main backup
+				directory using the <function>os.exists</function> function. If it doesn't
+				exist, we create it using the <function>os.mkdir</function> function. -->
+
+				</para>
+				<para>
+
+				Beachten Sie die Benutzung der Variablen <varname>os.sep</varname> -
+				sie stellt das Trennzeichen für Verzeichnisse des jeweils benutzten Betriebssystems
+				dar, d.h. sie wird unter Unix oder Linux <literal>'/'</literal> sein, unter Windows
+				wird sie <literal>'\\'</literal> sein, und <literal>':'</literal> unter MacOS.
+				Indem man <varname>os.sep</varname> verwendet, anstatt diese Zeichen
+				direkt hinzuschreiben, wird das Programm portabel und funktioniert plattformunabhängig
+				unter all diesen Betriebssystemen.
+
+				<!-- Notice the use of <varname>os.sep</varname> variable - this gives the
+				directory separator according to your operating system i.e. it will be
+				<literal>'/'</literal> in Linux, Unix, it will be <literal>'\\'</literal>
+				in Windows and <literal>':'</literal> in Mac OS. Using
+				<varname>os.sep</varname> instead of these characters directly will make
+				our program portable and work across these systems. -->
+
+				</para>
+			</section>
+		</section>
+
+		<section id="third-version">
+			<title>Die dritte Version</title> <!-- Third Version -->
+
+			<para>
+
+			Die zweite Version funktioniert hervorragend, wenn man viele Sicherungskopien
+			macht, aber wenn man so viele Sicherheitskopien macht, dann wird es schwer zu
+			unterscheiden, wofür diese Sicherungskopien gemacht worden sind. Zum Beispiel
+			könnte ich einige größere Änderungen an einem Programm oder einer Präsentation
+			gemacht haben, und möchte dann, dass diese Änderungen mit dem Namen des
+			ZIP-Archivs verknüpft werden. Dies kann einfach dadurch erreicht werden, dass
+			man dem Namen des ZIP-Archivs einen benutzerdefinierten Kommentar anhängt.
+
+			<!-- The second version works fine when I do many backups, but when there are lots of
+			backups, I am finding it hard to differentiate what the backups were for! For
+			example, I might have made some major changes to a program or presentation,
+			then I want to associate what those changes are with the name of the zip archive.
+			This can be easily achieved by attaching a user-supplied comment to the name of
+			the zip archive. -->
+
+			</para>
+
+			<example id="third-version-example">
+				<title>Sicherungsskript - dritte Version (funktioniert nicht!)
+					(<ulink url="code/sicherung_ver3.py">sicherung_ver3.py</ulink>)
+				</title> <!-- Backup Script - The Third Version (does not work!) -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import os
+import time
+
+# 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,
+# werden in der folgenden Liste angegeben:
+quellen = ['/home/swaroop/byte', '/home/swaroop/bin']
+# Unter Windows muessen Sie die Pfade auf diese Weise angeben:
+# quellen = ['C:\\Dokumente', 'D:\\Arbeit']
+
+# 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer
+# Sicherungen gespeichert werden:
+ziel_verzeichnis = '/mnt/e/sicherung/'
+# Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.
+
+# 3. Die Dateien werden in einer ZIP-Datei gesichert.
+
+# 4. Das Tagesdatum ist der Name des Unterverzeichnisses:
+heute = ziel_verzeichnis + time.strftime('%Y%m%d')
+# Die aktuelle Uhrzeit ist der Name des ZIP-Archivs:
+jetzt = time.strftime('%H%M%S')
+
+# Eine Anmerkung als Benutzereingabe entgegennehmen,
+# die fuer den Namen der ZIP-Datei verwendet wird:
+anmerkung = raw_input('Geben Sie eine Anmerkung ein --> ')
+if len(anmerkung) == 0: # pruefe, ob eine Anmerkung eingegeben wurde
+	ziel = heute + os.sep + jetzt + '.zip'
+else:
+	ziel = heute + os.sep + jetzt + '_' +
+		anmerkung.replace(' ', '_') + '.zip'
+
+# Erzeuge das Unterverzeichnis, wenn noch nicht vorhanden:
+if not os.path.exists(heute):
+	os.mkdir(heute) # erzeuge das Verzeichnis
+	print 'Verzeichnis', heute, 'erfolgreich angelegt'
+
+# 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien
+# zu einem ZIP-Archiv zu komprimieren:
+zip_befehl = 'zip -qr %s %s' % (ziel, ' '.join(quellen))
+# Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das
+# Windows-Systemverzeichnis kopieren, damit dies funktioniert.
+
+# Sicherung starten
+if os.system(zip_befehl) == 0:
+	print 'Erfolgreiche Sicherung nach', ziel
+else:
+	print 'Sicherung fehlgeschlagen!'
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: backup_ver2.py
+
+import os
+import time
+
+# 1. The files and directories to be backed up are specified in a list.
+source = ['/home/swaroop/byte', '/home/swaroop/bin']
+# If you are using Windows, use source = [r'C:\Documents', r'D:\Work'] or something like that
+
+# 2. The backup must be stored in a main backup directory
+target_dir = '/mnt/e/backup/' # Remember to change this to what you will be using
+
+# 3. The files are backed up into a zip file.
+# 4. The current day is the name of the subdirectory in the main directory
+today = target_dir + time.strftime('%Y%m%d')
+# The current time is the name of the zip archive
+now = time.strftime('%H%M%S')
+
+# Take a comment from the user to create the name of the zip file
+comment = raw_input('Enter a comment - - >')
+if len(comment) == 0: # check if a comment was entered
+	target = today + os.sep + now + '.zip'
+else:
+	target = today + os.sep + now + '_' +
+		comment.replace(' ', '_') + '.zip'
+
+# Create the subdirectory if it isn't already there
+if not os.path.exists(today):
+	os.mkdir(today) # make directory
+	print 'Successfully created directory', today
+
+# 5. We use the zip command (in Unix/Linux) to put the files in a zip archive
+zip_command = "zip -qr '%s' %s" % (target, ' '.join(source))
+
+# Run the backup
+if os.system(zip_command) == 0:
+	print 'Successful backup to', target
+else:
+	print 'Backup FAILED'
+				]]> -->
+			</example>
+
+			<section id="third-version-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python sicherung_ver3.py
+  File "sicherung_ver3.py", line 30
+    ziel = heute + os.sep + jetzt + '_' +
+                                        ^
+SyntaxError: invalid syntax
+					]]>
+				</screen>
+				<!-- <![CDATA[
+$ python sicherung_ver3.py
+File "sicherung_ver3.py", line 25
+target = today + os.sep + now + '_' +
+					^
+SyntaxError: invalid syntax
+					]]> -->
+			</section>
+
+			<section id="third-version-how">
+				<title>Warum dies nicht funktioniert</title> <!-- How This (does not) Work</title> -->
+
+				<para>
+
+				<emphasis role="bold">Dieses Programm funktioniert nicht!</emphasis>
+				Python sagt, dass es einen Syntax-Fehler hat, was bedeutet, dass das Skript
+				an einer Stelle nicht die Struktur aufweist, die Python hier erwartet.
+				Wenn wir auf die Fehlermeldung von Python Acht geben, gibt sie uns auch die
+				genaue Stelle an, wo der Fehler entdeckt wurde. Wir fangen also an, das Programm
+				ab dieser Zeile zu <emphasis>debuggen</emphasis>.
+
+				<!-- <emphasis role="bold">This program does not work!</emphasis>.
+				Python says there is a syntax error which means that the script
+				does not satisfy the structure that Python expects to see.
+				When we observe the error given by Python, it also tells us the
+				place where it detected the error as well. So we start
+				<emphasis>debugging</emphasis> our program from that line. -->
+
+				</para>
+				<para>
+
+				Bei genauerer Untersuchung erkennen wir, dass die eine logische Zeile
+				in zwei physikalische Zeilen aufgespalten worden ist, aber dass wir nicht
+				angegeben haben, dass diese zwei physikalischen Zeilen zusammengehören.
+				Für Python fehlt dem Summierungs-Operator (<literal>+</literal>) am Ende
+				der logischen Zeile daher ein Operand, weswegen es an dieser Stelle
+				abbricht. Erinnern Sie sich daran, dass wir angeben können, dass die logische
+				Zeile in der folgenden physikalischen Zeile fortgeführt wird, indem wir einen
+				umgekehrten Schrägstrich am Ende der physikalischen Zeile benutzen. Wir machen
+				daher diese Verbesserung an unserem Programm. Eine solche Fehlerkorrektur wird
+				auch als <emphasis role="bold">Bug-Fixing</emphasis> bezeichnet.
+
+				<!-- On careful observation, we see that the single logical line has
+				been split into two physical lines but we have not specified that
+				these two physical lines belong together. Basically, Python has
+				found the addition operator (<literal>+</literal>) without any
+				operand in that logical line and hence it doesn't know how to
+				continue. Remember that we can specify that the logical line continues
+				in the next physical line by the use of a backslash at the end of the
+				physical line. So, we make this correction to our program. This is
+				called <emphasis role="bold">bug fixing</emphasis>. -->
+
+				</para>
+			</section>
+		</section>
+
+		<section id="fourth-version">
+			<title>Die vierte Version</title> <!-- Fourth Version -->
+
+			<example id="fourth-version-example">
+				<title>Sicherungsskript - vierte Version
+					(<ulink url="code/sicherung_ver4.py">sicherung_ver4.py</ulink>)
+				</title> <!-- Backup Script - The Fourth Version -->
+
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+import os
+import time
+
+# 1. Die Dateien und Verzeichnisse, die gesichert werden sollen,
+# werden in der folgenden Liste angegeben:
+quellen = ['/home/swaroop/byte', '/home/swaroop/bin']
+# Unter Windows muessen Sie die Pfade auf diese Weise angeben:
+# quellen = ['C:\\Dokumente', 'D:\\Arbeit']
+
+# 2. Die Sicherung muss in das folgende Hauptverzeichnis fuer
+# Sicherungen gespeichert werden:
+ziel_verzeichnis = '/mnt/e/sicherung/'
+# Denken Sie daran, dies an Ihre Gegebenheiten anzupassen.
+
+# 3. Die Dateien werden in einer ZIP-Datei gesichert.
+
+# 4. Das Tagesdatum ist der Name des Unterverzeichnisses:
+heute = ziel_verzeichnis + time.strftime('%Y%m%d')
+# Die aktuelle Uhrzeit ist der Name des ZIP-Archivs:
+jetzt = time.strftime('%H%M%S')
+
+# Eine Anmerkung als Benutzereingabe entgegennehmen,
+# die fuer den Namen der ZIP-Datei verwendet wird:
+anmerkung = raw_input('Geben Sie eine Anmerkung ein --> ')
+if len(anmerkung) == 0: # pruefe, ob eine Anmerkung eingegeben wurde
+	ziel = heute + os.sep + jetzt + '.zip'
+else:
+	ziel = heute + os.sep + jetzt + '_' + \
+		anmerkung.replace(' ', '_') + '.zip'
+	# Beachten Sie den umgekehrten Schraegstrich!
+
+# Erzeuge das Unterverzeichnis, wenn noch nicht vorhanden:
+if not os.path.exists(heute):
+	os.mkdir(heute) # erzeuge das Verzeichnis
+	print 'Verzeichnis', heute, 'erfolgreich angelegt'
+
+# 5. Wir benutzen den Befehl zip (unter Unix/Linux), um die Dateien
+# zu einem ZIP-Archiv zu komprimieren:
+zip_befehl = 'zip -qr %s %s' % (ziel, ' '.join(quellen))
+# Windows-Benutzer koennen z.B. PKZIP oder Info-ZIP in das
+# Windows-Systemverzeichnis kopieren, damit dies funktioniert.
+
+# Sicherung starten
+if os.system(zip_befehl) == 0:
+	print 'Erfolgreiche Sicherung nach', ziel
+else:
+	print 'Sicherung fehlgeschlagen!'
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: backup_ver2.py
+
+import os, time
+
+# 1. The files and directories to be backed up are specified in a list.
+source = ['/home/swaroop/byte', '/home/swaroop/bin']
+# If you are using Windows, use source = [r'C:\Documents', r'D:\Work'] or something like that
+
+# 2. The backup must be stored in a main backup directory
+target_dir = '/mnt/e/backup/' # Remember to change this to what you will be using
+
+# 3. The files are backed up into a zip file.
+# 4. The current day is the name of the subdirectory in the main directory
+today = target_dir + time.strftime('%Y%m%d')
+# The current time is the name of the zip archive
+now = time.strftime('%H%M%S')
+
+# Take a comment from the user to create the name of the zip file
+comment = raw_input('Enter a comment - - >')
+if len(comment) == 0: # check if a comment was entered
+	target = today + os.sep + now + '.zip'
+else:
+	target = today + os.sep + now + '_' + \
+		comment.replace(' ', '_') + '.zip'
+ 	# Notice the backslash!
+
+# Create the subdirectory if it isn't already there
+if not os.path.exists(today):
+	os.mkdir(today) # make directory
+	print 'Successfully created directory', today
+
+# 5. We use the zip command (in Unix/Linux) to put the files in a zip archive
+zip_command = "zip -qr '%s' %s" % (target, ' '.join(source))
+
+# Run the backup
+if os.system(zip_command) == 0:
+	print 'Successful backup to', target
+else:
+	print 'Backup FAILED'
+				]]> -->
+			</example>
+
+			<section id="fourth-version-output">
+				<title>Ausgabe</title> <!-- Output -->
+
+				<screen>
+				<![CDATA[
+$ python sicherung_ver4.py
+Geben Sie eine Anmerkung ein --> neue beispiele ergaenzt
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/082156_neue_beispiele_ergaenzt.zip
+
+$ python sicherung_ver4.py
+Geben Sie eine Anmerkung ein -->
+Erfolgreiche Sicherung nach /mnt/e/backup/20041208/082316.zip
+				]]>
+				</screen>
+				<!-- <![CDATA[
+$ python backup_ver4.py
+Enter a comment - - > added new examples
+Successful backup to /mnt/e/backup/20041208/082156_added_new_examples.zip
+
+$ python backup_ver4.py
+Enter a comment - - >
+Successful backup to /mnt/e/backup/20041208/082316.zip
+				]]> -->
+			</section>
+
+			<section id="fourth-version-how">
+				<title>So funktioniert es</title> <!-- How It Works -->
+
+				<para>
+
+				So funktioniert das Programm jetzt! Wir wollen die eigentlichen Änderungen
+				durchgehen, die wir in Version 3 gemacht haben. Wir nehmen eine Anmerkung
+				des Benutzers mit der Funktion <function>raw_input</function> als Eingabe
+				entgegen und prüfen, ob der Benutzer wirklich irgendetwas eingegeben hat, indem
+				wir die Länge der Eingabe mit der Funktion <function>len</function> ermitteln.
+				Wenn der Benutzer aus irgendeinem Grund (zum Beispiel, weil es nur eine Routine-Sicherung
+				ist, und keine besonderen Änderungen vorgenommen wurden) nur einfach die
+				<keycap>Enter</keycap>-Taste gedrückt hat, dann verfahren wir genauso wie vorher.
+
+				<!-- This program now works! Let us go through the actual enhancements that we
+				had made in version 3. We take in the user's comments using the
+				<function>raw_input</function> function and then check if the user actually
+				entered something by finding out the length of the input using the
+				<function>len</function> function. If the user has just pressed
+				<keycap>enter</keycap> for some reason (maybe it was just a routine backup
+				or no special changes were made), then we proceed as we have done before. -->
+
+				</para>
+				<para>
+
+				Wenn jedoch eine Anmerkung eingegeben wurde, dann wird diese an den Namen
+				des ZIP-Archivs angehängt, direkt vor der Dateiendung <filename>.zip</filename>.
+				Beachten Sie, dass wir Leerzeichen in der Anmerkung durch Unterstriche ersetzen -
+				aus dem Grund, dass solche Dateinamen leichter handhabbar sind.
+
+				<!-- However, if a comment was supplied, then this is attached to the name of
+				the zip archive just before the <filename>.zip</filename> extension.
+				Notice that we are replacing spaces in the comment with underscores - this
+				is because managing such filenames are much easier. -->
+
+				</para>
+			</section>
+		</section>
+
+		<section id="more-refinements">
+			<title>Weitere Verfeinerungen</title> <!-- More Refinements -->
+
+			<para>
+
+			Die vierte Version ist  für die meisten Benutzer ein zufrieden stellend arbeitendes Skript,
+			aber es gibt stets Möglichkeiten zur weiteren Verbesserung. Zum Beispiel könnte man
+			einen Grad der <emphasis>Ausführlichkeit</emphasis> der Programmausgaben
+			einbauen, den man mit einer Option <option>-v</option> angeben könnte, und der
+			das Programm dazu bringt, geschwätziger in der Ausgabe zu sein.
+
+			<!-- The fourth version is a satisfactorily working script for most users, but there is
+			always room for improvement. For example, you can include a
+			<emphasis>verbosity</emphasis> level for the program where you can specify a
+			<option>-v</option> option to make your program become more talkative. -->
+
+			</para>
+			<para>
+
+			Eine weitere mögliche Verbesserung würde es erlauben, dem Skript zusätzliche
+			Dateien und Verzeichnisse auf der Kommandozeile zu übergeben. Wir könnten
+			diese Übergabeparameter der Liste <varname>sys.argv</varname> entnehmen,
+			und sie der Liste <varname>quellen</varname> hinzufügen, indem wir die
+			<methodname>extend</methodname>-Methode benutzen, die von der Klasse
+			<classname>list</classname> bereitgestellt wird.
+
+			<!-- Another possible enhancement would be to allow extra files and directories to be
+			passed to the script at the command line. We will get these from the
+			<varname>sys.argv</varname> list and we can add them to our
+			<varname>source</varname> list using the <methodname>extend</methodname> method
+			provided by the <classname>list</classname> class. -->
+
+			</para>
+			<para>
+
+			Eine Verfeinerung, die ich bevorzuge, ist die Verwendung des <command>tar</command>-Befehls
+			anstelle des <command>zip</command>-Befehls. Ein Vorteil hierbei ist, dass die Sicherung viel
+			schneller durchgeführt wird, und die Sicherungsdatei außerdem viel kleiner wird, wenn man den
+			<command>tar</command>-Befehl zusammen mit <command>gzip</command> verwendet.
+			Wenn ich dieses Archiv unter Windows benötige, dann werden <filename>.tar.gz</filename>-Dateien
+			auch problemlos von <application>WinZip</application> entpackt. Der <command>tar</command>-Befehl
+			ist standardmäßig auf den meisten Linux/Unix-Systemen vorhanden. Windows-Benutzer können ihn sich
+			ebenfalls <ulink url="http://gnuwin32.sourceforge.net/packages/tar.htm">aus dem Internet</ulink>
+			holen und auf ihrem Windows-System installieren.
+
+			<!-- One refinement I prefer is the use of the <command>tar</command> command instead
+			of the <command>zip</command> command. One advantage is that when you use the
+			<command>tar</command> command along with <command>gzip</command>, the backup is
+			much faster and the backup created is also much smaller. If I need to use this
+			archive in Windows, then <application>WinZip</application> handles such
+			<filename>.tar.gz</filename> files easily as well. The <command>tar</command>
+			command is available by default on most Linux/Unix systems. Windows users can
+			<ulink url="http://gnuwin32.sourceforge.net/packages/tar.htm">download</ulink>
+			and install it as well. -->
+
+			</para>
+			<para>
+
+			Die entsprechende Befehlszeile sähe dann zum Beispiel so aus:
+			<!-- The command string will now be: -->
+
+			</para>
+			<programlisting>
+			<![CDATA[
+tar = 'tar -cvzf %s %s -X ausnahmen.txt' % (ziel, ' '.join(quellen))
+			]]>
+			</programlisting>
+			<!-- <![CDATA[
+tar = 'tar -cvzf %s %s -X /home/swaroop/excludes.txt' % (target, ' '.join(srcdir))
+			]]> -->
+			<para>
+
+			Die Optionen werden im Folgenden erläutert.
+			<!-- The options are explained below. -->
+
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+
+					<option>-c</option> (für <emphasis role="bold">c</emphasis>reate)
+					zeigt an, dass eine Archivdatei erzeugt werden soll.
+
+					<!-- <option>-c</option> indicates <emphasis role="bold">c</emphasis>reation
+					of an archive. -->
+
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+
+					<option>-v</option> (für <emphasis role="bold">v</emphasis>erbose)
+					bedeutet, dass die Ausgabe des Programms geschwätziger sein sollte.
+
+					<!-- <option>-v</option> indicates <emphasis role="bold">v</emphasis>erbose
+					i.e. the command should be more talkative. -->
+
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+
+					<option>-z</option> bedeutet, dass g<emphasis role="bold">z</emphasis>ip
+					als Filter benutzt werden soll.
+
+					<!-- <option>-z</option> indicates the g<emphasis role="bold">z</emphasis>ip
+					filter should be used. -->
+
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+
+					<option>-f</option> (für <emphasis role="bold">f</emphasis>orce)
+					bedeutet, dass beim Anlegen der Archivdatei eine eventuell bereits vorhandene
+					Datei gleichen Namens überschrieben werden soll.
+
+					<!-- <option>-f</option> indicates <emphasis role="bold">f</emphasis>orce
+					in creation of archive i.e. it should replace if there is a file
+					by the same name already. -->
+
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+
+					<option>-X</option> (für e<emphasis role="bold">x</emphasis>clude)
+					gibt eine Ausnahmedatei an, d.h. eine Textdatei, die eine Liste von Dateinamen enthält,
+					die von der Sicherung ausgeschlossen werden sollen. Zum Beispiel könnte man in diese
+					Datei den Eintrag <literal>*~</literal> schreiben, wenn man nicht möchte, dass Dateien,
+					deren Name mit dem Zeichen <literal>~</literal> endet (gewöhnlicherweise sind das
+					temporär angelegte Dateien), mit in die Sicherung aufgenommen werden sollen.
+
+					<!-- <option>-X</option> indicates a file which contains a list of filenames
+					which must be e<emphasis role="bold">x</emphasis>cluded from the backup.
+					For example, you can specify <literal>*~</literal> in this file to not
+					include any filenames ending with <literal>~</literal> in the backup. -->
+
+					</para>
+				</listitem>
+			</itemizedlist>
+
+			<important>
+				<para>
+
+				Die bevorzugte Weise, solche Archive anzulegen, ist unter Verwendung
+				des Moduls <literal>zipfile</literal> bzw. <literal>tarfile</literal>-
+				Sie gehören zur Python-Standard-Bibliothek und stehen Ihnen bereits zum
+				Gebrauch zur Verfügung. Durch den Einsatz dieser Bibliotheken kann man auch
+				die Benutzung von <function>os.system</function> vermeiden, was grundsätzlich
+				ratsam ist, weil man bei Benutzung dieser Funktion sehr schnell kostspielige
+				Fehler machen kann.
+
+				<!-- The most preferred way of creating such kind of archives would be using
+				the <literal>zipfile</literal> or <literal>tarfile</literal> module
+				respectively. They are part of the Python Standard Library and available
+				for you to use already. Using these libraries also avoids the use of the
+				<function>os.system</function> which is generally not advisable to use
+				because it is very easy to make costly mistakes using it. -->
+
+				</para>
+				<para>
+
+				Ich habe dennoch aus didaktischen Gründen <function>os.system</function>
+				im Sicherungskript verwendet, damit das Beispiel einfach genug ist, dass es jeder
+				verstehen kann, und real genug, um nützlich zu sein.
+
+				<!-- However, I have been using the <function>os.system</function> way of
+				creating a backup purely for pedagogical purposes, so that the example
+				is simple enough to be understood by everybody but real enough to be
+				useful. -->
+
+				</para>
+			</important>
+		</section>
+	</section>
+
+	<section id="software-development-process">
+		<title>Der Softwareentwicklungsprozess</title> <!-- The Software Development Proces -->
+
+		<para>
+
+		Wir sind nun durch die verschiedenen <emphasis role="bold">Phasen</emphasis> gegangen, die
+		beim Schreiben einer Software durchlaufen werden. Diese Phasen können wie folgt zusammengefasst werden:
+
+		<!-- We have now gone through the various <emphasis role="bold">phases</emphasis> in the process
+		of writing a software. These phases can be summarised as follows: -->
+
+		</para>
+
+		<procedure>
+			<step>
+				<para>
+
+				Was (Analyse)
+				<!-- What (Analysis) -->
+
+				</para>
+			</step>
+			<step>
+				<para>
+
+				Wie (Entwurf)
+				<!-- How (Design) -->
+
+				</para>
+			</step>
+			<step>
+				<para>
+
+				Ausführung (Implementierung)
+				<!-- Do It (Implementation) -->
+
+				</para>
+			</step>
+			<step>
+				<para>
+
+				Test (Testen und Debuggen)
+				<!-- Test (Testing and Debugging) -->
+
+				</para>
+			</step>
+			<step>
+				<para>
+
+				Anwendung (Produktion oder Einsatz)
+				<!-- Use (Operation or Deployment) -->
+
+				</para>
+			</step>
+			<step>
+				<para>
+
+				Wartung (Verfeinerung)
+				<!-- Maintain (Refinement) -->
+
+				</para>
+			</step>
+		</procedure>
+
+		<important>
+			<para>
+
+			Eine empfohlene Weise, Programme zu schreiben ist die Vorgehensweise, der wir
+			beim Erstellen des Sicherungsskripts verfolgt haben - führen Sie die Analyse durch und
+			machen Sie einen Entwurf. Beginnen Sie die Implementierung mit einer einfachen ersten Version.
+			Testen und debuggen Sie das Programm. Benutzen Sie das Programm, um sicherzustellen, dass
+			alles wie erwartet funktioniert. Fügen Sie nun weitere gewünschte Funktionalität hinzu und
+			durchlaufen Sie den Zyklus Implementierung-Test-Anwendung so lange wie es nötig ist.
+			Denken Sie daran, dass man '<emphasis role="bold">Software wachsen lässt, und nicht fertig baut</emphasis>'.
+
+			<!-- A recommended way of writing programs is the procedure we have followed in creating
+			the backup script - Do the analysis and design. Start implementing with a simple
+			version. Test and debug it. Use it to ensure that it works as expected. Now, add any
+			features that you want and continue to repeat the Do It-Test-Use cycle as many times
+			as required. Remember, '<emphasis role="bold">Software is grown, not built</emphasis>'. -->
+
+			</para>
+		</important>
+	</section>
+
+	<section id="problem-solving-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		Wir haben gesehen, wie wir unsere eigenen Python-Programme/Skripte erstellen, und die
+		verschiedenen Phasen kennen gelernt, die beim Schreiben solcher Programme durchlaufen werden.
+		Sie mögen es hilfreich finden, Ihre eigenen Programme auf die gleiche Weise zu erstellen,
+		wie wir es in diesem Kapitel beispielhaft durchgeführt haben, so dass sie sowohl mit Python
+		als auch mit Problemlösung allgemein vertraut werden.
+
+		<!-- We have seen how to create our own Python programs/scripts and the various stages involved
+		in writing such programs. You may find it useful to create your own program just like we
+		did in this chapter so that you become comfortable with Python as well as problem-solving. -->
+
+		</para>
+		<para>
+
+		Als Nächstes werden wir die objektorientierte Programmierweise besprechen.
+		<!-- Next, we will discuss object-oriented programming. -->
+
+		</para>
+	</section>
+</chapter>

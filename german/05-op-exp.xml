@@ -1,0 +1,902 @@
+﻿<chapter id="operators-expressions">
+
+	<!-- German translation 2005-02-27 by Bernd Hengelein -->
+	<!-- Proofreading 2005-02-24 Christoph Zwerschke -->
+
+	<title>Operatoren und Ausdrücke</title> 	<!-- Operators and Expressions -->
+
+	<section id="operators-expressions-intro">
+
+		<title>Einführung</title> <!-- Introduction -->
+
+		<para>
+		Die meisten Anweisungen, die Sie schreiben, werden
+		<emphasis role="bold">Ausdrücke</emphasis> enthalten.
+		Ein einfaches Beispiel für einen Ausdruck ist <literal>2 + 3</literal>.
+		Ein Ausdruck setzt sich aus Operatoren und Operanden zusammen.
+
+		<!-- Most statements (logical lines) that you write will contain
+		<emphasis role="bold">expressions</emphasis>. A simple example of an expression is
+		<literal>2 + 3</literal>. An expression can be broken down into operators and operands. -->
+
+		</para>
+		<para>
+		<emphasis>Operatoren</emphasis> bieten eine bestimmte Funktionalität und können durch
+		Symbole wie <literal>+</literal>, oder besondere Schlüsselwörter ausgedrückt werden. Sie operieren
+		stets auf irgendwelchen Daten, die man <emphasis>Operanden</emphasis> nennt. In unserem
+		Beispiel sind <literal>2</literal> und <literal>3</literal> die Operanden.
+
+		<!-- <emphasis>Operators</emphasis> are functionality that do something and can be
+		represented by symbols such as <literal>+</literal> or by special keywords. Operators
+		require some data to operate on and such data are called <emphasis>operands</emphasis>.
+		In this case, <literal>2</literal> and <literal>3</literal> are the operands. -->
+
+		</para>
+	</section>
+
+	<section id="operators">
+		<title>Operatoren</title> <!--<title>Operators</title>-->
+
+		<para>
+
+		Lassen Sie uns einen kurzen Blick auf die Operatoren und ihre Verwendung werfen:
+
+<!-- We will briefly take a look at the operators and their usage: -->
+
+		</para>
+		<tip>
+			<para>
+
+			Die Ausdrücke aus den Beispielen können mit dem Interpreter interaktiv
+			ausgewertet werden. Um z.B. den Ausdruck <literal>2 + 3</literal> zu testen,
+			geben Sie folgendes in der Kommandozeile des Interpreters ein:
+
+			<!-- You can evaluate the expressions given in the examples using the interpreter
+			interactively. For example, to test the expression <literal>2 + 3</literal>, use
+			the interactive Python interpreter prompt: -->
+
+			</para>
+			<screen>
+			<![CDATA[
+>>> 2 + 3
+5
+>>> 3 * 5
+15
+>>>
+			]]>
+			</screen>
+		</tip>
+
+		<table id="operator-usage-table">
+
+			<title>Operatoren und ihre Verwendung</title> <!-- Operators and their usage -->
+			<tgroup cols="4">
+				<colspec colwidth="1*"/>
+				<colspec colwidth="3*"/>
+				<colspec colwidth="6*"/>
+				<colspec colwidth="6*"/>
+				<thead>
+					<row>
+						<entry>Operator</entry>
+						<entry>Name</entry>
+						<entry>Erklärung</entry> <!-- Explanation -->
+						<entry>Beispiele</entry> <!-- Examples -->
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>+</entry>
+						<entry>Plus</entry> <!-- Plus -->
+						<entry>
+
+						Addiert bzw. verkettet die beiden Objekte <!-- Adds the two objects -->
+
+						</entry>
+						<entry>
+
+						<literal>3 + 5</literal> ergibt <literal>8</literal>.
+						<!--<literal>3 + 5</literal> gives <literal>8</literal>.-->
+						<literal>'a' + 'b'</literal> ergibt <literal>'ab'</literal>.
+						<!--<literal>'a' + 'b'</literal> gives <literal>'ab'</literal>.-->
+
+						</entry>
+					</row>
+					<row>
+						<entry>-</entry>
+						<entry>Minus</entry> <!-- Minus -->
+						<entry>
+
+						Ergibt entweder eine negative Zahl, oder das Ergebnis
+						einer Subtraktion zweier Zahlen
+						<!-- Either gives a negative number or gives the subtraction of
+						one number from the other -->
+
+						</entry>
+						<entry>
+
+						<literal>-5.2</literal> ergibt eine negative Zahl.
+						<literal>50 - 24</literal> ergibt <literal>26</literal>.
+						<!-- <literal>-5.2</literal> gives a negative number.
+						<literal>50 - 24</literal> gives <literal>26</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>*</entry>
+						<entry>Multiplikation</entry> <!-- Multiply -->
+						<entry>
+
+						Multipliziert zwei Zahlen miteinander oder gibt eine mehrfache Wiederholung
+						eines Strings (einer Sequenz) zurück.
+						<!-- Gives the multiplication of the two numbers or returns
+						the string repeated that many times. -->
+
+						</entry>
+						<entry>
+
+						<literal>2 * 3</literal> ergibt <literal>6</literal>.
+						<literal>'la' * 3</literal> ergibt <literal>'lalala'</literal>.
+						<!-- <literal>2 * 3</literal> gives <literal>6</literal>.
+						<literal>'la' * 3</literal> gives <literal>'lalala'</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>**</entry>
+						<entry>Potenz</entry> <!-- Power -->
+						<entry>
+
+						Gibt die Potenzierung x hoch y zurück
+						<!-- Returns x to the power of y -->
+
+						</entry>
+						<entry>
+
+						<literal>3 ** 4</literal> ergibt <literal>81</literal>
+						(d.h. <literal>3 * 3 * 3 * 3</literal>)
+						<!-- <literal>3 ** 4</literal> gives <literal>81</literal>
+						(i.e. <literal>3 * 3 * 3 * 3</literal>) -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>/</entry>
+						<entry>Division</entry> <!-- Divide -->
+						<entry>
+
+						Dividiere x durch y
+						<!-- Divide x by y -->
+
+						</entry>
+						<entry>
+
+						<literal>4/3</literal> ergibt <literal>1</literal> (die Division
+						von Ganzzahlen ergibt wieder eine Ganzzahl).
+						<literal>4.0/3</literal> oder <literal>4/3.0</literal> ergibt
+						<literal>1.3333333333333333</literal>
+						<!-- <literal>4/3</literal> gives <literal>1</literal> (division
+						of integers gives an integer).
+						<literal>4.0/3</literal> or <literal>4/3.0</literal> gives
+						<literal>1.3333333333333333</literal> -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>//</entry>
+						<entry>Ganzzahlige Division</entry> <!-- Floor Division -->
+						<entry>
+
+						Liefert das Ergebnis der ganzzahligen Division zurück
+						<!-- Returns the floor of the quotient -->
+
+						</entry>
+						<entry>
+
+						<literal>4 // 3.0</literal> ergibt <literal>1.0</literal>
+						<!-- <literal>4 // 3.0</literal> gives <literal>1.0</literal> -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>%</entry>
+						<entry>Modulo</entry>
+						<entry>
+
+						Liefert den Rest bei einer ganzzahligen Division zurück
+						<!--Returns the remainder of the division-->
+
+						</entry>
+						<entry>
+
+						<literal>8%3</literal> ergibt <literal>2</literal>.
+						<literal>-25.5%2.25</literal> ergibt <literal>1.5</literal> .
+						<!-- <literal>8%3</literal> gives <literal>2</literal>.
+						<literal>-25.5%2.25</literal> gives <literal>1.5</literal> . -->
+
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[<<]]></entry>
+						<entry>Bitweises Linksschieben</entry> <!-- Left Shift -->
+						<entry>
+
+						Verschiebt das Bitmuster des linken Operanden um die angegebene
+						Anzahl von Bit-Positionen nach links (jede Zahl wird im Speicher
+						durch Bits, d.h. die Binärzeichen 0 und 1 repräsentiert).
+						<!-- Shifts the bits of the number to the left by the number of
+						bits specified. (Each number is represented in memory by
+						bits or binary digits i.e. 0 and 1) -->
+
+						</entry>
+						<entry>
+
+						<literal><![CDATA[2 << 2]]></literal> ergibt
+						<literal>8</literal>.
+						- <literal>2</literal> wird durch das Bitmuster
+						<literal>10</literal> repräsentiert. Eine Verschiebung um 2 Bits
+						nach links ergibt <literal>1000</literal>, was wiederum der
+						Dezimalzahl <literal>8</literal> entspricht.
+						<!-- <literal><![CDATA[2 << 2]]></literal> gives
+						<literal>8</literal>.
+						- <literal>2</literal> is represented by
+						<literal>10</literal> in bits. Left shifting by 2 bits
+						gives <literal>1000</literal> which represents the
+						decimal <literal>8</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[>>]]></entry>
+						<entry>Bitweises Rechtsschieben</entry> <!-- Right Shift -->
+						<entry>
+
+						Verschiebt das Bitmuster des linken Operanden um die angegebene
+						Anzahl von Bit-Positionen nach rechts.
+						<!-- Shifts the bits of the number to the right by the number
+						of bits specified. -->
+
+						</entry>
+						<entry>
+
+						<literal><![CDATA[11 >> 1]]></literal> ergibt
+						<literal>5</literal> -
+						<literal>11</literal> wird durch das Bitmuster
+						<literal>1011</literal> repräsentiert. Eine Verschiebung um 1 Bit
+						nach rechts ergibt <literal>101</literal>, was wiederum der
+						Dezimalzahl <literal>5</literal> entspricht.
+
+						<!-- <literal><![CDATA[11 >> 1]]></literal> gives
+						<literal>5</literal> -
+						<literal>11</literal> is represented in bits by
+						<literal>1011</literal> which when right shifted by
+						1 bit gives <literal>101</literal> which is nothing
+						but decimal <literal>5</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[&]]></entry>
+						<entry>Bitweises UND</entry> <!-- Bitwise AND -->
+						<entry>
+
+						Die Bitmuster der beiden Zahlen werden mit UND verknüpft.
+						<!-- Bitwise AND of the numbers -->
+
+						</entry>
+						<entry>
+
+						<literal><![CDATA[5 & 3]]></literal> ergibt
+						<literal>1</literal>.
+						<!-- <literal><![CDATA[5 & 3]]></literal> gives
+						<literal>1</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>|</entry>
+						<entry>Bitweises ODER</entry> <!-- Bit-wise OR -->
+						<entry>
+
+						Die Bitmuster der beiden Zahlen werden mit ODER verknüpft
+
+						<!-- Bitwise OR of the numbers -->
+
+						</entry>
+						<entry>
+
+						<literal>5 | 3</literal> ergibt <literal>7</literal>
+						<!-- <literal>5 | 3</literal> gives <literal>7</literal> -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>^</entry>
+						<entry>Bitweises XOR</entry> <!-- Bit-wise XOR -->
+						<entry>
+
+						Die Bitmuster der beiden Zahlen werden mit XOR (exklusivem ODER) verknüpft
+
+						<!-- (this entry was missing in english!) -->
+
+						</entry>
+						<entry>
+
+						<literal>5 ^ 3</literal> ergibt <literal>6</literal>
+						<!--<literal>5 ^ 3</literal> gives <literal>6</literal>-->
+
+						</entry>
+					</row>
+					<row>
+						<entry>~</entry>
+						<entry>Bitweises NICHT</entry> <!-- Bit-wise invert -->
+						<entry>
+
+						Ergibt die bitweise Negation des Operanden. Dies wird auch als
+						das Einerkomplement bezeichnet. Das Einerkomplement einer Zahl x ist gleich -(x+1).
+
+						<!-- The bit-wise inversion of x is -(x+1) -->
+
+						</entry>
+						<entry>
+
+						<literal>~5</literal> ergibt <literal>-6</literal>.
+						<!--<literal>~5</literal> gives <literal>-6</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[<]]></entry>
+						<entry>Kleiner als</entry> <!-- Less Than -->
+						<entry>
+
+						Das Ergebnis zeigt an, ob x kleiner als y ist.
+						Alle Vergleichsoperatoren liefern als Rückgabewert 1 für wahr und 0 für falsch.
+						Diese Werte entsprechen den speziellen logischen Konstanten
+						<literal>True</literal> bzw. <literal>False</literal>.
+						Beachten Sie die Großschreibung dieser Konstanten.
+						<!-- Returns whether x is less than y. All comparison operators
+						return 1 for true and 0 for false. This is equivalent to
+						the special variables <literal>True</literal> and
+						<literal>False</literal> respectively. Note the
+						capitalization of these variables' names. -->
+
+						</entry>
+						<entry>
+
+						<literal><![CDATA[5 < 3]]></literal> ergibt
+						<literal>0</literal> (d.h. <literal>False</literal>) und
+						<literal><![CDATA[3 < 5]]></literal> ergibt
+						<literal>1</literal> (d.h. <literal>True</literal>).
+						<!-- <literal><![CDATA[5 < 3]]></literal> gives
+						<literal>0</literal> (i.e. <literal>False</literal>) and
+						<literal><![CDATA[3 < 5]]></literal> gives
+						<literal>1</literal> (i.e. <literal>True</literal>). -->
+
+						Vergleiche können beliebig hintereinander geschaltet werden:
+						<!--Comparisons can be chained arbitrarily:-->
+
+						<![CDATA[3 < 5 < 7]]> ergibt <literal>True</literal>.
+						<!--<![CDATA[3 < 5 < 7]]> gives <literal>True</literal>.-->
+
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[>]]></entry>
+						<entry>Größer als</entry> <!-- Greater Than -->
+						<entry>
+
+						Das Ergebnis zeigt an, ob x größer als y ist
+						<!--Returns whether x is greater than y-->
+
+						</entry>
+						<entry>
+
+						<literal><![CDATA[5 > 3]]></literal> ist wahr, ergibt also
+						<literal>True</literal>. Falls beide Operanden Zahlen sind,
+						werden sie vor dem Vergleich zuerst in einen gemeinsamen Datentyp
+						umgewandelt. Andernfalls erhält man immer <literal>False</literal>.
+
+						<!-- <literal><![CDATA[5 < 3]]></literal> returns
+						<literal>True</literal>. If both operands are numbers, they
+						are first converted to a common type. Otherwise, it always
+						returns <literal>False</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[<=]]></entry>
+						<entry>Kleiner gleich</entry> <!-- Less Than or Equal To -->
+						<entry>
+
+						Das Ergebnis zeigt an, ob x kleiner als oder gleich y ist
+						<!-- Returns whether x is less than or equal to y -->
+
+						</entry>
+						<entry>
+
+						<literal><![CDATA[x = 3; y = 6; x <= y]]></literal>
+						ergibt <literal>True</literal>.
+						<!-- <literal><![CDATA[x = 3; y = 6; x <= y]]></literal>
+						returns <literal>True</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[>=]]></entry>
+						<entry>Größer gleich</entry> <!-- Greater Than or Equal To -->
+						<entry>
+
+						Das Ergebnis zeigt an, ob x größer als oder gleich y ist
+						<!-- Returns whether x is greater than or equal to y -->
+
+						</entry>
+						<entry>
+
+						<![CDATA[x = 4; y = 3; x >= 3]]> ergibt <literal>True</literal>.
+						<!-- <![CDATA[x = 4; y = 3; x >= 3]]> returns
+						<literal>True</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>==</entry>
+						<entry>Gleichheit</entry> <!-- Equal To -->
+						<entry>
+
+						Prüft die beiden Objekte auf Gleichheit
+						<!-- Compares if the objects are equal -->
+
+						</entry>
+						<entry>
+
+						<literal>x = 2; y = 2; x == y</literal> ergibt <literal>True</literal>.
+						<!-- <literal>x = 2; y = 2; x == y</literal> returns
+						<literal>True</literal>. -->
+
+						<literal>x = 'str'; y = 'stR'; x == y</literal> ergibt <literal>False</literal>.
+						<!-- <literal>x = 'str'; y = 'stR'; x == y</literal> returns
+						<literal>False</literal>. -->
+
+						<literal>x = 'str'; y = 'str'; x == y</literal> ergibt <literal>True</literal>.
+						<!-- <literal>x = 'str'; y = 'str'; x == y</literal> returns
+						<literal>True</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>!=</entry>
+						<entry>Ungleichheit</entry> <!-- Not Equal To -->
+						<entry>
+
+						Prüft die beiden Objekte auf Ungleichheit
+						<!-- Compares if the objects are not equal -->
+
+						</entry>
+						<entry>
+
+						<literal>x = 2; y = 3; x != y</literal> ergibt <literal>True</literal>.
+						<!-- <literal>x = 2; y = 3; x != y</literal> returns
+						<literal>True</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>not</entry>
+						<entry>Logisches NICHT</entry> <!-- Boolean NOT -->
+						<entry>
+
+						Bewirkt eine Invertierung des Wahrheitswertes: Wenn x <literal>True</literal>
+						ist, ist das Ergebnis <literal>False</literal>. Wenn x <literal>False</literal>
+						ist, ist das Ergebnis <literal>True</literal>.
+						<!-- If x is <literal>True</literal>, it returns
+						<literal>False</literal>. If x is <literal>False</literal>,
+						it returns <literal>True</literal>. -->
+
+						</entry>
+						<entry>
+
+						<literal>x = True; not x</literal> ergibt <literal>False</literal>.
+						<!-- <literal>x = True; not y</literal> returns
+						<literal>False</literal>. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>and</entry>
+						<entry>Logisches UND</entry> <!-- Boolean AND -->
+						<entry>
+
+						<literal>x and y</literal> ergibt <literal>x</literal>, wenn
+						<literal>x</literal> als Wahrheitswert interpretiert gleich <literal>False</literal> ist.
+						Andernfalls ist das Ergebnis der Wert von of <literal>y</literal>.
+						Das Ergebnis entspricht daher einer logischen UND-Verknüpfung.
+
+						<!-- <literal>x and y</literal> returns <literal>False</literal>
+						if x is <literal>False</literal>, else it returns evaluation of y -->
+
+						</entry>
+						<entry>
+
+						<literal>x = False; y = True; x and y</literal> ergibt
+						<literal>False</literal>, da <literal>x</literal> <literal>False</literal> ist.
+						In diesem Fall wird der Python-Interpreter die Variable <literal>y</literal>
+						gar nicht erst in die Auswertung mit einbeziehen, da der Ausdruck
+						bereits falsch ist (da <literal>x</literal> <literal>False</literal> ist).
+						Dies wird eine &quot;Kurzschlussauswertung&quot; genannt: Sie liefert das
+						richtige Ergebnis, ohne dass <literal>y</literal> ausgewertet werden muss
+						(bedenken Sie, dass an der Stelle von <literal>y</literal> auch ein sehr komplizierter
+						Ausdruck stehen kann, dessen Berechnung lange Zeit in Anspruch nehmen würde oder
+						zu einem Fehler führen könnte - durch die verkürzte Auswertung wird dies vermieden).
+						So liefert z.B. <literal>0 and 1/0</literal> den Wert 0 zurück, da die Zahl 0
+						dem Wahrheitswert <literal>False</literal> entspricht. Der Ausdruck
+						<literal>1/0</literal> wird in diesem Fall nicht ausgewertet und führt daher
+						auch nicht zu einer Fehlermeldung.
+
+						<!-- <literal>x = False; y = True; x and y</literal> returns
+						<literal>False</literal> since x is False. In this case,
+						Python will not evaluate y since it knows that the value of
+						the expression will has to be false (since x is False).
+						This is called short-circuit evaluation. -->
+						<!-- Das stimmt nicht ganz. Korrektur in der Übersetzung. -->
+
+						</entry>
+					</row>
+					<row>
+						<entry>or</entry>
+						<entry>Logisches ODER</entry> <!-- Boolean OR -->
+						<entry>
+
+						<literal>x or y</literal> ergibt <literal>x</literal>, wenn
+						<literal>x</literal> als Wahrheitswert interpretiert gleich <literal>True</literal> ist.
+						Andernfalls ist das Ergebnis der Wert von <literal>y</literal>.
+						Das Ergebnis entspricht daher einer logischen ODER-Verknüpfung.
+
+						<!-- If x is <literal>True</literal>, it returns True, else it
+						returns evaluation of y -->
+
+						</entry>
+						<entry>
+
+						<literal>x = True; y = False; x or y</literal> ergibt <literal>True</literal>.
+						Hier wird ebenfalls das Prinzip der Kurzschlussauswertung verwendet.
+						So liefert z.B. <literal>3 and 1/0</literal> ohne Fehlermeldung den Wert 123
+						zurück, da die Zahl 3 dem Wahrheitswert <literal>True</literal> entspricht.
+						Die Auswertung von <literal>3/4 and 1/0</literal> führt jedoch zu einer Fehlermeldung,
+						da die Division der Ganzzahlen den Wert 0 ergibt, was logisch gleich <literal>False</literal> ist.
+						<!-- <literal>x = True; y = False; x or y</literal> returns
+						<literal>True</literal>. Short-circuit evaluation applies
+						here as well. -->
+
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</section>
+
+	<section id="operator-precedence">
+		<title>Auswertungsreihenfolge der Operatoren</title> <!--  Operator Precedence -->
+
+		<para>
+
+		Wird bei einem Ausdruck wie z.B. <literal>2 + 3 * 4</literal> zuerst die Addition oder
+		die Multiplikation durchgeführt? Wie wir aus der Schulmathematik wissen, kommt die
+		Multiplikation zuerst - d.h. der Operator für die Multiplikation hat gegenüber dem Operator
+		für die Addition eine höhere Priorität.
+
+		<!-- If you had an expression such as <literal>2 + 3 * 4</literal>, is the addition done first
+		or the multiplication? Our high school maths tells us that the multiplication should be
+		done first - this means that the multiplication operator has higher precedence than the
+		addition operator. -->
+
+		</para>
+		<para>
+
+		Die nachfolgende Tabelle listet alle Operatoren in Python in aufsteigender Reihenfolge ihrer Priorität auf,
+		von der niedrigsten Priorität (am schwächsten bindend) zur höchsten (am stärksten bindend).
+		Mit anderen Worten wird der Python-Interpreter bei einem Ausdruck zuerst die Operatoren auswerten,
+		die in der Tabelle weiter unten stehen, bevor er die Operatoren auswertet, die weiter oben stehen.
+
+		<!-- The following table gives the operator precedence table for Python, from the lowest
+		precedence (least binding) to the highest precedence (most binding). This means that
+		in a given expression, Python will first evaluate the operators lower in the table
+		before the operators listed higher in the table. -->
+
+		</para>
+		<para>
+
+		Die Tabelle soll hier nur zur Vervollständigung dienen (Sie finden diese auch im Python-Referenzhandbuch).
+		Ich rate Ihnen, Operatoren und Operanden mit Klammern zu gruppieren, um die Reihenfolge der Auswertung
+		zu verdeutlichen. Das Programm wird dadurch auch lesbarer. Der Ausdruck <literal>2 + (3 * 4)</literal>
+		ist z.B. viel klarer als <literal>2 + 3 * 4</literal>. Wie überall gilt es auch bei Klammern auf eine vernünftige
+		Verwendung zu achten und diese wegzulassen, wo sie nicht benötigt werden (wie bei <literal>2 + (3 + 4)</literal>).
+
+		<!-- The following table (same as the one in the Python reference manual) is provided for the
+		sake of completeness. However, I advise you to use parentheses for grouping of operators
+		and operands in order to explicitly specify the precedence and to make the program as
+		readable as possible. For example, <literal>2 + (3 * 4)</literal> is definitely more clearer
+		than <literal>2 + 3 * 4</literal>. As with everything else, the parentheses shold be used
+		sensibly and should not be redundant (as in <literal>2 + (3 + 4)</literal>). -->
+
+		</para>
+		<table id="operator-precedence-table">
+			<title>Auswertungsreihenfolge der Operatoren</title> <!-- Operator Precedence -->
+			<tgroup cols="2">
+				<thead>
+					<row>
+						<entry>Operator</entry>
+						<entry>Bedeutung</entry> <!-- Description -->
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>lambda</entry>
+						<entry>Lambda-Funktion</entry> <!-- Lambda Expression-->
+					</row>
+					<row>
+						<entry>or</entry>
+						<entry>Logisches ODER</entry> <!-- Boolean OR -->
+					</row>
+					<row>
+						<entry>and</entry>
+						<entry>Logisches UND</entry> <!-- Boolean AND -->
+					</row>
+					<row>
+						<entry>not x</entry>
+						<entry>Logisches NICHT</entry> <!-- Boolean NOT -->
+					</row>
+					<row>
+						<entry>in, not in</entry>
+						<entry>Mitgliedschaftstest (bei Sequenzen)</entry> <!-- Membership tests -->
+					</row>
+					<row>
+						<entry>is, is not</entry>
+						<entry>Test auf Identität</entry> <!-- Identity tests -->
+					</row>
+					<row>
+						<entry><![CDATA[<, <=, >, >=, !=, ==]]></entry>
+						<entry>Vergleiche</entry> <!-- Comparisons -->
+					</row>
+					<row>
+						<entry>|</entry>
+						<entry>Bitweises ODER</entry> <!-- Bitwise OR -->
+					</row>
+					<row>
+						<entry>^</entry>
+						<entry>Bitweises XOR</entry> <!-- Bitwise XOR -->
+					</row>
+					<row>
+						<entry><![CDATA[&]]></entry>
+						<entry>Bitweises UND</entry> <!-- Bitwise AND -->
+					</row>
+					<row>
+						<entry><![CDATA[<<, >>]]></entry>
+						<entry>Bitweise Verschiebungen</entry> <!-- Shifts -->
+					</row>
+					<row>
+						<entry>+, -</entry>
+						<entry>Addition und Subtraktion</entry> <!-- Addition and subtraction -->
+					</row>
+					<row>
+						<entry>*, /, %</entry>
+						<entry>Multiplikation, Division und Rest</entry> <!-- Multiplication, Division and Remainder -->
+					</row>
+					<row>
+						<entry>+x, -x</entry>
+						<entry>Positives und negatives Vorzeichen</entry> <!-- Positive, Negative -->
+					</row>
+					<row>
+						<entry>~x</entry>
+						<entry>Bitweises NICHT</entry> <!-- Bitwise NOT -->
+					</row>
+					<row>
+						<entry>**</entry>
+						<entry>Potenzierung</entry> <!-- Exponentiation -->
+					</row>
+					<row>
+						<entry>x.attribut</entry> <!--  x.attribute -->
+						<entry>Attributreferenzierung</entry> <!-- Attribute reference -->
+					</row>
+					<row>
+						<entry>x[index]</entry>
+						<entry>Indexierung</entry> <!-- Subscription -->
+					</row>
+					<row>
+						<entry>x[index:index]</entry>
+						<entry>Teilbereich einer Sequenz</entry> <!-- Slicing -->
+					</row>
+					<row>
+						<entry>f(parameter ...)</entry> <!-- f(arguments ...) -->
+						<entry>Funktionsaufruf</entry> <!-- Function call -->
+					</row>
+					<row>
+						<entry>(ausdruck, ...)</entry> <!-- (expressions, ...) -->
+						<entry>Klammerung oder Bildung von Tupeln</entry> <!-- Binding or tuple display -->
+					</row>
+					<row>
+						<entry>[ausdruck, ...]</entry> <!-- [expressions, ...] -->
+						<entry>Bildung von Listen</entry> <!-- List display -->
+					</row>
+					<row>
+						<entry>{schluessel:wert, ...}</entry> <!--<entry>{key:datum, ...}</entry>-->
+						<entry>Bildung von Dictionaries</entry> <!-- Dictionary display -->
+					</row>
+					<row>
+						<entry>`ausdruck, ...`</entry> <!-- `expressions, ...` -->
+						<entry>Umwandlung in Stringdarstellung</entry> <!-- String conversion -->
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+
+		<para>
+
+		In der Tabelle tauchen einige bisher noch nicht besprochene Operatoren auf,
+		die in späteren Kapiteln erläutert werden.
+
+		<!-- The operators which we have not already come across will be explained in later chapters. -->
+
+		</para>
+		<para>
+		Operatoren mit <emphasis>gleicher Priorität</emphasis> sind in der obigen Tabelle
+		in der gleichen Zeile aufgeführt. Die Operatoren <literal>+</literal> und <literal>-</literal>
+		haben z.B. die gleiche Priorität.
+
+		<!-- Operators with the same <emphasis>same precedence</emphasis> are listed in the same row
+		in the above table. For example, <literal>+</literal> and <literal>-</literal> have the
+		same precedence. -->
+
+		</para>
+		<section id="order-of-evaluation">
+			<title>Auswertungsreihenfolge </title> <!-- Order of Evaluation -->
+
+			<para>
+
+			Normalerweise werden die Operatoren in der Reihenfolge wie in der Tabelle angegeben
+			ausgewertet. Sie können diese Reihenfolge jedoch durch die Verwendung von Klammern
+			abändern. Wenn Sie etwa möchten, dass bei einem Ausdruck eine Addition vor einer Multiplikation
+			ausgewertet wird, schreiben Sie <literal>(2 + 3) * 4</literal>.
+
+			<!-- By default, the operator precedence table decides which operators are evaluated
+			before others. However, if you want to change the orer in which they are
+			evaluated, you can use parentheses. For example, if you want addition to be
+			evaluated before multiplication in an expression, then you can write something
+			like <literal>(2 + 3) * 4</literal>. -->
+
+			</para>
+		</section>
+		<section id="associativity">
+			<title>Assoziativität</title> <!--<title>Associativity</title>-->
+
+			<para>
+
+			Operatoren mit gleicher Priorität werden innerhalb eines Ausdrucks von links
+			nach rechts ausgewertet. Zum Beispiel wird <literal>2 + 3 + 4</literal> wie
+			<literal>(2 + 3) + 4</literal> ausgewertet. Manche Operatoren, wie z.B. der
+			Zuweisungsoperator, sind rechtsassoziativ. D.h. der Ausdruck <literal>a = b = c</literal>
+			wird wie <literal>a = (b = c)</literal> behandelt.
+
+			<!-- Operators are usually associated from left to right i.e. operators with same
+			precedence are evaluated in a left to right manner. For example,
+			<literal>2 + 3 + 4</literal> is evaluated as
+			<literal>(2 + 3) + 4</literal>. Some operators like assignment operators have
+			right to left associativity i.e. <literal>a = b = c</literal> is treated as
+			<literal>a = (b = c)</literal>. -->
+
+			</para>
+		</section>
+	</section>
+
+	<section id="expressions">
+		<title>Ausdrücke</title> <!-- Expressions -->
+
+		<section id="using-expressions">
+			<title>Verwendung von Ausdrücken</title> <!-- Using Expressions -->
+
+			<example id="using-expressions-example">
+				<title>Verwendung von Ausdrücken</title>
+				<simpara>(<ulink url="code/ausdruck.py">ausdruck.py</ulink>)</simpara>
+				<programlisting>
+				<![CDATA[
+#!/usr/bin/python
+
+laenge = 5
+breite = 2
+
+flaeche = laenge * breite
+print 'Die Flaeche ist', flaeche
+print 'Der Umfang ist', 2 * (laenge + breite)
+				]]>
+				</programlisting>
+				<!-- <![CDATA[
+#!/usr/bin/python
+# Filename: expression.py
+
+length = 5
+breadth = 2
+
+area = length * breadth
+print 'Area is', area
+print 'Perimeter is', 2 * (length + breadth)
+				]]> -->
+			</example>
+
+			<section id="using-expressions-output">
+				<title>Ausgabe</title> <!-- Output -->
+				<screen>
+				<![CDATA[
+$ python ausdruck.py
+Die Flaeche ist 10
+Der Umfang ist 14
+				]]>
+				</screen>
+				 <!--<![CDATA[
+$ python expression.py
+Area is 10
+Perimeter is 14
+				]]> -->
+			</section>
+
+			<section id="using-expressions-how">
+				<title>So funktioniert es</title> <!--<title>How It Works</title>-->
+
+				<para>
+
+				Die Länge und die Breite des Rechtecks werden in zwei gleichnamigen Variablen
+				gespeichert. Diese werden dann in den Ausdrücken verwendet, um die Fläche und
+				den Umfang zu berechnen. Wir speichern das Ergebnis des Ausdrucks
+				<literal>laenge * breite</literal> in der Variablen <varname>flaeche</varname> und
+				geben diese mit der <literal>print</literal>-Anweisung auf dem Bildschirm aus.
+				Im zweiten Fall übergeben wir den Wert des Ausdrucks <literal>2 * (laenge + breite)</literal>
+				der <literal>print</literal>-Anweisung direkt als Parameter.
+
+				<!-- The length and breadth of the rectangle are stored in variables by the
+				same name. We use these to calculate the area and perimieter of the
+				rectangle with the help of expressions. We store the result of the
+				expression <literal>length * breadth</literal> in the variable
+				<varname>area</varname> and then print it using the <literal>print</literal>
+				statement. In the second case, we directly use the value of the expression
+				<literal>2 * (length + breadth)</literal> in the print statement.
+				-->
+
+				</para>
+				<para>
+
+				Beachten Sie auch, wie Python automatisch versucht, die Ausgabe lesbar zu gestalten.
+				Obwohl wir zwischen <literal>'Die Flaeche ist'</literal> und der Variablen
+				<varname>flaeche</varname> kein Leerzeichen eingefügt haben, fügt Python
+				dieses für uns ein, so dass wir eine schöne, klare Ausgabe erhalten. Dadurch ist auch
+				unser Programmcode leichter zu lesen, da wir uns keine Sorgen um die Formatierung
+				der Ausgabe machen müssen. Das ist ein Beispiel dafür, wie Python Programmierern
+				das Leben erleichtert.
+
+				<!-- Also, notice how Python 'pretty-prints' the output. Even though we have not
+				specified a space between <literal>'Area is'</literal> and the variable
+				<varname>area</varname>, Python puts it for us so that we get a clean nice
+				output and the program is much more readable this way (since we don't need
+				to worry about spacing in the output). This is an example of how Python
+				makes life easy for the programmer. -->
+
+				</para>
+			</section>
+
+		</section>
+	</section>
+
+	<section id="operators-expressions-summary">
+		<title>Zusammenfassung</title> <!-- Summary -->
+
+		<para>
+
+		In diesem Abschnitt haben wir gesehen, wie Operatoren, Operanden und Ausdrücke
+		verwendet werden - sie sind die Basisbausteine für jedes Programm. Als Nächstes
+		werden wir sie zusammen mit Anweisungen in unseren Programmen verwenden.
+
+		<!-- We have seen how to use operators, operands and expressions - these are the basic
+		building blocks of any program. Next, we will see how to make use of these in our
+		programs using statements. -->
+
+		</para>
+	</section>
+
+</chapter>

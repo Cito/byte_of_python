@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Die continue-Anweisung</title><link rel="stylesheet" type="text/css" href="byte.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="A Byte of Python" /><link rel="up" href="control-flow.html" title="Kapitel 6. Kontrollfluss" /><link rel="prev" href="break-statement.html" title="Die break-Anweisung" /><link rel="next" href="control-flow-summary.html" title="Zusammenfassung" /></head><body>
+<div class="header">
+<strong><a href="http://www.byteofpython.info/" class="header-link">A Byte of Python</a></strong>
+</div>
+<div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Die continue-Anweisung</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="break-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><th width="60%" align="center">Kapitel 6. Kontrollfluss</th><td width="20%" align="right"> <a accesskey="n" href="control-flow-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="continue-statement"></a>Die continue-Anweisung</h2></div></div></div><p>
+
+		Die <code class="literal">continue</code>-Anweisung wird benutzt, um Python mitzuteilen,
+		dass es die restlichen Anweisungen in der aktuellen Schleife überspringen soll und direkt
+		mit dem nächsten Schleifendurchlauf <span class="emphasis"><em>fortfahren</em></span> soll.
+
+		
+
+		</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="using-continue-statement"></a>Gebrauch der continue-Anweisung</h3></div></div></div><div class="example"><a id="using-continue-statement-example"></a><p class="title"><strong>Beispiel 6.5. Gebrauch der continue-Anweisung
+					(<a class="ulink" href="code/continue.py" target="_top">continue.py</a>)
+				</strong></p><div class="example-contents"><pre class="programlisting">
+				
+<span class="py-comment">#!/usr/bin/python</span>
+
+<span class="py-statement">while</span> <span class="py-builtin">True</span>:
+	s = <span class="py-builtin">raw_input</span>(<span class="py-string">'Geben Sie etwas ein: '</span>)
+	<span class="py-statement">if</span> s == <span class="py-string">'ende'</span>:
+		<span class="py-statement">break</span>
+	<span class="py-statement">if</span> <span class="py-builtin">len</span>(s) &lt; <span class="py-number">3</span>:
+		<span class="py-statement">continue</span>
+	<span class="py-statement">print</span> <span class="py-string">'Die Laenge der Eingabe ist ausreichend.'</span>
+	<span class="py-comment"># Verarbeite die Eingabe hier irgendwie...</span>
+				
+				</pre></div></div><br class="example-break" /><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-continue-output"></a>Ausgabe</h4></div></div></div><pre class="screen">
+				
+$ python continue.py
+Geben Sie etwas ein: a
+Geben Sie etwas ein: 12
+Geben Sie etwas ein: abc
+Die Laenge der Eingabe ist ausreichend.
+Geben Sie etwas ein: ende
+				
+				</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="using-continue-statement-how"></a>So funktioniert es</h4></div></div></div><p>
+
+				In diesem Programm nehmen wir Benutzereingaben entgegen, die wir
+				aber nur dann verarbeiten, wenn sie mindestens drei Zeichen lang sind.
+				Wir benutzen daher die <code class="function">len</code>-Funktion, um
+				die Länge der Eingabe zu bestimmen, und wenn die Länge weniger als 3
+				Zeichen beträgt, überspringen wir die restlichen Anweisungen im while-Block,
+				indem wir die <code class="literal">continue</code>-Anweisung benutzen.
+				Andernfalls werden die restlichen Anweisungen der while-Schleife ausgeführt,
+				und wir können die Eingabe auf irgendeine Weise verarbeiten.
+
+				
+
+				</p><p>
+
+				Beachten Sie, dass die <code class="literal">continue</code>-Anweisung auch
+				bei einer <code class="literal">for</code>-Schleife funktioniert.
+
+				
+
+				</p></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="break-statement.html"><img src="images/prev.gif" alt="Zurück" /></a> </td><td width="20%" align="center"><a accesskey="u" href="control-flow.html"><img src="images/up.gif" alt="Nach oben" /></a></td><td width="40%" align="right"> <a accesskey="n" href="control-flow-summary.html"><img src="images/next.gif" alt="Weiter" /></a></td></tr><tr><td width="40%" align="left" valign="top">Die break-Anweisung </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Zum Anfang" /></a></td><td width="40%" align="right" valign="top"> Zusammenfassung</td></tr></table></div></body></html>
