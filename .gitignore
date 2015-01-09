@@ -1,4 +1,6 @@
+.idea
 *.pyc
+*.pyo
 .*.sw*
 byte_of_python.html
 byte_of_python.xml
